@@ -1,14 +1,14 @@
 import React from "react";
 import ClothesSelection from "../ClothesSelection/ClothesSelection";
-import Subtitle from "../SubTitle/Subtitle";
-import Title from "../Title/Title";
+import SubHeading from "../SubHeading/SubHeading";
+import Heading from "../Heading/Heading";
 import "./WardrobeSelection.scss";
 
 function WardrobeSelection() {
   return (
     <React.Fragment>
-      <Title name="Wardrobe Selection" />
-      <Subtitle name="Select some staples" />
+      <Heading title="Wardrobe Selection" />
+      <SubHeading subtitle="Select some staples" />
       <ClothesSelection />
     </React.Fragment>
   );
