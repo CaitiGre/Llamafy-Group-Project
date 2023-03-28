@@ -1,7 +1,7 @@
 
 import React from 'react';
 import './App.css';
-import RegistrationPage from './components/Registration';
+import RegistrationPage from './components/RegistrationPage/Registration';
 import { Route, Routes } from 'react-router-dom';
 
 

@@ -1,5 +1,5 @@
 h1{
-    font-family: url('../fonts/QuartzoBold.ttf');
+    font-family: url('../../fonts/QuartzoBold.ttf');
     font-size: 100px;
     color: rgba(255, 255, 255, 0);
     padding-top: 5%;
@@ -8,7 +8,7 @@ h1{
 }
 
 body {
-    background-image: url('../../public/images/background.JPG');
+    background-image: url('../../../public/images/background.JPG');
     background-size: cover;
     background-color: rgba(239, 97, 189, 0.503);
 }
