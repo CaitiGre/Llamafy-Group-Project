@@ -2,8 +2,22 @@ import './LoginPage.module.css';
 import CloudBackground from '../assets/full-opacity-cloud.jpg';
 import { Parallax } from 'react-parallax';
 import { Box } from "@mui/material";
+import { useState } from "react";
 
 function LoginPage() {
+
+    const [data, setData] = useState({
+        email: '',
+        password: ''
+    });
+
+    const handleChange = (event) => {
+        setData({ ...data, [event.target.name]: event.target.value });
+    };
+
+    console.log(data);
+
+
     return (
 
         <div>
@@ -20,8 +34,8 @@ function LoginPage() {
                                     type="email"
                                     name="email"
                                     id="email"
-                                    // value={}
-                                    // onChange={}
+                                    value={data.email}
+                                    onChange={handleChange}
                                     placeholder="llama@lavenderllama.co.nz"
                                 />
                             </Box>
@@ -32,20 +46,18 @@ function LoginPage() {
                                     type="password"
                                     name="password"
                                     id="password"
-                                // value={}
-                                // onChange={}
+                                    value={data.password}
+                                    onChange={handleChange}
                                 />
                             </Box>
 
                             <button id="submit-button" type="submit">Submit</button>
+                            {/* To add functionality to button: send data to database? */}
                         </form>
                     </div>
                 </div>
             </Parallax>
         </div>
-
-
-
     )
 }
 
