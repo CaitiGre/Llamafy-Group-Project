@@ -22,7 +22,7 @@ const HomePage = () => {
     }]
 
     return <>
-        <div>Welcome Ding Dong. Today it is 5000&#8451;</div>
+        <div className={styles.title}> Welcome Ding Dong. Today it is 5000&#8451;</div>
         <br />
         <button>What should I wear today?</button>
         
