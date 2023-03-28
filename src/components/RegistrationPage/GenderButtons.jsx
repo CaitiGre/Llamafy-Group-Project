@@ -31,4 +31,4 @@ export default function GenderButtons({ data, handleButtonClick }) {
             </Box>
         </>
     );
-}
+};

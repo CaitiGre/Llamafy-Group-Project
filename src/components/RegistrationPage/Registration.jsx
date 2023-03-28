@@ -1,11 +1,14 @@
 import { useState } from "react";
 import '../RegistrationPage/Registration.css';
 import { Box } from "@mui/material";
+import bcrypt from 'bcryptjs';
 import NamesBox from "./NameBox";
 import EmailBox from "./EmailBox";
 import LocationBox from "./LocationBox";
 import GenderButtons from "./GenderButtons";
+import PasswordBox from "./PasswordBox";
 
+const salt = bcrypt.genSaltSync(10);
 
 function RegistrationPage() {
 
@@ -13,6 +16,8 @@ function RegistrationPage() {
         firstName: '',
         lastName: '',
         email: '',
+        password: '',
+        repassword: '',
         location: '',
         gender: ''
     });
@@ -29,7 +34,15 @@ function RegistrationPage() {
     //once backend set up, will send data there. Just here for dummy testing atm.
     const handleSubmit = (event) => {
         event.preventDefault();
-        console.log(data);
+        if (data.password !== data.repassword) {
+            alert("Your passwords must match.");
+        } else if (Object.values(data).includes('')) {
+            alert("All details on this form are required.")
+        } else {
+            const hashedPassword = bcrypt.hashSync(data.password, salt);
+            console.log(data);
+            console.log(hashedPassword);
+        }    
     };
     //PASSWORD??
     return (
@@ -41,6 +54,7 @@ function RegistrationPage() {
                         <NamesBox data={data} handleChange={handleChange} />
                         {/*Need to add alert function if email entered is already in use.*/}
                         <EmailBox data={data} handleChange={handleChange} />
+                        <PasswordBox data={data} handleChange={handleChange} />
                         <LocationBox data={data} handleChange={handleChange} />
                         <GenderButtons data={data} handleButtonClick={handleButtonClick} />
                         <button id="submit-button" type="submit">Submit</button>

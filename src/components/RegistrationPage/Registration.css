@@ -27,7 +27,7 @@ label {
 
 
 
-#email, #location {
+#email, #location, #password, #repassword {
     width: 210%;
 }
 
