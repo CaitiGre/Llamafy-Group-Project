@@ -16,11 +16,12 @@ function LandingPage(){
                 <h1>LLAMAFY</h1>
                 <h2>IT'S TIME TO BUTTON UP OR SHUT UP</h2>
                 <div className="buttonContainer">
-                    <button>LOGIN</button>
-                    <button>REGISTER</button> 
+                    <button className="landing-login-button">LOGIN</button>
+                    <button className="register-button">REGISTER</button> 
                 </div>
             </div>
-            </Parallax></div>
+            </Parallax>
+            </div>
             <h2 className="llamaSubheading">No time for drama? Trust in Llama!</h2>
             <Parallax bgImage={CloudBackground} strength={550}>
                 <div className="bottomSection" style={{width: "cover", height:"700px", margin: "auto"}} >
@@ -31,7 +32,7 @@ function LandingPage(){
                 <div className="aboutContainer2">
                     <div className="gifContainer"> Some form of gif type thing here</div>
                     <p>Simply register with us, answer some basic questions about your current wardrobe and you're done! Worry not, these answers can be altered later and change as your style and current wardrobe change too. We can save you up to 16* hours a week in choosing clothes to wear with the simple click of a button. Why waste time opening and closing the closet trying to decide what to wear? No longer do you have to take the Steve Jobs approach of wearing the same outfit day in and day out simply to have one less decision to make per day. Try LLAMAFY today!
-                     <br></br>
+                        <br></br>
                         <br></br>
                 *Don't quote us on this. We're just enthusiastic! Bordering on unhinged! Just look at all the exclamation marks!</p>
                 </div>

@@ -1,5 +1,4 @@
 *{
-    /* border: 1px solid black; */
     box-sizing: border-box;
     margin: auto;
 }
@@ -36,18 +35,22 @@ h2{
     justify-content: space-evenly;
     padding: 170px;
     padding-top: 30px;
+    padding-bottom: 30px;
     z-index: 1;
 }
 
-button{
+.landing-login-button, .register-button{
+    border-radius: 20px;
+    box-shadow: 2px 2px 5px rgba(255, 255, 255, 0.8);
+    border: none;
+    height: 40px;
+    text-align: center;
     padding: 25px 55px;
+    padding-bottom: 25px;
     width: 250px;
     border-radius: 20px;
     background-color: white;
-    box-shadow:  3px 5px rgba(255, 255, 255, 0.847);
-    z-index: 1;
     font-size: x-large;
-    border-color: whitesmoke;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
