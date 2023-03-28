@@ -1,10 +1,10 @@
 import React from "react";
 
-const OutfitTile = () => {
+const OutfitTile = ({outfit}) => {
     return <div> 
         <div>
-            <p>wassup</p>
-            <img src={'public/images/logo512.png'} alt="" />
+            <img src={outfit.render} style={{width: '200px'}} />
+            <p>{outfit.desc}</p>
         </div>
     </div>
 }
