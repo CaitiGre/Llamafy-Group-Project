@@ -1,5 +1,7 @@
 import { useState } from "react";
 import '../components/Registration.css';
+import { Box } from "@mui/material";
+
 
 function RegistrationPage() {
 
@@ -28,79 +30,85 @@ function RegistrationPage() {
 
     return (
         <>
-            <div>
-                <h1>REGISTER</h1>
+            <h1>REGISTER</h1>
+            <div className="form-container">
                 <form onSubmit={handleSubmit}>
-                    <div className="name-div">
-                        <label>
-                            First Name:
+                    <Box display="flex" justifyContent="center" alignItems="center" flexDirection="column">
+                        <Box display="flex" flexDirection="row">
+                        <Box display="flex" flexDirection="column" alignItems="center">
+                            <label htmlFor="first-name">First Name</label>
                             <input
                                 type="text"
                                 name="firstName"
+                                id="first-name"
                                 value={data.firstName}
                                 onChange={handleChange}
                                 placeholder="Llama"
                             />
-                        </label>
-                        <label>
-                            Last Name:
+                        </Box>
+                        <Box display="flex" flexDirection="column" alignItems="center">
+                            <label htmlFor="last-name">Last Name</label>
                             <input
                                 type="text"
                                 name="lastName"
+                                id="last-name"
                                 value={data.lastName}
                                 onChange={handleChange}
-                                placeholder="the Cow"
+                                placeholder="Alpaca"
                             />
-                        </label>
-                    </div>
-                    <div className="email-div">
-                        <label>
-                            Email:
+                        </Box>
+                        </Box>
+                        <Box display="flex" flexDirection="column" alignItems="center">
+                            <label htmlFor="email">Email</label>
                             <input
                                 type="email"
                                 name="email"
+                                id="email"
                                 value={data.email}
                                 onChange={handleChange}
                                 placeholder="llama@lavenderllama.co.nz"
                             />
-                        </label>
-                    </div>
-                    <div className="location-div">
-                        <label>
-                            Primary Location:
+                        </Box>
+                        <Box display="flex" flexDirection="column" alignItems="center">
+                            <label htmlFor="location">Primary Location</label>
                             <input
                                 type="text"
-                                name="primaryLocation"
-                                value={data.primaryLocation}
+                                name="location"
+                                id="location"
+                                value={data.location}
                                 onChange={handleChange}
                                 placeholder="Which city should llama base the recommendations?"
                             />
-                        </label>
-                    </div>
-                    <div className="gender-div">
-                        <label>
-                            Style Preference:
-                            <button
-                                type="button"
-                                className={`gender-button ${data.gender === 'male' ? 'selected' : ''}`}
-                                onClick={() => handleButtonClick('male')}
-                            >Male
-                            </button>
-                            <button
-                                type="button"
-                                className={`gender-button ${data.gender === 'female' ? 'selected' : ''}`}
-                                onClick={() => handleButtonClick('female')}
-                            >Female
-                            </button>
-                            <button
-                                type="button"
-                                className={`gender-button ${data.gender === 'other' ? 'selected' : ''}`}
-                                onClick={() => handleButtonClick('other')}
-                            >All
-                            </button>
-                        </label>
-                    </div>
-                    <button type="submit">Submit</button>
+                        </Box>
+                        <Box display="flex" flexDirection="column" alignItems="center">
+                            <label htmlFor="gender">Style Preference</label>
+                            <div className="gender-div">
+                                <button
+                                    type="button"
+                                    className={`gender-button ${data.gender === 'male' ? 'selected' : ''}`}
+                                    onClick={() => handleButtonClick('male')}
+                                >
+                                    Male
+                                </button>
+                                <button
+                                    type="button"
+                                    className={`gender-button ${data.gender === 'female' ? 'selected' : ''}`}
+                                    onClick={() => handleButtonClick('female')}
+                                >
+                                    Female
+                                </button>
+                                <button
+                                    type="button"
+                                    className={`gender-button ${data.gender === 'other' ? 'selected' : ''}`}
+                                    onClick={() => handleButtonClick('other')}
+                                >
+                                    All
+                                </button>
+                            </div>
+                        </Box>
+                        <button id="submit-button" type="submit">Submit</button>
+                        </Box>
+
                 </form>
             </div>
         </>
