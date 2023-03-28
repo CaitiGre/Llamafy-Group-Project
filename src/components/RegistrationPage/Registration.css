@@ -1,4 +1,4 @@
-h1{
+.register-h1{
     font-family: url('../../fonts/QuartzoBold.ttf');
     font-size: 100px;
     color: rgba(255, 255, 255, 0);
@@ -13,7 +13,7 @@ body {
     background-color: rgba(239, 97, 189, 0.503);
 }
 
-input {
+.register-input {
     border-radius: 20px;
     box-shadow: 2px 2px 5px rgba(255, 255, 255, 0.8);;
     border: none;
@@ -21,7 +21,7 @@ input {
     text-align: center;
 }
 
-label {
+.register-label {
     padding-bottom: 5px;
 }
 
