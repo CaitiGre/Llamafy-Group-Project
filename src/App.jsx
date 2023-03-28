@@ -1,10 +1,23 @@
-import logo from './logo.svg';
-import HomePage from './components/HomePage';
+import React from 'react';
+import { Route, Routes } from 'react-router-dom';
 import './App.css';
+import LandingPage from './components/landingPage';
 
 function App() {
   return (
-    <HomePage />
+    <div className="App">
+
+      <React.Fragment>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+
+        </Routes>
+      </React.Fragment>
+
+
+
+
+    </div>
   );
 }
 
