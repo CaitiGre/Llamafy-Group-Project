@@ -1,0 +1,94 @@
+h1{
+    font-family: url('../../fonts/QuartzoBold.ttf');
+    font-size: 100px;
+    color: rgba(255, 255, 255, 0);
+    padding-top: 5%;
+    -webkit-text-stroke: 3px white;
+    
+}
+
+body {
+    background-image: url('../../../public/images/background.JPG');
+    background-size: cover;
+    background-color: rgba(239, 97, 189, 0.503);
+}
+
+input {
+    border-radius: 20px;
+    box-shadow: 2px 2px 5px rgba(255, 255, 255, 0.8);;
+    border: none;
+    height: 40px;
+    text-align: center;
+}
+
+label {
+    padding-bottom: 5px;
+}
+
+
+
+#email, #location, #password, #repassword {
+    width: 210%;
+}
+
+.form-container {
+    background-color: rgba(235, 73, 227, 0.315);
+    padding: 20px;
+    margin: 0% 10% 0% 10%;
+    border-radius: 20px;
+}
+
+.form-container div {
+    padding: 10px;
+}
+
+.gender-div {
+    display: flex;
+    justify-content: space-evenly
+
+}
+
+.gender-button {
+    width: 100px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    color: #333;
+    cursor: pointer;
+    font-size: 14px;
+    margin: 0px 5px;
+    outline: none;
+    padding: 12px 22px;
+    transition: background-color 0.3s, border-color 0.3s;
+    box-shadow: 2px 2px 5px rgba(255, 255, 255, 0.8);
+}
+
+.gender-button:hover {
+    background-color: #e0e0e0;
+    border-color: #aaa;
+}
+
+.gender-button.selected {
+    background-color: #ee69ecbe;
+    border-color: #ee69ecbe;
+    color: #fff;
+}
+
+#submit-button {
+    width: 320px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    color: #333;
+    cursor: pointer;
+    font-size: 14px;
+    margin: 0px 5px;
+    outline: none;
+    padding: 12px 22px;
+    transition: background-color 0.3s, border-color 0.3s;
+    box-shadow: 2px 2px 5px rgba(255, 255, 255, 0.8);
+}
+
+#submit-button:hover {
+    background-color: #ee69ec8b;
+}

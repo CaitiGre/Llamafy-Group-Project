@@ -3,6 +3,8 @@ import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import LandingPage from './components/landingPage';
 import HomePage from './components/HomePage';
+import RegistrationPage from './components/RegistrationPage/Registration';
+
 
 function App() {
   return (
@@ -11,9 +13,9 @@ function App() {
       <React.Fragment>
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route path="/register" element={<RegistrationPage />} />
         </Routes>
       </React.Fragment>
-
     </div>
   );
 }
