@@ -89,7 +89,7 @@ function ClothesSelection() {
               className="clothe-card"
               sx={{
                 borderRadius: "4%",
-                backgroundColor: "rgba(255, 255, 255, 0.89)",
+                backgroundColor: "rgba(255, 255, 255, 0.2)",
                 margin: "20px",
                 padding: "20px",
                 justifyContent: "center",
@@ -113,7 +113,7 @@ function ClothesSelection() {
           container
           spacing={{ xs: 2, md: 3 }}
           columns={{ xs: 2, sm: 6, md: 9, lg: 12 }}
-          sx={{ justifyContent: "center" }}
+          sx={{ justifyContent: "center", backgroundColor: "rgba(235, 73, 227, 0.315)" }}
         >
           {clothesItems.map((item, index) => (
             <Grid key={index} item xs={3}>
@@ -147,6 +147,7 @@ function ClothesSelection() {
           top: "50%",
           left: "50%",
           transform: "translate(-50%, -50%)",
+          outline: 'none'
         }}
       >
         <Box
@@ -161,9 +162,9 @@ function ClothesSelection() {
           <Box sx={{ padding: "40px", position: "relative" }}>
             <Button
               onClick={handleCloseModal}
-              sx={{ position: "absolute", top: 8, right: 2, padding:"5px" }}
+              sx={{ position: "absolute", top: 8, right: 2, padding: "5px" }}
             >
-              <img src= {close} alt="close button" width="20px"/>
+              <img src={close} alt="close button" width="20px" />
             </Button>
             {selectedItem && (
               <Typography variant="h4" sx={{ textAlign: "center" }}>
