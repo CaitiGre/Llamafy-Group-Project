@@ -1,10 +1,12 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
+import React from 'react';
+import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import LandingPage from './components/landingPage';
 import HomePage from './components/HomePage';
 import RegistrationPage from './components/RegistrationPage/Registration';
-
+import LoginPage from './components/LoginPage';
 
 function App() {
   return (
@@ -14,6 +16,7 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/register" element={<RegistrationPage />} />
+          <Route path="/login" element={<LoginPage />} />
         </Routes>
       </React.Fragment>
     </div>
