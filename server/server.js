@@ -1,27 +1,16 @@
-const { Configuration, OpenAIApi } = require("openai");
+const { configuration } = require("../server/apiconfig")
+const { OpenAIApi } = require("openai");
 
-const configuration = new Configuration({
-  apiKey: "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",
-});
+async function generateCompletion(prompt) {
+  
+  const openai = new OpenAIApi(configuration);
 
-const openai = new OpenAIApi(configuration);
-
-async function generateAnswer() {
-  try {
-    const response = await openai.createCompletion({
-      model: "davinci",
-      prompt: "What should i wear today, its 23 degrees and it might rain tonight",
-      temperature: 0,
-      max_tokens: 2000,
-      n: 1,
-      stop: "\n"
-    });
-
-    console.log(response.data);
-
-  } catch (error) {
-    console.log(error);
-  }
+  const completion = await openai.createCompletion({
+    model: "text-davinci-003",
+    prompt: "give me response in a JSON object, categorizing each clothing in a different groups of category. give me only clothes as the response. it seems like it may rain tonight, and I am a brown male, What should i wear today?",
+    max_tokens: 2000,
+  });
+  console.log(completion.data.choices[0].text);
 }
 
-generateAnswer();
+generateCompletion();
