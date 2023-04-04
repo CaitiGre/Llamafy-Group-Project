@@ -1,10 +1,11 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
-import LandingPage from './components/landingPage';
-import HomePage from './components/HomePage';
+import LandingPage from './components/LandingPage/landingPage';
+import HomePage from './components/HomePage/HomePage';
 import RegistrationPage from './components/RegistrationPage/Registration';
-import LoginPage from './components/LoginPage';
+import LoginPage from './components/LoginPage/LoginPage';
+import WardrobeSelection from './components/WardrobeSelection/WardrobeSelection';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
             <Route path="home" element={<HomePage />} />
             <Route path="register" element={<RegistrationPage />} />
             <Route path="login" element={<LoginPage />} />
+            <Route path="wardrobeSelection" element={<WardrobeSelection />}/>
         </Routes>
       </React.Fragment>
     </div>
