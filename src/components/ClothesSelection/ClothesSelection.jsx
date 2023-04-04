@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./ClothesSelection.scss";
 import { Grid, Card, Box, Modal, Typography, Button } from "@mui/material";
-import top from "./../../assets/Tshirt.png";
+import top from "./../../assets/tshirt.png";
 import bottom from "./../../assets/pants.png";
 import onepiece from "./../../assets/jumpsuit.png";
 import shoes from "./../../assets/shoe.png";
