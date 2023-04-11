@@ -67,43 +67,42 @@ function LoginPage() {
 
                     <h1>LOGIN</h1>
 
-                    <div>
-                        <form onSubmit={handleSubmit}>
+                    <form onSubmit={handleSubmit}>
 
-                            {inputData.map((item) => (
-                                <Box display="flex" flexDirection="column" alignItems="center">
-                                    <InputLabel
-                                        sx={{
-                                            marginBottom: "5px"
-                                        }}>
-                                        {item.displayName}
-                                    </InputLabel>
+                        {inputData.map((item) => (
+                            <Box display="flex" flexDirection="column" alignItems="center">
+                                <InputLabel
+                                    sx={{
+                                        marginBottom: "5px"
+                                    }}>
+                                    {item.displayName}
+                                </InputLabel>
 
-                                    <Input
-                                        sx={{
-                                            borderRadius: "20px",
-                                            boxShadow: "2px 2px 5px rgba(255, 255, 255, 0.8)",
-                                            height: "40px",
-                                            width: "40%",
-                                            marginBottom: "35px",
-                                            backgroundColor: "white",
-                                        }}
-                                        type={item.type}
-                                        name={item.name}
-                                        id={item.id}
-                                        value={item.value}
-                                        onChange={handleChange}
-                                        inputProps={{ style: { textAlign: "center" } }}
-                                        disableUnderline={true}
-                                        placeholder={item.placeHolder}
-                                    />
-                                </Box>
-                            ))}
+                                <Input
+                                    sx={{
+                                        borderRadius: "20px",
+                                        boxShadow: "2px 2px 5px rgba(255, 255, 255, 0.8)",
+                                        height: "40px",
+                                        width: "40%",
+                                        marginBottom: "35px",
+                                        backgroundColor: "white",
+                                    }}
+                                    type={item.type}
+                                    name={item.name}
+                                    id={item.id}
+                                    value={item.value}
+                                    onChange={handleChange}
+                                    inputProps={{ style: { textAlign: "center" } }}
+                                    disableUnderline={true}
+                                    placeholder={item.placeHolder}
+                                />
+                            </Box>
+                        ))}
 
-                            <button id="submit-button" type="submit" className='login-button'>Submit</button>
+                        <button id="submit-button" type="submit" className='login-button'>Submit</button>
 
-                        </form>
-                    </div>
+                    </form>
+
                 </div>
             </Parallax>
         </div>
