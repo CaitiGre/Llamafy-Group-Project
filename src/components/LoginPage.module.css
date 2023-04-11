@@ -3,7 +3,11 @@
     margin: auto;
 }
 
+.backgroundImage {
+    margin: 0;
+}
 
+/* className and id don't work with h1 and button somehow */
 h1 {
     font-family: url('../fonts/QuartzoBold.ttf');
     font-size: 100px;
@@ -11,52 +15,6 @@ h1 {
     padding-top: 70px;
     -webkit-text-stroke: 3px white;
     margin-bottom: 50px;
-}
-
-h2 {
-    font-family: url('../fonts/QuartzoBold.ttf');
-    font-size: 50px;
-    color: rgba(255, 255, 255, 0);
-    padding: 25px;
-    -webkit-text-stroke: 2.5px white;
-}
-
-.backgroundImage {
-    margin: 0;
-}
-
-
-#email {
-    border-radius: 20px;
-    box-shadow: 2px 2px 5px rgba(255, 255, 255, 0.8);
-    ;
-    border: none;
-    height: 40px;
-    width: 40%;
-    text-align: center;
-    margin-bottom: 25px;
-    background-color: white;
-}
-
-.input-login {
-    border-radius: 20px;
-    box-shadow: 2px 2px 5px rgba(255, 255, 255, 0.8);
-    border: none;
-    height: 40px;
-    width: 40%;
-    text-align: center;
-    margin-bottom: 25px;
-
-}
-
-.label-login {
-    padding-bottom: 15px;
-}
-
-
-button:hover {
-    background-color: #e0e0e0;
-    border-color: #aaa;
 }
 
 button {
@@ -73,5 +31,9 @@ button {
     transition: background-color 0.3s, border-color 0.3s;
     box-shadow: 2px 2px 5px rgba(255, 255, 255, 0.8);
     margin-top: 5%;
+}
 
+button:hover {
+    background-color: #e0e0e0;
+    border-color: #aaa;
 }
