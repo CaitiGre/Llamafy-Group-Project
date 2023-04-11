@@ -1,8 +1,9 @@
 import './LoginPage.module.css';
 import CloudBackground from '../assets/full-opacity-cloud.jpg';
 import { Parallax } from 'react-parallax';
-import { Box, Input, InputLabel, TextField } from "@mui/material";
+import { Box, Input, InputLabel } from "@mui/material";
 import { useState } from "react";
+import bcrypt from 'bcryptjs';
 
 function LoginPage() {
 
@@ -16,6 +17,24 @@ function LoginPage() {
     };
 
     console.log(data);
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+
+        const hashedPassword = ""; // Get user password from database
+        const inputPassword = data.password; // Get the password input by user
+
+        // Compare the passwords. Code is sth like:
+        // const validPassword = bcrypt.compare(inputPassword, hashedPassword);
+
+        // To replace if condition below with validPassword once connected to database
+
+        if (hashedPassword === inputPassword) {
+            // Send user to Home Page
+        } else {
+            alert("Invalid username or password. Please try again.");
+        }
+    }
 
 
     const inputData = [
@@ -49,7 +68,7 @@ function LoginPage() {
                     <h1>LOGIN</h1>
 
                     <div>
-                        <form>
+                        <form onSubmit={handleSubmit}>
 
                             {inputData.map((item) => (
                                 <Box display="flex" flexDirection="column" alignItems="center">
@@ -82,7 +101,7 @@ function LoginPage() {
                             ))}
 
                             <button id="submit-button" type="submit" className='login-button'>Submit</button>
-                            {/* To add functionality to button: send data to database? */}
+
                         </form>
                     </div>
                 </div>
