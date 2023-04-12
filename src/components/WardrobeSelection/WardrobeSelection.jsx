@@ -7,9 +7,12 @@ import "./WardrobeSelection.scss";
 function WardrobeSelection() {
   return (
     <React.Fragment>
+     
       <Heading title="Wardrobe Selection" />
       <SubHeading subtitle="Select some staples" />
+       <section className="wardrobe">
       <ClothesSelection />
+      </section>
     </React.Fragment>
   );
 }
