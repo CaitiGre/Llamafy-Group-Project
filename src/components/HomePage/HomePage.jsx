@@ -1,5 +1,8 @@
 import React from "react";
-import OutfitTile from "../OutfitTile";
+import { useState } from "react";
+
+import OutfitTile from "./OutfitTile";
+
 import shirt from '../../assets/shirt.png'
 import styles from './HomePage.module.css'
 
@@ -19,23 +22,42 @@ const HomePage = () => {
         id: 3,
         render: shirt,
         desc: 'whatever3'
+    },
+    {
+        id: 4,
+        render: shirt,
+        desc: 'whatever4'
+    },
+    {
+        id: 5,
+        render: shirt,
+        desc: 'whatever5'
+    },
+    {
+        id: 6,
+        render: shirt,
+        desc: 'whatever6'
     }]
 
-    return <>
-        <div>Welcome Ding Dong. Today it is 5000&#8451;</div>
+    const [pastOutfits, setPastOutfits] = useState(tempArr);
+
+    return <div className={styles.homePage}>
+        <div className={styles.title}> Welcome Ding Dong. Today it is 5000&#8451;</div>
         <br />
-        <button>What should I wear today?</button>
+        <button className={styles.button} onClick={() => alert("not set up yet dude")}>Generate an Outfit of the Day</button>
         
+
+        <h2><div className={styles.header}>Past Outfits</div></h2>
+
         <div className={styles.outfitTileContainer}>
-            <div className={styles.header}>Past Outfits</div>
-            {tempArr.map((outfitObj) => 
+            {pastOutfits.map((outfitObj) => 
                 <div className={styles.card} key={outfitObj.id}>
                     <OutfitTile outfit={outfitObj} />
                 </div>
                 )
             }
         </div>
-    </>
+    </ div>
 }
 
 export default HomePage;

@@ -6,6 +6,7 @@ import HomePage from './components/HomePage/HomePage';
 import RegistrationPage from './components/RegistrationPage/Registration';
 import LoginPage from './components/LoginPage/LoginPage';
 import WardrobeSelection from './components/WardrobeSelection/WardrobeSelection';
+import OutfitOfTheDay from './components/OutfitOfTheDay/OutfitOfTheDay';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
             <Route path="register" element={<RegistrationPage />} />
             <Route path="login" element={<LoginPage />} />
             <Route path="wardrobeSelection" element={<WardrobeSelection />}/>
+            <Route path="ootd" element={<OutfitOfTheDay />}></Route>
         </Routes>
       </React.Fragment>
     </div>
