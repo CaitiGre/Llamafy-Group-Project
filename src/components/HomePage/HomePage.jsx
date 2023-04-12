@@ -3,6 +3,7 @@ import OutfitTile from "../OutfitTile";
 import shirt from '../../assets/shirt.png'
 import styles from './HomePage.module.css'
 
+
 const HomePage = () => {
 
     const tempArr = [{
@@ -21,8 +22,8 @@ const HomePage = () => {
         desc: 'whatever3'
     }]
 
-    return <>
-        <div>Welcome Ding Dong. Today it is 5000&#8451;</div>
+    return <div className={styles.homePage}>
+        <div className={styles.title}> Welcome Ding Dong. Today it is 5000&#8451;</div>
         <br />
         <button>What should I wear today?</button>
         
@@ -35,7 +36,7 @@ const HomePage = () => {
                 )
             }
         </div>
-    </>
+    </ div>
 }
 
 export default HomePage;
