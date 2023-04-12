@@ -14,6 +14,7 @@
 }
 
 .homePage .header {
+    padding-top: 10vh;
     grid-area: header;
     font-size: larger;
     font-weight: bolder;
@@ -24,7 +25,7 @@
     border: 3px solid white;
     background-color: lavender;
     font-weight: bold;
-    box-shadow: 8px 8px 5px;
+    box-shadow: 6px 6px 10px;
     
 }
 
@@ -41,7 +42,7 @@
     background-color: lavender;
     margin: 50px;
     width: 66vw;
-    box-shadow: 8px 8px 5px;
+    box-shadow: 6px 6px 10px;
 }
 
 .homePage .title {

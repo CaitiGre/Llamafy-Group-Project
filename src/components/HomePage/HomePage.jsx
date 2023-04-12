@@ -1,5 +1,5 @@
 import React from "react";
-import OutfitTile from "../OutfitTile";
+import OutfitTile from "./OutfitTile";
 import shirt from '../../assets/shirt.png'
 import styles from './HomePage.module.css'
 
