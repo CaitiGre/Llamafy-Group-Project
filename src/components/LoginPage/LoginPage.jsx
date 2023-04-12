@@ -1,4 +1,4 @@
-import './LoginPage.module.css';
+import styles from './LoginPage.module.css';
 import CloudBackground from '../../assets/full-opacity-cloud.jpg';
 import { Parallax } from 'react-parallax';
 import { Box, Input, InputLabel } from "@mui/material";
@@ -61,8 +61,8 @@ function LoginPage() {
 
     return (
 
-        <div>
-            <Parallax bgImage={CloudBackground} strength={550} className="backgroundImage">
+        <div className={styles.LoginPage}>
+            <Parallax bgImage={CloudBackground} strength={550} className= {styles.backgroundImage}>
                 <div style={{ width: "cover", height: "100vh", margin: "auto" }} >
 
                     <h1>LOGIN</h1>

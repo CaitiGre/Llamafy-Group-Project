@@ -7,7 +7,7 @@ const configuration = new Configuration({
 
 const openAi = new OpenAIApi(configuration);
 
-let prompt = "explain the conceptual differences between possessive and proecessual knowledg";
+let prompt = "tell me what to wear today. My available clothes are shorts, pants, a singlet, a jacket, thermals. It is likely to snow today";
 
 async function generateAnswer() {
     try {
@@ -19,8 +19,6 @@ async function generateAnswer() {
         n: 1,
         // stop: "\n}"
       });
-
-    //   console.log(prompt.trim());
 
       const responseText = response.data.choices[0].text;
       responseText.trim();
@@ -35,3 +33,5 @@ async function generateAnswer() {
   }
   
   generateAnswer();
+
+exports.generateAnswer();
