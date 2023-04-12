@@ -3,6 +3,7 @@ import CloudBackground from '../assets/full-opacity-cloud.jpg';
 import { Parallax } from 'react-parallax';
 import { Box, Input, InputLabel } from "@mui/material";
 import { useState } from "react";
+import styles from './LoginPage.module.css';
 import bcrypt from 'bcryptjs';
 
 function LoginPage() {
@@ -62,10 +63,10 @@ function LoginPage() {
     return (
 
         <div>
-            <Parallax bgImage={CloudBackground} strength={550} className="backgroundImage">
+            <Parallax bgImage={CloudBackground} strength={550} className={styles.backgroundImage}>
                 <div style={{ width: "cover", height: "100vh", margin: "auto" }} >
 
-                    <h1>LOGIN</h1>
+                    <h1 className={styles.heading}>LOGIN</h1>
 
                     <form onSubmit={handleSubmit}>
 
@@ -99,7 +100,7 @@ function LoginPage() {
                             </Box>
                         ))}
 
-                        <button id="submit-button" type="submit" className='login-button'>Submit</button>
+                        <button id="submit-button" type="submit" className={styles.submitButton}>Submit</button>
 
                     </form>
 

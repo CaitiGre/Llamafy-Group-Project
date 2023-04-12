@@ -7,8 +7,7 @@
     margin: 0;
 }
 
-/* className and id don't work with h1 and button somehow */
-h1 {
+.heading {
     font-family: url('../fonts/QuartzoBold.ttf');
     font-size: 100px;
     color: rgba(255, 255, 255, 0);
@@ -17,7 +16,7 @@ h1 {
     margin-bottom: 50px;
 }
 
-button {
+.submitButton {
     width: 100px;
     background-color: white;
     border: 1px solid #ccc;
@@ -33,7 +32,7 @@ button {
     margin-top: 5%;
 }
 
-button:hover {
+.submitButton:hover {
     background-color: #e0e0e0;
     border-color: #aaa;
 }
