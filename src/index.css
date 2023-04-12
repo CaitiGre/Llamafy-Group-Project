@@ -1,11 +1,5 @@
 body {
-  width: 100vw;
-  margin: 0;
-  background-color: #BFA2DB;
+  background-size: cover;
+  background-color: #e1d4e1;
   background-image: url("assets/backgroundClouds.jpg");
 }
-
-
-
-
-

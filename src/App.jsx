@@ -1,20 +1,24 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
-import HomePage from './components/HomePage';
+import LandingPage from './components/LandingPage/landingPage';
+import HomePage from './components/HomePage/HomePage';
 import RegistrationPage from './components/RegistrationPage/Registration';
-import LandingPage from './components/landingPage';
-
+import LoginPage from './components/LoginPage/LoginPage';
+import WardrobeSelection from './components/WardrobeSelection/WardrobeSelection';
+import OutfitOfTheDay from './components/OutfitOfTheDay/OutfitOfTheDay';
 
 function App() {
   return (
     <div className="App">
-
       <React.Fragment>
         <Routes>
-          <Route path="/" element={<LandingPage />} />
-          {/* Move everything other than Landing Page as outlet in NavBar?*/}
-          <Route path="/register" element={<RegistrationPage />} />
+          <Route path="/" element={<LandingPage />}/>
+            <Route path="home" element={<HomePage />} />
+            <Route path="register" element={<RegistrationPage />} />
+            <Route path="login" element={<LoginPage />} />
+            <Route path="wardrobeSelection" element={<WardrobeSelection />}/>
+            <Route path="ootd" element={<OutfitOfTheDay />}></Route>
         </Routes>
       </React.Fragment>
     </div>
