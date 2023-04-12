@@ -1,0 +1,20 @@
+.recommendationTiles {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto;
+    align-items:center;
+    width: auto;
+}
+
+.OotdTile {
+    width: 300px;
+}
+
+.OotdTile img {
+    object-fit: contain;
+}
+
+.tileDesc {
+    background-color: lightgray;
+    text-align: justify;
+}

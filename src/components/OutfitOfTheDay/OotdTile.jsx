@@ -1,14 +1,15 @@
 import React from 'react'
+import styles from './OutfitOfTheDay.module.css'
 
 const OotdTile = ( {imgLink, description} ) => {
 
     return (
-        <React.Fragment>
-            <img src={imgLink}/>
-            <div>
+        <div>
+            <img src={imgLink} className={styles.OotdTile}/>
+            <div className={styles.tileDesc}>
                 {description}
             </div>
-        </React.Fragment>
+        </div>
     )
 
 }
