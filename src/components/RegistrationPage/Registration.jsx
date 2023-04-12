@@ -44,7 +44,7 @@ function RegistrationPage() {
             console.log(hashedPassword);
         }    
     };
-    //PASSWORD??
+   
     return (
         <>
             <h1 className="register-h1">REGISTER</h1>
