@@ -1,10 +1,10 @@
 // import mui from 'mui';
-import { useState, useEffect } from 'react';
-import { NavLink } from 'react-router-dom';
+import { useState } from 'react';
 import React from 'react'
 import OotdTile from './OotdTile';
+import styles from './OutfitOfTheDay.component.css'
 
-const OutfitOfTheDay = ( {} ) => {
+const OutfitOfTheDay = () => {
 
     const temp = [
         {id : 1, img : 'images/good-bad-ugly.jpeg', desc : "A cozy poncho and fleece vest topped with a dapper hat."},
@@ -14,12 +14,12 @@ const OutfitOfTheDay = ( {} ) => {
 
     const [recommendations, setRecommendations] = useState(temp)
 
-    return (
-        <React.Fragment>
+    return (<div>
             <h1>Outfit of the Day</h1>
             <h2>somethign something llama something</h2>
 
-            <div>
+            <div className={styles.recomendationTiles}>
+                whats going on here
                 {recommendations.map(rec => 
                     <div key={rec.id}>
                         <OotdTile description={rec.desc} imgLink={rec.img}/>
@@ -27,9 +27,8 @@ const OutfitOfTheDay = ( {} ) => {
                 )}
             </div>
 
-        </React.Fragment>
+        </div>
     );
-
 }
 
 export default OutfitOfTheDay;
