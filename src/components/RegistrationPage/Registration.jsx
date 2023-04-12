@@ -44,10 +44,10 @@ function RegistrationPage() {
             console.log(hashedPassword);
         }    
     };
-    //PASSWORD??
+   
     return (
         <>
-            <h1>REGISTER</h1>
+            <h1 className="register-h1">REGISTER</h1>
             <div className="form-container">
                 <form onSubmit={handleSubmit}>
                     <Box display="flex" justifyContent="center" alignItems="center" flexDirection="column">

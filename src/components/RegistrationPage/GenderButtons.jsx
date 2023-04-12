@@ -4,7 +4,7 @@ export default function GenderButtons({ data, handleButtonClick }) {
     return (
         <>
             <Box display="flex" flexDirection="column" alignItems="center">
-                <label htmlFor="gender">Style Preference</label>
+                <label htmlFor="gender" className="register-label">Style Preference</label>
                 <div className="gender-div">
                     <button
                         type="button"
