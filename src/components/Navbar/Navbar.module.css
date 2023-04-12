@@ -1,0 +1,44 @@
+*{
+    border: 1px solid black;
+    margin: auto;
+}
+
+.navbarStyle {
+    position: fixed;
+    height: 60px;
+    display: flex;
+    background-color: #ee69ec8b;
+    width: 100%;
+    margin-top: 0;
+    transition: top 0.4s;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.homeNav {
+    display: flex;
+    width: 30%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    text-align: center;
+}
+
+.homeNav a{
+    display: flex;
+    align-content: center;
+    width: 100%;
+}
+
+.homeNav h2 {
+    font-size: xxx-large;
+    padding: 0px;
+    font-family: url('../../assets/fonts/QuartzoBold.ttf');
+}
+
+.navbarRight {
+    width: 20%;
+    display: flex;
+    align-content: space-between;
+    justify-content: space-between;
+    padding: 5px;
+}
+
