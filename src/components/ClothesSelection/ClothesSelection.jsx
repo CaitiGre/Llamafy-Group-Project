@@ -75,6 +75,7 @@ function ClothesSelection() {
         alignItems: "center",
         justifyContent: "center",
         height: "100%",
+        outline: 'none'
       }}
     >
       <Grid
@@ -107,13 +108,17 @@ function ClothesSelection() {
 
   return (
     <React.Fragment>
-      <Box sx={{ flexGrow: 1 }}>
+      <Box sx={{ flexGrow: 1, maxWidth:"90vw", alignItems:"center" }}>
         <Grid
           className="clothes-panel"
           container
           spacing={{ xs: 2, md: 3 }}
           columns={{ xs: 2, sm: 6, md: 9, lg: 12 }}
-          sx={{ justifyContent: "center", backgroundColor: "rgba(235, 73, 227, 0.315)" }}
+          sx={{
+            justifyContent: "center",
+            backgroundColor: "rgba(235, 73, 227, 0.315)",
+            
+          }}
         >
           {clothesItems.map((item, index) => (
             <Grid key={index} item xs={3}>
@@ -121,7 +126,7 @@ function ClothesSelection() {
                 className="clothe-card"
                 sx={{
                   borderRadius: "4%",
-                  backgroundColor: "rgba(255, 255, 255, 0.89)",
+                  backgroundColor: "rgba(255, 255, 255, 0.82)",
                   margin: "20px",
                   padding: "20px",
                   justifyContent: "center",
@@ -142,12 +147,15 @@ function ClothesSelection() {
         onClose={handleCloseModal}
         closeAfterTransition
         hideBackdrop={true}
+        disableAutoFocus={true}
         sx={{
           position: "absolute",
           top: "50%",
           left: "50%",
           transform: "translate(-50%, -50%)",
-          outline: 'none'
+          outline: "none",
+          outline: 0,
+          
         }}
       >
         <Box
@@ -168,7 +176,7 @@ function ClothesSelection() {
             </Button>
             {selectedItem && (
               <Typography variant="h4" sx={{ textAlign: "center" }}>
-                Select Type of {selectedItem.name}
+                Select type of {selectedItem.name}
               </Typography>
             )}
             {modalContent}
