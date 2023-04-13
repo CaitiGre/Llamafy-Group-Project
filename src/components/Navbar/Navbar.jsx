@@ -39,7 +39,7 @@ const Navbar = () => {
       <div className={style.navbarRight}>
         <NavLink to="/login">LOGIN</NavLink>
         <NavLink to="/register">REGISTER</NavLink>
-        <NavLink>
+        <NavLink to="/settings">
           <img src={LlamaIcon} style={{ height: "35px" }}></img>
         </NavLink>
       </div>

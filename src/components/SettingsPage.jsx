@@ -1,7 +1,7 @@
 import './SettingsPage.module.css';
 import CloudBackground from '../assets/full-opacity-cloud.jpg';
 import { Parallax } from 'react-parallax';
-import { Box, Input, InputLabel, ButtonGroup, Button } from "@mui/material";
+import { ButtonGroup, Button } from "@mui/material";
 import { useState } from "react";
 // import { useNavigate } from 'react-router-dom';
 import styles from './SettingsPage.module.css';
