@@ -3,7 +3,7 @@
     margin: auto;
 }
 
-.LoginPage h1 {
+.LoginPage-title {
     font-family: url('../../assets/fonts/QuartzoBold.ttf');
     font-size: 100px;
     color: rgba(255, 255, 255, 0);

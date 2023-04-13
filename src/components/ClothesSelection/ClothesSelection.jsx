@@ -1,6 +1,8 @@
 import React, { useState } from "react";
-import "./ClothesSelection.scss";
-import { Grid, Card, Box, Modal, Typography, Button } from "@mui/material";
+import styles from "./ClothesSelection.module.css";
+import { Grid, Box, Modal, Button, Typography } from "@mui/material";
+import ClothesItem from "../ClotheItem/ClotheItem";
+import SubSelectionModal from "../SubSelectionModal/SubSelectionModal";
 import top from "./../../assets/tshirt.png";
 import bottom from "./../../assets/pants.png";
 import onepiece from "./../../assets/jumpsuit.png";
@@ -19,18 +21,17 @@ import boots from "./../../assets/boots.png";
 import close from "./../../assets/close.png";
 
 function ClothesSelection() {
-  // declare states with their initial values using useState hook
-  const [openModal, setOpenModal] = useState(false); // to control the visibility of the modal
-  const [selectedItem, setSelectedItem] = useState(null); // to store the item that was selected
-  const [subSelectionItemsToShow, setSubSelectionItemsToShow] = useState([]); // to store the sub-selection items to show in the modal
-  // define clothes items data
+  const [openModal, setOpenModal] = useState(false);
+  const [selectedItem, setSelectedItem] = useState(null);
+  const [subSelectionItemsToShow, setSubSelectionItemsToShow] = useState([]);
+
   const clothesItems = [
     { src: top, name: "Top" },
     { src: bottom, name: "Bottom" },
     { src: onepiece, name: "OnePiece" },
     { src: shoes, name: "Shoes" },
   ];
-  // define sub-selection items for each clothes item
+
   const subSelectionItemsByClothesItem = {
     Top: [
       { src: top, name: "Tshirt" },
@@ -56,92 +57,37 @@ function ClothesSelection() {
       { src: boots, name: "boots" },
     ],
   };
-  // function to handle opening the modal when a card is clicked
+
   const handleOpenModal = (item) => {
-    setSelectedItem(item); // set the selected item state
-    // set the sub-selection items to show based on the selected item
+    setSelectedItem(item);
     setSubSelectionItemsToShow(subSelectionItemsByClothesItem[item.name]);
-    setOpenModal(true); // open the modal
-  };
-  // function to handle closing the modal
-  const handleCloseModal = () => {
-    setOpenModal(false); // close the modal
+    setOpenModal(true);
   };
 
-  const modalContent = (
-    <Box
-      sx={{
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        height: "100%",
-        outline: 'none'
-      }}
-    >
-      <Grid
-        container
-        spacing={{ xs: 2, md: 2 }}
-        columns={{ xs: 2, sm: 4, md: 4, lg: 8 }}
-        sx={{ justifyContent: "center" }}
-      >
-        {subSelectionItemsToShow.map((item, index) => (
-          <Grid key={index} item xs={12} sm={4} md={2} lg={2}>
-            <Card
-              className="clothe-card"
-              sx={{
-                borderRadius: "4%",
-                backgroundColor: "rgba(255, 255, 255, 0.2)",
-                margin: "20px",
-                padding: "20px",
-                justifyContent: "center",
-                display: "flex",
-                cursor: "pointer",
-              }}
-            >
-              <img src={item.src} alt="oups" width="100px" />
-            </Card>
-          </Grid>
-        ))}
-      </Grid>
-    </Box>
-  );
+  const handleCloseModal = () => {
+    setOpenModal(false);
+  };
 
   return (
     <React.Fragment>
-      <Box sx={{ flexGrow: 1, maxWidth:"90vw", alignItems:"center" }}>
+      <Box sx={{ flexGrow: 1, maxWidth: "90vw", alignItems: "center" }}>
         <Grid
-          className="clothes-panel"
+          className={styles.clothespanel}
           container
           spacing={{ xs: 2, md: 3 }}
           columns={{ xs: 2, sm: 6, md: 9, lg: 12 }}
           sx={{
             justifyContent: "center",
             backgroundColor: "rgba(235, 73, 227, 0.315)",
-            
           }}
         >
           {clothesItems.map((item, index) => (
             <Grid key={index} item xs={3}>
-              <Card
-                className="clothe-card"
-                sx={{
-                  borderRadius: "4%",
-                  backgroundColor: "rgba(255, 255, 255, 0.82)",
-                  margin: "20px",
-                  padding: "20px",
-                  justifyContent: "center",
-                  display: "flex",
-                  cursor: "pointer",
-                }}
-                onClick={() => handleOpenModal(item)}
-              >
-                <img className="card-image" src={item.src} alt="" />
-              </Card>
+              <ClothesItem item={item} onClick={handleOpenModal} />
             </Grid>
           ))}
         </Grid>
       </Box>
-
       <Modal
         open={openModal}
         onClose={handleCloseModal}
@@ -152,10 +98,9 @@ function ClothesSelection() {
           position: "absolute",
           top: "50%",
           left: "50%",
-          transform: "translate(-50%, -50%)",
+          transform: "translate(-50%, -5%)",
           outline: "none",
           outline: 0,
-          
         }}
       >
         <Box
@@ -179,7 +124,12 @@ function ClothesSelection() {
                 Select type of {selectedItem.name}
               </Typography>
             )}
-            {modalContent}
+            <SubSelectionModal
+              openModal={openModal}
+              handleCloseModal={handleCloseModal}
+              selectedItem={selectedItem}
+              itemsToShow={subSelectionItemsToShow}
+            />
           </Box>
         </Box>
       </Modal>
