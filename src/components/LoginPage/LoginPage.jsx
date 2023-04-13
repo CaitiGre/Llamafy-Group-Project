@@ -6,7 +6,7 @@ import { useState } from "react";
 import eyeIcon from '../../assets/show.png';
 import lashIcon from '../../assets/hide.png';
 
-function LoginPage() {
+export default function LoginPage() {
 
     const [data, setData] = useState({
         email: '',
@@ -75,5 +75,3 @@ function LoginPage() {
         </div>
     )
 }
-
-export default LoginPage;
