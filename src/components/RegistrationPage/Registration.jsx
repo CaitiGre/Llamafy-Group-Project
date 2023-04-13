@@ -1,5 +1,5 @@
 import { useState } from "react";
-import '../RegistrationPage/Registration.css';
+import style from '../RegistrationPage/Registration.module.css';
 import { Box } from "@mui/material";
 import bcrypt from 'bcryptjs';
 import NamesBox from "./NameBox";
@@ -47,8 +47,8 @@ function RegistrationPage() {
    
     return (
         <>
-            <h1 className="register-h1">REGISTER</h1>
-            <div className="form-container">
+            <h1 className={style["register-h1"]}>REGISTER</h1>
+            <div className={style["form-container"]}>
                 <form onSubmit={handleSubmit}>
                     <Box display="flex" justifyContent="center" alignItems="center" flexDirection="column">
                         <NamesBox data={data} handleChange={handleChange} />
@@ -57,7 +57,7 @@ function RegistrationPage() {
                         <PasswordBox data={data} handleChange={handleChange} />
                         <LocationBox data={data} handleChange={handleChange} />
                         <GenderButtons data={data} handleButtonClick={handleButtonClick} />
-                        <button id="submit-button" type="submit">Submit</button>
+                        <button id={style["submit-button"]} type="submit">Submit</button>
                     </Box>
 
                 </form>
