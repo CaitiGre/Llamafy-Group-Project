@@ -6,7 +6,7 @@ import { Box, Grid, Card } from "@mui/material";
   Takes two props: `itemsToShow` is an array of items to be displayed in the modal, 
   and `onCloseModal` is a function to be called when the modal is closed.*/
 
-function SubSelectionModal({ itemsToShow, onCloseModal }) {
+function SubSelectionModal({ itemsToShow, onOpenModal }) {
   return (
     <Box
       sx={{
@@ -38,7 +38,7 @@ function SubSelectionModal({ itemsToShow, onCloseModal }) {
                 display: "flex",
                 cursor: "pointer",
               }}
-              onClick={() => onCloseModal(item)}
+              onClick={() => onOpenModal(item)}
             >
               <img src={item.src} alt={item.name} width="100px" />
             </Card>
