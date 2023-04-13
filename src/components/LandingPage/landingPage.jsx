@@ -4,19 +4,6 @@ import CluelessGif from "../../assets/cluelessCloset.gif";
 import ClothingRail from "../../assets/cothingRail.gif";
 import { Box, Button, Grid } from "@mui/material";
 
-function LandingPage() {
-
-  const classes = {
-    root: {
-      flexGrow: 1
-    },
-
-    paper: {
-      padding: 20,
-      textAligh: "justify"
-    }
-  }
-
 function LandingPage(){
     return(
         /** A div that contains the main components for the landing page. Contains three separate divs. 
@@ -29,7 +16,7 @@ function LandingPage(){
             <Parallax bgImage={CloudBackground} strength={550} className="backgroundImage"> 
             <div style={{width: "cover", height:"700px", margin: "auto"}} >
                 <h1 className="landingPageTitle">LLAMAFY</h1>
-                <h2 className="landingPageSubtitle">IT'S TIME TO BUTTON UP OR SHUT UP</h2>
+                <h2 className="landingPage">IT'S TIME TO BUTTON UP OR SHUT UP</h2>
                 <div className="buttonContainer">
                     <button className="landing-login-button">LOGIN</button>
                     <button className="register-button">REGISTER</button> 
