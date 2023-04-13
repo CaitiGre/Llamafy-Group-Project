@@ -7,6 +7,8 @@ import RegistrationPage from './components/RegistrationPage/Registration';
 import LoginPage from './components/LoginPage/LoginPage';
 import WardrobeSelection from './components/WardrobeSelection/WardrobeSelection';
 import Navbar from './components/Navbar/Navbar';
+import SettingsPage from './components/SettingsPage';
+import SettingsSubPage from './components/Profile';
 
 function App() {
   return (
@@ -22,6 +24,7 @@ function App() {
             <Route path="register" element={<RegistrationPage />} />
             <Route path="login" element={<LoginPage />} />
             <Route path="wardrobeSelection" element={<WardrobeSelection />}/>
+            <Route path="settings" element={<SettingsPage />} />
         </Routes>
       </React.Fragment>
     </div>
