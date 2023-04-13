@@ -3,6 +3,8 @@ import CloudBackground from '../../assets/full-opacity-cloud.jpg';
 import { Parallax } from 'react-parallax';
 import { Box } from "@mui/material";
 import { useState } from "react";
+import eyeIcon from '../../assets/show.png';
+import lashIcon from '../../assets/hide.png';
 
 function LoginPage() {
 
@@ -15,13 +17,19 @@ function LoginPage() {
         setData({ ...data, [event.target.name]: event.target.value });
     };
 
+    const [showPassword, setShowPassword] = useState(false);
+
+    function toggleShowPassword() {
+        setShowPassword(!showPassword);
+    };
+
     console.log(data);
 
 
     return (
 
         <div className={styles.LoginPage}>
-            <Parallax bgImage={CloudBackground} strength={550} className= {styles.backgroundImage}>
+            <Parallax bgImage={CloudBackground} strength={550} className={styles.backgroundImage}>
                 <div style={{ width: "cover", height: "100vh", margin: "auto" }} >
 
                     <h1 className='loginpage-title'>LOGIN</h1>
@@ -42,13 +50,20 @@ function LoginPage() {
 
                             <Box display="flex" flexDirection="column" alignItems="center">
                                 <label htmlFor="password">Password</label>
-                                <input
-                                    type="password"
-                                    name="password"
-                                    id="password"
-                                    value={data.password}
-                                    onChange={handleChange}
-                                />
+                                <div className={styles["wrapper"]}>
+                                    <input
+                                        type="password"
+                                        name="password"
+                                        id="password"
+                                        value={data.password}
+                                        onChange={handleChange}
+                                    />
+                                    <img
+                                        src={showPassword ? lashIcon : eyeIcon}
+                                        className={styles["password-icon"]}
+                                        onClick={toggleShowPassword}
+                                    />
+                                </div>
                             </Box>
 
                             <button id="submit-button" type="submit">Submit</button>
