@@ -16,6 +16,7 @@
 .navbarStyle a{
     color: white;
     font-size: 25px;
+    text-decoration: none;
 }
 
 .navbarStyle a:hover{
