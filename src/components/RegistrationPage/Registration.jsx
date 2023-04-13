@@ -47,7 +47,7 @@ function RegistrationPage() {
     //PASSWORD??
     return (
         <>
-            <h1>REGISTER</h1>
+            <h1 className="registration-title">REGISTER</h1>
             <div className="form-container">
                 <form onSubmit={handleSubmit}>
                     <Box display="flex" justifyContent="center" alignItems="center" flexDirection="column">

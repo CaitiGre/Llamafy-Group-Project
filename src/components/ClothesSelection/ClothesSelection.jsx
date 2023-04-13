@@ -1,9 +1,8 @@
 import React, { useState } from "react";
-import "./ClothesSelection.scss";
-import { Grid, Card, Box, Modal, Typography, Button } from "@mui/material";
+import styles from "./ClothesSelection.module.css";
+import { Grid, Box, Modal, Button, Typography } from "@mui/material";
 import ClothesItem from "../ClotheItem/ClotheItem";
 import SubSelectionModal from "../SubSelectionModal/SubSelectionModal";
-
 import top from "./../../assets/tshirt.png";
 import bottom from "./../../assets/pants.png";
 import onepiece from "./../../assets/jumpsuit.png";
@@ -73,7 +72,7 @@ function ClothesSelection() {
     <React.Fragment>
       <Box sx={{ flexGrow: 1, maxWidth: "90vw", alignItems: "center" }}>
         <Grid
-          className="clothes-panel"
+          className={styles.clothespanel}
           container
           spacing={{ xs: 2, md: 3 }}
           columns={{ xs: 2, sm: 6, md: 9, lg: 12 }}
@@ -89,13 +88,51 @@ function ClothesSelection() {
           ))}
         </Grid>
       </Box>
-
-      <SubSelectionModal
-        openModal={openModal}
-        handleCloseModal={handleCloseModal}
-        selectedItem={selectedItem}
-        itemsToShow={subSelectionItemsToShow}
-      />
+      <Modal
+        open={openModal}
+        onClose={handleCloseModal}
+        closeAfterTransition
+        hideBackdrop={true}
+        disableAutoFocus={true}
+        sx={{
+          position: "absolute",
+          top: "50%",
+          left: "50%",
+          transform: "translate(-50%, -50%)",
+          outline: "none",
+          outline: 0,
+        }}
+      >
+        <Box
+          sx={{
+            backgroundColor: "white",
+            borderRadius: "16px",
+            width: "90%",
+            height: "80%",
+            margin: "auto",
+          }}
+        >
+          <Box sx={{ padding: "40px", position: "relative" }}>
+            <Button
+              onClick={handleCloseModal}
+              sx={{ position: "absolute", top: 8, right: 2, padding: "5px" }}
+            >
+              <img src={close} alt="close button" width="20px" />
+            </Button>
+            {selectedItem && (
+              <Typography variant="h4" sx={{ textAlign: "center" }}>
+                Select type of {selectedItem.name}
+              </Typography>
+            )}
+            <SubSelectionModal
+              openModal={openModal}
+              handleCloseModal={handleCloseModal}
+              selectedItem={selectedItem}
+              itemsToShow={subSelectionItemsToShow}
+            />
+          </Box>
+        </Box>
+      </Modal>
     </React.Fragment>
   );
 }

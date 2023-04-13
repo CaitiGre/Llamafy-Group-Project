@@ -2,7 +2,7 @@ import React from "react";
 import ClothesSelection from "../ClothesSelection/ClothesSelection";
 import SubHeading from "../SubHeading/SubHeading";
 import Heading from "../Heading/Heading";
-import "./WardrobeSelection.scss";
+import styles from "./WardrobeSelection.module.css";
 
 function WardrobeSelection() {
   return (
@@ -10,7 +10,7 @@ function WardrobeSelection() {
      
       <Heading title="Wardrobe Selection" />
       <SubHeading subtitle="Select some staples" />
-       <section className="wardrobe">
+       <section className={styles.wardrobe}>
       <ClothesSelection />
       </section>
     </React.Fragment>

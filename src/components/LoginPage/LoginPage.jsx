@@ -24,7 +24,7 @@ function LoginPage() {
             <Parallax bgImage={CloudBackground} strength={550} className= {styles.backgroundImage}>
                 <div style={{ width: "cover", height: "100vh", margin: "auto" }} >
 
-                    <h1>LOGIN</h1>
+                    <h1 className='loginpage-title'>LOGIN</h1>
 
                     <div>
                         <form>

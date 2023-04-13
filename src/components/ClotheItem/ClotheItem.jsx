@@ -1,11 +1,12 @@
 import React from "react";
 import { Card, Box } from "@mui/material";
+import styles from "./ClotheItem.module.css";
 
 function ClothesItem({ item, onClick }) {
   return (
     <Box>
       <Card
-        className="clothe-card"
+        className={styles.clothecard}
         sx={{
           borderRadius: "4%",
           backgroundColor: "rgba(255, 255, 255, 0.82)",

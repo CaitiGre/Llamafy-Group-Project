@@ -13,8 +13,8 @@ function LandingPage(){
             <div className="landingpage">
             <Parallax bgImage={CloudBackground} strength={550} className="backgroundImage"> 
             <div style={{width: "cover", height:"700px", margin: "auto"}} >
-                <h1>LLAMAFY</h1>
-                <h2>IT'S TIME TO BUTTON UP OR SHUT UP</h2>
+                <h1 className="landingpage-title">LLAMAFY</h1>
+                <h2 className='landingpage-subtitle'>IT'S TIME TO BUTTON UP OR SHUT UP</h2>
                 <div className="buttonContainer">
                     <button className="landing-login-button">LOGIN</button>
                     <button className="register-button">REGISTER</button> 
