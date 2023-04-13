@@ -13,7 +13,6 @@ let user = "llama developers"
 
 const imgGen = async () => {
 
-
 const response = await openai.createImage({
   prompt: prompt,
   n: numImages ? numImages : 1,
@@ -22,9 +21,7 @@ const response = await openai.createImage({
   user : user ? user : "unverified user!"
 });
 
-
 console.log(response.data);
-
 }
 
 
