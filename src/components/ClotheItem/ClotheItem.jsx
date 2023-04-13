@@ -2,6 +2,7 @@ import React from "react";
 import { Card, Box } from "@mui/material";
 import styles from "./ClotheItem.module.css";
 
+// This function returns a Card component with a clickable image and a passed item's information.
 function ClothesItem({ item, onClick }) {
   return (
     <Box>

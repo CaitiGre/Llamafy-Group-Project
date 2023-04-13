@@ -21,17 +21,19 @@ import boots from "./../../assets/boots.png";
 import close from "./../../assets/close.png";
 
 function ClothesSelection() {
+  // Defining state variables for the modal
   const [openModal, setOpenModal] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
   const [subSelectionItemsToShow, setSubSelectionItemsToShow] = useState([]);
 
+  // Defining an array of objects for the clothes items and their images
   const clothesItems = [
     { src: top, name: "Top" },
     { src: bottom, name: "Bottom" },
     { src: onepiece, name: "OnePiece" },
     { src: shoes, name: "Shoes" },
   ];
-
+  // Defining an object that maps each clothes item to an array of its sub-selection items and their images
   const subSelectionItemsByClothesItem = {
     Top: [
       { src: top, name: "Tshirt" },
@@ -57,19 +59,21 @@ function ClothesSelection() {
       { src: boots, name: "boots" },
     ],
   };
-
+  // Handling the open modal event and setting the selected item and its sub-selection items to show
   const handleOpenModal = (item) => {
     setSelectedItem(item);
     setSubSelectionItemsToShow(subSelectionItemsByClothesItem[item.name]);
     setOpenModal(true);
   };
 
+  // Handling the close modal event
   const handleCloseModal = () => {
     setOpenModal(false);
   };
 
   return (
     <React.Fragment>
+      {/* The clothes panel */}
       <Box sx={{ flexGrow: 1, maxWidth: "90vw", alignItems: "center" }}>
         <Grid
           className={styles.clothespanel}
@@ -81,6 +85,7 @@ function ClothesSelection() {
             backgroundColor: "rgba(235, 73, 227, 0.315)",
           }}
         >
+          {/* Map over the clothes items and create a ClothesItem for each one */}
           {clothesItems.map((item, index) => (
             <Grid key={index} item xs={3}>
               <ClothesItem item={item} onClick={handleOpenModal} />
@@ -124,6 +129,7 @@ function ClothesSelection() {
                 Select type of {selectedItem.name}
               </Typography>
             )}
+            {/* The sub-selection modal */}
             <SubSelectionModal
               openModal={openModal}
               handleCloseModal={handleCloseModal}
