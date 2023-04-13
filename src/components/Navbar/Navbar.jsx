@@ -34,8 +34,11 @@ const Navbar = () => {
           <h2>LLAMAFY</h2>
         </NavLink>
       </div>
-      <NavLink to="/home">WARDROBE</NavLink>
-      <NavLink to="/ootd">DRESS ME</NavLink>
+      <div className={style.navCenter}>
+        <NavLink to="/home">WARDROBE</NavLink>
+        <NavLink to="/ootd">DRESS ME</NavLink>
+      </div>
+      
       <div className={style.navbarRight}>
         <NavLink to="/login">LOGIN</NavLink>
         <NavLink to="/register">REGISTER</NavLink>

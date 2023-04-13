@@ -11,13 +11,11 @@
     width: 100%;
     margin-top: 0;
     transition: top 0.4s;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-size: 25px;
-    color: white;
 }
 
 .navbarStyle a{
     color: white;
+    font-size: 25px;
 }
 
 .navbarStyle a:hover{
@@ -29,13 +27,15 @@
     width: 250px;
     flex-direction: row;
     flex-wrap: wrap;
-    
 }
 
 .homeNav a{
     display: flex;
     align-content: center;
     width: 100%;
+    font-size: xxx-large;
+    padding: 0px;
+    font-family: url('../../assets/fonts/moonlite-outline.ttf');
     
 }
 
@@ -45,11 +45,16 @@
     font-family: url('../../assets/fonts/moonlite-outline.ttf');
 }
 
-.navbarRight {
+.navbarRight, .navCenter {
     width: 300px;
     display: flex;
     align-content: space-between;
     justify-content: space-between;
-    padding: 5px;
+}
+
+.navbarRight a, .navCenter a{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 25px;
+    color: white;
 }
 

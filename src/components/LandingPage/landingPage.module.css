@@ -3,16 +3,16 @@
     margin: auto;
 }
 
-.landingpage-title {
-    font-family: url('../../assets/fonts/QuartzoBold.ttf');
+.landingPageTitle {
+    font-family: url('../../assets/fonts/moonlite-outline.ttf');
     font-size: 170px;
     color: rgba(255, 255, 255, 0);
-    padding-top: 70px;
+    padding-top: 100px;
     -webkit-text-stroke: 7px white;
 }
 
-.landingpage-subtitle{
-    font-family: url('../../assets/fonts/QuartzoBold.ttf');
+.landingPageSubtitle{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-size: 50px;
     color: rgba(255, 255, 255, 0);
     padding: 25px;
@@ -20,7 +20,7 @@
 }
 
 .llamaSubheading{
-    font-family: url('../../assets/fonts/QuartzoBold.ttf');
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;;
     font-size: 50px;
     color: rgba(255, 255, 255, 0);
     padding: 40px;

@@ -4,7 +4,7 @@ import { Parallax } from 'react-parallax';
 import { Box } from "@mui/material";
 import { useState } from "react";
 
-function LoginPage() {
+export default function LoginPage() {
 
     const [data, setData] = useState({
         email: '',
