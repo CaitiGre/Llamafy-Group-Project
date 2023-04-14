@@ -1,5 +1,5 @@
 import './SettingsPage.module.css';
-import shirt from '../assets/shirt.png';
+import shirt from '../../assets/shirt.png';
 import { Button } from "@mui/material";
 import { useState } from "react";
 import styles from './SettingsPage.module.css';
