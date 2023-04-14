@@ -93,7 +93,8 @@ function Profile() {
                                     height: "30px",
                                     width: "60%",
                                     marginBottom: "15px",
-                                    backgroundColor: "white"
+                                    backgroundColor: "white",
+                                    margin: "0px"
                                 }}
                                 type={item.type}
                                 name={item.name}
