@@ -1,5 +1,5 @@
 import './SettingsPage.module.css';
-import { Box, Input, InputLabel, ButtonGroup, Button } from "@mui/material";
+import { Input, InputLabel, Grid } from "@mui/material";
 import { useState } from "react";
 import styles from './SettingsPage.module.css';
 
@@ -11,13 +11,19 @@ function Profile() {
         insights: ''
     });
 
-    const handleChange = (event) => {
-        setData({ [event.target.name]: event.target.value });
-    };
+    async function handleChange(event) {
+        const inputData = await event.target.value;
+        setData({
+            ...data,
+            [event.target.name]: inputData
+        })
+    }
+    // console.log(data);
+
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        alert("To send data to database");
+        alert(JSON.stringify(data));
     }
 
 
@@ -28,7 +34,6 @@ function Profile() {
             name: "name",
             id: "name",
             value: data.name,
-            onChange: handleChange,
             placeHolder: "Name from database"
         },
 
@@ -38,7 +43,6 @@ function Profile() {
             name: "gender",
             id: "gender",
             value: data.gender,
-            onChange: handleChange,
             placeHolder: "Gender from database"
         },
         {
@@ -47,7 +51,6 @@ function Profile() {
             name: "skinTone",
             id: "skinTone",
             value: data.skinTone,
-            onChange: handleChange,
             placeHolder: "Skin tone from database"
         },
         {
@@ -56,33 +59,41 @@ function Profile() {
             name: "insights",
             id: "insights",
             value: data.insights,
-            onChange: handleChange,
             placeHolder: "Insights from database"
         }
     ]
 
     return (
-        <>
+        <div className={styles.formContainer}>
             <form onSubmit={handleSubmit}>
-
                 {inputData.map((item) => (
-                    <Box >
-                        <InputLabel
-                            sx={{
-                                marginBottom: "5px"
-                            }}>
+                    <Grid container spacing={2}
+                        sx={{ margin: 0 }}>
 
-                            {item.displayName}
+                        <Grid item xs={4}>
+                            <InputLabel
+                                sx={{
+                                    marginBottom: "2px",
+                                    textAlign: "right"
+                                }}>
 
+                                {item.displayName}
+
+                            </InputLabel>
+                        </Grid>
+
+                        <Grid item xs={8}
+                            direction="row"
+                            display={'flex'}
+                            justifyContent="flex-start">
                             <Input
                                 sx={{
                                     borderRadius: "20px",
                                     boxShadow: "2px 2px 5px rgba(255, 255, 255, 0.8)",
-                                    height: "40px",
-                                    width: "35%",
+                                    height: "30px",
+                                    width: "60%",
                                     marginBottom: "15px",
-                                    backgroundColor: "white",
-                                    marginLeft: "20px"
+                                    backgroundColor: "white"
                                 }}
                                 type={item.type}
                                 name={item.name}
@@ -93,16 +104,13 @@ function Profile() {
                                 disableUnderline={true}
                                 placeholder={item.placeHolder}
                             />
-                        </InputLabel>
+                        </Grid>
 
-                    </Box>
+                    </Grid>
                 ))}
-
                 <button id="submit-button" type="submit" className={styles.submitButton}>Submit</button>
-
             </form >
-
-        </>
+        </div>
     );
 }
 
