@@ -34,8 +34,6 @@ const HomePage = () => {
                     setWeatherValues(undefined)});
     }, []);
 
-    // console.log(weatherValues);
-
     const tempArr = [{
         id: 1,
         render: shirt,
