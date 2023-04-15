@@ -103,7 +103,7 @@ function ClothesSelection() {
           position: "absolute",
           top: "50%",
           left: "50%",
-          transform: "translate(-50%, -5%)",
+          transform: "translate(-50%, -50%)",
           outline: "none",
           outline: 0,
         }}
