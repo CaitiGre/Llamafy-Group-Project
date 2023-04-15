@@ -1,5 +1,5 @@
 const { Configuration, OpenAIApi } = require("openai");
-const key = require('../modules/keyModule').key;
+const key = require('../modules/keyModule').openAiKey;
 
 const configuration = new Configuration({
     apiKey: key,
@@ -34,4 +34,4 @@ async function generateAnswer() {
   
   generateAnswer();
 
-exports.generateAnswer();
+// exports.generateAnswer();
