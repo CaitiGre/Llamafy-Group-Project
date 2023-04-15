@@ -1,55 +1,24 @@
-.LoginPage * {
+* {
     box-sizing: border-box;
     margin: auto;
 }
 
-.LoginPage-title {
+.backgroundImage {
+    margin: 0;
+}
+
+.heading {
     font-family: url('../../assets/fonts/QuartzoBold.ttf');
     font-size: 100px;
     color: rgba(255, 255, 255, 0);
-    padding-top: 70px;
+    margin-top: 100px;
     -webkit-text-stroke: 3px white;
     margin-bottom: 50px;
 }
 
-.LoginPage h2 {
-    font-family: url('../../assets/fonts/QuartzoBold.ttf');
-    font-size: 50px;
-    color: rgba(255, 255, 255, 0);
-    padding: 25px;
-    -webkit-text-stroke: 2.5px white;
-}
-
-.LoginPage .backgroundImage {
-    margin: 0;
-}
-
-.LoginPage input,
-.LoginPage button {
-    border-radius: 20px;
-    box-shadow: 2px 2px 5px rgba(255, 255, 255, 0.8);
-    border: none;
-    height: 40px;
-    width: 40%;
-    text-align: center;
-    margin-bottom: 25px;
-}
-
-.LoginPage button {
-    margin-top: 5%;
-    width: 15%;
-    margin-bottom: 25px;
-}
-
-.LoginPage label {
-    padding-bottom: 15px;
-}
-
-
-/* submit button style is not working, not sure why */
-.LoginPage #submit-button {
+.submitButton {
     width: 100px;
-    background-color: #f0f0f0;
+    background-color: white;
     border: 1px solid #ccc;
     border-radius: 20px;
     color: #333;
@@ -60,24 +29,10 @@
     padding: 12px 22px;
     transition: background-color 0.3s, border-color 0.3s;
     box-shadow: 2px 2px 5px rgba(255, 255, 255, 0.8);
+    margin-top: 5%;
 }
 
-.LoginPage #submit-button:hover {
+.submitButton:hover {
     background-color: #e0e0e0;
     border-color: #aaa;
-}
-
-.password-icon {
-    position: absolute;
-    right: -50px;
-    top: 35%;
-    transform: translateY(-50%);
-    cursor: pointer;
-    width: 20px; 
-    height: 20px;
-}
-
-.wrapper {
-    position: relative;
-    display: inline-block;
 }

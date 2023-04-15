@@ -7,8 +7,7 @@ import RegistrationPage from './components/RegistrationPage/Registration';
 import LoginPage from './components/LoginPage/LoginPage';
 import WardrobeSelection from './components/WardrobeSelection/WardrobeSelection';
 import Navbar from './components/Navbar/Navbar';
-import SettingsPage from './components/SettingsPage';
-import SettingsSubPage from './components/Profile';
+import SettingsPage from './components/SettingsPage/SettingsPage';
 import OutfitOfTheDay from './components/OutfitOfTheDay/OutfitOfTheDay'
 
 function App() {
@@ -18,15 +17,15 @@ function App() {
         <header>
           <Navbar />
         </header>
-        
+
         <Routes>
-          <Route path="/" element={<LandingPage />}/>
-            <Route path="home" element={<HomePage />} />
-            <Route path="register" element={<RegistrationPage />} />
-            <Route path="login" element={<LoginPage />} />
-            <Route path="wardrobeSelection" element={<WardrobeSelection />}/>
-            <Route path="settings" element={<SettingsPage />} />
-            <Route path="ootd" element={< OutfitOfTheDay/>}/>
+          <Route path="/" element={<LandingPage />} />
+          <Route path="home" element={<HomePage />} />
+          <Route path="register" element={<RegistrationPage />} />
+          <Route path="login" element={<LoginPage />} />
+          <Route path="wardrobeSelection" element={<WardrobeSelection />} />
+          <Route path="settings" element={<SettingsPage />} />
+          <Route path="ootd" element={< OutfitOfTheDay />} />
         </Routes>
       </React.Fragment>
     </div>
