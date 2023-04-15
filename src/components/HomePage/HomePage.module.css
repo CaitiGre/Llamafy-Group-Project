@@ -49,8 +49,11 @@
 }
 
 .title {
-    padding-top: 5vh;
+    padding-top: 10vh;
     font-size: 40px;
     font-weight: bolder;
-    /* font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
+}
+
+.title p {
+    font-size: medium;
 }
