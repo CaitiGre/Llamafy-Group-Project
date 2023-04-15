@@ -1,8 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
-
 import OutfitTile from "./OutfitTile";
-
 import shirt from '../../assets/shirt.png'
 import styles from './HomePage.module.css'
 import axios from "axios";
@@ -36,7 +34,7 @@ const HomePage = () => {
                     setWeatherValues(undefined)});
     }, []);
 
-    console.log(weatherValues);
+    // console.log(weatherValues);
 
     const tempArr = [{
         id: 1,
@@ -79,9 +77,10 @@ const HomePage = () => {
         ?   
             <div className={styles.title}> Hey usernameDBCall. It's {weatherValues.condition} in {weatherValues.location}.
             <p>{weatherValues.tempC} right now with {weatherValues.humidity} humidity. Windiness rated at {weatherValues.windKph}</p>
+            <p>Powered by <a href="https://www.weatherapi.com/" title="Weather API">WeatherAPI.com</a></p>
             </div>
         : 
-            <div>Hey usernameDBCall. How are ya? </div>
+            <div>Hello llama! </div>
         }
         
 
