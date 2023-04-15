@@ -1,12 +1,42 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import OutfitTile from "./OutfitTile";
 
 import shirt from '../../assets/shirt.png'
 import styles from './HomePage.module.css'
+import axios from "axios";
 
 const HomePage = () => {
+
+    // weather api key - to put in to .env later
+    const weatherKey = "e9c2f39101b44170a9753323231504";
+    // need an axios DB call for user's city. setting to auckland for now
+    const [city, setCity] = useState("Auckland");
+
+    const call = `https://api.weatherapi.com/v1/current.json?key=${weatherKey}&q=${city}&aqi=no` //AQI = air quality data
+
+    const [weatherValues, setWeatherValues] = useState({
+        location : city,
+        currTime : '',
+        condition : '',
+        tempC : '',
+        humidity : '',
+        windKph : '',
+    })
+
+    useEffect(() => {axios.get(call)
+    .then(res => setWeatherValues({...weatherValues, 
+        currTime : res.data.location.localtime,
+        condition : res.data.current.condition.text.toLowerCase(),
+        tempC : `${res.data.current.temp_c} C`,
+        humidity : `${res.data.current.humidity}%`,
+        windKph : `${res.data.current.wind_kph} km/h`}),)
+    .catch(err => {console.log(err);
+                    setWeatherValues(undefined)});
+    }, []);
+
+    console.log(weatherValues);
 
     const tempArr = [{
         id: 1,
@@ -41,8 +71,20 @@ const HomePage = () => {
 
     const [pastOutfits, setPastOutfits] = useState(tempArr);
 
+    
     return <div className={styles.homePage}>
-        <div className={styles.title}> Welcome Ding Dong. Today it is 5000&#8451;</div>
+
+        
+        {weatherValues 
+        ?   
+            <div className={styles.title}> Hey usernameDBCall. It's {weatherValues.condition} in {weatherValues.location}.
+            <p>{weatherValues.tempC} right now with {weatherValues.humidity} humidity. Windiness rated at {weatherValues.windKph}</p>
+            </div>
+        : 
+            <div>Hey usernameDBCall. How are ya? </div>
+        }
+        
+
         <br />
         <button className={styles.button} onClick={() => alert("not set up yet dude")}>Generate an Outfit of the Day</button>
         
