@@ -8,7 +8,6 @@ import LoginPage from './components/LoginPage/LoginPage';
 import WardrobeSelection from './components/WardrobeSelection/WardrobeSelection';
 import Navbar from './components/Navbar/Navbar';
 import SettingsPage from './components/SettingsPage/SettingsPage';
-// import SettingsSubPage from './components/Profile';
 import OutfitOfTheDay from './components/OutfitOfTheDay/OutfitOfTheDay'
 
 function App() {
