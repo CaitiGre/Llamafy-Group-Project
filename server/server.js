@@ -1,16 +1,16 @@
 const { configuration } = require("../server/apiconfig")
 const { OpenAIApi } = require("openai");
 
-async function generateCompletion(prompt) {
+async function generateCompletion(prompt, max_tokens) {
   
   const openai = new OpenAIApi(configuration);
 
   const completion = await openai.createCompletion({
     model: "text-davinci-003",
-    prompt: "give me response in a JSON object, categorizing each clothing in a different groups of category. give me only clothes as the response. it seems like it may rain tonight, and I am a brown male, What should i wear today?",
-    max_tokens: 2000,
+    prompt: prompt,
+    max_tokens: max_tokens,
   });
-  console.log(completion.data.choices[0].text);
+  return completion.data.choices[0].text;
 }
 
-generateCompletion();
+// generateCompletion();
