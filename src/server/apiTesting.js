@@ -1,5 +1,5 @@
 const { Configuration, OpenAIApi } = require("openai");
-const key = require('../modules/keyModule').key;
+const key = require('../../modules/keyModule').key
 
 const configuration = new Configuration({
     apiKey: key,

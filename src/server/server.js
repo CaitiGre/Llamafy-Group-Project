@@ -1,4 +1,4 @@
-const { configuration } = require("../server/apiconfig")
+const { configuration } = require("./apiconfig")
 const { OpenAIApi } = require("openai");
 
 async function generateCompletion(prompt, max_tokens) {
