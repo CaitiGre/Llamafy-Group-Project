@@ -31,17 +31,17 @@
 }
 
 .landingpageTitle {
-    font-family: url('../../assets/fonts/QuartzoBold.ttf');
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-size: 170px;
     color: rgba(255, 255, 255, 0);
     padding-top: 20px;
-    -webkit-text-stroke: 7px white;
+    -webkit-text-stroke: 7px #28002c;
 }
 
 .landingpageSubtitle{
-    font-family: url('../../assets/fonts/QuartzoBold.ttf');
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-size: 50px;
-    color: rgba(255, 255, 255, 0);
+    color: #28002c;
     padding: 25px;
-    -webkit-text-stroke: 2.5px white;
+    
 }

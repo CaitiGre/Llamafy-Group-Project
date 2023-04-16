@@ -1,16 +1,10 @@
 .register-h1{
-    font-family: url('../../assets/fonts/QuartzoBold.ttf');
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-size: 100px;
     color: rgba(255, 255, 255, 0);
     padding-top: 5%;
-    -webkit-text-stroke: 3px white;
+    -webkit-text-stroke: 3px #28002c;
     
-}
-
-body {
-    background-image: url('../../../public/images/background.JPG');
-    background-size: cover;
-    background-color: rgba(239, 97, 189, 0.503);
 }
 
 .register-input {
@@ -34,7 +28,7 @@ body {
 }
 
 .form-container {
-    background-color: rgba(235, 73, 227, 0.315);
+    /* background-color: rgba(235, 73, 227, 0.315); */
     padding: 20px;
     margin: 0% 10% 0% 10%;
     border-radius: 20px;
