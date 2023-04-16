@@ -1,9 +1,9 @@
-import React from "react";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import OutfitTile from "./OutfitTile";
 import shirt from '../../assets/shirt.png'
 import styles from './HomePage.module.css'
-import axios from "axios";
+
 
 const HomePage = () => {
 
@@ -21,7 +21,7 @@ const HomePage = () => {
         tempC : '',
         humidity : '',
         windKph : '',
-    })
+    });
 
     useEffect(() => {axios.get(call)
     .then(res => setWeatherValues({...weatherValues, 
@@ -36,36 +36,14 @@ const HomePage = () => {
 
     console.log(weatherValues);
 
-    const tempArr = [{
-        id: 1,
-        render: shirt,
-        desc: 'whatever1'
-    },
-    {
-        id: 2,
-        render: shirt,
-        desc: 'whatever2'
-    },
-    {
-        id: 3,
-        render: shirt,
-        desc: 'whatever3'
-    },
-    {
-        id: 4,
-        render: shirt,
-        desc: 'whatever4'
-    },
-    {
-        id: 5,
-        render: shirt,
-        desc: 'whatever5'
-    },
-    {
-        id: 6,
-        render: shirt,
-        desc: 'whatever6'
-    }]
+    const tempArr = [
+        {id: 1, render: shirt, desc: 'whatever1'},
+        {id: 2, render: shirt, desc: 'whatever2'},
+        {id: 3, render: shirt, desc: 'whatever3'},
+        {id: 4, render: shirt, desc: 'whatever4'},
+        {id: 5, render: shirt, desc: 'whatever5'},
+        {id: 6, render: shirt, desc: 'whatever6'}
+    ];
 
     const [pastOutfits, setPastOutfits] = useState(tempArr);
 
@@ -75,9 +53,8 @@ const HomePage = () => {
         
         {weatherValues 
         ?   
-            <div className={styles.title}> Hey usernameDBCall. {weatherValues.condition} in {weatherValues.location}.
-            <p>{weatherValues.tempC} right now with {weatherValues.humidity} humidity. Windiness rated at {weatherValues.windKph}</p>
-            <p>Powered by <a href="https://www.weatherapi.com/" title="Weather API">WeatherAPI.com</a></p>
+            <div className={styles.title}> Hey username. {weatherValues.condition} in {weatherValues.location}.
+            <p>{weatherValues.tempC} right now with {weatherValues.humidity} humidity. Windiness rated at {weatherValues.windKph}. <small>Powered by <a href="https://www.weatherapi.com/" title="Weather API">WeatherAPI.com</a></small></p>
             </div>
         : 
             <div className={styles.title}> Hello llama! </div>
