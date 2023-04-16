@@ -7,6 +7,7 @@ import EmailBox from "./EmailBox";
 import LocationBox from "./LocationBox";
 import GenderButtons from "./GenderButtons";
 import PasswordBox from "./PasswordBox";
+// import { registerUser } from '../../services/RegistrationPageServices';
 
 const salt = bcrypt.genSaltSync(10);
 
@@ -32,18 +33,30 @@ function RegistrationPage() {
     };
 
     //once backend set up, will send data there. Just here for dummy testing atm.
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
         if (data.password !== data.repassword) {
-            alert("Your passwords must match.");
+          alert("Your passwords must match.");
         } else if (Object.values(data).includes('')) {
-            alert("All details on this form are required.")
+          alert("All details on this form are required.")
         } else {
-            const hashedPassword = bcrypt.hashSync(data.password, salt);
-            console.log(data);
-            console.log(hashedPassword);
-        }    
-    };
+          const hashedPassword = bcrypt.hashSync(data.password, salt);
+        //   try {
+        //     const insertId = await registerUser({
+        //       firstName: data.firstName,
+        //       lastName: data.lastName,
+        //       email: data.email,
+        //       password: hashedPassword,
+        //       location: data.location,
+        //       gender: data.gender,
+        //     });
+        //     console.log('User registered with ID:', insertId);
+        //   } catch (error) {
+        //     console.error(error);
+        //     alert('An error occurred while registering. Please try again later.');
+        //   }
+        }
+      };
    
     return (
         <>
