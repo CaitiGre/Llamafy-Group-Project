@@ -8,7 +8,7 @@
 }
 
 .OotdTile {
-    width: auto;
+    width: 512px;
     height: 512px;
     border: 2px solid black;
     box-shadow: 6px 6px 10px;
