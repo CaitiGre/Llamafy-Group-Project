@@ -97,47 +97,45 @@ function ClothesSelection() {
         open={openModal}
         onClose={handleCloseModal}
         closeAfterTransition
-        hideBackdrop={true}
         disableAutoFocus={true}
-        sx={{
-          position: "absolute",
-          top: "50%",
-          left: "50%",
-          transform: "translate(-50%, -50%)",
-          outline: "none",
-          outline: 0,
-          height: "fit-content",
-          overflowY: "scroll",
-        }}
+        sx={{ overflowY: "scroll" }}
       >
         <Box
           sx={{
-            backgroundColor: "rgba(255, 255, 255, 0.8)",
+            backgroundColor: "rgba(255, 255, 255, 0.9)",
             borderRadius: "16px",
-
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            outline: "none",
+            outline: 0,
+            height: "fit-content",
             margin: "auto",
+            padding: "40px",
           }}
         >
-          <Box sx={{ padding: "40px", position: "relative" }}>
-            <Button
-              onClick={handleCloseModal}
-              sx={{ position: "absolute", top: 8, right: 2, padding: "5px" }}
+          <Button
+            onClick={handleCloseModal}
+            sx={{ position: "absolute", top: 8, right: 2, padding: "5px" }}
+          >
+            <img src={close} alt="close button" width="20px" />
+          </Button>
+          {selectedItem && (
+            <Typography
+              variant="h4"
+              sx={{ textAlign: "center", margin: "10px" }}
             >
-              <img src={close} alt="close button" width="20px" />
-            </Button>
-            {selectedItem && (
-              <Typography variant="h4" sx={{ textAlign: "center", margin: "10px" }}>
-                Select type of {selectedItem.name}
-              </Typography>
-            )}
-            {/* The sub-selection modal */}
-            <SubSelectionModal
-              openModal={openModal}
-              handleCloseModal={handleCloseModal}
-              selectedItem={selectedItem}
-              itemsToShow={subSelectionItemsToShow}
-            />
-          </Box>
+              Select type of {selectedItem.name}
+            </Typography>
+          )}
+          {/* The sub-selection modal */}
+          <SubSelectionModal
+            openModal={openModal}
+            handleCloseModal={handleCloseModal}
+            selectedItem={selectedItem}
+            itemsToShow={subSelectionItemsToShow}
+          />
         </Box>
       </Modal>
     </React.Fragment>

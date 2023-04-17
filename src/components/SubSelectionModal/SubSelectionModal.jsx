@@ -67,8 +67,25 @@ function SubSelectionModal({ itemsToShow }) {
         ))}
       </Grid>
       {selectedItem && (
-        <Modal open={showModal} onClose={onCloseModal}>
-          <Box>
+        <Modal
+          open={showModal}
+          onClose={onCloseModal}
+          sx={{ overflowY: "scroll" }}
+        >
+          <Card
+            sx={{
+              borderRadius: "16px",
+              position: "absolute",
+              top: "50%",
+              left: "50%",
+              transform: "translate(-50%, -50%)",
+              outline: "none",
+              outline: 0,
+              height: "fit-content",
+              margin: "auto",
+              padding: "40px",
+            }}
+          >
             <Button
               onClick={onCloseModal}
               sx={{ position: "absolute", top: 8, right: 2, padding: "5px" }}
@@ -82,12 +99,18 @@ function SubSelectionModal({ itemsToShow }) {
                 <SketchPicker
                   width={200}
                   height={200}
-                  onChange={(color) => console.log(color)}
+                  color={color}
+                  onChange={handleColorChange}
                 />
               </Box>
               <Typography>Length</Typography>
+              <Box></Box>
+              <Typography>Style</Typography>
+              <Box></Box>
+              <Typography>Pattern</Typography>
+              <Box></Box>
             </Grid>
-          </Box>
+          </Card>
         </Modal>
       )}
     </Box>
