@@ -1,27 +1,26 @@
 import React, { useState } from "react";
 import { Box, Grid, Card, Modal, Typography, Button } from "@mui/material";
 import close from "./../../assets/close.png";
-import { SketchPicker } from "react-color";
+import { SliderPicker } from "react-color";
 /*Renders the sub-selection modal component, which displays the available options
   for a selected item in the main selection modal
-  Takes two props: `itemsToShow` is an array of items to be displayed in the modal, 
-  and `onCloseModal` is a function to be called when the modal is closed.*/
+  Takes one prop: `itemsToShow` which is an array of clothing items to be displayed in the modal.*/
 
 function SubSelectionModal({ itemsToShow }) {
   const [showModal, setShowModal] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
   const [color, setColor] = useState("#000");
-
+  // Event handler to be called when a Card component is clicked, sets the selected item and shows the modal
   const onOpenModal = (item) => {
     setSelectedItem(item);
     setShowModal(true);
   };
-
+  // Event handler to be called when the modal is closed, resets the selected item and hides the modal
   const onCloseModal = () => {
     setSelectedItem(null);
     setShowModal(false);
   };
-
+  // Event handler to be called when the color is changed, updates the selected color
   const handleColorChange = (value) => {
     console.log("onChange=", value);
     setColor(value);
@@ -86,13 +85,14 @@ function SubSelectionModal({ itemsToShow }) {
               minWidth: "50vw",
               margin: "auto",
               padding: "40px",
+              paddingBottom: "30px",
               overflowY: "scroll",
             }}
           >
             <Box sx={{ position: "relative" }}>
               <Button
                 onClick={onCloseModal}
-                sx={{ position: "absolute", top: 8, right: 2, padding: "5px" }}
+                sx={{ position: "absolute", top: 0, right: 0, padding: "0px" }}
               >
                 <img src={close} alt="close button" width="20px" />
               </Button>
@@ -103,12 +103,12 @@ function SubSelectionModal({ itemsToShow }) {
                 <Box>
                   <Typography
                     variant="h5"
-                    sx={{ paddingTop: "20px", paddingBottom: "20px" }}
+                    sx={{ paddingTop: "20px", paddingBottom: "15px" }}
                   >
                     Colour
                   </Typography>
 
-                  <SketchPicker
+                  <SliderPicker
                     width={300}
                     height={300}
                     color={color}
@@ -118,7 +118,7 @@ function SubSelectionModal({ itemsToShow }) {
                 <Box>
                   <Typography
                     variant="h5"
-                    sx={{ paddingTop: "20px", paddingBottom: "20px" }}
+                    sx={{ paddingTop: "20px", paddingBottom: "15px" }}
                   >
                     Length
                   </Typography>
@@ -131,23 +131,23 @@ function SubSelectionModal({ itemsToShow }) {
                     }}
                   >
                     <Grid item>
-                      <Card sx={{ padding: "20px" }}>short</Card>
+                      <Card sx={{ padding: "15px" }}>short</Card>
                     </Grid>
                     <Grid item>
-                      <Card sx={{ padding: "20px" }}>1/2</Card>
+                      <Card sx={{ padding: "15px" }}>1/2</Card>
                     </Grid>
                     <Grid item>
-                      <Card sx={{ padding: "20px" }}>3/4</Card>
+                      <Card sx={{ padding: "15px" }}>3/4</Card>
                     </Grid>
                     <Grid item>
-                      <Card sx={{ padding: "20px" }}>full</Card>
+                      <Card sx={{ padding: "15px" }}>full</Card>
                     </Grid>
                   </Grid>
                 </Box>
                 <Box>
                   <Typography
                     variant="h5"
-                    sx={{ paddingTop: "20px", paddingBottom: "20px" }}
+                    sx={{ paddingTop: "20px", paddingBottom: "15px" }}
                   >
                     Style
                   </Typography>
@@ -160,13 +160,13 @@ function SubSelectionModal({ itemsToShow }) {
                     }}
                   >
                     <Grid item>
-                      <Card sx={{ padding: "20px" }}>flared</Card>
+                      <Card sx={{ padding: "15px" }}>flared</Card>
                     </Grid>
                     <Grid item>
-                      <Card sx={{ padding: "20px" }}>loose</Card>
+                      <Card sx={{ padding: "15px" }}>loose</Card>
                     </Grid>
                     <Grid item>
-                      <Card sx={{ padding: "20px" }}>tight</Card>
+                      <Card sx={{ padding: "15px" }}>tight</Card>
                     </Grid>
                   </Grid>
                 </Box>
@@ -174,7 +174,7 @@ function SubSelectionModal({ itemsToShow }) {
                 <Box>
                   <Typography
                     variant="h5"
-                    sx={{ paddingTop: "20px", paddingBottom: "20px" }}
+                    sx={{ paddingTop: "15px", paddingBottom: "15px" }}
                   >
                     Pattern
                   </Typography>
@@ -187,19 +187,30 @@ function SubSelectionModal({ itemsToShow }) {
                     }}
                   >
                     <Grid item>
-                      <Card sx={{ padding: "20px" }}>floral</Card>
+                      <Card sx={{ padding: "15px" }}>floral</Card>
                     </Grid>
                     <Grid item>
-                      <Card sx={{ padding: "20px" }}>stripes</Card>
+                      <Card sx={{ padding: "15px" }}>stripes</Card>
                     </Grid>
                     <Grid item>
-                      <Card sx={{ padding: "20px" }}>polka dots</Card>
+                      <Card sx={{ padding: "15px" }}>polka dots</Card>
                     </Grid>
                   </Grid>
                 </Box>
-                <Box sx={{ position: "absolute" }}>
-                  <Button>Add</Button>
-                  <Button onClick={onCloseModal}>Cancel</Button>
+                <Box
+                  sx={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    paddingTop: "5%",
+                    right: "0",
+                  }}
+                >
+                  <Button variant="outlined" onClick={onCloseModal}>
+                    Cancel
+                  </Button>
+                  <Button variant="outlined" color="primary">
+                    Add
+                  </Button>
                 </Box>
               </Grid>
             </Box>
