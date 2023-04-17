@@ -1,6 +1,7 @@
-import React, {useState} from "react";
-import { Box, Grid, Card, Modal } from "@mui/material";
-
+import React, { useState } from "react";
+import { Box, Grid, Card, Modal, Typography, Button } from "@mui/material";
+import close from "./../../assets/close.png";
+import { SketchPicker } from "react-color";
 /*Renders the sub-selection modal component, which displays the available options
   for a selected item in the main selection modal
   Takes two props: `itemsToShow` is an array of items to be displayed in the modal, 
@@ -8,9 +9,23 @@ import { Box, Grid, Card, Modal } from "@mui/material";
 
 function SubSelectionModal({ itemsToShow }) {
   const [showModal, setShowModal] = useState(false);
+  const [selectedItem, setSelectedItem] = useState(null);
+  const [color, setColor] = useState("#000");
 
   const onOpenModal = (item) => {
-    setShowModal(true);}
+    setSelectedItem(item);
+    setShowModal(true);
+  };
+
+  const onCloseModal = () => {
+    setSelectedItem(null);
+    setShowModal(false);
+  };
+
+  const handleColorChange = (value) => {
+    console.log("onChange=", value);
+    setColor(value);
+  };
   return (
     <Box
       sx={{
@@ -51,9 +66,28 @@ function SubSelectionModal({ itemsToShow }) {
           </Grid>
         ))}
       </Grid>
-      {showModal && (
-        <Modal onClose={() => setShowModal(false)}>
-          <div>Second Modal content</div>
+      {selectedItem && (
+        <Modal open={showModal} onClose={onCloseModal}>
+          <Box>
+            <Button
+              onClick={onCloseModal}
+              sx={{ position: "absolute", top: 8, right: 2, padding: "5px" }}
+            >
+              <img src={close} alt="close button" width="20px" />
+            </Button>
+            <Typography variant="h4">{selectedItem.name}</Typography>
+            <Grid>
+              <Typography>Colour</Typography>
+              <Box>
+                <SketchPicker
+                  width={200}
+                  height={200}
+                  onChange={(color) => console.log(color)}
+                />
+              </Box>
+              <Typography>Length</Typography>
+            </Grid>
+          </Box>
         </Modal>
       )}
     </Box>

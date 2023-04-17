@@ -96,7 +96,6 @@ function ClothesSelection() {
       <Modal
         open={openModal}
         onClose={handleCloseModal}
-        onBackdropClick
         closeAfterTransition
         hideBackdrop={true}
         disableAutoFocus={true}
@@ -127,7 +126,7 @@ function ClothesSelection() {
               <img src={close} alt="close button" width="20px" />
             </Button>
             {selectedItem && (
-              <Typography variant="h4" sx={{ textAlign: "center" }}>
+              <Typography variant="h4" sx={{ textAlign: "center", margin: "10px" }}>
                 Select type of {selectedItem.name}
               </Typography>
             )}
