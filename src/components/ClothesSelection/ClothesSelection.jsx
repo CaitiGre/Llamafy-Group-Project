@@ -96,6 +96,7 @@ function ClothesSelection() {
       <Modal
         open={openModal}
         onClose={handleCloseModal}
+        onBackdropClick
         closeAfterTransition
         hideBackdrop={true}
         disableAutoFocus={true}
@@ -106,14 +107,15 @@ function ClothesSelection() {
           transform: "translate(-50%, -50%)",
           outline: "none",
           outline: 0,
+          height: "fit-content",
+          overflowY: "scroll",
         }}
       >
         <Box
           sx={{
-            backgroundColor: "white",
+            backgroundColor: "rgba(255, 255, 255, 0.8)",
             borderRadius: "16px",
-            width: "90%",
-            height: "80%",
+
             margin: "auto",
           }}
         >
