@@ -1,5 +1,4 @@
 import { useState } from "react";
-import './SettingsPage.module.css';
 import { ButtonGroup, Button } from "@mui/material";
 import styles from './SettingsPage.module.css';
 import Profile from './Profile';
