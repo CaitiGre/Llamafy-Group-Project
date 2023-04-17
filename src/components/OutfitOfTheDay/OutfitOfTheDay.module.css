@@ -15,9 +15,8 @@
 }
 
 .OotdTile:hover {
-    border: 2px solid gold;
-    box-shadow: none;
-    filter:brightness(120%)
+    cursor: pointer;
+    filter:brightness(120%);  
 }
 
 .OotdTile img {
