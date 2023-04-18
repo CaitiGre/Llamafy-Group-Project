@@ -59,7 +59,7 @@ const HomePage = () => {
         {weatherValues 
         ?   
             <div className={styles.title}> 
-            <img src={weatherValues.iconUrl} alt="Weather symbol" /> <br />
+            <img src={weatherValues.iconUrl} /> <br />
             Hey username. {weatherValues.condition} in {weatherValues.location}.
             <p>{weatherValues.tempC} right now with {weatherValues.humidity} humidity. Windiness rated at {weatherValues.windKph} {weatherValues.windDir}. <small>Powered by <a href="https://www.weatherapi.com/" title="Weather API">WeatherAPI.com</a></small></p>
             </div>
