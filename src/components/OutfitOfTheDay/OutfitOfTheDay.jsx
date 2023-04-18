@@ -1,9 +1,6 @@
-import React from "react"
-import { useState } from 'react';
-
+import React, { useState } from "react"
 import OotdTile from './OotdTile';
 import styles from './OutfitOfTheDay.module.css'
-
 
 const OutfitOfTheDay = () => {
 

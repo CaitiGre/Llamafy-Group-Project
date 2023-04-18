@@ -2,7 +2,7 @@ import React from "react";
 
 const OutfitTile = ({outfit}) => {
     return <div> 
-            <img src={outfit.render} style={{width: '200px'}} />
+            <img src={outfit.render} style={{width: '300px'}} />
             <p>{outfit.desc}</p>
     </div>
 }
