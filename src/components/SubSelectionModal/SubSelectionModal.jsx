@@ -15,6 +15,7 @@ function SubSelectionModal({ itemsToShow }) {
   const [selectedLength, setSelectedLength] = useState(null);
   const [selectedSleeves, setSelectedSleeves] = useState(null);
   const [selectedFabric, setSelectedFabric] = useState(null);
+  const [wardrobe, setWardrobe] = useState(null);
   useEffect(() => {
     console.log(selectedStyle);
   }, [selectedStyle]);
@@ -31,6 +32,10 @@ function SubSelectionModal({ itemsToShow }) {
     console.log(selectedFabric);
   }, [selectedFabric]);
 
+  useEffect(() => {
+    console.log(wardrobe);
+  }, [wardrobe]);
+
   // Event handler to be called when a Card component is clicked, sets the selected item and shows the modal
   const onOpenModal = (item) => {
     setSelectedItem(item);
@@ -45,23 +50,23 @@ function SubSelectionModal({ itemsToShow }) {
   const handleColorChange = (value) => {
     console.log("onChange=", value);
     setColor(value);
-
-    const wardrobeItemJSON = () => {
-      const selectedOptions = {
-        style: selectedStyle,
-        pattern: selectedPattern,
-        length: selectedLength,
-        color: color,
-        sleeves: selectedSleeves,
-        fabric: selectedFabric,
-      };
-      const selectedCard = {
-        name: selectedItem.name,
-        src: selectedItem.src,
-        selectedOptions: selectedOptions,
-      };
-      console.log("selectedCard: ", selectedCard);
+  };
+  const handleAddClick = () => {
+    const selectedOptions = {
+      style: selectedStyle,
+      pattern: selectedPattern,
+      length: selectedLength,
+      color: color.hex,
+      sleeves: selectedSleeves,
+      fabric: selectedFabric,
     };
+    const selectedCard = {
+      name: selectedItem.name,
+      src: selectedItem.src,
+      selectedOptions: selectedOptions,
+    };
+    setWardrobe({ ...wardrobe, [selectedCard.name]: selectedCard });
+    onCloseModal();
   };
   return (
     <Box
@@ -318,7 +323,11 @@ function SubSelectionModal({ itemsToShow }) {
                   <Button variant="outlined" onClick={onCloseModal}>
                     Cancel
                   </Button>
-                  <Button variant="outlined" color="primary">
+                  <Button
+                    variant="outlined"
+                    color="primary"
+                    onClick={handleAddClick}
+                  >
                     Add
                   </Button>
                 </Box>
