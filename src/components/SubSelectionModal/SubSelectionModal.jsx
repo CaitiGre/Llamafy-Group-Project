@@ -80,7 +80,6 @@ function SubSelectionModal({ itemsToShow }) {
               borderRadius: "16px",
               height: "max-content",
               outline: "none",
-              outline: 0,
               maxHeight: "90vh",
               minWidth: "50vw",
               margin: "auto",
@@ -115,88 +114,126 @@ function SubSelectionModal({ itemsToShow }) {
                     onChange={handleColorChange}
                   />
                 </Box>
-                <Box>
-                  <Typography
-                    variant="h5"
-                    sx={{ paddingTop: "20px", paddingBottom: "15px" }}
-                  >
-                    Length
-                  </Typography>
-                  <Grid
-                    container
-                    spacing={{ xs: 4, md: 4 }}
-                    columns={4}
-                    sx={{
-                      justifyContent: "center",
-                    }}
-                  >
-                    <Grid item>
-                      <Card sx={{ padding: "15px" }}>short</Card>
+                {selectedItem.sleeves && (
+                  <Box>
+                    <Typography
+                      variant="h5"
+                      sx={{ paddingTop: "20px", paddingBottom: "15px" }}
+                    >
+                      Length
+                    </Typography>
+                    <Grid
+                      container
+                      spacing={{ xs: 4, md: 4 }}
+                      columns={4}
+                      sx={{
+                        justifyContent: "center",
+                      }}
+                    >
+                      {selectedItem.sleeves.map((item, index) => (
+                        <Grid key={index} item>
+                          <Card sx={{ padding: "15px" }}>{item}</Card>
+                        </Grid>
+                      ))}
                     </Grid>
-                    <Grid item>
-                      <Card sx={{ padding: "15px" }}>1/2</Card>
+                  </Box>
+                )}
+                {selectedItem.length && (
+                  <Box>
+                    <Typography
+                      variant="h5"
+                      sx={{ paddingTop: "20px", paddingBottom: "15px" }}
+                    >
+                      Length
+                    </Typography>
+                    <Grid
+                      container
+                      spacing={{ xs: 4, md: 4 }}
+                      columns={4}
+                      sx={{
+                        justifyContent: "center",
+                      }}
+                    >
+                      {selectedItem.length.map((item, index) => (
+                        <Grid key={index} item>
+                          <Card sx={{ padding: "15px" }}>{item}</Card>
+                        </Grid>
+                      ))}
                     </Grid>
-                    <Grid item>
-                      <Card sx={{ padding: "15px" }}>3/4</Card>
+                  </Box>
+                )}
+                {selectedItem.style && (
+                  <Box>
+                    <Typography
+                      variant="h5"
+                      sx={{ paddingTop: "20px", paddingBottom: "15px" }}
+                    >
+                      Style
+                    </Typography>
+                    <Grid
+                      container
+                      spacing={{ xs: 4, md: 4 }}
+                      columns={3}
+                      sx={{
+                        justifyContent: "center",
+                      }}
+                    >
+                      {selectedItem.style.map((item, index) => (
+                        <Grid key={index} item>
+                          <Card sx={{ padding: "15px" }}>{item}</Card>
+                        </Grid>
+                      ))}
                     </Grid>
-                    <Grid item>
-                      <Card sx={{ padding: "15px" }}>full</Card>
+                  </Box>
+                )}
+                {selectedItem.fabric && (
+                  <Box>
+                    <Typography
+                      variant="h5"
+                      sx={{ paddingTop: "20px", paddingBottom: "15px" }}
+                    >
+                      Length
+                    </Typography>
+                    <Grid
+                      container
+                      spacing={{ xs: 4, md: 4 }}
+                      columns={4}
+                      sx={{
+                        justifyContent: "center",
+                      }}
+                    >
+                      {selectedItem.fabric.map((item, index) => (
+                        <Grid key={index} item>
+                          <Card sx={{ padding: "15px" }}>{item}</Card>
+                        </Grid>
+                      ))}
                     </Grid>
-                  </Grid>
-                </Box>
-                <Box>
-                  <Typography
-                    variant="h5"
-                    sx={{ paddingTop: "20px", paddingBottom: "15px" }}
-                  >
-                    Style
-                  </Typography>
-                  <Grid
-                    container
-                    spacing={{ xs: 4, md: 4 }}
-                    columns={3}
-                    sx={{
-                      justifyContent: "center",
-                    }}
-                  >
-                    <Grid item>
-                      <Card sx={{ padding: "15px" }}>flared</Card>
+                  </Box>
+                )}
+                {selectedItem.pattern && (
+                  <Box>
+                    <Typography
+                      variant="h5"
+                      sx={{ paddingTop: "15px", paddingBottom: "15px" }}
+                    >
+                      Pattern
+                    </Typography>
+                    <Grid
+                      container
+                      spacing={{ xs: 4, md: 4 }}
+                      columns={3}
+                      sx={{
+                        justifyContent: "center",
+                      }}
+                    >
+                      {selectedItem.pattern.map((item, index) => (
+                        <Grid key={index} item>
+                          <Card sx={{ padding: "15px" }}>{item}</Card>
+                        </Grid>
+                      ))}
                     </Grid>
-                    <Grid item>
-                      <Card sx={{ padding: "15px" }}>loose</Card>
-                    </Grid>
-                    <Grid item>
-                      <Card sx={{ padding: "15px" }}>tight</Card>
-                    </Grid>
-                  </Grid>
-                </Box>
-
-                <Box>
-                  <Typography
-                    variant="h5"
-                    sx={{ paddingTop: "15px", paddingBottom: "15px" }}
-                  >
-                    Pattern
-                  </Typography>
-                  <Grid
-                    container
-                    spacing={{ xs: 4, md: 4 }}
-                    columns={3}
-                    sx={{
-                      justifyContent: "center",
-                    }}
-                  >
-                    <Grid item>
-                      <Card sx={{ padding: "15px" }}>floral</Card>
-                    </Grid>
-                    <Grid item>
-                      <Card sx={{ padding: "15px" }}>stripes</Card>
-                    </Grid>
-                    <Grid item>
-                      <Card sx={{ padding: "15px" }}>polka dots</Card>
-                    </Grid>
-                  </Grid>
-                </Box>
+                  </Box>
+                )}
                 <Box
                   sx={{
                     display: "flex",
