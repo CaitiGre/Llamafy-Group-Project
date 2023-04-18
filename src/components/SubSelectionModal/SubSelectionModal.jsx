@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Box, Grid, Card, Modal, Typography, Button } from "@mui/material";
 import close from "./../../assets/close.png";
 import { SliderPicker } from "react-color";
@@ -10,6 +10,27 @@ function SubSelectionModal({ itemsToShow }) {
   const [showModal, setShowModal] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
   const [color, setColor] = useState("#000");
+  const [selectedStyle, setSelectedStyle] = useState(null);
+  const [selectedPattern, setSelectedPattern] = useState(null);
+  const [selectedLength, setSelectedLength] = useState(null);
+  const [selectedSleeves, setSelectedSleeves] = useState(null);
+  const [selectedFabric, setSelectedFabric] = useState(null);
+  useEffect(() => {
+    console.log(selectedStyle);
+  }, [selectedStyle]);
+  useEffect(() => {
+    console.log(selectedPattern);
+  }, [selectedPattern]);
+  useEffect(() => {
+    console.log(selectedLength);
+  }, [selectedLength]);
+  useEffect(() => {
+    console.log(selectedSleeves);
+  }, [selectedSleeves]);
+  useEffect(() => {
+    console.log(selectedFabric);
+  }, [selectedFabric]);
+
   // Event handler to be called when a Card component is clicked, sets the selected item and shows the modal
   const onOpenModal = (item) => {
     setSelectedItem(item);
@@ -24,6 +45,23 @@ function SubSelectionModal({ itemsToShow }) {
   const handleColorChange = (value) => {
     console.log("onChange=", value);
     setColor(value);
+
+    const wardrobeItemJSON = () => {
+      const selectedOptions = {
+        style: selectedStyle,
+        pattern: selectedPattern,
+        length: selectedLength,
+        color: color,
+        sleeves: selectedSleeves,
+        fabric: selectedFabric,
+      };
+      const selectedCard = {
+        name: selectedItem.name,
+        src: selectedItem.src,
+        selectedOptions: selectedOptions,
+      };
+      console.log("selectedCard: ", selectedCard);
+    };
   };
   return (
     <Box
@@ -120,7 +158,7 @@ function SubSelectionModal({ itemsToShow }) {
                       variant="h5"
                       sx={{ paddingTop: "20px", paddingBottom: "15px" }}
                     >
-                      Length
+                      Sleeve
                     </Typography>
                     <Grid
                       container
@@ -132,7 +170,14 @@ function SubSelectionModal({ itemsToShow }) {
                     >
                       {selectedItem.sleeves.map((item, index) => (
                         <Grid key={index} item>
-                          <Card sx={{ padding: "15px" }}>{item}</Card>
+                          <Card
+                            sx={{ padding: "15px" }}
+                            onClick={() => {
+                              setSelectedSleeves(item);
+                            }}
+                          >
+                            {item}
+                          </Card>
                         </Grid>
                       ))}
                     </Grid>
@@ -156,7 +201,14 @@ function SubSelectionModal({ itemsToShow }) {
                     >
                       {selectedItem.length.map((item, index) => (
                         <Grid key={index} item>
-                          <Card sx={{ padding: "15px" }}>{item}</Card>
+                          <Card
+                            sx={{ padding: "15px" }}
+                            onClick={() => {
+                              setSelectedLength(item);
+                            }}
+                          >
+                            {item}
+                          </Card>
                         </Grid>
                       ))}
                     </Grid>
@@ -180,7 +232,14 @@ function SubSelectionModal({ itemsToShow }) {
                     >
                       {selectedItem.style.map((item, index) => (
                         <Grid key={index} item>
-                          <Card sx={{ padding: "15px" }}>{item}</Card>
+                          <Card
+                            sx={{ padding: "15px" }}
+                            onClick={() => {
+                              setSelectedStyle(item);
+                            }}
+                          >
+                            {item}
+                          </Card>
                         </Grid>
                       ))}
                     </Grid>
@@ -204,7 +263,14 @@ function SubSelectionModal({ itemsToShow }) {
                     >
                       {selectedItem.fabric.map((item, index) => (
                         <Grid key={index} item>
-                          <Card sx={{ padding: "15px" }}>{item}</Card>
+                          <Card
+                            sx={{ padding: "15px" }}
+                            onClick={() => {
+                              setSelectedFabric(item);
+                            }}
+                          >
+                            {item}
+                          </Card>
                         </Grid>
                       ))}
                     </Grid>
@@ -228,7 +294,14 @@ function SubSelectionModal({ itemsToShow }) {
                     >
                       {selectedItem.pattern.map((item, index) => (
                         <Grid key={index} item>
-                          <Card sx={{ padding: "15px" }}>{item}</Card>
+                          <Card
+                            sx={{ padding: "15px" }}
+                            onClick={() => {
+                              setSelectedPattern(item);
+                            }}
+                          >
+                            {item}
+                          </Card>
                         </Grid>
                       ))}
                     </Grid>
