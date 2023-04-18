@@ -4,11 +4,11 @@
 }
 
 .landingPageTitle {
-    font-family: url('../../assets/fonts/moonlite-outline.ttf');
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-size: 170px;
     color: rgba(255, 255, 255, 0);
-    padding-top: 100px;
-    -webkit-text-stroke: 7px white;
+    padding-top: 150px;
+    -webkit-text-stroke: 5px #28002c;
 }
 
 .landingPageSubtitle{
@@ -16,17 +16,18 @@
     font-size: 50px;
     color: rgba(255, 255, 255, 0);
     padding: 25px;
-    -webkit-text-stroke: 2.5px white;
+    color: #58315c;
+    
 }
 
 .llamaSubheading{
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;;
     font-size: 50px;
-    color: rgba(255, 255, 255, 0);
-    padding: 40px;
-    -webkit-text-stroke: 2px #ffffff;
+    color: #58315c;
+    padding: 60px;
+    /* -webkit-text-stroke: 2px #58315c; */
     text-shadow: #2f2e31;
-    text-decoration-line: underline;
+    
 }
 
 .parallax::-webkit-scrollbar {
@@ -35,15 +36,16 @@
 
 .buttonContainer{
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     padding: 170px;
     padding-top: 30px;
     padding-bottom: 30px;
     z-index: 1;
+    
 }
 
 .landingLoginButton, .registerButton{
-    border-radius: 30px;
+    border-radius: 40px;
     box-shadow: 2px 2px 5px rgba(255, 255, 255, 0.8);
     text-align: center;
     padding: 25px 55px;
@@ -85,7 +87,7 @@
     display: flex;
     padding: 40px;
     width: 70%;
-    background-color: rgba(255, 255, 255, 0.89);
+    background-color: rgba(255, 255, 255, 0.966);
     border-radius: 25px;
     box-shadow:  3px 5px rgba(255, 255, 255, 0.39);
     text-align: justify;

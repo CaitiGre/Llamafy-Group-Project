@@ -7,7 +7,7 @@
     position: fixed;
     height: 60px;
     display: flex;
-    background-color: #ee69ec8b;
+    background-color: #7222bd02;
     width: 100%;
     margin-top: 0;
     transition: top 0.4s;
@@ -49,8 +49,16 @@
 .navbarRight, .navCenter {
     width: 300px;
     display: flex;
-    align-content: space-between;
-    justify-content: space-between;
+    /* align-content: space-between;
+    justify-content: space-between; */
+}
+.navbarRight{
+    align-self: flex-end;
+    justify-content: flex-end;
+    justify-self: flex-end;
+    align-items: flex-end;
+    align-self: flex-end;
+    display: flex;
 }
 
 .navbarRight a, .navCenter a{

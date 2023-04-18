@@ -8,11 +8,11 @@
 }
 
 .heading {
-    font-family: url('../../assets/fonts/QuartzoBold.ttf');
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-size: 100px;
     color: rgba(255, 255, 255, 0);
     margin-top: 100px;
-    -webkit-text-stroke: 3px white;
+    -webkit-text-stroke: 3px #28002c;
     margin-bottom: 50px;
 }
 
