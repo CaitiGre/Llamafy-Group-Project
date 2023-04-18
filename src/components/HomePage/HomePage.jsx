@@ -34,7 +34,7 @@ const HomePage = () => {
         tempC : `${res.data.current.temp_c} C`,
         humidity : `${res.data.current.humidity}%`,
         windKph : `${res.data.current.wind_kph} km/h`,
-        windDir : res.data.current.wind_dir,
+        // windDir : res.data.current.wind_dir,
         iconUrl : res.data.current.condition.icon});})
     .catch(err => {console.log(err);
                     setWeatherValues(undefined)});
@@ -61,7 +61,7 @@ const HomePage = () => {
             <div className={styles.title}> 
             <img src={weatherValues.iconUrl} /> <br />
             Hey username. {weatherValues.condition} in {weatherValues.location}.
-            <p>{weatherValues.tempC} right now with {weatherValues.humidity} humidity. Windiness rated at {weatherValues.windKph} {weatherValues.windDir}. <small>Powered by <a href="https://www.weatherapi.com/" title="Weather API">WeatherAPI.com</a></small></p>
+            <p>{weatherValues.tempC} right now with {weatherValues.humidity} humidity. Windspeed at {weatherValues.windKph}. <small>Powered by <a href="https://www.weatherapi.com/" title="Weather API">WeatherAPI.com</a></small></p>
             </div>
         : 
             <div className={styles.title}> Hello username! 
