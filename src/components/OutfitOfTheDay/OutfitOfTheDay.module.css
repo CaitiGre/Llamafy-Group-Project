@@ -1,0 +1,47 @@
+.recommendationTiles {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto;
+    align-items:flex-start;
+    justify-content: space-between;
+    width: auto;
+}
+
+.OotdTile {
+    width: 512px;
+    height: 512px;
+    border: 2px solid black;
+    box-shadow: 6px 6px 10px;
+}
+
+.OotdTile:hover {
+    cursor: pointer;
+    filter:brightness(120%);  
+}
+
+.OotdTile img {
+    object-fit:contain;
+}
+
+.tileDesc {
+    background-color: lightgray;
+    text-align: justify;
+    margin-top: 15px;
+    height: auto;
+}
+
+.landingpageTitle {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 170px;
+    color: rgba(255, 255, 255, 0);
+    padding-top: 20px;
+    -webkit-text-stroke: 7px #28002c;
+}
+
+.landingpageSubtitle{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 50px;
+    color: #28002c;
+    padding: 25px;
+    
+}
