@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Box, Grid, Card, Modal, Typography, Button } from "@mui/material";
 import close from "./../../assets/close.png";
 import { SliderPicker } from "react-color";
-import styles from "./SubSelectionModal.module.css"
+import styles from "./SubSelectionModal.module.css";
 /*Renders the sub-selection modal component, which displays the available options
   for a selected item in the main selection modal
   Takes one prop: `itemsToShow` which is an array of clothing items to be displayed in the modal.*/
@@ -18,25 +18,8 @@ function SubSelectionModal({ itemsToShow }) {
   const [selectedFabric, setSelectedFabric] = useState(null);
   const [wardrobe, setWardrobe] = useState(null);
   useEffect(() => {
-    console.log(selectedStyle);
-  }, [selectedStyle]);
-  useEffect(() => {
-    console.log(selectedPattern);
-  }, [selectedPattern]);
-  useEffect(() => {
-    console.log(selectedLength);
-  }, [selectedLength]);
-  useEffect(() => {
-    console.log(selectedSleeves);
-  }, [selectedSleeves]);
-  useEffect(() => {
-    console.log(selectedFabric);
-  }, [selectedFabric]);
-
-  useEffect(() => {
     console.log(wardrobe);
   }, [wardrobe]);
-
   // Event handler to be called when a Card component is clicked, sets the selected item and shows the modal
   const onOpenModal = (item) => {
     setSelectedItem(item);
@@ -49,11 +32,12 @@ function SubSelectionModal({ itemsToShow }) {
   };
   // Event handler to be called when the color is changed, updates the selected color
   const handleColorChange = (value) => {
-    console.log("onChange=", value);
     setColor(value);
   };
+  // Function to creat new wardobe item JSON up clicking th add button
   const handleAddClick = () => {
-    const selectedOptions = {
+    const selectedWardrobeItem = {
+      name: selectedItem.name,
       style: selectedStyle,
       pattern: selectedPattern,
       length: selectedLength,
@@ -61,12 +45,10 @@ function SubSelectionModal({ itemsToShow }) {
       sleeves: selectedSleeves,
       fabric: selectedFabric,
     };
-    const selectedCard = {
-      name: selectedItem.name,
-      src: selectedItem.src,
-      selectedOptions: selectedOptions,
-    };
-    setWardrobe({ ...wardrobe, [selectedCard.name]: selectedCard });
+    setWardrobe({
+      ...wardrobe,
+      [selectedWardrobeItem.name]: selectedWardrobeItem,
+    });
     onCloseModal();
   };
   return (
@@ -176,7 +158,8 @@ function SubSelectionModal({ itemsToShow }) {
                     >
                       {selectedItem.sleeves.map((item, index) => (
                         <Grid key={index} item>
-                          <Card className={styles.clothecard}
+                          <Card
+                            className={styles.clothecard}
                             sx={{ padding: "15px", cursor: "pointer" }}
                             onClick={() => {
                               setSelectedSleeves(item);
@@ -207,7 +190,8 @@ function SubSelectionModal({ itemsToShow }) {
                     >
                       {selectedItem.length.map((item, index) => (
                         <Grid key={index} item>
-                          <Card className={styles.clothecard}
+                          <Card
+                            className={styles.clothecard}
                             sx={{ padding: "15px", cursor: "pointer" }}
                             onClick={() => {
                               setSelectedLength(item);
@@ -238,7 +222,8 @@ function SubSelectionModal({ itemsToShow }) {
                     >
                       {selectedItem.style.map((item, index) => (
                         <Grid key={index} item>
-                          <Card className={styles.clothecard}
+                          <Card
+                            className={styles.clothecard}
                             sx={{ padding: "15px", cursor: "pointer" }}
                             onClick={() => {
                               setSelectedStyle(item);
@@ -269,7 +254,8 @@ function SubSelectionModal({ itemsToShow }) {
                     >
                       {selectedItem.fabric.map((item, index) => (
                         <Grid key={index} item>
-                          <Card className={styles.clothecard}
+                          <Card
+                            className={styles.clothecard}
                             sx={{ padding: "15px", cursor: "pointer" }}
                             onClick={() => {
                               setSelectedFabric(item);
@@ -300,7 +286,8 @@ function SubSelectionModal({ itemsToShow }) {
                     >
                       {selectedItem.pattern.map((item, index) => (
                         <Grid key={index} item>
-                          <Card className={styles.clothecard}
+                          <Card
+                            className={styles.clothecard}
                             sx={{ padding: "15px", cursor: "pointer" }}
                             onClick={() => {
                               setSelectedPattern(item);
