@@ -1,4 +1,3 @@
-import './SettingsPage.module.css';
 import { Input, InputLabel, Grid } from "@mui/material";
 import { useState } from "react";
 import styles from './SettingsPage.module.css';

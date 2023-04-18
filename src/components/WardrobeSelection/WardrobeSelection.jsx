@@ -7,11 +7,10 @@ import styles from "./WardrobeSelection.module.css";
 function WardrobeSelection() {
   return (
     <React.Fragment>
-     
-      <Heading title="Wardrobe Selection" />
-      <SubHeading subtitle="Select some staples" />
-       <section className={styles.wardrobe}>
-      <ClothesSelection />
+      <section className={styles.wardrobe}>
+        <Heading title="Wardrobe Selection" />
+        <SubHeading subtitle="Select some staples" />
+        <ClothesSelection />
       </section>
     </React.Fragment>
   );
