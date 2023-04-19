@@ -4,11 +4,11 @@ import OutfitTile from "./OutfitTile";
 import shirt from '../../assets/shirt.png'
 import styles from './HomePage.module.css'
 
-
 const HomePage = () => {
 
     // weather api key - to put in to .env later
     const weatherKey = "e9c2f39101b44170a9753323231504";
+
     // need an axios DB call for user's city. setting to auckland for now
     const [city, setCity] = useState("Auckland");
 

@@ -67,8 +67,8 @@
         display: grid;
         grid-template-rows: auto;
         grid-template-columns: repeat(2, 1fr);
-        padding-left: 5vw;
-        padding-right: 5vw; 
+        padding-left: 0px;
+        padding-right: 0px; 
     }
 
     .card {
