@@ -2,6 +2,7 @@ import React from "react";
 import { Box, Grid, Card, Typography } from "@mui/material";
 import styles from "./ClotheCustomisation.module.css";
 
+
 function ClotheCustomisation({ selectedItemAttribute, name, setFunction }) {
   return (
     <>
