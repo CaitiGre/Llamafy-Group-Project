@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
 import { Modal, Card, Box, Button, Typography, Grid } from "@mui/material";
 import { SliderPicker } from "react-color";
-import styles from "./ClothingSelectionModal.module.css";
 import close from "./../../assets/close.png";
+import ClotheCustomisation from "../ClotheCustomisation/ClotheCustomisation";
 
 function ClothingSelectionModal({ selectedItem, showModal, onCloseModal }) {
+  // All the states to be recorded in the new wardrobe item JSON
   const [color, setColor] = useState("#000000");
   const [selectedSleeves, setSelectedSleeves] = useState(null);
   const [selectedLength, setSelectedLength] = useState(null);
@@ -12,14 +13,15 @@ function ClothingSelectionModal({ selectedItem, showModal, onCloseModal }) {
   const [selectedFabric, setSelectedFabric] = useState(null);
   const [selectedPattern, setSelectedPattern] = useState(null);
   const [wardrobe, setWardrobe] = useState(null);
+  // To be removed: Just checking that a JSON object was correctly created upon clicking the add button
   useEffect(() => {
     console.log(wardrobe);
   }, [wardrobe]);
-
+  // Updates the color state with the color selected
   const handleColorChange = (value) => {
     setColor(value);
   };
-  // Function to creat new wardobe item JSON up clicking th add button
+  // Function to creat new wardobe item JSON upon clicking the add button on the modal
   const handleAddClick = () => {
     const selectedWardrobeItem = {
       name: selectedItem.name,
@@ -30,10 +32,12 @@ function ClothingSelectionModal({ selectedItem, showModal, onCloseModal }) {
       sleeves: selectedSleeves,
       fabric: selectedFabric,
     };
+    // Updates the wardrobe state
     setWardrobe({
       ...wardrobe,
       [selectedWardrobeItem.name]: selectedWardrobeItem,
     });
+    // Closes the Modal upon clicking the add button on the modal
     onCloseModal();
   };
 
@@ -88,166 +92,31 @@ function ClothingSelectionModal({ selectedItem, showModal, onCloseModal }) {
                     onChange={handleColorChange}
                   />
                 </Box>
-                {selectedItem.sleeves && (
-                  <Box>
-                    <Typography
-                      variant="h5"
-                      sx={{ paddingTop: "20px", paddingBottom: "15px" }}
-                    >
-                      Sleeve
-                    </Typography>
-                    <Grid
-                      container
-                      spacing={{ xs: 4, md: 4 }}
-                      columns={4}
-                      sx={{
-                        justifyContent: "center",
-                      }}
-                    >
-                      {selectedItem.sleeves.map((item, index) => (
-                        <Grid key={index} item>
-                          <Card
-                            className={styles.clothecard}
-                            sx={{ padding: "15px", cursor: "pointer" }}
-                            onClick={() => {
-                              setSelectedSleeves(item);
-                            }}
-                          >
-                            {item}
-                          </Card>
-                        </Grid>
-                      ))}
-                    </Grid>
-                  </Box>
-                )}
-                {selectedItem.length && (
-                  <Box>
-                    <Typography
-                      variant="h5"
-                      sx={{ paddingTop: "20px", paddingBottom: "15px" }}
-                    >
-                      Length
-                    </Typography>
-                    <Grid
-                      container
-                      spacing={{ xs: 4, md: 4 }}
-                      columns={4}
-                      sx={{
-                        justifyContent: "center",
-                      }}
-                    >
-                      {selectedItem.length.map((item, index) => (
-                        <Grid key={index} item>
-                          <Card
-                            className={styles.clothecard}
-                            sx={{ padding: "15px", cursor: "pointer" }}
-                            onClick={() => {
-                              setSelectedLength(item);
-                            }}
-                          >
-                            {item}
-                          </Card>
-                        </Grid>
-                      ))}
-                    </Grid>
-                  </Box>
-                )}
-                {selectedItem.style && (
-                  <Box>
-                    <Typography
-                      variant="h5"
-                      sx={{ paddingTop: "20px", paddingBottom: "15px" }}
-                    >
-                      Style
-                    </Typography>
-                    <Grid
-                      container
-                      spacing={{ xs: 4, md: 4 }}
-                      columns={3}
-                      sx={{
-                        justifyContent: "center",
-                      }}
-                    >
-                      {selectedItem.style.map((item, index) => (
-                        <Grid key={index} item>
-                          <Card
-                            className={styles.clothecard}
-                            sx={{ padding: "15px", cursor: "pointer" }}
-                            onClick={() => {
-                              setSelectedStyle(item);
-                            }}
-                          >
-                            {item}
-                          </Card>
-                        </Grid>
-                      ))}
-                    </Grid>
-                  </Box>
-                )}
-                {selectedItem.fabric && (
-                  <Box>
-                    <Typography
-                      variant="h5"
-                      sx={{ paddingTop: "20px", paddingBottom: "15px" }}
-                    >
-                      Length
-                    </Typography>
-                    <Grid
-                      container
-                      spacing={{ xs: 4, md: 4 }}
-                      columns={4}
-                      sx={{
-                        justifyContent: "center",
-                      }}
-                    >
-                      {selectedItem.fabric.map((item, index) => (
-                        <Grid key={index} item>
-                          <Card
-                            className={styles.clothecard}
-                            sx={{ padding: "15px", cursor: "pointer" }}
-                            onClick={() => {
-                              setSelectedFabric(item);
-                            }}
-                          >
-                            {item}
-                          </Card>
-                        </Grid>
-                      ))}
-                    </Grid>
-                  </Box>
-                )}
-                {selectedItem.pattern && (
-                  <Box>
-                    <Typography
-                      variant="h5"
-                      sx={{ paddingTop: "15px", paddingBottom: "15px" }}
-                    >
-                      Pattern
-                    </Typography>
-                    <Grid
-                      container
-                      spacing={{ xs: 4, md: 4 }}
-                      columns={3}
-                      sx={{
-                        justifyContent: "center",
-                      }}
-                    >
-                      {selectedItem.pattern.map((item, index) => (
-                        <Grid key={index} item>
-                          <Card
-                            className={styles.clothecard}
-                            sx={{ padding: "15px", cursor: "pointer" }}
-                            onClick={() => {
-                              setSelectedPattern(item);
-                            }}
-                          >
-                            {item}
-                          </Card>
-                        </Grid>
-                      ))}
-                    </Grid>
-                  </Box>
-                )}
+                <ClotheCustomisation
+                  selectedItemAttribute={selectedItem.sleeves}
+                  name="Sleeves"
+                  setFunction={setSelectedSleeves}
+                />
+                 <ClotheCustomisation
+                  selectedItemAttribute={selectedItem.length}
+                  name="Length"
+                  setFunction={setSelectedLength}
+                />
+                  <ClotheCustomisation
+                  selectedItemAttribute={selectedItem.style}
+                  name="Style"
+                  setFunction={setSelectedStyle}
+                />
+               <ClotheCustomisation
+                  selectedItemAttribute={selectedItem.fabric}
+                  name="Fabric"
+                  setFunction={setSelectedFabric}
+                />
+               <ClotheCustomisation
+                  selectedItemAttribute={selectedItem.pattern}
+                  name="Pattern"
+                  setFunction={setSelectedPattern}
+                />
                 <Box
                   sx={{
                     display: "flex",
