@@ -8,8 +8,8 @@
 }
 
 .OotdTile {
-    width: 512px;
-    height: 512px;
+    width: min(33vw,512px);
+    height: min(33vw,512px);
     border: 2px solid black;
     box-shadow: 6px 6px 10px;
 }
@@ -24,17 +24,19 @@
 }
 
 .tileDesc {
-    background-color: lightgray;
+    background-color: black;
+    color: white;
     text-align: justify;
     margin-top: 15px;
     height: auto;
+    margin: 5px;
 }
 
 .landingpageTitle {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-size: 170px;
     color: rgba(255, 255, 255, 0);
-    padding-top: 20px;
+    padding-top: 7vh;
     -webkit-text-stroke: 7px #28002c;
 }
 
@@ -45,3 +47,42 @@
     padding: 25px;
     
 }
+
+@media screen and (max-width: 1600px) {
+    .landingpageTitle{
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        font-size: 10vw;
+        color: rgba(255, 255, 255, 0);
+        padding-top: 7vh;
+        -webkit-text-stroke: 7px #28002c;
+    }
+
+    .landingpageSubtitle{
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        font-size: 5vw;
+        color: #28002c;
+        padding: 25px;
+    }
+    .recommendationTiles {
+        display: flex;
+        flex-direction: column;
+    }
+    .OotdTile {
+        width: min(50vw,512px);
+        height: min(50vw,512px);
+    }
+
+    .tileDesc {
+        margin-bottom: 3vh;
+    }
+
+}
+
+@media screen and (max-width: 1000px) {
+
+    .landingpageTitle {
+        font-family:Georgia, 'Times New Roman', Times, serif;
+        color: black;
+        -webkit-text-stroke: unset;
+    }
+    }

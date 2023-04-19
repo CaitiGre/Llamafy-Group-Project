@@ -1,15 +1,16 @@
 .homePage {
-    /* margin:auto; */
+    margin:auto;
+    width:fit-content;
 }
 
 .outfitTileContainer {
     display: grid;
     grid-template-rows: auto;
     grid-template-columns: repeat(3, 1fr);
-    grid-gap: 10px;
+    /* grid-gap: 15px; */
     justify-content: space-between;
-    padding-left: 15vw;
-    padding-right: 15vw;
+    padding-left: 10vw;
+    padding-right: 10vw;
 }
 
 .header {
@@ -29,6 +30,8 @@
     font-weight: bold;
     box-shadow: 6px 6px 10px;
     margin-bottom: 5vh;
+    margin-left: 5vw;
+    margin-right: 5vw;
 }
 
 .card img {
@@ -56,4 +59,35 @@
 
 .title p {
     font-size: medium;
+}
+
+@media screen and (max-width: 1400px) {
+
+    .outfitTileContainer {
+        display: grid;
+        grid-template-rows: auto;
+        grid-template-columns: repeat(2, 1fr);
+        padding-left: 5vw;
+        padding-right: 5vw; 
+    }
+
+    .card {
+        margin-right: 2.5vw;
+        margin-left: 2.5vw;
+    }
+    
+}
+
+@media screen and (max-width: 900px) {
+
+    .outfitTileContainer {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .card {
+        width: auto;
+        margin: auto;
+        margin-bottom: 5vw;
+    }
 }
