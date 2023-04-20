@@ -35,7 +35,6 @@ function SettingsPage() {
 
                 </ButtonGroup>
             </div>
-            {/* {isWardrobe ? <Wardrobe /> : <Profile />} */}
             {isProfile ? <Profile /> : isWardrobe ? <Wardrobe /> : <Profile />}
         </div>
     );
