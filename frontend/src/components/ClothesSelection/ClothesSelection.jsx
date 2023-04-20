@@ -25,7 +25,7 @@ function ClothesSelection() {
   const [openModal, setOpenModal] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
   const [subSelectionItemsToShow, setSubSelectionItemsToShow] = useState([]);
-useEffect(()=>console.log(selectedItem));
+  useEffect(() => console.log(selectedItem));
   // Defining an array of objects for the clothes items and their images
   const clothesItems = [
     { src: top, name: "Top" },
@@ -236,7 +236,7 @@ useEffect(()=>console.log(selectedItem));
       >
         <Box
           sx={{
-            backgroundColor: "rgba(255, 255, 255, 1)",
+            backgroundColor: "rgba(255, 179, 234, 1)",
             borderRadius: "16px",
             position: "absolute",
             top: "50%",
@@ -246,29 +246,12 @@ useEffect(()=>console.log(selectedItem));
             height: "fit-content",
             margin: "auto",
             padding: "40px",
+            maxHeight: "80vh",
           }}
         >
-          <Button
-            onClick={handleCloseModal}
-            sx={{ position: "absolute", top: 8, right: 2, padding: "5px" }}
-          >
-            <img src={close} alt="close button" width="20px" />
-          </Button>
-          {selectedItem && (
-            <Typography
-              variant="h4"
-              sx={{ textAlign: "center", margin: "10px" }}
-            >
-              Select type of {selectedItem.name}
-            </Typography>
-          )}
+        
           {/* The sub-selection modal */}
-          <SubSelectionModal
-            openModal={openModal}
-            handleCloseModal={handleCloseModal}
-            selectedItem={selectedItem}
-            itemsToShow={subSelectionItemsToShow}
-          />
+          <SubSelectionModal itemsToShow={subSelectionItemsToShow} />
         </Box>
       </Modal>
     </React.Fragment>
