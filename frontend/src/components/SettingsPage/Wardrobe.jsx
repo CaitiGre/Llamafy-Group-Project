@@ -58,25 +58,20 @@ function Wardrobe() {
   };
 
   return (
-    <Box
-      sx={{
-        margin: 3
-      }}>
+    <Box sx={{ margin: 3 }}>
       <Grid
         container
         columns={{ xs: 2, sm: 6, md: 9, lg: 12 }}
         sx={{
           justifyContent: "center",
-          columnGap: "1vw",
-          rowGap: "2vh"
+          columnGap: "3vw",
+          rowGap: "3vh",
+          margin: 0
         }}
       >
         {clothes.map((outfitObj) => (
-          <Grid xs={3}
-            className={styles.card} key={outfitObj.id}
-          >
+          <Grid xs={3} key={outfitObj.id} className={styles.card} sx={{ margin: 0 }}>
             <OutfitTile outfit={outfitObj} />
-
             <Button
               color="secondary"
               onClick={() => handleDeleteButton(outfitObj.id)}
@@ -89,9 +84,7 @@ function Wardrobe() {
           </Grid>
         ))}
       </Grid>
-
     </Box>
-
   );
 }
 
