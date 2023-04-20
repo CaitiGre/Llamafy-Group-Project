@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const registrationPageRouter = require('./routes/RegistrationPage');
+const weatherProxy = require('./routes/WeatherProxy');
 
 const app = express();
 const port = process.env.PORT || 3006;
