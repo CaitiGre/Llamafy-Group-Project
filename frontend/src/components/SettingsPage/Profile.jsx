@@ -92,7 +92,7 @@ function Profile() {
         <div className={styles.formContainer}>
             <form onSubmit={handleSubmit}>
                 {inputData.map((item) => (
-                    <Grid container spacing={2}
+                    <Grid container key={item.id} spacing={2}
                         sx={{ margin: 0 }}>
 
                         <Grid item xs={4}>
@@ -109,7 +109,6 @@ function Profile() {
                         </Grid>
 
                         <Grid item xs={8}
-                            direction="row"
                             display={'flex'}
                             justifyContent="flex-start">
                             <Input
