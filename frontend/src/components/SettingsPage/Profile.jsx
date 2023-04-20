@@ -73,7 +73,8 @@ function Profile() {
                             <InputLabel
                                 sx={{
                                     marginBottom: "2px",
-                                    textAlign: "right"
+                                    textAlign: "center",
+                                    color: "#eee"
                                 }}>
 
                                 {item.displayName}
@@ -90,7 +91,7 @@ function Profile() {
                                     borderRadius: "20px",
                                     boxShadow: "2px 2px 5px rgba(255, 255, 255, 0.8)",
                                     height: "30px",
-                                    width: "60%",
+                                    width: "90%",
                                     marginBottom: "15px",
                                     backgroundColor: "white",
                                     margin: "0px"
