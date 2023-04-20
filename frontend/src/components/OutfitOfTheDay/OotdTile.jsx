@@ -14,6 +14,7 @@ const customStyles = {
     textAlign: 'center',
     backgroundColor: 'lavender',
     color: 'black',
+    padding: '5px',
   },
 };
 
@@ -51,7 +52,7 @@ const OotdTile = ( {imgLink, description} ) => {
             >
                 <h2>Outfit</h2>
                 <div>You like what you see?</div>
-                <img src={imgLink} style={{height: '80vh'}}></img>
+                <img src={imgLink} style={{width: 'min(90vw,512px)'}}></img>
                 <div>
                 <button onClick={() => alert("obviously not set up yet, come on")}>Select</button>
                 <button onClick={closeModal}>Nah</button>
