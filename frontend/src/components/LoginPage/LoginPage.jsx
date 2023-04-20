@@ -15,8 +15,6 @@ function LoginPage() {
         setData({ [event.target.name]: event.target.value });
     };
 
-    console.log(data);
-
     const handleSubmit = (event) => {
         event.preventDefault();
 
@@ -67,7 +65,7 @@ function LoginPage() {
                 <form onSubmit={handleSubmit}>
 
                     {inputData.map((item) => (
-                        <Box display="flex" flexDirection="column" alignItems="center">
+                        <Box display="flex" flexDirection="column" alignItems="center" key={item.id}>
                             <InputLabel
                                 sx={{
                                     marginBottom: "5px",
