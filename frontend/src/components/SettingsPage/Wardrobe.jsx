@@ -1,5 +1,5 @@
 import shirt from "../../assets/shirt.png";
-import { Button } from "@mui/material";
+import { Button, Box, Grid } from "@mui/material";
 import { useState } from "react";
 import styles from "./SettingsPage.module.css";
 
@@ -58,23 +58,40 @@ function Wardrobe() {
   };
 
   return (
-    <div className={styles.outfitTileContainer}>
-      {clothes.map((outfitObj) => (
-        <div className={styles.card} key={outfitObj.id}>
-          <OutfitTile outfit={outfitObj} />
-
-          <Button
-            color="secondary"
-            onClick={() => handleDeleteButton(outfitObj.id)}
-            sx={{
-              textTransform: "lowercase",
-            }}
+    <Box
+      sx={{
+        margin: 3
+      }}>
+      <Grid
+        container
+        columns={{ xs: 2, sm: 6, md: 9, lg: 12 }}
+        sx={{
+          justifyContent: "center",
+          columnGap: "1vw",
+          rowGap: "2vh"
+        }}
+      >
+        {clothes.map((outfitObj) => (
+          <Grid xs={3}
+            className={styles.card} key={outfitObj.id}
           >
-            Delete
-          </Button>
-        </div>
-      ))}
-    </div>
+            <OutfitTile outfit={outfitObj} />
+
+            <Button
+              color="secondary"
+              onClick={() => handleDeleteButton(outfitObj.id)}
+              sx={{
+                textTransform: "lowercase",
+              }}
+            >
+              Delete
+            </Button>
+          </Grid>
+        ))}
+      </Grid>
+
+    </Box>
+
   );
 }
 

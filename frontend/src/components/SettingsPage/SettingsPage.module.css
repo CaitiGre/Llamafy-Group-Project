@@ -68,7 +68,6 @@
 
 
 .card {
-    /* grid-area: card; */
     border: 3px solid white;
     background-color: lavender;
     font-weight: bold;
