@@ -1,5 +1,5 @@
 import './LoginPage.module.css';
-import { Box, Input, InputLabel } from "@mui/material";
+import { Box, Input, InputLabel, Typography } from "@mui/material";
 import { useState } from "react";
 import styles from './LoginPage.module.css';
 import bcrypt from 'bcryptjs';
@@ -14,8 +14,6 @@ function LoginPage() {
     const handleChange = (event) => {
         setData({ [event.target.name]: event.target.value });
     };
-
-    console.log(data);
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -61,44 +59,46 @@ function LoginPage() {
     return (
 
         <div>
+            <Typography variant="h1" mt="10%" className={styles.heading}>LOGIN</Typography>
 
-            <h1 className={styles.heading}>LOGIN</h1>
+            <div className={styles.formContainer}>
+                <form onSubmit={handleSubmit}>
 
-            <form onSubmit={handleSubmit}>
+                    {inputData.map((item) => (
+                        <Box display="flex" flexDirection="column" alignItems="center" key={item.id}>
+                            <InputLabel
+                                sx={{
+                                    marginBottom: "5px",
+                                    color: "#eee"
+                                }}>
+                                {item.displayName}
+                            </InputLabel>
 
-                {inputData.map((item) => (
-                    <Box display="flex" flexDirection="column" alignItems="center">
-                        <InputLabel
-                            sx={{
-                                marginBottom: "5px"
-                            }}>
-                            {item.displayName}
-                        </InputLabel>
+                            <Input required
+                                sx={{
+                                    borderRadius: "20px",
+                                    boxShadow: "2px 2px 5px rgba(255, 255, 255, 0.8)",
+                                    height: "40px",
+                                    width: "85%",
+                                    marginBottom: "35px",
+                                    backgroundColor: "white",
+                                }}
+                                type={item.type}
+                                name={item.name}
+                                id={item.id}
+                                value={item.value}
+                                onChange={handleChange}
+                                inputProps={{ style: { textAlign: "center" } }}
+                                disableUnderline={true}
+                                placeholder={item.placeHolder}
+                            />
+                        </Box>
+                    ))}
 
-                        <Input
-                            sx={{
-                                borderRadius: "20px",
-                                boxShadow: "2px 2px 5px rgba(255, 255, 255, 0.8)",
-                                height: "40px",
-                                width: "40%",
-                                marginBottom: "35px",
-                                backgroundColor: "white",
-                            }}
-                            type={item.type}
-                            name={item.name}
-                            id={item.id}
-                            value={item.value}
-                            onChange={handleChange}
-                            inputProps={{ style: { textAlign: "center" } }}
-                            disableUnderline={true}
-                            placeholder={item.placeHolder}
-                        />
-                    </Box>
-                ))}
+                    <button id="submit-button" type="submit" className={styles.submitButton}>Submit</button>
 
-                <button id="submit-button" type="submit" className={styles.submitButton}>Submit</button>
-
-            </form>
+                </form>
+            </div>
         </div>
     )
 }
