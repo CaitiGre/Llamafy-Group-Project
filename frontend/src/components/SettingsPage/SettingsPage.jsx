@@ -1,11 +1,13 @@
 import { useState } from "react";
+import { useLocalStorage } from "../../helpers/useLocalStorage";
 import { ButtonGroup, Button, Typography } from "@mui/material";
 import styles from './SettingsPage.module.css';
 import Profile from './Profile';
 import Wardrobe from './Wardrobe';
 
 function SettingsPage() {
-    const [isProfile, setProfile] = useState(true);
+    const [isProfile, setProfile] = useLocalStorage(true);
+    const [isWardrobe, setWardrobe] = useLocalStorage(false);
 
     function handleProfileClick() {
         setProfile(true);
@@ -13,6 +15,7 @@ function SettingsPage() {
 
     function handleWardrobeClick() {
         setProfile(false);
+        setWardrobe(true);
     }
 
 
@@ -32,8 +35,8 @@ function SettingsPage() {
 
                 </ButtonGroup>
             </div>
-
-            {isProfile ? <Profile /> : <Wardrobe />}
+            {/* {isWardrobe ? <Wardrobe /> : <Profile />} */}
+            {isProfile ? <Profile /> : isWardrobe ? <Wardrobe /> : <Profile />}
         </div>
     );
 }
