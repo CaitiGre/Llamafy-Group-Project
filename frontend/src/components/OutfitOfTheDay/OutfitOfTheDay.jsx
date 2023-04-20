@@ -15,7 +15,7 @@ const OutfitOfTheDay = () => {
     return (
     
         <div>
-            <h1 className={styles.landingpageTitle}>Outfit of the Day</h1>
+            <h1 className={styles.landingpageTitle}>OUTFIT OF THE DAY</h1>
             <h2 className={styles.landingpageSubtitle}>something something llama something</h2>
 
             <div className={ styles.recommendationTiles }>
