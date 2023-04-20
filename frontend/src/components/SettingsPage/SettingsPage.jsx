@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ButtonGroup, Button } from "@mui/material";
+import { ButtonGroup, Button, Typography } from "@mui/material";
 import styles from './SettingsPage.module.css';
 import Profile from './Profile';
 import Wardrobe from './Wardrobe';
@@ -18,7 +18,7 @@ function SettingsPage() {
 
     return (
         <div>
-            <h1 className={styles.heading}>SETTINGS</h1>
+            <Typography variant="h1" mt="10%" className={styles.heading}>SETTINGS</Typography>
             <h2 className={styles.subHeading}>no need for drama llama, alpaca the bags</h2>
 
             <div>
