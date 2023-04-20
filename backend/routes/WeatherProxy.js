@@ -14,11 +14,12 @@ We will call this route from the frontend to make a call to the weather API
 */
 app.get('/weather', async (req, res) => {
 
-    // Grab username from /data query string
+    // Grab username from /data?username=foo query string
     const currUser = req.query.username;
 
     // Get current user's city via controller using username from query string
     const userLoction = await fetchUserLocation(currUser);
+
     // Pass key and user city to build API call URL
     const apiUrl = `https://api.weatherapi.com/v1/current.json?key=${key}&q=${userLoction}&aqi=no` //AQI = air quality data
 
