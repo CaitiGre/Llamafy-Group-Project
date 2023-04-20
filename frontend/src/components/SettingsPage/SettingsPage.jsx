@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useLocalStorage } from "../../helpers/useLocalStorage";
 import { ButtonGroup, Button, Typography } from "@mui/material";
 import styles from './SettingsPage.module.css';
