@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./ClothesSelection.module.css";
 import { Grid, Box, Modal, Button, Typography } from "@mui/material";
 import ClothesItem from "../ClotheItem/ClotheItem";
@@ -25,7 +25,7 @@ function ClothesSelection() {
   const [openModal, setOpenModal] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
   const [subSelectionItemsToShow, setSubSelectionItemsToShow] = useState([]);
-
+useEffect(()=>console.log(selectedItem));
   // Defining an array of objects for the clothes items and their images
   const clothesItems = [
     { src: top, name: "Top" },

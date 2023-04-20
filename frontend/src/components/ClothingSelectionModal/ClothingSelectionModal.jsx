@@ -92,31 +92,41 @@ function ClothingSelectionModal({ selectedItem, showModal, onCloseModal }) {
                     onChange={handleColorChange}
                   />
                 </Box>
-                <ClotheCustomisation
-                  selectedItemAttribute={selectedItem.sleeves}
-                  name="Sleeves"
-                  setFunction={setSelectedSleeves}
-                />
-                 <ClotheCustomisation
-                  selectedItemAttribute={selectedItem.length}
-                  name="Length"
-                  setFunction={setSelectedLength}
-                />
+                {selectedItem.sleeves && (
                   <ClotheCustomisation
-                  selectedItemAttribute={selectedItem.style}
-                  name="Style"
-                  setFunction={setSelectedStyle}
-                />
-               <ClotheCustomisation
-                  selectedItemAttribute={selectedItem.fabric}
-                  name="Fabric"
-                  setFunction={setSelectedFabric}
-                />
-               <ClotheCustomisation
-                  selectedItemAttribute={selectedItem.pattern}
-                  name="Pattern"
-                  setFunction={setSelectedPattern}
-                />
+                    selectedItemAttribute={selectedItem.sleeves}
+                    name="Sleeves"
+                    setFunction={setSelectedSleeves}
+                  />
+                )}
+                {selectedItem.length && (
+                  <ClotheCustomisation
+                    selectedItemAttribute={selectedItem.length}
+                    name="Length"
+                    setFunction={setSelectedLength}
+                  />
+                )}
+                {selectedItem.style && (
+                  <ClotheCustomisation
+                    selectedItemAttribute={selectedItem.style}
+                    name="Style"
+                    setFunction={setSelectedStyle}
+                  />
+                )}
+                {selectedItem.fabric && (
+                  <ClotheCustomisation
+                    selectedItemAttribute={selectedItem.fabric}
+                    name="Fabric"
+                    setFunction={setSelectedFabric}
+                  />
+                )}
+                {selectedItem.pattern && (
+                  <ClotheCustomisation
+                    selectedItemAttribute={selectedItem.pattern}
+                    name="Pattern"
+                    setFunction={setSelectedPattern}
+                  />
+                )}
                 <Box
                   sx={{
                     display: "flex",
