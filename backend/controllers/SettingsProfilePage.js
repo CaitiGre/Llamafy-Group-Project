@@ -7,7 +7,7 @@ async function getProfile(id) {
             `SELECT * FROM Users WHERE id = ${id}`,
         );
         connection.release();
-        // return result[0].insertId;
+        return result;
     } catch (error) {
         console.error(error);
         throw error;
