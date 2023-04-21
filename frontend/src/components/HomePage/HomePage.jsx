@@ -7,40 +7,46 @@ import styles from './HomePage.module.css'
 const HomePage = () => {
 
     // weather api key - to put in to .env later
-    const weatherKey = "e9c2f39101b44170a9753323231504";
+    // const weatherKey = "e9c2f39101b44170a9753323231504";
 
     // need an axios DB call for user's city. setting to auckland for now
-    const [city, setCity] = useState("Auckland");
+    // const [city, setCity] = useState("Auckland");
 
-    const call = `https://api.weatherapi.com/v1/current.json?key=${weatherKey}&q=${city}&aqi=no` //AQI = air quality data
+    // const call = `https://api.weatherapi.com/v1/current.json?key=${weatherKey}&q=${city}&aqi=no` //AQI = air quality data
 
-    const [weatherValues, setWeatherValues] = useState({
-        location : city,
-        currTime : '',
-        condition : '',
-        tempC : '',
-        humidity : '',
-        windKph : '',
-        windDir : '',
-        iconUrl : '',
-    });
+    // const [weatherValues, setWeatherValues] = useState({
+    //     location : city,
+    //     currTime : '',
+    //     condition : '',
+    //     tempC : '',
+    //     humidity : '',
+    //     windKph : '',
+    //     windDir : '',
+    //     iconUrl : '',
+    // });
 
-    useEffect(() => {axios.get(call)
-    .then(res => {
-        console.log(res.data);
-        setWeatherValues({...weatherValues, 
-        currTime : res.data.location.localtime,
-        condition : res.data.current.condition.text,
-        tempC : `${res.data.current.temp_c} C`,
-        humidity : `${res.data.current.humidity}%`,
-        windKph : `${res.data.current.wind_kph} km/h`,
-        // windDir : res.data.current.wind_dir,
-        iconUrl : res.data.current.condition.icon});})
-    .catch(err => {console.log(err);
-                    setWeatherValues(undefined)});
-    }, []);
+    const [weatherValues, setWeatherValues] = useState();
+   
+    useEffect(() => {axios.get('http://localhost:3006/weather/data')
+    .then(res => setWeatherValues(res.data))
+    },[]);
 
-    console.log(weatherValues);
+    // useEffect(() => {axios.get(call)
+    // .then(res => {
+    //     console.log(res.data);
+    //     setWeatherValues({...weatherValues, 
+    //     currTime : res.data.location.localtime,
+    //     condition : res.data.current.condition.text,
+    //     tempC : `${res.data.current.temp_c} C`,
+    //     humidity : `${res.data.current.humidity}%`,
+    //     windKph : `${res.data.current.wind_kph} km/h`,
+    //     // windDir : res.data.current.wind_dir,
+    //     iconUrl : res.data.current.condition.icon});})
+    // .catch(err => {console.log(err);
+    //                 setWeatherValues(undefined)});
+    // }, []);
+
+    // console.log(weatherValues);
 
     const tempArr = [
         {id: 1, render: shirt, desc: 'whatever1'},

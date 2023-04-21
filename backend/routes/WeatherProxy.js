@@ -12,19 +12,22 @@ const key = process.env.WEATHER_API_KEY;
 Weather API proxy route so we can isolate the API key to the backend. 
 We will call this route from the frontend to make a call to the weather API
 */
-app.get('/weather', async (req, res) => {
+router.get('/data', async (req, res) => {
+
+    console.log('accessed /weather/data');
 
     // Grab username from /data?username=foo query string
-    const currUser = req.query.username;
+    // const currUser = req.query.username;
 
     // Get current user's city via controller using username from query string
-    const userLoction = await fetchUserLocation(currUser);
+    // const userLoction = await fetchUserLocation(currUser);
+    const userLocation = 'Auckland';
 
     // Pass key and user city to build API call URL
-    const apiUrl = `https://api.weatherapi.com/v1/current.json?key=${key}&q=${userLoction}&aqi=no` //AQI = air quality data
+    const apiUrl = `https://api.weatherapi.com/v1/current.json?key=${key}&q=${userLocation}&aqi=no` //AQI = air quality data
 
     const weatherVals = {
-        location : city,
+        location : userLocation,
         currTime : '',
         condition : '',
         tempC : '',
@@ -37,7 +40,7 @@ app.get('/weather', async (req, res) => {
     axios.get(apiUrl)
     .then(response => {
         // Extract to weatherVals
-        console.log(response.data);
+        // console.log(response.data);
         weatherVals.currTime = response.data.location.localtime,
         weatherVals.condition = response.data.current.condition.text,
         weatherVals.tempC = `${response.data.current.temp_c} C`,
@@ -45,13 +48,13 @@ app.get('/weather', async (req, res) => {
         weatherVals.windKph = `${response.data.current.wind_kph} km/h`,
         weatherVals.iconUrl = response.data.current.condition.icon
     })
+    .then(() => res.json(weatherVals))
     .catch(err => {
         console.log(err);
         res.status(418);
         res.send("Unexpected error");
     });
-    })
+    });
 
-    res.json(weatherVals);
 
 module.exports = router;

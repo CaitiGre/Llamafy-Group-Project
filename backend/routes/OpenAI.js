@@ -38,7 +38,8 @@ app.post('/davinci', async (req, res) => {
         const tokensUsed = response.data.usage.total_tokens;
   
         console.log(responseText, tokensUsed);
-  
+        res.send(responseText);
+
     } catch (error) {
         console.log(error);
     }
