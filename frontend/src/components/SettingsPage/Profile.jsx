@@ -2,6 +2,7 @@ import { Input, InputLabel, Grid } from "@mui/material";
 import { useState } from "react";
 import styles from './SettingsPage.module.css';
 import useGet from '../../helpers/useGet';
+import axios from 'axios';
 
 function Profile() {
     const [data, setData] = useState({
@@ -15,11 +16,11 @@ function Profile() {
     });
 
 
-    // Get user id from cookie once cookie's set up
-    const id = 1; // set id = 1 for now
+    // Get username from cookie once cookie's set up
+    const username = "one"; // set username = "one" for now
 
     // Get user's current profile data from database
-    const { data: currentProfile } = useGet(`http://3.27.75.210:3006/profile/getProfile/${id}`);
+    const { data: currentProfile } = useGet(`http://localhost:3006/profile/getProfile/${username}`);
 
     console.log(currentProfile);
 
@@ -32,7 +33,7 @@ function Profile() {
     }
 
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
         alert(JSON.stringify(data));
     }

@@ -1,17 +1,18 @@
 const pool = require('../database/pool');
 
-async function getProfile(id) {
+async function getProfile(username) {
     try {
         const conn = await pool.getConnection();
         const result = await conn.query(
-            `SELECT * FROM Users WHERE id = ${id}`,
+            `SELECT * FROM Users WHERE username = "${username}"`,
         );
-        connection.release();
-        return result;
+        conn.release();
+        return result[0];
     } catch (error) {
         console.error(error);
         throw error;
     }
 }
+
 
 module.exports = { getProfile };
