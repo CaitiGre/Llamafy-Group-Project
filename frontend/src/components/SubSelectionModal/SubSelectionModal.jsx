@@ -55,7 +55,6 @@ function SubSelectionModal({ itemsToShow }) {
           </Grid>
         ))}
       </Grid>
-
       <ClothingSelectionModal
         selectedItem={selectedItem}
         showModal={showModal}
