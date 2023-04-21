@@ -46,7 +46,7 @@ function SubSelectionModal({ itemsToShow }) {
                 justifyContent: "center",
                 display: "flex",
                 cursor: "pointer",
-                backgroundColor: "rgba(255, 255, 255, 0.68)",
+                backgroundColor: "rgba(255, 255, 255, 0.8)",
               }}
               onClick={() => onOpenModal(item)}
             >

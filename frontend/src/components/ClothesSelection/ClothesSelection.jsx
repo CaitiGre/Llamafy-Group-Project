@@ -28,14 +28,14 @@ function ClothesSelection() {
   useEffect(() => console.log(selectedItem));
   // Defining an array of objects for the clothes items and their images
   const clothesItems = [
-    { src: top, name: "Top" },
+    { src: top, name: "TOP" },
     { src: bottom, name: "BOTTOM" },
-    { src: onepiece, name: "OnePiece" },
-    { src: shoes, name: "Shoes" },
+    { src: onepiece, name: "ONEPIECE" },
+    { src: shoes, name: "SHOES" },
   ];
   // Defining an object that maps each clothes item to an array of its sub-selection items and their images
   const subSelectionItemsByClothesItem = {
-    Top: [
+    TOP: [
       {
         src: top,
         name: "Tshirt",
@@ -122,7 +122,7 @@ function ClothesSelection() {
         pattern: ["striped", "checkered", "animal print", "floral"],
       },
     ],
-    OnePiece: [
+    ONEPIECE: [
       {
         src: onepiece,
         name: "Jumpsuit",
@@ -166,7 +166,7 @@ function ClothesSelection() {
         pattern: ["striped", "checkered", "animal print", "floral"],
       },
     ],
-    Shoes: [
+    SHOES: [
       {
         src: shoes,
         name: "Shoe",
@@ -236,7 +236,7 @@ function ClothesSelection() {
       >
         <Box
           sx={{
-            backgroundColor: "rgba(255, 179, 234, 1)",
+            backgroundColor: "rgba(248, 201, 244, 1)",
             borderRadius: "16px",
             position: "absolute",
             top: "50%",
@@ -259,7 +259,7 @@ function ClothesSelection() {
           {selectedItem && (
             <Typography
               variant="h4"
-              sx={{ textAlign: "center", margin: "10px", color: "white" }}
+              sx={{ textAlign: "center", margin: "10px", color: "#58315c" }}
             >
               SELECT TYPE OF {selectedItem.name}
             </Typography>
