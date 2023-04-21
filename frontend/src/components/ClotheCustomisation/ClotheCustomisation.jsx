@@ -1,8 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import { Box, Grid, Card, Typography } from "@mui/material";
 import styles from "./ClotheCustomisation.module.css";
 
 function ClotheCustomisation({ selectedItemAttribute, name, setFunction }) {
+  const [selectedItem, setSelectedItem] = useState(null);
+
+  const handleItemClick = (item) => {
+    if (selectedItem === item) {
+      // If the clicked item is already selected, toggle it off
+      setSelectedItem(null);
+      setFunction(null);
+    } else {
+      // Otherwise, select the clicked item
+      setSelectedItem(item);
+      setFunction(item);
+    }
+  };
   return (
     <>
       <Box>
@@ -23,10 +36,12 @@ function ClotheCustomisation({ selectedItemAttribute, name, setFunction }) {
           {selectedItemAttribute.map((item, index) => (
             <Grid key={index} item>
               <Card
-                className={styles.clothecard}
+                className={`${styles.clothecard} ${
+                  selectedItem === item ? styles.active : ""
+                }`}
                 sx={{ padding: "15px", cursor: "pointer" }}
                 onClick={() => {
-                  setFunction(item);
+                  handleItemClick(item);
                 }}
               >
                 {item}
