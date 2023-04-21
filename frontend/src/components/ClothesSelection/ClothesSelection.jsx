@@ -247,9 +247,23 @@ function ClothesSelection() {
             margin: "auto",
             padding: "40px",
             maxHeight: "80vh",
+            overflowY: "scroll",
           }}
         >
-        
+          <Button
+            onClick={handleCloseModal}
+            sx={{ position: "absolute", top: 8, right: 2, padding: "5px" }}
+          >
+            <img src={close} alt="close button" width="20px" />
+          </Button>
+
+          <Typography
+            variant="h4"
+            sx={{ textAlign: "center", margin: "10px", color: "white" }}
+          >
+            SELECT TYPE OF {selectedItem.name}
+          </Typography>
+
           {/* The sub-selection modal */}
           <SubSelectionModal itemsToShow={subSelectionItemsToShow} />
         </Box>
