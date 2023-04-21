@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { updateProfile } = require('../controllers/SettingsProfilePage');
+const { getProfile } = require('../controllers/SettingsProfilePage');
 
 router.get('/getProfile/:id', async (req, res) => {
     try {
