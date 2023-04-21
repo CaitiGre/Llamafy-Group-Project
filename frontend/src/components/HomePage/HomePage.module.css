@@ -13,9 +13,10 @@
     padding-right: 10vw;
 }
 
-/* .outfitTileDiv {
-    height: 300px;
-} */
+.outfitTileDiv {
+    height: auto;
+    width: auto;
+}
 
 .outfitImage {
     width: 300px;
@@ -75,11 +76,18 @@
         grid-template-columns: repeat(2, 1fr);
         padding-left: 0px;
         padding-right: 0px; 
+        align-items: center;
+        justify-items: center;
     }
 
     .card {
         margin-right: 2.5vw;
         margin-left: 2.5vw;
+        width: 300px;
+    }
+
+    .outfitTileDiv {
+        width: 300px;
     }
     
 }

@@ -7,19 +7,19 @@ import styles from './HomePage.module.css'
 const HomePage = () => {
 
     // init states
+    let tempArr = [];
     const [username, setUsername] = useState('UsernameFromCookies');
     const [weatherValues, setWeatherValues] = useState([]);
+    const [fileNames, setFileNames] = useState([]);
+    const [pastOutfits, setPastOutfits] = useState([]);
    
     // get weather data from weatherAPI proxy
     useEffect(() => {axios.get('http://localhost:3006/weather/data')
     .then(res => setWeatherValues(res.data))
     },[]);
 
-    let tempArr = [];
-
-    const [fileNames, setFileNames] = useState([]);
-    const [pastOutfits, setPastOutfits] = useState([]);
-
+    // loop through AI generated images for homepage cards
+    // TODO: only loop through the past outfits for the current user
     useEffect(() => {axios.get('/images/generated')
     .then(res => {tempArr = []; res.data.map((filename, index) => {tempArr.push({id : index + 1, render : `images/generated/${filename}`, desc: `${filename}`})})})
     .then((next) => setPastOutfits(tempArr))
