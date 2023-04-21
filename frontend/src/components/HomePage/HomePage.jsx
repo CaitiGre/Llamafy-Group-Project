@@ -4,11 +4,11 @@ import OutfitTile from "./OutfitTile";
 import shirt from '../../assets/shirt.png'
 import styles from './HomePage.module.css'
 
-
 const HomePage = () => {
 
     // weather api key - to put in to .env later
     const weatherKey = "e9c2f39101b44170a9753323231504";
+
     // need an axios DB call for user's city. setting to auckland for now
     const [city, setCity] = useState("Auckland");
 
@@ -42,16 +42,17 @@ const HomePage = () => {
 
     console.log(weatherValues);
 
-    const tempArr = [
-        {id: 1, render: shirt, desc: 'whatever1'},
-        {id: 2, render: shirt, desc: 'whatever2'},
-        {id: 3, render: shirt, desc: 'whatever3'},
-        {id: 4, render: shirt, desc: 'whatever4'},
-        {id: 5, render: shirt, desc: 'whatever5'},
-        {id: 6, render: shirt, desc: 'whatever6'}
-    ];
+    let tempArr = [];
 
-    const [pastOutfits, setPastOutfits] = useState(tempArr);
+    const [fileNames, setFileNames] = useState([]);
+    const [pastOutfits, setPastOutfits] = useState([]);
+
+    useEffect(() => {axios.get('/images/generated')
+    .then(res => {tempArr = []; res.data.map((filename, index) => {tempArr.push({id : index + 1, render : `images/generated/${filename}`, desc: `${filename}`})})})
+    .then((next) => setPastOutfits(tempArr))
+    }, [])
+
+    console.log(tempArr);
     
     return <div className={styles.homePage}>
 
