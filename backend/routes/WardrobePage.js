@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { wardrobePage } = require("./controllers/WardrobePage");
+const { wardrobePage } = require("../controllers/WardrobePage");
 
 router.post("/addWardrobeItem", async (req, res) => {
   try {
