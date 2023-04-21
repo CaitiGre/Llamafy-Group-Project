@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Box, Grid, Card, Button, Typography } from "@mui/material";
+import { Grid, Card } from "@mui/material";
 import styles from "./SubSelectionModal.module.css";
 import ClothingSelectionModal from "../ClothingSelectionModal/ClothingSelectionModal";
 
@@ -24,7 +24,6 @@ function SubSelectionModal({ itemsToShow }) {
 
   return (
     <>
-    
       <Grid
         container
         spacing={{ xs: 2, md: 2 }}

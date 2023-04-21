@@ -29,7 +29,7 @@ function ClothesSelection() {
   // Defining an array of objects for the clothes items and their images
   const clothesItems = [
     { src: top, name: "Top" },
-    { src: bottom, name: "Bottom" },
+    { src: bottom, name: "BOTTOM" },
     { src: onepiece, name: "OnePiece" },
     { src: shoes, name: "Shoes" },
   ];
@@ -96,7 +96,7 @@ function ClothesSelection() {
         pattern: ["striped", "Graphic", "baseball", "floral"],
       },
     ],
-    Bottom: [
+    BOTTOM: [
       {
         src: bottom,
         name: "Pants",
@@ -256,14 +256,14 @@ function ClothesSelection() {
           >
             <img src={close} alt="close button" width="20px" />
           </Button>
-
-          <Typography
-            variant="h4"
-            sx={{ textAlign: "center", margin: "10px", color: "white" }}
-          >
-            SELECT TYPE OF {selectedItem.name}
-          </Typography>
-
+          {selectedItem && (
+            <Typography
+              variant="h4"
+              sx={{ textAlign: "center", margin: "10px", color: "white" }}
+            >
+              SELECT TYPE OF {selectedItem.name}
+            </Typography>
+          )}
           {/* The sub-selection modal */}
           <SubSelectionModal itemsToShow={subSelectionItemsToShow} />
         </Box>
