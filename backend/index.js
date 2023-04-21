@@ -16,6 +16,8 @@ app.use((req, res, next) => {
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
+// Routes here
 app.use('/weather', weatherProxy);
 app.use('/registration', registrationPageRouter);
 

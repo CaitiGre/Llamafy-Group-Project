@@ -13,15 +13,14 @@ Weather API proxy route so we can isolate the API key to the backend.
 We will call this route from the frontend to make a call to the weather API
 */
 router.get('/data', async (req, res) => {
-
     console.log('accessed /weather/data');
 
     // Grab username from /data?username=foo query string
     // const currUser = req.query.username;
+    const currUser = 'kral';
 
     // Get current user's city via controller using username from query string
-    // const userLoction = await fetchUserLocation(currUser);
-    const userLocation = 'Auckland';
+    const userLocation = await fetchUserLocation(currUser);
 
     // Pass key and user city to build API call URL
     const apiUrl = `https://api.weatherapi.com/v1/current.json?key=${key}&q=${userLocation}&aqi=no` //AQI = air quality data
@@ -39,8 +38,7 @@ router.get('/data', async (req, res) => {
     // get async response from the weatherapi API
     axios.get(apiUrl)
     .then(response => {
-        // Extract to weatherVals
-        // console.log(response.data);
+        // Extract to weatherVals obj
         weatherVals.currTime = response.data.location.localtime,
         weatherVals.condition = response.data.current.condition.text,
         weatherVals.tempC = `${response.data.current.temp_c} C`,
@@ -52,7 +50,7 @@ router.get('/data', async (req, res) => {
     .catch(err => {
         console.log(err);
         res.status(418);
-        res.send("Unexpected error");
+        res.send("Unexpected teapot error");
     });
     });
 
