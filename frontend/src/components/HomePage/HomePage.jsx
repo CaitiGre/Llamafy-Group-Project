@@ -15,16 +15,17 @@ const HomePage = () => {
     .then(res => setWeatherValues(res.data))
     },[]);
 
-    const tempArr = [
-        {id: 1, render: shirt, desc: 'whatever1'},
-        {id: 2, render: shirt, desc: 'whatever2'},
-        {id: 3, render: shirt, desc: 'whatever3'},
-        {id: 4, render: shirt, desc: 'whatever4'},
-        {id: 5, render: shirt, desc: 'whatever5'},
-        {id: 6, render: shirt, desc: 'whatever6'}
-    ];
+    let tempArr = [];
 
-    const [pastOutfits, setPastOutfits] = useState(tempArr);
+    const [fileNames, setFileNames] = useState([]);
+    const [pastOutfits, setPastOutfits] = useState([]);
+
+    useEffect(() => {axios.get('/images/generated')
+    .then(res => {tempArr = []; res.data.map((filename, index) => {tempArr.push({id : index + 1, render : `images/generated/${filename}`, desc: `${filename}`})})})
+    .then((next) => setPastOutfits(tempArr))
+    }, [])
+
+    console.log(tempArr);
     
     return <div className={styles.homePage}>
 

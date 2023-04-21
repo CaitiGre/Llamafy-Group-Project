@@ -24,7 +24,9 @@ const response = await openai.createImage({
 });
 
 console.log(response.data);
-}
+const genUrl = response.data.data[0].url;
 
+return genUrl;
+}
 
 imgGen();
