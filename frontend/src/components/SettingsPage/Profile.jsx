@@ -1,6 +1,7 @@
 import { Input, InputLabel, Grid } from "@mui/material";
 import { useState } from "react";
 import styles from './SettingsPage.module.css';
+import useGet from '../../helpers/useGet';
 
 function Profile() {
     const [data, setData] = useState({
@@ -12,6 +13,15 @@ function Profile() {
         location: '',
         password: ''
     });
+
+
+    // Get user id from cookie once cookie's set up
+    const id = 1; // set id = 1 for now
+
+    // Get user's current profile data from database
+    const { data: currentProfile } = useGet(`http://3.27.75.210:3006/profile/getProfile/${id}`);
+
+    console.log(currentProfile);
 
     async function handleChange(event) {
         const inputData = await event.target.value;
