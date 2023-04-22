@@ -2,45 +2,9 @@ import { Input, InputLabel, Grid } from "@mui/material";
 import { useState, useEffect } from "react";
 import styles from './SettingsPage.module.css';
 import useGet from '../../helpers/useGet';
-import axios from 'axios';
-import { useLocalStorage } from "../../helpers/useLocalStorage";
+
 
 function Profile() {
-
-    // Get username from cookie once cookie's set up
-    const username = "one"; // set username = "one" for now
-
-    // Get user's current profile data from database
-    const { data: dataObj, isLoading } = useGet(`http://localhost:3006/profile/getProfile/${username}`);
-
-
-    let profileData;
-
-    if (!isLoading && dataObj) {
-        // console.log(dataObj.userData);
-        // console.log(dataObj.userData.firstName);
-        profileData = dataObj.userData; // Assign the object containing properties needed to profileData variable.
-    }
-
-    // Assign the value of profile data to loadedData. React will throw error if using profileData outside of the if statement.
-    const loadedData = { ...profileData };
-
-    console.log(loadedData); // Somehow the first two initial loads will be an empty object. I don't know why it's the case as I thought profileData would only contain properly loaded object
-    // since it was assigned inside the if statement.
-
-    // Set data's properties with loadedData's data - Not working because loadedData will be empty the first two times the page loads
-    // const [data, setData] = useState({
-    //     fname: loadedData.firstName,
-    //     lname: loadedData.lname,
-    //     email: loadedData.email,
-    //     gender: loadedData.gender,
-    //     skinTone: '',
-    //     location: loadedData.location,
-    //     password: ''
-    // });
-
-    // console.log("data", data);
-
 
     const [data, setData] = useState({
         fname: 'fname',
@@ -52,6 +16,41 @@ function Profile() {
         password: ''
     });
 
+    // Get username from cookie once cookie's set up
+    const username = "one"; // set username = "one" for now
+
+    // Get user's current profile data from database
+    const { data: dataObj, isLoading } = useGet(`http://localhost:3006/profile/getProfile/${username}`);
+
+    // const { profileData, setProfileData } = useState('');
+
+    let profileData;
+
+    useEffect(() => {
+        if (!isLoading && dataObj) {
+            // console.log(dataObj.userData);
+            // console.log(dataObj.userData.firstName);
+            profileData = dataObj.userData; // Assign the object containing properties needed to profileData variable.
+
+            // setProfileData(dataObj.userData); // Error: setProfileData is not a function
+
+            setData(
+                {
+                    fname: profileData.firstName,
+                    lname: profileData.lastName,
+                    email: profileData.email,
+                    gender: profileData.gender,
+                    skinTone: profileData.skintTone,
+                    location: profileData.location,
+                    password: profileData.password,
+                }
+            )
+        }
+
+    }, [isLoading, dataObj]); // Once isLoading and profileData and dataObj changed (meaning the fetch is completed), useEffect() will run and setData to fetched data
+    // Remember that initially when the data was still being fetched, the values of isLoading and dataObj would be different
+
+    // console.log(profileData); // Why is profileData undefined?
 
     const inputData = [
         {
@@ -60,8 +59,6 @@ function Profile() {
             name: "fname",
             id: "fname",
             value: data.fname,
-            loadedData: loadedData.firstName,
-            placeHolder: "First name from database"
         },
         {
             displayName: "Last Name",
@@ -69,8 +66,6 @@ function Profile() {
             name: "lname",
             id: "lname",
             value: data.lname,
-            loadedData: loadedData.lastName,
-            placeHolder: "Last name from database"
         },
         {
             displayName: "Email",
@@ -78,18 +73,14 @@ function Profile() {
             name: "email",
             id: "email",
             value: data.email,
-            loadedData: loadedData.email,
-            placeHolder: "Email from database"
         },
 
         {
-            displayName: "Style Preference",
+            displayName: "Gender",
             type: "text",
-            name: "stylePreference",
-            id: "stylePreference",
-            value: data.stylePreference,
-            loadedData: loadedData.gender,
-            placeHolder: "Style preference from database"
+            name: "gender",
+            id: "gender",
+            value: data.gender,
         },
         {
             displayName: "Skin Tone",
@@ -97,8 +88,6 @@ function Profile() {
             name: "skinTone",
             id: "skinTone",
             value: data.skinTone,
-            loadedData: loadedData.skinTone,
-            placeHolder: "Skin tone from database"
         },
         {
             displayName: "Location",
@@ -106,8 +95,6 @@ function Profile() {
             name: "location",
             id: "location",
             value: data.location,
-            loadedData: loadedData.location,
-            placeHolder: "Location from database"
         },
         {
             displayName: "Password",
@@ -115,12 +102,8 @@ function Profile() {
             name: "password",
             id: "password",
             value: data.password,
-            loadedData: "",
-            placeHolder: "Password from database"
         }
     ]
-
-    // console.log(loadedData.firstName);
 
     async function handleChange(event) {
         const inputData = await event.target.value;
@@ -175,9 +158,7 @@ function Profile() {
                                 onChange={handleChange}
                                 inputProps={{ style: { textAlign: "center" } }}
                                 disableUnderline={true}
-                                // placeholder={item.placeHolder}
                                 placeholder={item.loadedData}
-                                defaultValue={item.value}
                             />
                         </Grid>
 
