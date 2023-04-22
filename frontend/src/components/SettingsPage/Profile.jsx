@@ -4,10 +4,13 @@ import styles from './SettingsPage.module.css';
 
 function Profile() {
     const [data, setData] = useState({
-        name: '',
-        gender: '',
+        fname: '',
+        lname: '',
+        email: '',
+        stylePreference: '',
         skinTone: '',
-        insights: ''
+        location: '',
+        password: ''
     });
 
     async function handleChange(event) {
@@ -17,7 +20,6 @@ function Profile() {
             [event.target.name]: inputData
         })
     }
-    // console.log(data);
 
 
     const handleSubmit = (event) => {
@@ -28,21 +30,37 @@ function Profile() {
 
     const inputData = [
         {
-            displayName: "Name",
+            displayName: "First Name",
             type: "text",
-            name: "name",
-            id: "name",
-            value: data.name,
-            placeHolder: "Name from database"
+            name: "fname",
+            id: "fname",
+            value: data.fname,
+            placeHolder: "First name from database"
+        },
+        {
+            displayName: "Last Name",
+            type: "text",
+            name: "lname",
+            id: "lname",
+            value: data.lname,
+            placeHolder: "Last name from database"
+        },
+        {
+            displayName: "Email",
+            type: "email",
+            name: "email",
+            id: "email",
+            value: data.email,
+            placeHolder: "Email from database"
         },
 
         {
-            displayName: "Gender",
+            displayName: "Style Preference",
             type: "text",
-            name: "gender",
-            id: "gender",
-            value: data.gender,
-            placeHolder: "Gender from database"
+            name: "stylePreference",
+            id: "stylePreference",
+            value: data.stylePreference,
+            placeHolder: "Style preference from database"
         },
         {
             displayName: "Skin Tone",
@@ -53,12 +71,20 @@ function Profile() {
             placeHolder: "Skin tone from database"
         },
         {
-            displayName: "Insights",
+            displayName: "Location",
             type: "text",
-            name: "insights",
-            id: "insights",
-            value: data.insights,
-            placeHolder: "Insights from database"
+            name: "location",
+            id: "location",
+            value: data.location,
+            placeHolder: "Location from database"
+        },
+        {
+            displayName: "Password",
+            type: "password",
+            name: "password",
+            id: "password",
+            value: data.password,
+            placeHolder: "Password from database"
         }
     ]
 
@@ -66,14 +92,15 @@ function Profile() {
         <div className={styles.formContainer}>
             <form onSubmit={handleSubmit}>
                 {inputData.map((item) => (
-                    <Grid container spacing={2}
+                    <Grid container key={item.id} spacing={2}
                         sx={{ margin: 0 }}>
 
                         <Grid item xs={4}>
                             <InputLabel
                                 sx={{
                                     marginBottom: "2px",
-                                    textAlign: "right"
+                                    textAlign: "center",
+                                    color: "#eee"
                                 }}>
 
                                 {item.displayName}
@@ -82,7 +109,6 @@ function Profile() {
                         </Grid>
 
                         <Grid item xs={8}
-                            direction="row"
                             display={'flex'}
                             justifyContent="flex-start">
                             <Input
@@ -90,7 +116,7 @@ function Profile() {
                                     borderRadius: "20px",
                                     boxShadow: "2px 2px 5px rgba(255, 255, 255, 0.8)",
                                     height: "30px",
-                                    width: "60%",
+                                    width: "90%",
                                     marginBottom: "15px",
                                     backgroundColor: "white",
                                     margin: "0px"
