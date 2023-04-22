@@ -1,10 +1,11 @@
 import { Input, InputLabel, Grid } from "@mui/material";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styles from './SettingsPage.module.css';
 import useGet from '../../helpers/useGet';
 import axios from 'axios';
 
 function Profile() {
+
     const [data, setData] = useState({
         fname: '',
         lname: '',
@@ -15,14 +16,91 @@ function Profile() {
         password: ''
     });
 
-
     // Get username from cookie once cookie's set up
     const username = "one"; // set username = "one" for now
 
     // Get user's current profile data from database
-    const { data: currentProfile } = useGet(`http://localhost:3006/profile/getProfile/${username}`);
+    const { data: dataObj, isLoading } = useGet(`http://localhost:3006/profile/getProfile/${username}`);
 
-    console.log(currentProfile);
+    let profileData;
+
+    // let inputData;
+
+    if (!isLoading) {
+        console.log(dataObj.userData);
+        console.log(dataObj.userData.firstName);
+        profileData = dataObj.userData;
+    }
+
+    const loadedData = { ...profileData };
+
+    const inputData = [
+        {
+            displayName: "First Name",
+            type: "text",
+            name: "fname",
+            id: "fname",
+            value: data.fname,
+            loadedData: loadedData.firstName,
+            placeHolder: "First name from database"
+        },
+        {
+            displayName: "Last Name",
+            type: "text",
+            name: "lname",
+            id: "lname",
+            value: data.lname,
+            loadedData: loadedData.lastName,
+            placeHolder: "Last name from database"
+        },
+        {
+            displayName: "Email",
+            type: "email",
+            name: "email",
+            id: "email",
+            value: data.email,
+            loadedData: loadedData.email,
+            placeHolder: "Email from database"
+        },
+
+        {
+            displayName: "Style Preference",
+            type: "text",
+            name: "stylePreference",
+            id: "stylePreference",
+            value: data.stylePreference,
+            loadedData: loadedData.gender,
+            placeHolder: "Style preference from database"
+        },
+        {
+            displayName: "Skin Tone",
+            type: "text",
+            name: "skinTone",
+            id: "skinTone",
+            value: data.skinTone,
+            loadedData: loadedData.skinTone,
+            placeHolder: "Skin tone from database"
+        },
+        {
+            displayName: "Location",
+            type: "text",
+            name: "location",
+            id: "location",
+            value: data.location,
+            loadedData: loadedData.location,
+            placeHolder: "Location from database"
+        },
+        {
+            displayName: "Password",
+            type: "password",
+            name: "password",
+            id: "password",
+            value: data.password,
+            loadedData: "",
+            placeHolder: "Password from database"
+        }
+    ]
+
 
     async function handleChange(event) {
         const inputData = await event.target.value;
@@ -39,65 +117,65 @@ function Profile() {
     }
 
 
-    const inputData = [
-        {
-            displayName: "First Name",
-            type: "text",
-            name: "fname",
-            id: "fname",
-            value: data.fname,
-            placeHolder: "First name from database"
-        },
-        {
-            displayName: "Last Name",
-            type: "text",
-            name: "lname",
-            id: "lname",
-            value: data.lname,
-            placeHolder: "Last name from database"
-        },
-        {
-            displayName: "Email",
-            type: "email",
-            name: "email",
-            id: "email",
-            value: data.email,
-            placeHolder: "Email from database"
-        },
+    // const inputData = [
+    //     {
+    //         displayName: "First Name",
+    //         type: "text",
+    //         name: "fname",
+    //         id: "fname",
+    //         value: data.fname,
+    //         placeHolder: "First name from database"
+    //     },
+    //     {
+    //         displayName: "Last Name",
+    //         type: "text",
+    //         name: "lname",
+    //         id: "lname",
+    //         value: data.lname,
+    //         placeHolder: "Last name from database"
+    //     },
+    //     {
+    //         displayName: "Email",
+    //         type: "email",
+    //         name: "email",
+    //         id: "email",
+    //         value: data.email,
+    //         placeHolder: "Email from database"
+    //     },
 
-        {
-            displayName: "Style Preference",
-            type: "text",
-            name: "stylePreference",
-            id: "stylePreference",
-            value: data.stylePreference,
-            placeHolder: "Style preference from database"
-        },
-        {
-            displayName: "Skin Tone",
-            type: "text",
-            name: "skinTone",
-            id: "skinTone",
-            value: data.skinTone,
-            placeHolder: "Skin tone from database"
-        },
-        {
-            displayName: "Location",
-            type: "text",
-            name: "location",
-            id: "location",
-            value: data.location,
-            placeHolder: "Location from database"
-        },
-        {
-            displayName: "Password",
-            type: "password",
-            name: "password",
-            id: "password",
-            value: data.password,
-            placeHolder: "Password from database"
-        }
-    ]
+    //     {
+    //         displayName: "Style Preference",
+    //         type: "text",
+    //         name: "stylePreference",
+    //         id: "stylePreference",
+    //         value: data.stylePreference,
+    //         placeHolder: "Style preference from database"
+    //     },
+    //     {
+    //         displayName: "Skin Tone",
+    //         type: "text",
+    //         name: "skinTone",
+    //         id: "skinTone",
+    //         value: data.skinTone,
+    //         placeHolder: "Skin tone from database"
+    //     },
+    //     {
+    //         displayName: "Location",
+    //         type: "text",
+    //         name: "location",
+    //         id: "location",
+    //         value: data.location,
+    //         placeHolder: "Location from database"
+    //     },
+    //     {
+    //         displayName: "Password",
+    //         type: "password",
+    //         name: "password",
+    //         id: "password",
+    //         value: data.password,
+    //         placeHolder: "Password from database"
+    //     }
+    // ]
 
     return (
         <div className={styles.formContainer}>
@@ -139,7 +217,8 @@ function Profile() {
                                 onChange={handleChange}
                                 inputProps={{ style: { textAlign: "center" } }}
                                 disableUnderline={true}
-                                placeholder={item.placeHolder}
+                                // placeholder={item.placeHolder}
+                                placeholder={item.loadedData}
                             />
                         </Grid>
 
