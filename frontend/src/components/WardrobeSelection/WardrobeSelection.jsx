@@ -4,6 +4,7 @@ import SubHeading from "../SubHeading/SubHeading";
 import Heading from "../Heading/Heading";
 import styles from "./WardrobeSelection.module.css";
 
+// Component that displays all components making the WardrobeSelection page
 function WardrobeSelection() {
   return (
     <React.Fragment>
