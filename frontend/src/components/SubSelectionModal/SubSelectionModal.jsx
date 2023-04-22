@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { Box, Grid, Card, Button, Typography } from "@mui/material";
+import { Grid, Card } from "@mui/material";
 import styles from "./SubSelectionModal.module.css";
 import ClothingSelectionModal from "../ClothingSelectionModal/ClothingSelectionModal";
-import close from "./../../assets/close.png";
+
 /*Renders the sub-selection modal component, which displays the available options
   for a selected item in the main selection modal
   Takes one prop: `itemsToShow` which is an array of clothing items to be displayed in the modal.*/
@@ -23,36 +23,14 @@ function SubSelectionModal({ itemsToShow }) {
   };
 
   return (
-    <Box
-      sx={{
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        outline: "none",
-        maxHeight: "80vh",
-      }}
-    >
-      <Button
-        onClick={onCloseModal}
-        sx={{ position: "absolute", top: 8, right: 2, padding: "5px" }}
-      >
-        <img src={close} alt="close button" width="20px" />
-      </Button>
-      {selectedItem && (
-        <Typography
-          variant="h4"
-          sx={{ textAlign: "center", margin: "10px", color: "white" }}
-        >
-          SELECT TYPE OF {selectedItem.name}
-        </Typography>
-      )}
+    <>
       <Grid
         container
         spacing={{ xs: 2, md: 2 }}
         columns={{ xs: 1, sm: 2, md: 3, lg: 4 }}
         sx={{
           justifyContent: "center",
-          
+          overflow: "auto",
         }}
       >
         {/* Maps through the `itemsToShow` array and renders a grid of `Card` components
@@ -68,7 +46,7 @@ function SubSelectionModal({ itemsToShow }) {
                 justifyContent: "center",
                 display: "flex",
                 cursor: "pointer",
-                backgroundColor: "rgba(255, 255, 255, 0.68)",
+                backgroundColor: "rgba(255, 255, 255, 0.8)",
               }}
               onClick={() => onOpenModal(item)}
             >
@@ -82,7 +60,7 @@ function SubSelectionModal({ itemsToShow }) {
         showModal={showModal}
         onCloseModal={onCloseModal}
       />
-    </Box>
+    </>
   );
 }
 

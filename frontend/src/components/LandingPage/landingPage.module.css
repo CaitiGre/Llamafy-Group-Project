@@ -1,107 +1,104 @@
-*{
-    box-sizing: border-box;
-    margin: auto;
-}
-
 .landingPageTitle {
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-size: 170px;
-    color: rgba(255, 255, 255, 0);
-    padding-top: 150px;
-    -webkit-text-stroke: 5px #28002c;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-size: 170px;
+  color: rgba(255, 255, 255, 0);
+  padding-top: 150px;
+  -webkit-text-stroke: 5px #28002c;
 }
 
-.landingPageSubtitle{
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-size: 50px;
-    color: rgba(255, 255, 255, 0);
-    padding: 25px;
-    color: #58315c;
-    
+.landingPageSubtitle {
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-size: 50px;
+  color: rgba(255, 255, 255, 0);
+  padding: 25px;
+  color: #58315c;
 }
 
-.llamaSubheading{
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;;
-    font-size: 50px;
-    color: #58315c;
-    padding: 60px;
-    text-shadow: #2f2e31;
-    
+.llamaSubheading {
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-size: 50px;
+  color: #58315c;
+  padding: 60px;
+  text-shadow: #2f2e31;
 }
 
 .parallax::-webkit-scrollbar {
-    display: none;
-  }
-
-.buttonContainer{
-    display: flex;
-    justify-content: space-between;
-    padding: 170px;
-    padding-top: 30px;
-    padding-bottom: 30px;
-    z-index: 1;
-    
+  display: none;
 }
 
-.landingLoginButton, .registerButton{
-    border-radius: 40px;
-    box-shadow: 2px 2px 5px rgba(255, 255, 255, 0.8);
-    text-align: center;
-    padding: 25px 55px;
-    width: 250px;
-    font-size: x-large;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    background-color: #f0f0f0;
-    border: 1px solid #ccc;
-    color: #333;
-    cursor: pointer;
-    margin: 0px 5px;
-    outline: none;
-    transition: background-color 0.3s, border-color 0.3s;
+.buttonContainer {
+  display: flex;
+  justify-content: space-between;
+  padding: 170px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  z-index: 1;
 }
 
-.landingLoginButton:hover, .registerButton:hover {
-    background-color: #ee69ec8b;
+.landingLoginButton,
+.registerButton {
+  border-radius: 40px;
+  box-shadow: 2px 2px 5px rgba(255, 255, 255, 0.8);
+  text-align: center;
+  padding: 25px 55px;
+  width: 250px;
+  font-size: x-large;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  color: #333;
+  cursor: pointer;
+  margin: 0px 5px;
+  outline: none;
+  transition: background-color 0.3s, border-color 0.3s;
 }
 
-.landingPageContainer{
-    background-color: #BFA2DB;
-    background-repeat: no-repeat;
-    height: 800px;
-    z-index: 0;  
+.landingLoginButton:hover,
+.registerButton:hover {
+  background-color: #ee69ec8b;
 }
 
-.backgroundImage, .bottomSection {
-    margin: 0;
+.landingPageContainer {
+  background-color: #bfa2db;
+  background-repeat: no-repeat;
+  height: 800px;
+  z-index: 0;
 }
 
-.aboutContainer, .aboutContainer2{
-    display: flex;
-    padding: 35px;
-    justify-content: space-evenly;
-    align-content: space-evenly;
-} 
-
-.aboutContainer2 p, .aboutContainer p{
-    display: flex;
-    padding: 40px;
-    width: 70%;
-    background-color: rgba(255, 255, 255, 0.966);
-    border-radius: 25px;
-    box-shadow:  3px 5px rgba(255, 255, 255, 0.39);
-    text-align: justify;
-    font-family:Verdana, Geneva, Tahoma, sans-serif;
-    line-height: 25px;
+.backgroundImage,
+.bottomSection {
+  margin: 0;
 }
 
-.gifContainer, .parallaxContainer{
-    height: 250px;
-    width: 250px;
-    background-color: white;
-    display: flex;
-    z-index: 1;
-    padding: 20px;
-    border-radius: 8%;
-    box-shadow:  3px 5px rgba(255, 255, 255, 0.39);
+.aboutContainer,
+.aboutContainer2 {
+  display: flex;
+  padding: 35px;
+  justify-content: space-evenly;
+  align-content: space-evenly;
 }
 
+.aboutContainer2 p,
+.aboutContainer p {
+  display: flex;
+  padding: 40px;
+  width: 70%;
+  background-color: rgba(255, 255, 255, 0.966);
+  border-radius: 25px;
+  box-shadow: 3px 5px rgba(255, 255, 255, 0.39);
+  text-align: justify;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  line-height: 25px;
+}
+
+.gifContainer,
+.parallaxContainer {
+  height: 250px;
+  width: 250px;
+  background-color: white;
+  display: flex;
+  z-index: 1;
+  padding: 20px;
+  border-radius: 8%;
+  box-shadow: 3px 5px rgba(255, 255, 255, 0.39);
+}
