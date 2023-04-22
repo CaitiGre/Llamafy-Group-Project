@@ -7,7 +7,7 @@ async function getProfile(username) {
             `SELECT * FROM Users WHERE username = "${username}"`,
         );
         conn.release();
-        return result[0];
+        return result[0][0];
     } catch (error) {
         console.error(error);
         throw error;
