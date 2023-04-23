@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import style from "./Navbar.module.css";
 import ColourChangeLlama from "../../assets/colourChangeLlama.gif";
 import LlamaIcon from "../../assets/llamaProfile.png";
+import Sidebar from "../Sidebar/Sidebar";
+import { HiMenu } from "react-icons/hi";
 
 const Navbar = () => {
   const [initalScrollPosition, setScrollPosition] = useState(0);
@@ -27,21 +29,25 @@ const Navbar = () => {
   }, [initalScrollPosition, visible, handleScroll]);
 
   return (
-    <div className={style.navbarStyle} style={{ top: visible ? "0" : "-60px" }}>
-      <div className={style.homeNav}>
-        <NavLink to="/">
-          <img src={ColourChangeLlama} style={{ height: "50px" }} />
-          <h2>LLAMAFY</h2>
-        </NavLink>
+    <div>
+      <div style={{ margin: "0" }}>
+        <Sidebar />
       </div>
-      <div className={style.navbarRight}>
-      <NavLink to="/home">WARDROBE</NavLink>
-        <NavLink to="/ootd">DRESS ME</NavLink>
-        <NavLink to="/login">LOGIN</NavLink>
-        <NavLink to="/register">REGISTER</NavLink>
-        <NavLink to="/settings">
-          <img src={LlamaIcon} style={{ height: "40px" }}></img>
-        </NavLink>
+      <div
+        className={style.navbarStyle}
+        style={{ top: visible ? "0" : "-6vh" }}
+      >
+        <div className={style.homeNav}>
+          <NavLink to="/">
+            <img src={ColourChangeLlama} style={{ height: "5vh" }} />
+            <h2>LLAMAFY</h2>
+          </NavLink>
+        </div>
+        <div className={style.navbarRight} style={{height: "5vh"}}>
+          <NavLink to="/settings">
+            <img src={LlamaIcon} style={{ height: "4vh" }}></img>
+          </NavLink>
+        </div>
       </div>
     </div>
   );
