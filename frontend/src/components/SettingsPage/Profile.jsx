@@ -16,23 +16,22 @@ function Profile() {
         password: ''
     });
 
+    const [profileData, setProfileData] = useState({});
+
     // Get username from cookie once cookie's set up
     const username = "one"; // set username = "one" for now
 
     // Get user's current profile data from database
     const { data: dataObj, isLoading } = useGet(`http://localhost:3006/profile/getProfile/${username}`);
 
-    const { profileData, setProfileData } = useState({});
-
-    // let profileData;
 
     useEffect(() => {
         if (!isLoading && dataObj) {
             // console.log(dataObj.userData);
             // console.log(dataObj.userData.firstName);
-            // profileData = dataObj.userData; // Assign the object containing properties needed to profileData variable.
+            // profileData = dataObj.userData; // 
 
-            setProfileData(dataObj.userData); // Error: setProfileData is not a function
+            setProfileData(dataObj.userData); // Assign the object containing properties needed to profileData.
 
             setData(
                 {
@@ -51,7 +50,7 @@ function Profile() {
     }, [isLoading, dataObj]); // Once isLoading and profileData and dataObj changed (meaning the fetch is completed), useEffect() will run and setData to fetched data
     // Remember that initially when the data was still being fetched, the values of isLoading and dataObj would be different
 
-    // console.log(profileData); // Why is profileData undefined?
+    // console.log(profileData);
 
     const inputData = [
         {
@@ -155,7 +154,7 @@ function Profile() {
                                 type={item.type}
                                 name={item.name}
                                 id={item.id}
-                                value={item.value}
+                                defaultValue={item.value}
                                 onChange={handleChange}
                                 inputProps={{ style: { textAlign: "center" } }}
                                 disableUnderline={true}
