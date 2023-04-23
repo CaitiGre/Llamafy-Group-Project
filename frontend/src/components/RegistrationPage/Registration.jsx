@@ -41,7 +41,7 @@ function RegistrationPage() {
         } else {
           const hashedPassword = bcrypt.hashSync(data.password, salt);
           try {
-            const response = await axios.post('http://3.27.75.210:3006/registration/registerNewUser', {
+            const response = await axios.post('http://localhost:3006/registration/registerNewUser', {
               firstName: data.firstName,
               lastName: data.lastName,
               email: data.email,
@@ -52,8 +52,8 @@ function RegistrationPage() {
             console.log(response.data);
             alert('Registration successful!');
           } catch (error) {
-            console.error(error);
-            alert('An error occurred while registering. Please try again later.');
+            console.log(error);
+            alert('An error occurred while registering. Please try again later.' + String(error));
           }
         }
       };
