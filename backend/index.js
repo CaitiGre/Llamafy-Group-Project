@@ -21,7 +21,7 @@ app.use("/registration", registrationPageRouter);
 app.use("/wardrobeSelection", wardrobePageRouter);
 
 app.get('/', (req, res) => {
-  res.send('Hello, world!');
+  res.send('Llamify server is running');
 
 });
 
