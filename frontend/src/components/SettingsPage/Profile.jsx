@@ -32,9 +32,6 @@ function Profile() {
 
     useEffect(() => {
         if (!isLoading && dataObj) {
-            // console.log(dataObj.userData);
-            // console.log(dataObj.userData.firstName);
-            // profileData = dataObj.userData; // 
 
             setProfileData(dataObj.userData); // Assign the object containing properties needed to profileData.
 
@@ -59,7 +56,6 @@ function Profile() {
     }, [isLoading, dataObj]); // Once isLoading and profileData and dataObj changed (meaning the fetch is completed), useEffect() will run and setData to fetched data
     // Remember that initially when the data was still being fetched, the values of isLoading and dataObj would be different
 
-    // console.log(profileData);
 
     const inputData = [
         {
@@ -134,16 +130,11 @@ function Profile() {
         event.preventDefault();
         console.log(JSON.stringify(data)); // Testing
 
-
-        // let newPassword;
         let hashedPassword;
-        // const hashedPassword = bcrypt.hashSync(data.password, salt);
 
         if (data.newPassword) {
-            // newPassword = data.newPassword;
             hashedPassword = bcrypt.hashSync(data.newPassword, salt);
         } else {
-            // newPassword = currentPassword;
             hashedPassword = currentPassword;
         }
 
@@ -152,7 +143,6 @@ function Profile() {
 
 
         if (!isValid) {
-            // if (data.password !== currentPassword) {
             console.log("Current password incorrect", currentPassword);
         } else {
             console.log("Current password correct", currentPassword);
@@ -161,7 +151,7 @@ function Profile() {
             console.log("current password:", currentPassword);
             console.log("newPassword:", hashedPassword);
 
-            alert('Updated profile successfully!');
+            // alert('Updated profile successfully!');
 
             try {
                 await axios.post(`http://localhost:3006/profile/updateProfile`, {
@@ -173,7 +163,11 @@ function Profile() {
                     location: data.location,
                     // password: newPassword,
                     password: hashedPassword
-                });
+                })
+                    .then(() => {
+                        return alert('Updated profile successfully!');
+                    })
+                // Alert is not working
 
             } catch (error) {
                 console.error(error);
