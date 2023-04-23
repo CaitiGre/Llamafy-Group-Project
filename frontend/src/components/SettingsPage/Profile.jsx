@@ -20,10 +20,10 @@ function Profile() {
     const [profileData, setProfileData] = useState({});
 
     // Get username from cookie once cookie's set up
-    const username = "kral"; // set username = "one" for now
+    const userEmail = "cass@sth.com"; // set username = "one" for now
 
     // Get user's current profile data from database
-    const { data: dataObj, isLoading } = useGet(`http://localhost:3006/profile/getProfile/${username}`);
+    const { data: dataObj, isLoading } = useGet(`http://localhost:3006/profile/getProfile/${userEmail}`);
 
 
     useEffect(() => {
@@ -40,7 +40,7 @@ function Profile() {
                     lname: profileData.lastName,
                     email: profileData.email,
                     gender: profileData.gender,
-                    skinTone: profileData.skintTone,
+                    skinTone: profileData.skinTone,
                     location: profileData.location,
                     password: profileData.password,
                     username: profileData.username
