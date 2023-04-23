@@ -20,7 +20,7 @@ function Profile() {
     const [profileData, setProfileData] = useState({});
 
     // Get username from cookie once cookie's set up
-    const username = "two"; // set username = "one" for now
+    const username = "kral"; // set username = "one" for now
 
     // Get user's current profile data from database
     const { data: dataObj, isLoading } = useGet(`http://localhost:3006/profile/getProfile/${username}`);
@@ -43,6 +43,7 @@ function Profile() {
                     skinTone: profileData.skintTone,
                     location: profileData.location,
                     password: profileData.password,
+                    username: profileData.username
                 }
             )
 
@@ -137,6 +138,7 @@ function Profile() {
                 skinTone: data.skinTone,
                 location: data.location,
                 password: data.password,
+                username: profileData.username
             });
             // console.log(response.data);
             alert('Update profile successful!');
