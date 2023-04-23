@@ -7,8 +7,8 @@ import useGet from '../../helpers/useGet';
 function Profile() {
 
     const [data, setData] = useState({
-        fname: 'fname',
-        lname: 'lname1',
+        fname: '',
+        lname: '',
         email: '',
         gender: '',
         skinTone: '',
@@ -22,17 +22,17 @@ function Profile() {
     // Get user's current profile data from database
     const { data: dataObj, isLoading } = useGet(`http://localhost:3006/profile/getProfile/${username}`);
 
-    // const { profileData, setProfileData } = useState('');
+    const { profileData, setProfileData } = useState({});
 
-    let profileData;
+    // let profileData;
 
     useEffect(() => {
         if (!isLoading && dataObj) {
             // console.log(dataObj.userData);
             // console.log(dataObj.userData.firstName);
-            profileData = dataObj.userData; // Assign the object containing properties needed to profileData variable.
+            // profileData = dataObj.userData; // Assign the object containing properties needed to profileData variable.
 
-            // setProfileData(dataObj.userData); // Error: setProfileData is not a function
+            setProfileData(dataObj.userData); // Error: setProfileData is not a function
 
             setData(
                 {
@@ -45,6 +45,7 @@ function Profile() {
                     password: profileData.password,
                 }
             )
+
         }
 
     }, [isLoading, dataObj]); // Once isLoading and profileData and dataObj changed (meaning the fetch is completed), useEffect() will run and setData to fetched data
