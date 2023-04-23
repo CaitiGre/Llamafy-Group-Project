@@ -146,15 +146,22 @@ function Profile() {
 
         if (data.newPassword) {
             newPassword = data.newPassword;
+        } else {
+            newPassword = currentPassword;
         }
 
-
         if (data.password !== currentPassword) {
-            alert("Current password incorrect");
+            // alert("Current password incorrect");
             console.log("Current password incorrect", currentPassword);
         } else {
-            alert("Current password correct");
+            // alert("Current password correct");
             console.log("Current password correct", currentPassword);
+
+            setCurrentPassword(newPassword);
+            console.log("current password:", currentPassword);
+            console.log("newPassword:", newPassword);
+
+            alert('Updated profile successfully!');
 
             try {
                 await axios.post(`http://localhost:3006/profile/updateProfile`, {
@@ -166,12 +173,11 @@ function Profile() {
                     location: data.location,
                     password: newPassword,
                 });
-                alert('Update profile successful! password:', data.password);
+
             } catch (error) {
                 console.error(error);
                 alert('An error occurred while registering. Please try again later.');
             }
-
         }
     }
 
