@@ -3,7 +3,7 @@ import { Modal, Card, Box, Button, Typography, Grid } from "@mui/material";
 import { SliderPicker } from "react-color";
 import close from "./../../assets/close.png";
 import ClotheCustomisation from "../ClotheCustomisation/ClotheCustomisation";
-// import { addWardrobeItem } from "../../../../backend/controllers/WardrobePage";
+import axios from "axios";
 
 function ClothingSelectionModal({ selectedItem, showModal, onCloseModal }) {
   // All the states to be recorded in the new wardrobe item JSON
@@ -22,7 +22,7 @@ function ClothingSelectionModal({ selectedItem, showModal, onCloseModal }) {
   const handleColorChange = (value) => {
     setColor(value);
   };
-  // Function to creat new wardobe item JSON upon clicking the add button on the modal
+  // Function to create new wardobe item JSON upon clicking the add button on the modal
   const handleAddClick = async () => {
     const selectedWardrobeItem = {
       name: selectedItem.name,
@@ -33,28 +33,33 @@ function ClothingSelectionModal({ selectedItem, showModal, onCloseModal }) {
       sleeves: selectedSleeves,
       fabric: selectedFabric,
     };
-    /*  try {
-      const insertWardrobeItem = await addWardrobeItem({
-        name: selectedItem.name,
-        style: selectedStyle,
-        pattern: selectedPattern,
-        length: selectedLength,
-        color: color.hex,
-        sleeves: selectedSleeves,
-        fabric: selectedFabric,
-      });
-      console.log("New Item added to your wardbrobe:", insertWardrobeItem);
+
+    try {
+      const response = await axios.post(
+        "http://3.27.75.210:3006/wardrobeSelection/addWardrobeItem",
+        {
+          name: selectedItem.name,
+          style: selectedStyle,
+          pattern: selectedPattern,
+          length: selectedLength,
+          color: color.hex,
+          sleeves: selectedSleeves,
+          fabric: selectedFabric,
+        }
+      );
+      console.log("New Item added to your wardbrobe:", response.data);
     } catch (error) {
       console.error(error);
       alert(
         "An error occurred while trying to add an item to your wardrobe. Please try again later."
       );
-    }*/
+    }
     // Updates the wardrobe state
     setWardrobe({
       ...wardrobe,
       [selectedWardrobeItem.name]: selectedWardrobeItem,
     });
+
     // Closes the Modal upon clicking the add button on the modal
     onCloseModal();
   };

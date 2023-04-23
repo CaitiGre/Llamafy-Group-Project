@@ -1,12 +1,12 @@
 const express = require("express");
 const router = express.Router();
-const { wardrobePage } = require("../controllers/WardrobePage");
+const { addWardrobeItem } = require("../controllers/WardrobePage");
 
 // Define a route handler for the "/addWardrobeItem" endpoint that handles POST requests
 router.post("/addWardrobeItem", async (req, res) => {
   try {
      // Call the wardrobePage function with the request body and wait for it to complete
-    const itemId = await wardrobePage(req.body);
+    const itemId = await addWardrobeItem(req.body);
     // If the function executes successfully, set the response status code to 201 and return the itemId in JSON format
     res.status(201).json({ itemId });
   } catch (error) {
