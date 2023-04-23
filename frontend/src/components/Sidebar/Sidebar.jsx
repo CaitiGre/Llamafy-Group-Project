@@ -1,6 +1,6 @@
 import style from "../Sidebar/Sidebar.module.css";
-import React, { useState } from "react";
-import { NavLink, Link } from "react-router-dom";
+import React from "react";
+import { NavLink } from "react-router-dom";
 import { HiMenu, HiLogin, HiLogout } from "react-icons/hi";
 import { Menu, MenuItem, Sidebar, useProSidebar } from "react-pro-sidebar";
 import ColourChangeLlama from "../../assets/colourChangeLlama.gif";
