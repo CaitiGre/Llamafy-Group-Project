@@ -1,11 +1,13 @@
-import { Input, InputLabel, Grid } from "@mui/material";
+import { InputLabel, Grid } from "@mui/material";
 import { useState, useEffect } from "react";
 import styles from './SettingsPage.module.css';
 import useGet from '../../helpers/useGet';
 import axios from 'axios';
-
+import bcrypt from 'bcryptjs';
 
 function Profile() {
+
+    // const salt = bcrypt.genSaltSync(10);
 
     const [data, setData] = useState({
         fname: '',
@@ -14,17 +16,19 @@ function Profile() {
         gender: '',
         skinTone: '',
         location: '',
+        newPassword: '',
         password: ''
     });
 
     const [profileData, setProfileData] = useState({});
 
-    // Get username from cookie once cookie's set up
-    const userEmail = "cass@sth.com"; // set username = "one" for now
+    const [currentPassword, setCurrentPassword] = useState('');
+
+    // Get user's email from cookie once cookie's set up
+    const userEmail = "cass@sth.com";
 
     // Get user's current profile data from database
     const { data: dataObj, isLoading } = useGet(`http://localhost:3006/profile/getProfile/${userEmail}`);
-
 
     useEffect(() => {
         if (!isLoading && dataObj) {
@@ -34,6 +38,9 @@ function Profile() {
 
             setProfileData(dataObj.userData); // Assign the object containing properties needed to profileData.
 
+            setCurrentPassword(dataObj.userData.password);
+            console.log(currentPassword);
+
             setData(
                 {
                     fname: profileData.firstName,
@@ -42,8 +49,8 @@ function Profile() {
                     gender: profileData.gender,
                     skinTone: profileData.skinTone,
                     location: profileData.location,
-                    password: profileData.password,
-                    username: profileData.username
+                    newPassword: '',
+                    password: profileData.password
                 }
             )
 
@@ -99,11 +106,18 @@ function Profile() {
             value: data.location,
         },
         {
+            displayName: "New Password",
+            type: "password",
+            name: "newPassword",
+            id: "newPassword",
+            value: '',
+        },
+        {
             displayName: "Password",
             type: "password",
             name: "password",
             id: "password",
-            value: data.password,
+            value: '',
         }
     ]
 
@@ -123,32 +137,43 @@ function Profile() {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        // alert(JSON.stringify(data));
+        console.log(JSON.stringify(data)); // Testing
 
-        console.log(JSON.stringify(data));
 
-        // Post input data to database
+        let newPassword;
 
-        try {
-            await axios.post(`http://localhost:3006/profile/updateProfile`, {
-                firstName: data.fname,
-                lastName: data.lname,
-                email: data.email,
-                gender: data.gender,
-                skinTone: data.skinTone,
-                location: data.location,
-                password: data.password,
-                username: profileData.username
-            });
-            // console.log(response.data);
-            alert('Update profile successful!');
-        } catch (error) {
-            console.error(error);
-            alert('An error occurred while registering. Please try again later.');
+        // const hashedPassword = bcrypt.hashSync(data.password, salt);
+
+        if (data.newPassword) {
+            newPassword = data.newPassword;
+        }
+
+
+        if (data.password !== currentPassword) {
+            alert("Current password incorrect");
+            console.log("Current password incorrect", currentPassword);
+        } else {
+            alert("Current password correct");
+            console.log("Current password correct", currentPassword);
+
+            try {
+                await axios.post(`http://localhost:3006/profile/updateProfile`, {
+                    firstName: data.fname,
+                    lastName: data.lname,
+                    email: data.email,
+                    gender: data.gender,
+                    skinTone: data.skinTone,
+                    location: data.location,
+                    password: newPassword,
+                });
+                alert('Update profile successful! password:', data.password);
+            } catch (error) {
+                console.error(error);
+                alert('An error occurred while registering. Please try again later.');
+            }
+
         }
     }
-
-
 
     return (
         <div className={styles.formContainer}>
