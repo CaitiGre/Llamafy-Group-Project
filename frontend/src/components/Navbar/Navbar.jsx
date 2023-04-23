@@ -3,7 +3,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import style from "./Navbar.module.css";
 import ColourChangeLlama from "../../assets/colourChangeLlama.gif";
-import LlamaIcon from "../../assets/llamaIcon.png";
+import LlamaIcon from "../../assets/llamaProfile.png";
 
 const Navbar = () => {
   const [initalScrollPosition, setScrollPosition] = useState(0);
@@ -34,16 +34,13 @@ const Navbar = () => {
           <h2>LLAMAFY</h2>
         </NavLink>
       </div>
-      <div className={style.navCenter}>
-        <NavLink to="/home">WARDROBE</NavLink>
-        <NavLink to="/ootd">DRESS ME</NavLink>
-      </div>
-      
       <div className={style.navbarRight}>
+      <NavLink to="/home">WARDROBE</NavLink>
+        <NavLink to="/ootd">DRESS ME</NavLink>
         <NavLink to="/login">LOGIN</NavLink>
         <NavLink to="/register">REGISTER</NavLink>
         <NavLink to="/settings">
-          <img src={LlamaIcon} style={{ height: "35px" }}></img>
+          <img src={LlamaIcon} style={{ height: "40px" }}></img>
         </NavLink>
       </div>
     </div>

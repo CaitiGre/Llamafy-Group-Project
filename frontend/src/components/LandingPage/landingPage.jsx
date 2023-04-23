@@ -1,7 +1,7 @@
 import styles from "./landingPage.module.css";
 import { NavLink } from "react-router-dom";
-import CluelessGif from "../../assets/cluelessCloset.gif";
 import ClothingRail from "../../assets/cothingRail.gif";
+import WardrobeChange from "../../assets/Wardorbe-Change.gif";
 import { Box, Button, Grid } from "@mui/material";
 
 function LandingPage() {
@@ -75,7 +75,7 @@ function LandingPage() {
             className={styles.gifContainer}
             display={"flex"}
             style={{
-              backgroundImage: `url(${CluelessGif})`,
+              backgroundImage: `url(${ClothingRail})`,
               width: "250px",
               height: "250px",
               backgroundPosition: "center",
@@ -97,7 +97,7 @@ function LandingPage() {
           <Box
             className={styles.parallaxContainer}
             style={{
-              backgroundImage: `url(${ClothingRail})`,
+              backgroundImage: `url(${WardrobeChange})`,
               width: "250px",
               height: "250px",
               backgroundPosition: "center",
