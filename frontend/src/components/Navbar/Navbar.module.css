@@ -1,10 +1,11 @@
 *{
+    
     margin: auto;
 }
 
 .navbarStyle {
     position: fixed;
-    height: 6vh;
+    height: 60px;
     display: flex;
     background-color: #7222bd02;
     width: 100%;
@@ -22,44 +23,47 @@
     color: #5106838b;
 }
 
+.homeNav {
+    display: flex;
+    width: 250px;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
 .homeNav a{
     display: flex;
-    margin: auto;
-    font-size: x-large;
-    text-align: center;
     align-content: center;
-    justify-content: center;
+    width: 100%;
+    font-size: xxx-large;
+    padding: 0px;
+    font-family: url('../../assets/fonts/moonlite-outline.ttf');
+    
+}
+
+.homeNav h2 {
+    font-size: xxx-large;
+    padding: 0px;
     font-family: url('../../assets/fonts/moonlite-outline.ttf');
 }
 
-.homeNav {
-    margin: auto;
+.navbarRight, .navCenter {
+    width: 300px;
     display: flex;
-    text-align: center;
-    width: 95%;
+    /* align-content: space-between;
+    justify-content: space-between; */
+}
+.navbarRight{
+    align-self: flex-end;
+    justify-content: flex-end;
+    justify-self: flex-end;
+    align-items: flex-end;
+    align-self: flex-end;
+    display: flex;
 }
 
-.navbarRight {
-    display: flex;
-    text-align: right;
-    margin-right: 2%;
-    width: 4vh;
-    margin: right;
-}
-
-.navbarRight a {
+.navbarRight a, .navCenter a{
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-size: 2.5vh;
+    font-size: 25px;
     color: white;
-    display: flex;
-    justify-content: right;
-    width: 4vh;
-    margin-right: 1vh;
 }
-
-img {
-    width: 5vh;
-}
-
-
 
