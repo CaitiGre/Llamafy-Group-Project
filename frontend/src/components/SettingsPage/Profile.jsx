@@ -7,7 +7,7 @@ import bcrypt from 'bcryptjs';
 
 function Profile() {
 
-    // const salt = bcrypt.genSaltSync(10);
+    const salt = bcrypt.genSaltSync(10);
 
     const [data, setData] = useState({
         fname: '',
@@ -25,7 +25,7 @@ function Profile() {
     const [currentPassword, setCurrentPassword] = useState('');
 
     // Get user's email from cookie once cookie's set up
-    const userEmail = "cass@sth.com";
+    const userEmail = "test1@sth.com";
 
     // Get user's current profile data from database
     const { data: dataObj, isLoading } = useGet(`http://localhost:3006/profile/getProfile/${userEmail}`);
@@ -129,37 +129,37 @@ function Profile() {
         })
     }
 
-    // const handleSubmit = async (event) => {
-    //     event.preventDefault();
-    //     alert(JSON.stringify(data));
-    // }
-
 
     const handleSubmit = async (event) => {
         event.preventDefault();
         console.log(JSON.stringify(data)); // Testing
 
 
-        let newPassword;
-
+        // let newPassword;
+        let hashedPassword;
         // const hashedPassword = bcrypt.hashSync(data.password, salt);
 
         if (data.newPassword) {
-            newPassword = data.newPassword;
+            // newPassword = data.newPassword;
+            hashedPassword = bcrypt.hashSync(data.newPassword, salt);
         } else {
-            newPassword = currentPassword;
+            // newPassword = currentPassword;
+            hashedPassword = currentPassword;
         }
 
-        if (data.password !== currentPassword) {
-            // alert("Current password incorrect");
+        // Compare input password with hashed password from DB
+        const isValid = bcrypt.compareSync(data.password, currentPassword);
+
+
+        if (!isValid) {
+            // if (data.password !== currentPassword) {
             console.log("Current password incorrect", currentPassword);
         } else {
-            // alert("Current password correct");
             console.log("Current password correct", currentPassword);
 
-            setCurrentPassword(newPassword);
+            setCurrentPassword(hashedPassword);
             console.log("current password:", currentPassword);
-            console.log("newPassword:", newPassword);
+            console.log("newPassword:", hashedPassword);
 
             alert('Updated profile successfully!');
 
@@ -171,7 +171,8 @@ function Profile() {
                     gender: data.gender,
                     skinTone: data.skinTone,
                     location: data.location,
-                    password: newPassword,
+                    // password: newPassword,
+                    password: hashedPassword
                 });
 
             } catch (error) {
