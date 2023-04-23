@@ -49,6 +49,9 @@ function ClothingSelectionModal({ selectedItem, showModal, onCloseModal }) {
         }
       );
       console.log("New Item added to your wardbrobe:", response.data);
+      alert(
+        "New Wardrobe item added successfully!"
+      );
     } catch (error) {
       console.error(error);
       alert(
