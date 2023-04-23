@@ -43,7 +43,7 @@ const Navbar = () => {
         {/* Links the llama gif and the LLamafy title to the homepage */}
         <div className={style.homeNav}>
           <NavLink to="/">
-            <img src={ColourChangeLlama} style={{ height: "5vh" }} />
+            <img src={ColourChangeLlama} className={style.LlamaGifColour} style={{ height: "5vh" }} />
             <h2>LLAMAFY</h2>
           </NavLink>
         </div>
