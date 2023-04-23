@@ -130,7 +130,7 @@ function Profile() {
         // Post input data to database
 
         try {
-            await axios.post(`http://localhost:3006/profile/updateProfile/${username}`, {
+            await axios.post(`http://localhost:3006/profile/updateProfile`, {
                 firstName: data.fname,
                 lastName: data.lname,
                 email: data.email,
