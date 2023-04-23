@@ -2,6 +2,7 @@ import { Input, InputLabel, Grid } from "@mui/material";
 import { useState, useEffect } from "react";
 import styles from './SettingsPage.module.css';
 import useGet from '../../helpers/useGet';
+import axios from 'axios';
 
 
 function Profile() {
@@ -19,7 +20,7 @@ function Profile() {
     const [profileData, setProfileData] = useState({});
 
     // Get username from cookie once cookie's set up
-    const username = "one"; // set username = "one" for now
+    const username = "two"; // set username = "one" for now
 
     // Get user's current profile data from database
     const { data: dataObj, isLoading } = useGet(`http://localhost:3006/profile/getProfile/${username}`);
@@ -113,10 +114,39 @@ function Profile() {
         })
     }
 
+    // const handleSubmit = async (event) => {
+    //     event.preventDefault();
+    //     alert(JSON.stringify(data));
+    // }
+
+
     const handleSubmit = async (event) => {
         event.preventDefault();
-        alert(JSON.stringify(data));
+        // alert(JSON.stringify(data));
+
+        console.log(JSON.stringify(data));
+
+        // Post input data to database
+
+        try {
+            await axios.post(`http://localhost:3006/profile/updateProfile/${username}`, {
+                firstName: data.fname,
+                lastName: data.lname,
+                email: data.email,
+                gender: data.gender,
+                skinTone: data.skinTone,
+                location: data.location,
+                password: data.password,
+            });
+            // console.log(response.data);
+            alert('Update profile successful!');
+        } catch (error) {
+            console.error(error);
+            alert('An error occurred while registering. Please try again later.');
+        }
     }
+
+
 
     return (
         <div className={styles.formContainer}>

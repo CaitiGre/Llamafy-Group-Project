@@ -15,4 +15,22 @@ async function getProfile(username) {
 }
 
 
-module.exports = { getProfile };
+async function updateProfile(user) {
+    try {
+        const conn = await pool.getConnection();
+        await conn.query(`
+        UPDATE Users
+        SET firstName=${user.firstName}, lastName=${user.lastName}, email=${user.email}, password=${user.password},
+            location=${user.location}, gender=${user.gender}, skinTone=${user.skinTone}
+        WHERE id=${user.username}`
+        );
+        conn.release();
+    } catch (error) {
+        console.error(error);
+        throw error;
+    }
+}
+
+
+
+module.exports = { getProfile, updateProfile };

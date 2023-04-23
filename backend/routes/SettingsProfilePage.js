@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { getProfile } = require('../controllers/SettingsProfilePage');
+const { getProfile, updateProfile } = require('../controllers/SettingsProfilePage');
 
 router.get('/getProfile/:username', async (req, res) => {
     try {
@@ -13,6 +13,16 @@ router.get('/getProfile/:username', async (req, res) => {
     }
 });
 
+
+router.post('/updateProfile', async (req, res) => {
+    try {
+        await updateProfile(req.body);
+        res.status(201);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
 
 
 module.exports = router;
