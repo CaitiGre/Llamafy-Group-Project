@@ -141,7 +141,7 @@ function Profile() {
                         <Grid item xs={8}
                             display={'flex'}
                             justifyContent="flex-start">
-                            <Input
+                            {/* <Input
                                 sx={{
                                     borderRadius: "20px",
                                     boxShadow: "2px 2px 5px rgba(255, 255, 255, 0.8)",
@@ -154,12 +154,23 @@ function Profile() {
                                 type={item.type}
                                 name={item.name}
                                 id={item.id}
-                                defaultValue={item.value}
+                                value={item.value}
                                 onChange={handleChange}
                                 inputProps={{ style: { textAlign: "center" } }}
                                 disableUnderline={true}
-                                placeholder={item.loadedData}
+                            /> */}
+
+
+                            {/* input using normal tag - does not give warning re. controlled field becoming uncontrolled */}
+                            <input className={styles.field}
+                                type={item.type}
+                                name={item.name}
+                                id={item.id}
+                                defaultValue={item.value}
+                                onChange={handleChange}
+                                placeholder={item.value}
                             />
+
                         </Grid>
 
                     </Grid>
