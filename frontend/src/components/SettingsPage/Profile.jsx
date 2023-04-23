@@ -144,6 +144,7 @@ function Profile() {
 
         if (!isValid) {
             console.log("Current password incorrect", currentPassword);
+            alert("Incorrect password. Please try again.");
         } else {
             console.log("Current password correct", currentPassword);
 
@@ -151,7 +152,7 @@ function Profile() {
             console.log("current password:", currentPassword);
             console.log("newPassword:", hashedPassword);
 
-            // alert('Updated profile successfully!');
+            alert('Updated profile successfully!');
 
             try {
                 await axios.post(`http://localhost:3006/profile/updateProfile`, {
@@ -164,9 +165,9 @@ function Profile() {
                     // password: newPassword,
                     password: hashedPassword
                 })
-                    .then(() => {
-                        return alert('Updated profile successfully!');
-                    })
+                // .then(() => {
+                //     return alert('Updated profile successfully!');
+                // })
                 // Alert is not working
 
             } catch (error) {
