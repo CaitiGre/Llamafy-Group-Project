@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import React from "react";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import style from "./Navbar.module.css";
 import ColourChangeLlama from "../../assets/colourChangeLlama.gif";
 import LlamaIcon from "../../assets/llamaProfile.png";
