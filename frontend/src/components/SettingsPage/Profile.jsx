@@ -17,6 +17,7 @@ function Profile() {
         skinTone: '',
         location: '',
         newPassword: '',
+        reNewPassword: '',
         password: ''
     });
 
@@ -108,7 +109,14 @@ function Profile() {
             value: '',
         },
         {
-            displayName: "Password",
+            displayName: "Re-enter New Password",
+            type: "password",
+            name: "reNewPassword",
+            id: "reNewPassword",
+            value: '',
+        },
+        {
+            displayName: "Enter Password to confirm changes",
             type: "password",
             name: "password",
             id: "password",
@@ -129,31 +137,35 @@ function Profile() {
         event.preventDefault();
         console.log(JSON.stringify(data)); // Testing
 
-        try {
-            const response = await axios.post(`http://localhost:3006/profile/updateProfile/${userEmail}`, {
-                firstName: data.fname,
-                lastName: data.lname,
-                email: data.email,
-                gender: data.gender,
-                skinTone: data.skinTone,
-                location: data.location,
-                password: data.newPassword,
-                inputPassword: data.password
-            });
+        if (data.newPassword !== data.reNewPassword) {
+            alert("Your new passwords must match.");
+        } else {
 
-            if (response.data.validPass) {
-                console.log("true - response.data.validPass: ", response.data.validPass);
-                alert('Update successful!');
-            } else {
-                console.log("false - response.data.validPass: ", response.data.validPass);
-                alert('Incorrect password. Please try again!');
+            try {
+                const response = await axios.post(`http://localhost:3006/profile/updateProfile/${userEmail}`, {
+                    firstName: data.fname,
+                    lastName: data.lname,
+                    email: data.email,
+                    gender: data.gender,
+                    skinTone: data.skinTone,
+                    location: data.location,
+                    password: data.newPassword,
+                    inputPassword: data.password
+                });
+
+                if (response.data.validPass) {
+                    console.log("true - response.data.validPass: ", response.data.validPass);
+                    alert('Update successful!');
+                } else {
+                    console.log("false - response.data.validPass: ", response.data.validPass);
+                    alert('Incorrect password. Please try again!');
+                }
+
+            } catch (error) {
+                console.error(error);
+                alert('An error occurred while registering. Please try again later.');
             }
-
-        } catch (error) {
-            console.error(error);
-            alert('An error occurred while registering. Please try again later.');
         }
-        //}
     }
 
     return (
