@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import OutfitTile from "./OutfitTile";
-import shirt from '../../assets/shirt.png'
-import styles from './HomePage.module.css'
+import shirt from "../../assets/shirt.png";
+import styles from "./HomePage.module.css";
 
 const HomePage = () => {
 
@@ -49,15 +49,15 @@ const HomePage = () => {
 
         <h2><div className={styles.header}>Past Outfits</div></h2>
 
-        <div className={styles.outfitTileContainer}>
-            {pastOutfits.map((outfitObj) => 
-                <div className={styles.card} key={outfitObj.id}>
-                    <OutfitTile outfit={outfitObj} />
-                </div>
-                )
-            }
-        </div>
-    </ div>
-}
+      <div className={styles.outfitTileContainer}>
+        {pastOutfits.map((outfitObj) => (
+          <div className={styles.card} key={outfitObj.id}>
+            <OutfitTile outfit={outfitObj} />
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
 
 export default HomePage;

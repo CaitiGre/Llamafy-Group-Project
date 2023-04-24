@@ -7,7 +7,7 @@ import EmailBox from "./EmailBox";
 import LocationBox from "./LocationBox";
 import GenderButtons from "./GenderButtons";
 import PasswordBox from "./PasswordBox";
-// import { registerUser } from '../../services/RegistrationPageServices';
+import axios from 'axios';
 
 const salt = bcrypt.genSaltSync(10);
 
@@ -32,7 +32,6 @@ function RegistrationPage() {
         setData({ ...data, gender });
     };
 
-    //once backend set up, will send data there. Just here for dummy testing atm.
     const handleSubmit = async (event) => {
         event.preventDefault();
         if (data.password !== data.repassword) {
@@ -41,20 +40,21 @@ function RegistrationPage() {
           alert("All details on this form are required.")
         } else {
           const hashedPassword = bcrypt.hashSync(data.password, salt);
-        //   try {
-        //     const insertId = await registerUser({
-        //       firstName: data.firstName,
-        //       lastName: data.lastName,
-        //       email: data.email,
-        //       password: hashedPassword,
-        //       location: data.location,
-        //       gender: data.gender,
-        //     });
-        //     console.log('User registered with ID:', insertId);
-        //   } catch (error) {
-        //     console.error(error);
-        //     alert('An error occurred while registering. Please try again later.');
-        //   }
+          try {
+            const response = await axios.post('http://localhost:3006/registration/registerNewUser', {
+              firstName: data.firstName,
+              lastName: data.lastName,
+              email: data.email,
+              password: hashedPassword,
+              location: data.location,
+              gender: data.gender,
+            });
+            console.log(response.data);
+            alert('Registration successful!');
+          } catch (error) {
+            console.log(error);
+            alert('An error occurred while registering. Please try again later.' + String(error));
+          }
         }
       };
    

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./ClothesSelection.module.css";
 import { Grid, Box, Modal, Button, Typography } from "@mui/material";
 import ClothesItem from "../ClotheItem/ClotheItem";
@@ -25,17 +25,17 @@ function ClothesSelection() {
   const [openModal, setOpenModal] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
   const [subSelectionItemsToShow, setSubSelectionItemsToShow] = useState([]);
-
+  useEffect(() => console.log(selectedItem));
   // Defining an array of objects for the clothes items and their images
   const clothesItems = [
-    { src: top, name: "Top" },
-    { src: bottom, name: "Bottom" },
-    { src: onepiece, name: "OnePiece" },
-    { src: shoes, name: "Shoes" },
+    { src: top, name: "TOP" },
+    { src: bottom, name: "BOTTOM" },
+    { src: onepiece, name: "ONEPIECE" },
+    { src: shoes, name: "SHOES" },
   ];
   // Defining an object that maps each clothes item to an array of its sub-selection items and their images
   const subSelectionItemsByClothesItem = {
-    Top: [
+    TOP: [
       {
         src: top,
         name: "Tshirt",
@@ -96,7 +96,7 @@ function ClothesSelection() {
         pattern: ["striped", "Graphic", "baseball", "floral"],
       },
     ],
-    Bottom: [
+    BOTTOM: [
       {
         src: bottom,
         name: "Pants",
@@ -122,7 +122,7 @@ function ClothesSelection() {
         pattern: ["striped", "checkered", "animal print", "floral"],
       },
     ],
-    OnePiece: [
+    ONEPIECE: [
       {
         src: onepiece,
         name: "Jumpsuit",
@@ -166,7 +166,7 @@ function ClothesSelection() {
         pattern: ["striped", "checkered", "animal print", "floral"],
       },
     ],
-    Shoes: [
+    SHOES: [
       {
         src: shoes,
         name: "Shoe",
@@ -236,7 +236,7 @@ function ClothesSelection() {
       >
         <Box
           sx={{
-            backgroundColor: "rgba(255, 255, 255, 1)",
+            backgroundColor: "rgba(248, 201, 244, 1)",
             borderRadius: "16px",
             position: "absolute",
             top: "50%",
@@ -246,6 +246,8 @@ function ClothesSelection() {
             height: "fit-content",
             margin: "auto",
             padding: "40px",
+            maxHeight: "80vh",
+            overflowY: "scroll",
           }}
         >
           <Button
@@ -257,18 +259,13 @@ function ClothesSelection() {
           {selectedItem && (
             <Typography
               variant="h4"
-              sx={{ textAlign: "center", margin: "10px" }}
+              sx={{ textAlign: "center", margin: "10px", color: "#58315c" }}
             >
-              Select type of {selectedItem.name}
+              SELECT TYPE OF {selectedItem.name}
             </Typography>
           )}
           {/* The sub-selection modal */}
-          <SubSelectionModal
-            openModal={openModal}
-            handleCloseModal={handleCloseModal}
-            selectedItem={selectedItem}
-            itemsToShow={subSelectionItemsToShow}
-          />
+          <SubSelectionModal itemsToShow={subSelectionItemsToShow} />
         </Box>
       </Modal>
     </React.Fragment>
