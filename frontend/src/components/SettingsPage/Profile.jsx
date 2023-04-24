@@ -178,46 +178,53 @@ function Profile() {
     }
 
     return (
-        <div className={styles.formContainer}>
-            <form onSubmit={handleSubmit}>
-                {inputData.map((item) => (
-                    <Grid container key={item.id} spacing={2}
-                        sx={{ margin: 0 }}>
+        <>
+            {dataObj ? (
+                <div className={styles.formContainer}>
+                    <form onSubmit={handleSubmit}>
+                        {inputData.map((item) => (
+                            <Grid container key={item.id} spacing={2}
+                                sx={{ margin: 0 }}>
 
-                        <Grid item xs={4}>
-                            <InputLabel
-                                sx={{
-                                    marginBottom: "2px",
-                                    textAlign: "center",
-                                    color: "#eee"
-                                }}>
+                                <Grid item xs={4}>
+                                    <InputLabel
+                                        sx={{
+                                            marginBottom: "2px",
+                                            textAlign: "center",
+                                            color: "#eee"
+                                        }}>
 
-                                {item.displayName}
+                                        {item.displayName}
 
-                            </InputLabel>
-                        </Grid>
+                                    </InputLabel>
+                                </Grid>
 
-                        <Grid item xs={8}
-                            display={'flex'}
-                            justifyContent="flex-start">
+                                <Grid item xs={8}
+                                    display={'flex'}
+                                    justifyContent="flex-start">
 
-                            {/* input using normal tag - does not give warning re. controlled field becoming uncontrolled */}
-                            <input className={styles.field}
-                                type={item.type}
-                                name={item.name}
-                                id={item.id}
-                                defaultValue={item.value}
-                                onChange={handleChange}
-                                placeholder={item.value}
-                            />
+                                    {/* input using normal tag - does not give warning re. controlled field becoming uncontrolled */}
+                                    <input className={styles.field}
+                                        type={item.type}
+                                        name={item.name}
+                                        id={item.id}
+                                        defaultValue={item.value}
+                                        onChange={handleChange}
+                                        placeholder={item.value}
+                                    />
 
-                        </Grid>
+                                </Grid>
 
-                    </Grid>
-                ))}
-                <button id="submit-button" type="submit" className={styles.submitButton}>Submit</button>
-            </form >
-        </div>
+                            </Grid>
+                        ))}
+                        <button id="submit-button" type="submit" className={styles.submitButton}>Submit</button>
+                    </form >
+                </div>
+            )
+                :
+                <p>Loading...</p>}
+        </>
+
     );
 }
 
