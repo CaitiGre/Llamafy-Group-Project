@@ -1,10 +1,10 @@
 const pool = require('../database/pool');
 
-async function fetchUserLocation(username) {
+async function fetchUserLocation(email) {
   try {
     const conn = await pool.getConnection();
     const result = await conn.query(
-      `select location from Users where username = ?`, username,
+      `select location from Users where email = ?`, email,
     );
     conn.release();
     return result[0][0].location;

@@ -17,10 +17,10 @@ router.get('/data', async (req, res) => {
 
     // Grab username from /data?username=foo query string
     // const currUser = req.query.username;
-    const currUser = 'kral';
+    const currUserEmail = 'kkap897@aucklanduni.ac.nz';
 
     // Get current user's city via controller using username from query string
-    const userLocation = await fetchUserLocation(currUser);
+    const userLocation = await fetchUserLocation(currUserEmail);
 
     // Pass key and user city to build API call URL
     const apiUrl = `https://api.weatherapi.com/v1/current.json?key=${key}&q=${userLocation}&aqi=no` //AQI = air quality data
