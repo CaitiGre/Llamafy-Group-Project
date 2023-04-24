@@ -16,6 +16,7 @@ function Profile() {
         gender: '',
         skinTone: '',
         location: '',
+        size: '',
         newPassword: '',
         reNewPassword: '',
         password: ''
@@ -47,6 +48,7 @@ function Profile() {
                     gender: profileData.gender,
                     skinTone: profileData.skinTone,
                     location: profileData.location,
+                    size: profileData.clothingSize,
                     newPassword: '',
                     password: profileData.password
                 }
@@ -102,6 +104,13 @@ function Profile() {
             value: data.location,
         },
         {
+            displayName: "Clothing size",
+            type: "text",
+            name: "size",
+            id: "size",
+            value: data.size,
+        },
+        {
             displayName: "New Password",
             type: "password",
             name: "newPassword",
@@ -137,8 +146,10 @@ function Profile() {
         event.preventDefault();
         console.log(JSON.stringify(data)); // Testing
 
-        if (data.newPassword !== data.reNewPassword) {
-            alert("Your new passwords must match.");
+        if (data.newPassword || data.reNewPassword) {
+            if (data.newPassword !== data.reNewPassword) {
+                alert("Your new passwords must match.");
+            }
         } else {
 
             try {
@@ -149,6 +160,7 @@ function Profile() {
                     gender: data.gender,
                     skinTone: data.skinTone,
                     location: data.location,
+                    size: data.size,
                     password: data.newPassword,
                     inputPassword: data.password
                 });
@@ -170,7 +182,7 @@ function Profile() {
 
     return (
         <>
-            {dataObj ? (
+            {profileData ? (
                 <div className={styles.formContainer}>
                     <form onSubmit={handleSubmit}>
                         {inputData.map((item) => (
