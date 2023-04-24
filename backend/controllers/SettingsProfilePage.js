@@ -14,14 +14,31 @@ async function getProfile(userEmail) {
     }
 }
 
-
+// Update user profile without updating user password
 async function updateProfile(user) {
     try {
         const conn = await pool.getConnection();
         await conn.query(`
         UPDATE Users
-        SET firstName='${user.firstName}', lastName='${user.lastName}', email='${user.email}', password='${user.password}',
+        SET firstName='${user.firstName}', lastName='${user.lastName}', email='${user.email}',
             location='${user.location}', gender='${user.gender}', skinTone='${user.skinTone}'
+        WHERE email='${user.email}'`
+        );
+
+        conn.release();
+    } catch (error) {
+        console.error(error);
+        throw error;
+    }
+}
+
+
+async function updatePassword(user, hashedPassword) {
+    try {
+        const conn = await pool.getConnection();
+        await conn.query(`
+        UPDATE Users
+        SET password='${hashedPassword}'
         WHERE email='${user.email}'`
         );
         conn.release();
@@ -32,5 +49,4 @@ async function updateProfile(user) {
 }
 
 
-
-module.exports = { getProfile, updateProfile };
+module.exports = { getProfile, updateProfile, updatePassword };

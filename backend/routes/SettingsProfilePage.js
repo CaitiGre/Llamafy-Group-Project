@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const { getProfile, updateProfile } = require('../controllers/SettingsProfilePage');
+const { getProfile, updateProfile, updatePassword } = require('../controllers/SettingsProfilePage');
+const { user } = require('../database/database-config');
+const bcrypt = require('bcryptjs');
 
 router.get('/getProfile/:userEmail', async (req, res) => {
     try {
@@ -14,10 +16,38 @@ router.get('/getProfile/:userEmail', async (req, res) => {
 });
 
 
-router.post('/updateProfile', async (req, res) => {
+router.post('/updateProfile/:userEmail', async (req, res) => {
+    const { userEmail } = req.params;
+    const userInput = req.body;
+    const newPassword = userInput.password;
+    const salt = bcrypt.genSaltSync(10);
+
     try {
-        await updateProfile(req.body);
-        res.status(201);
+
+        const userData = await getProfile(userEmail);
+
+        // console.log("input password: ", userInput.inputPassword);
+        // console.log("user password: ", userData.password);
+
+        const validPassword = await bcrypt.compare(userInput.inputPassword, userData.password);
+
+        // console.log("validPassword:", validPassword);
+
+        if (validPassword) {
+
+            // If there is new password -> update password
+            if (newPassword) {
+                const hashedPassword = await bcrypt.hash(newPassword, salt);
+                updatePassword(userInput, hashedPassword);
+            }
+            // Update other information in profile
+            await updateProfile(req.body);
+            res.status(201).json({ validPass: true });
+
+        } else {
+            res.status(201).json({ validPass: false });
+        }
+
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Internal server error' });

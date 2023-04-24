@@ -3,11 +3,11 @@ import { useState, useEffect } from "react";
 import styles from './SettingsPage.module.css';
 import useGet from '../../helpers/useGet';
 import axios from 'axios';
-import bcrypt from 'bcryptjs';
+// import bcrypt from 'bcryptjs';
 
 function Profile() {
 
-    const salt = bcrypt.genSaltSync(10);
+    // const salt = bcrypt.genSaltSync(10);
 
     const [data, setData] = useState({
         fname: '',
@@ -22,7 +22,7 @@ function Profile() {
 
     const [profileData, setProfileData] = useState({});
 
-    const [currentPassword, setCurrentPassword] = useState('');
+    // const [currentPassword, setCurrentPassword] = useState('');
 
     // Get user's email from cookie once cookie's set up
     const userEmail = "test1@sth.com";
@@ -35,8 +35,8 @@ function Profile() {
 
             setProfileData(dataObj.userData); // Assign the object containing properties needed to profileData.
 
-            setCurrentPassword(dataObj.userData.password);
-            console.log(currentPassword);
+            // setCurrentPassword(dataObj.userData.password);
+            console.log(profileData.password);
 
             setData(
                 {
@@ -50,7 +50,6 @@ function Profile() {
                     password: profileData.password
                 }
             )
-
         }
 
     }, [isLoading, dataObj]); // Once isLoading and profileData and dataObj changed (meaning the fetch is completed), useEffect() will run and setData to fetched data
@@ -130,51 +129,31 @@ function Profile() {
         event.preventDefault();
         console.log(JSON.stringify(data)); // Testing
 
-        let hashedPassword;
+        try {
+            const response = await axios.post(`http://localhost:3006/profile/updateProfile/${userEmail}`, {
+                firstName: data.fname,
+                lastName: data.lname,
+                email: data.email,
+                gender: data.gender,
+                skinTone: data.skinTone,
+                location: data.location,
+                password: data.newPassword,
+                inputPassword: data.password
+            });
 
-        if (data.newPassword) {
-            hashedPassword = bcrypt.hashSync(data.newPassword, salt);
-        } else {
-            hashedPassword = currentPassword;
-        }
-
-        // Compare input password with hashed password from DB
-        const isValid = bcrypt.compareSync(data.password, currentPassword);
-
-
-        if (!isValid) {
-            console.log("Current password incorrect", currentPassword);
-            alert("Incorrect password. Please try again.");
-        } else {
-            console.log("Current password correct", currentPassword);
-
-            setCurrentPassword(hashedPassword);
-            console.log("current password:", currentPassword);
-            console.log("newPassword:", hashedPassword);
-
-            alert('Updated profile successfully!');
-
-            try {
-                await axios.post(`http://localhost:3006/profile/updateProfile`, {
-                    firstName: data.fname,
-                    lastName: data.lname,
-                    email: data.email,
-                    gender: data.gender,
-                    skinTone: data.skinTone,
-                    location: data.location,
-                    // password: newPassword,
-                    password: hashedPassword
-                })
-                // .then(() => {
-                //     return alert('Updated profile successfully!');
-                // })
-                // Alert is not working
-
-            } catch (error) {
-                console.error(error);
-                alert('An error occurred while registering. Please try again later.');
+            if (response.data.validPass) {
+                console.log("true - response.data.validPass: ", response.data.validPass);
+                alert('Update successful!');
+            } else {
+                console.log("false - response.data.validPass: ", response.data.validPass);
+                alert('Incorrect password. Please try again!');
             }
+
+        } catch (error) {
+            console.error(error);
+            alert('An error occurred while registering. Please try again later.');
         }
+        //}
     }
 
     return (
