@@ -30,7 +30,7 @@ function Profile() {
     const userEmail = "test1@sth.com";
 
     // Get user's current profile data from database
-    const { data: dataObj, isLoading } = useGet(`http://localhost:3006/profile/getProfile/${userEmail}`);
+    const { data: dataObj, isLoading } = useGet(`http://localhost:3006/profile/getProfile/${userEmail}`); // Need to change this and all other queries using email to use id (if email can be changed)
 
     useEffect(() => {
         if (!isLoading && dataObj) {
@@ -162,16 +162,37 @@ function Profile() {
                     location: data.location,
                     size: data.size,
                     password: data.newPassword,
-                    inputPassword: data.password
+                    inputPassword: data.password,
+                    id: profileData.id
                 });
 
-                if (response.data.validPass) {
-                    console.log("true - response.data.validPass: ", response.data.validPass);
+                // if (!response.data.validEmail) {
+                //     console.log("valid email: ", response);
+                //     alert("Email already exists! Please try another one.");
+                // }
+
+                // console.log("valid email: ", response.data.validEmail);
+
+                // if (response.data.validPass && response.data.validEmail) {
+                //     console.log("true - response.data.validPass: ", response.data.validPass);
+                //     alert('Update successful!');
+                // } else {
+                //     console.log("false - response.data.validPass: ", response.data.validPass);
+                //     alert('Incorrect password. Please try again!');
+                // }
+
+                if (response.data.validEmail && response.data.validPass) {
+                    console.log('validEmail 1: ', response.data.validEmail, 'validPass 1: ', response.data.validPass);
                     alert('Update successful!');
-                } else {
-                    console.log("false - response.data.validPass: ", response.data.validPass);
+
+                } else if (!response.data.validEmail) {
+                    console.log('validEmail 2: ', response.data.validEmail);
+                    alert('Email already exist. Please try again.')
+                } else if (!response.data.validPass) {
+                    console.log('validPass 2: ', response.data.validPass);
                     alert('Incorrect password. Please try again!');
                 }
+
 
             } catch (error) {
                 console.error(error);
