@@ -2,10 +2,10 @@ const express = require('express');
 const router = express.Router();
 const { getProfile, updateProfile } = require('../controllers/SettingsProfilePage');
 
-router.get('/getProfile/:username', async (req, res) => {
+router.get('/getProfile/:userEmail', async (req, res) => {
     try {
-        const { username } = req.params;
-        const userData = await getProfile(username);
+        const { userEmail } = req.params;
+        const userData = await getProfile(userEmail);
         res.status(201).json({ userData });
     } catch (error) {
         console.error(error);
