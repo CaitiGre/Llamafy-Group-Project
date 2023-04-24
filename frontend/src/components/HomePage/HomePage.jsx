@@ -21,15 +21,17 @@ const HomePage = () => {
     // loop through AI generated images for homepage cards
     // TODO: only loop through the past outfits for the current user
     useEffect(() => {axios.get('/images/generated')
-    .then(res => {tempArr = []; res.data.map((filename, index) => {tempArr.push({id : index + 1, render : `images/generated/${filename}`, desc: `${filename}`})})})
+    .then(res => {
+      tempArr = []; 
+      res.data.map((filename, index) => {
+        tempArr.push({id : index + 1, render : `images/generated/${filename}`, desc: `${filename}`})
+      })})
     .then((next) => setPastOutfits(tempArr))
     }, [])
-
-    console.log(tempArr);
     
     return <div className={styles.homePage}>
 
-        
+        {/* If there is an error getting weather values, greeet the user and inform them that the api is not working*/}
         {weatherValues 
         ?   
             <div className={styles.title}> 
@@ -44,11 +46,13 @@ const HomePage = () => {
         }
         
         <br />
+
+        {/* Button to call the OpenAI models (Davinci and Dalle) and then navigate to the OOTD page*/}
         <button className={styles.button} onClick={() => alert("not set up yet dude")}>Generate an Outfit of the Day</button>
-        
 
         <h2><div className={styles.header}>Past Outfits</div></h2>
 
+        {/* Loop over all the user's past outfits for history*/}
       <div className={styles.outfitTileContainer}>
         {pastOutfits.map((outfitObj) => (
           <div className={styles.card} key={outfitObj.id}>
