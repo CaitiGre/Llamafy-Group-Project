@@ -3,6 +3,7 @@ import { Modal, Card, Box, Button, Typography, Grid } from "@mui/material";
 import { SliderPicker } from "react-color";
 import close from "./../../assets/close.png";
 import ClotheCustomisation from "../ClotheCustomisation/ClotheCustomisation";
+import axios from "axios";
 
 function ClothingSelectionModal({ selectedItem, showModal, onCloseModal }) {
   // All the states to be recorded in the new wardrobe item JSON
@@ -21,8 +22,8 @@ function ClothingSelectionModal({ selectedItem, showModal, onCloseModal }) {
   const handleColorChange = (value) => {
     setColor(value);
   };
-  // Function to creat new wardobe item JSON upon clicking the add button on the modal
-  const handleAddClick = () => {
+  // Function to create new wardobe item JSON upon clicking the add button on the modal
+  const handleAddClick = async () => {
     const selectedWardrobeItem = {
       name: selectedItem.name,
       style: selectedStyle,
@@ -32,11 +33,37 @@ function ClothingSelectionModal({ selectedItem, showModal, onCloseModal }) {
       sleeves: selectedSleeves,
       fabric: selectedFabric,
     };
+
+    try {
+      // Make a POST request to the server with the new wardrobe item data
+      const response = await axios.post(
+        "http://localhost:3006/wardrobeSelection/addWardrobeItem",
+        {
+          name: selectedItem.name,
+          style: selectedStyle,
+          pattern: selectedPattern,
+          length: selectedLength,
+          color: color.hex,
+          sleeves: selectedSleeves,
+          fabric: selectedFabric,
+        }
+      );
+      console.log("New Item added to your wardbrobe:", response.data);
+      alert(
+        "New Wardrobe item added successfully!"
+      );
+    } catch (error) {
+      console.error(error);
+      alert(
+        "An error occurred while trying to add an item to your wardrobe. Please try again later."
+      );
+    }
     // Updates the wardrobe state
     setWardrobe({
       ...wardrobe,
       [selectedWardrobeItem.name]: selectedWardrobeItem,
     });
+
     // Closes the Modal upon clicking the add button on the modal
     onCloseModal();
   };
@@ -69,7 +96,7 @@ function ClothingSelectionModal({ selectedItem, showModal, onCloseModal }) {
             <Box sx={{ position: "relative" }}>
               <Button
                 onClick={onCloseModal}
-                sx={{ position: "absolute", top: 0, right: 0, padding: "0px" }}
+                sx={{ position: "absolute", top: 0, right: 0, padding: "0" }}
               >
                 <img src={close} alt="close button" width="20px" />
               </Button>
@@ -80,7 +107,11 @@ function ClothingSelectionModal({ selectedItem, showModal, onCloseModal }) {
                 <Box>
                   <Typography
                     variant="h5"
-                    sx={{ paddingTop: "20px", paddingBottom: "15px" }}
+                    sx={{
+                      paddingTop: "4vh",
+                      paddingBottom: "2vh",
+                      color: "#58315c",
+                    }}
                   >
                     Colour
                   </Typography>

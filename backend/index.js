@@ -23,7 +23,7 @@ app.use("/wardrobeSelection", wardrobePageRouter);
 app.use("/profile", settingsProfilePageRouter);
 
 app.get('/', (req, res) => {
-  res.send('Hello, world!');
+  res.send('Llamify server is running');
 
 });
 

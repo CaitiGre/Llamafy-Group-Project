@@ -2,8 +2,9 @@ import React from "react";
 import styles from "./Heading.module.css";
 import { Box } from "@mui/material";
 
+/* This component takes a prop called "title" that will be used as the title
+ of all main pages*/
 function Heading({ title }) {
-  // This component takes a prop called "title" that will be used as the title of all main pages
   return (
     <React.Fragment>
       <Box className={styles.title}>

@@ -1,3 +1,9 @@
+
+@font-face {
+  font-family: "moonlite-outline";
+  src: url("/src/assets/fonts/moonlite-outline.ttf");
+}
+
 body {
   background-size: cover;
   background-color: #e1d4e1;
