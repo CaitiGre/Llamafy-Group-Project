@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { getProfile, updateProfile, updatePassword, getAllEmails, getUserId, getAllUsers } = require('../controllers/SettingsProfilePage');
-const { user } = require('../database/database-config');
+const { getProfile, updateProfile, updatePassword } = require('../controllers/SettingsProfilePage');
 const bcrypt = require('bcryptjs');
 
 router.get('/getProfile/:userEmail', async (req, res) => {
@@ -33,21 +32,6 @@ router.post('/updateProfile/:userEmail', async (req, res) => {
 
         const validPassword = await bcrypt.compare(userInput.inputPassword, userData.password);
 
-        const allUsers = await getAllUsers();
-        // console.log("allUsers:", allUsers);
-
-        let isEmailValid = true;
-        allUsers.forEach((user) => {
-            if (userData.id !== user.id) {
-                if (userInput.email === user.email) {
-                    isEmailValid = false;
-                }
-            }
-        });
-
-        console.log('isEmailValid:', isEmailValid);
-
-
         if (validPassword) {
 
             // If there is new password -> update password
@@ -55,23 +39,12 @@ router.post('/updateProfile/:userEmail', async (req, res) => {
                 const hashedPassword = await bcrypt.hash(newPassword, salt);
                 updatePassword(userInput, hashedPassword);
             }
-
-            if (isEmailValid) {
-                console.log('isEmailValid true:', isEmailValid);
-
-                await updateProfile(req.body);
-                res.status(201).json({ validPass: true, validEmail: true, updatedProfile: true });
-            } else {
-                console.log('isEmailValid false:', isEmailValid);
-
-                res.status(201).json({ validPass: true, validEmail: false, updateProfile: false });
-                console.log("Email exists");
-            }
+            await updateProfile(req.body);
+            res.status(201).json({ validPass: true });
 
         } else {
-            res.status(201).json({ validPass: false, validEmail: true });
+            res.status(201).json({ validPass: false });
         }
-
 
     } catch (error) {
         console.error(error);

@@ -24,21 +24,18 @@ function Profile() {
 
     const [profileData, setProfileData] = useState({});
 
-    // const [currentPassword, setCurrentPassword] = useState('');
-
     // Get user's email from cookie once cookie's set up
     const userEmail = "test1@sth.com";
 
     // Get user's current profile data from database
-    const { data: dataObj, isLoading } = useGet(`http://localhost:3006/profile/getProfile/${userEmail}`); // Need to change this and all other queries using email to use id (if email can be changed)
+    const { data: dataObj, isLoading } = useGet(`http://localhost:3006/profile/getProfile/${userEmail}`);
 
     useEffect(() => {
         if (!isLoading && dataObj) {
 
             setProfileData(dataObj.userData); // Assign the object containing properties needed to profileData.
 
-            // setCurrentPassword(dataObj.userData.password);
-            console.log(profileData.password);
+            // console.log(profileData.password);
 
             setData(
                 {
@@ -61,6 +58,14 @@ function Profile() {
 
     const inputData = [
         {
+            displayName: "Email",
+            type: "email",
+            name: "email",
+            id: "profileEmail",
+            value: data.email,
+            readOnly: true
+        },
+        {
             displayName: "First Name",
             type: "text",
             name: "fname",
@@ -74,14 +79,6 @@ function Profile() {
             id: "lname",
             value: data.lname,
         },
-        {
-            displayName: "Email",
-            type: "email",
-            name: "email",
-            id: "email",
-            value: data.email,
-        },
-
         {
             displayName: "Gender",
             type: "text",
@@ -146,10 +143,8 @@ function Profile() {
         event.preventDefault();
         console.log(JSON.stringify(data)); // Testing
 
-        if (data.newPassword || data.reNewPassword) {
-            if (data.newPassword !== data.reNewPassword) {
-                alert("Your new passwords must match.");
-            }
+        if ((data.newPassword || data.reNewPassword) && (data.newPassword !== data.reNewPassword)) {
+            alert("Your new passwords must match.");
         } else {
 
             try {
@@ -163,33 +158,15 @@ function Profile() {
                     size: data.size,
                     password: data.newPassword,
                     inputPassword: data.password,
-                    id: profileData.id
                 });
 
-                // if (!response.data.validEmail) {
-                //     console.log("valid email: ", response);
-                //     alert("Email already exists! Please try another one.");
-                // }
+                console.log("new password to post:", data.newPassword);
 
-                // console.log("valid email: ", response.data.validEmail);
-
-                // if (response.data.validPass && response.data.validEmail) {
-                //     console.log("true - response.data.validPass: ", response.data.validPass);
-                //     alert('Update successful!');
-                // } else {
-                //     console.log("false - response.data.validPass: ", response.data.validPass);
-                //     alert('Incorrect password. Please try again!');
-                // }
-
-                if (response.data.validEmail && response.data.validPass) {
-                    console.log('validEmail 1: ', response.data.validEmail, 'validPass 1: ', response.data.validPass);
+                if (response.data.validPass) {
+                    console.log("true - response.data.validPass: ", response.data.validPass);
                     alert('Update successful!');
-
-                } else if (!response.data.validEmail) {
-                    console.log('validEmail 2: ', response.data.validEmail);
-                    alert('Email already exist. Please try again.')
-                } else if (!response.data.validPass) {
-                    console.log('validPass 2: ', response.data.validPass);
+                } else {
+                    console.log("false - response.data.validPass: ", response.data.validPass);
                     alert('Incorrect password. Please try again!');
                 }
 
@@ -203,7 +180,7 @@ function Profile() {
 
     return (
         <>
-            {profileData ? (
+            {(!isLoading && dataObj) ? (
                 <div className={styles.formContainer}>
                     <form onSubmit={handleSubmit}>
                         {inputData.map((item) => (
@@ -235,6 +212,8 @@ function Profile() {
                                         defaultValue={item.value}
                                         onChange={handleChange}
                                         placeholder={item.value}
+                                        readOnly={item.readOnly}
+                                        style={item.readOnly && { backgroundColor: "#e4e0e0" }}
                                     />
 
                                 </Grid>
@@ -246,7 +225,8 @@ function Profile() {
                 </div>
             )
                 :
-                <p>Loading...</p>}
+                <div><p>Loading...</p></div>
+            }
         </>
 
     );
