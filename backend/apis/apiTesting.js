@@ -68,24 +68,24 @@ Respond in the below format only, substituting % with the values. Do not provide
 }`;
 
 
-const format = {
-  "recommendation1" : {
-    "top": [
-        {"id": "%", "description": "%", "colour": "%", "subCategory": "%"}
-    ],
-    "bottom": [
-        {"id": "%", "description": "%", "colour": "%", "subCategory": "%"}
-    ],
-    "onePiece": [
-        {"id": "%", "description": "%", "colour": "%", "subCategory": "%"}
-    ],
-    "shoes": [
-        {"id": "%", "description": "%", "colour": "%", "subCategory": "%"}
-    ],
-    "dalle": "%"
-  },
-  "recommendation2" : {"top" : "%..."},
-}
+// const format = {
+//   "recommendation1" : {
+//     "top": [
+//         {"id": "%", "description": "%", "colour": "%", "subCategory": "%"}
+//     ],
+//     "bottom": [
+//         {"id": "%", "description": "%", "colour": "%", "subCategory": "%"}
+//     ],
+//     "onePiece": [
+//         {"id": "%", "description": "%", "colour": "%", "subCategory": "%"}
+//     ],
+//     "shoes": [
+//         {"id": "%", "description": "%", "colour": "%", "subCategory": "%"}
+//     ],
+//     "dalle": "%"
+//   },
+//   "recommendation2" : {"top" : "%..."},
+// }
 
 async function generateAnswer() {
     try {
@@ -121,7 +121,8 @@ async function generateAnswer() {
     imgGen(dallePrompt3);
 
     } catch (dalleErr) {
-      console.log(dalleErr);
+      console.log(dalleErr.response.status);
+      console.log(dalleErr.response.statusText);
     }
     } catch (error) {
       console.log(error);
