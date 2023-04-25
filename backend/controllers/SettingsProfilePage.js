@@ -14,7 +14,7 @@ async function getProfile(userEmail) {
     }
 }
 
-// Update user profile without updating user password
+// Update user profile without updating user password and email
 async function updateProfile(user) {
     try {
         const conn = await pool.getConnection();
@@ -47,50 +47,5 @@ async function updatePassword(user, hashedPassword) {
         throw error;
     }
 }
-
-
-// async function getAllEmails() {
-//     try {
-//         const conn = await pool.getConnection();
-//         const result = await conn.query(
-//             `SELECT email FROM Users`
-//         );
-//         conn.release();
-//         return result[0];
-//     } catch (error) {
-//         console.error(error);
-//         throw error;
-//     }
-// }
-
-// async function getUserId(userEmail) {
-//     try {
-//         const conn = await pool.getConnection();
-//         await conn.query(`
-//         GET email FROM Users WHERE email='${userEmail}'`
-//         );
-//         conn.release();
-//     } catch (error) {
-//         console.error(error);
-//         throw error;
-//     }
-// }
-
-// async function getAllUsers() {
-//     try {
-//         const conn = await pool.getConnection();
-//         const result = await conn.query(
-//             `SELECT * FROM Users`
-//         );
-//         conn.release();
-//         return result[0];
-//     } catch (error) {
-//         console.error(error);
-//         throw error;
-//     }
-// }
-
-
-
 
 module.exports = { getProfile, updateProfile, updatePassword };

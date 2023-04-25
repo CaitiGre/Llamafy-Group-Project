@@ -25,11 +25,6 @@ router.post('/updateProfile/:userEmail', async (req, res) => {
 
         const userData = await getProfile(userEmail);
 
-        // console.log("userData", userData); // Testing
-
-        // console.log("input password: ", userInput.inputPassword);
-        // console.log("user password: ", userData.password);
-
         const validPassword = await bcrypt.compare(userInput.inputPassword, userData.password);
 
         if (validPassword) {
@@ -39,6 +34,8 @@ router.post('/updateProfile/:userEmail', async (req, res) => {
                 const hashedPassword = await bcrypt.hash(newPassword, salt);
                 updatePassword(userInput, hashedPassword);
             }
+
+            // Update other information in profile except email
             await updateProfile(req.body);
             res.status(201).json({ validPass: true });
 

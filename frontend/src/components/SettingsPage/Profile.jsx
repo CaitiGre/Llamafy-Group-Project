@@ -3,11 +3,8 @@ import { useState, useEffect } from "react";
 import styles from './SettingsPage.module.css';
 import useGet from '../../helpers/useGet';
 import axios from 'axios';
-// import bcrypt from 'bcryptjs';
 
 function Profile() {
-
-    // const salt = bcrypt.genSaltSync(10);
 
     const [data, setData] = useState({
         fname: '',
@@ -33,9 +30,8 @@ function Profile() {
     useEffect(() => {
         if (!isLoading && dataObj) {
 
-            setProfileData(dataObj.userData); // Assign the object containing properties needed to profileData.
-
-            // console.log(profileData.password);
+            // Assign the object containing properties needed to profileData.
+            setProfileData(dataObj.userData);
 
             setData(
                 {
@@ -141,7 +137,6 @@ function Profile() {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        console.log(JSON.stringify(data)); // Testing
 
         if ((data.newPassword || data.reNewPassword) && (data.newPassword !== data.reNewPassword)) {
             alert("Your new passwords must match.");
@@ -204,7 +199,6 @@ function Profile() {
                                     display={'flex'}
                                     justifyContent="flex-start">
 
-                                    {/* input using normal tag - does not give warning re. controlled field becoming uncontrolled */}
                                     <input className={styles.field}
                                         type={item.type}
                                         name={item.name}
