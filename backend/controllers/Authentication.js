@@ -3,7 +3,9 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const bcrypt = require('bcryptjs');
 const pool = require('../database/pool');
-
+/**
+ * Passport-local strategy used for authentication. This allows for authenticating using a username and password.
+ */
 passport.use(new LocalStrategy(
     async (username, password, done) => {
         try {
@@ -25,7 +27,31 @@ passport.use(new LocalStrategy(
     }
 ));
 
+// Serialize user ID into the session
+passport.serializeUser((user, done) => {
+    done(null, user.id);
+  });
+  
+  // Deserialize user by ID
+  passport.deserializeUser(async (id, done) => {
+    try {
+      const conn = await pool.getConnection();
+      const [rows] = await conn.query('SELECT * FROM Users WHERE id = ?', [id]);
+      const user = rows[0];
+      conn.release();
+  
+      if (!user) {
+        return done(null, false, { message: 'User not found.' });
+      }
+  
+      done(null, user);
+    } catch (err) {
+      done(err);
+    }
+  });
+
 function login(req, res, next) {
+    //specifying the "local" strategy to authenticate requests. Sets the sessionID and redirects to / if successful. 
     passport.authenticate('local', { session: true }, (err, user, info) => {
         if (err) {
             return next(err);
@@ -47,6 +73,7 @@ function logout(req, res) {
     req.session.destroy();
     res.clearCookie('connect.sid'); // Clear the session cookie
     res.json({ message: 'Logged out' });
+    //redirect?
 }
 
 module.exports = {

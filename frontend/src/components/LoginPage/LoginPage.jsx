@@ -2,7 +2,6 @@ import './LoginPage.module.css';
 import { Box, Input, InputLabel, Typography } from "@mui/material";
 import { useState } from "react";
 import styles from './LoginPage.module.css';
-import bcrypt from 'bcryptjs';
 
 function LoginPage() {
 
@@ -12,18 +11,19 @@ function LoginPage() {
     });
 
     const handleChange = (event) => {
-        setData({ [event.target.name]: event.target.value });
+        setData(prevState => ({ ...prevState, [event.target.name]: event.target.value }));
     };
-
 
     console.log(data);
 
     const handleSubmit = async (event) => {
 
         event.preventDefault();
+        console.log(data.email);
+        console.log(data.password);
 
         try {
-            const response = await fetch('http://localhost:3306/auth/login', {
+            const response = await fetch('http://localhost:3006/auth/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -32,13 +32,13 @@ function LoginPage() {
                     username: data.email,
                     password: data.password,
                 }),
+                credentials: 'include'
             });
 
             if (response.ok) {
                 const result = await response.json();
-                console.log(result);
                 alert(result.message);
-                // Send user to Home Page
+                window.location.href = '/';
             } else {
                 const error = await response.json();
                 console.error(error);
