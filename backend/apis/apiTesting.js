@@ -93,7 +93,7 @@ async function generateAnswer() {
         model: "text-davinci-003",
         prompt: prompt,
         temperature: 0.2,
-        max_tokens: 1000,
+        max_tokens: 2047,
         n: 1,
         stop: null,
         echo : false,
