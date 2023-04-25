@@ -21,10 +21,10 @@
 
 
 
-#email, #location, #password, #repassword {
-    width: 210%;
+#email, #password, #repassword {
+    width: 230%;
     position: relative;
-    left: -55%;
+    left: -66%;
 }
 
 .form-container {

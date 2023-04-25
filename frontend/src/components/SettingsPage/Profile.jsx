@@ -27,6 +27,13 @@ function Profile() {
         alert(JSON.stringify(data));
     }
 
+    const locations = [
+        "Auckland",
+        "Wellington",
+        "Seoul",
+        "Paris",
+        "Tokyo"
+    ];
 
     const inputData = [
         {
@@ -72,11 +79,12 @@ function Profile() {
         },
         {
             displayName: "Location",
-            type: "text",
+            type: "select",
             name: "location",
             id: "location",
             value: data.location,
-            placeHolder: "Location from database"
+            placeHolder: "Location from database",
+            options: locations
         },
         {
             displayName: "Password",
@@ -111,32 +119,60 @@ function Profile() {
                         <Grid item xs={8}
                             display={'flex'}
                             justifyContent="flex-start">
-                            <Input
-                                sx={{
-                                    borderRadius: "20px",
-                                    boxShadow: "2px 2px 5px rgba(255, 255, 255, 0.8)",
-                                    height: "30px",
-                                    width: "90%",
-                                    marginBottom: "15px",
-                                    backgroundColor: "white",
-                                    margin: "0px"
-                                }}
-                                type={item.type}
-                                name={item.name}
-                                id={item.id}
-                                value={item.value}
-                                onChange={handleChange}
-                                inputProps={{ style: { textAlign: "center" } }}
-                                disableUnderline={true}
-                                placeholder={item.placeHolder}
-                            />
+                            {item.type === "select" ? (
+                                <select
+                                    name={item.name}
+                                    id={item.id}
+                                    value={item.value}
+                                    onChange={handleChange}
+                                    style={{
+                                        borderRadius: "20px",
+                                        boxShadow: "2px 2px 5px rgba(255, 255, 255, 0.8)",
+                                        height: "30px",
+                                        width: "90%",
+                                        marginBottom: "15px",
+                                        backgroundColor: "white",
+                                        margin: "0px",
+                                        textAlign: "center",
+                                    }}
+                                >
+                                    <option value="" disabled>
+                                        {item.placeHolder}
+                                    </option>
+                                    {item.options.map((option) => (
+                                        <option key={option} value={option}>
+                                            {option}
+                                        </option>
+                                    ))}
+                                </select>
+                            ) : (
+                                <Input
+                                    sx={{
+                                        borderRadius: "20px",
+                                        boxShadow: "2px 2px 5px rgba(255, 255, 255, 0.8)",
+                                        height: "30px",
+                                        width: "90%",
+                                        marginBottom: "15px",
+                                        backgroundColor: "white",
+                                        margin: "0px"
+                                    }}
+                                    type={item.type}
+                                    name={item.name}
+                                    id={item.id}
+                                    value={item.value}
+                                    onChange={handleChange}
+                                    inputProps={{ style: { textAlign: "center" } }}
+                                    disableUnderline={true}
+                                    placeholder={item.placeHolder}
+                                />
+                            )}
                         </Grid>
 
                     </Grid>
                 ))}
-                <button id="submit-button" type="submit" className={styles.submitButton}>Submit</button>
-            </form >
-        </div>
+            <button id="submit-button" type="submit" className={styles.submitButton}>Submit</button>
+        </form >
+        </div >
     );
 }
 

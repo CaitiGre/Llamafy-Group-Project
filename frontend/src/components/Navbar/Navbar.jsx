@@ -5,7 +5,7 @@ import style from "./Navbar.module.css";
 import ColourChangeLlama from "../../assets/colourChangeLlama.gif";
 import LlamaIcon from "../../assets/llamaProfile.png";
 import Sidebar from "../Sidebar/Sidebar";
-import { HiMenu } from "react-icons/hi";
+//import { HiMenu } from "react-icons/hi";
 
 const Navbar = () => {
   const [initalScrollPosition, setScrollPosition] = useState(0);
