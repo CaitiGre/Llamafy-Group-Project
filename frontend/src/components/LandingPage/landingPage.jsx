@@ -1,21 +1,20 @@
 import styles from "./landingPage.module.css";
 import { NavLink } from "react-router-dom";
-import CluelessGif from "../../assets/cluelessCloset.gif";
 import ClothingRail from "../../assets/cothingRail.gif";
+import WardrobeChange from "../../assets/Wardorbe-Change.gif";
 import { Box, Button, Grid } from "@mui/material";
 
 function LandingPage() {
-
   const classes = {
     root: {
-      flexGrow: 1
+      flexGrow: 1,
     },
 
     paper: {
       padding: 20,
-      textAligh: "justify"
-    }
-  }
+      textAligh: "justify",
+    },
+  };
 
   return (
     /** A div that contains the main components for the landing page. Contains three separate divs.
@@ -25,7 +24,7 @@ function LandingPage() {
      **/
     <div>
       <Box className={styles.landingPage}>
-        <div style={{ width: "cover", height: "700px", margin: "auto" }}>
+        <div style={{ width: "cover", height: "100vh", margin: "auto" }}>
           <h1 className={styles.landingPageTitle}>LLAMAFY</h1>
           <h2 className={styles.landingPageSubtitle}>
             IT'S TIME TO BUTTON UP OR SHUT UP
@@ -43,11 +42,14 @@ function LandingPage() {
       <h2 className={styles.llamaSubheading}>
         No time for drama? Trust in Llama!
       </h2>
-      <div stle={classes.root}></div>
+      <div style={classes.root}></div>
+      <Box sx={{
+        flexGrow: 1,
+        }}>
       <Grid
         className={styles.bottomSection}
         flexDirection={"column"}
-        height={"700px"}
+        height={"70vh"}
         width={"100%"}
       >
         <Box
@@ -56,7 +58,7 @@ function LandingPage() {
           justifyContent={"space-evenly"}
           alignContent={"space-evenly"}
           margin={"auto"}
-          padding={"35px"}
+          padding={"3.5vh"}
           width={"100%"}
           className={styles.aboutContainer}
         >
@@ -76,12 +78,12 @@ function LandingPage() {
             className={styles.gifContainer}
             display={"flex"}
             style={{
-              backgroundImage: `url(${CluelessGif})`,
-              width: "250px",
-              height: "250px",
+              backgroundImage: `url(${ClothingRail})`,
+              width: "25vh",
+              height: "25vh",
               backgroundPosition: "center",
               backgroundSize: "cover",
-              border: "1px solid white",
+              border: "0.3vh solid white",
             }}
           ></Box>
         </Box>
@@ -92,18 +94,18 @@ function LandingPage() {
           justifyContent={"space-evenly"}
           alignContent={"space-evenly"}
           margin={"auto"}
-          padding={"35px"}
+          padding={"3.5vh"}
           width={"100%"}
         >
           <Box
             className={styles.parallaxContainer}
             style={{
-              backgroundImage: `url(${ClothingRail})`,
-              width: "250px",
-              height: "250px",
+              backgroundImage: `url(${WardrobeChange})`,
+              width: "25vh",
+              height: "25vh",
               backgroundPosition: "center",
               backgroundSize: "cover",
-              border: "1px solid white",
+              border: "0.3vh solid white",
             }}
           />
           <p>
@@ -123,6 +125,7 @@ function LandingPage() {
           </p>
         </Box>
       </Grid>
+      </Box>
     </div>
   );
 }

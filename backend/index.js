@@ -1,9 +1,13 @@
+
 const express = require('express');
 const bodyParser = require('body-parser');
 const registrationPageRouter = require('./routes/RegistrationPage');
 const authenticationRouter = require('./routes/Authentication');
 const authenticationController = require('./controllers/Authentication');
 const passport = authenticationController.passport;
+const wardrobePageRouter = require("./routes/WardrobePage");
+const weatherProxy = require('./routes/WeatherProxy');
+
 
 const app = express();
 const port = process.env.PORT || 3006;
@@ -19,6 +23,7 @@ app.use((req, res, next) => {
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+
 //express-session middleware
 app.use(session({
   secret: 'your-session-secret',
@@ -30,16 +35,20 @@ app.use(session({
   }
 }));
 
+
+
+// Routes here
+app.use('/weather', weatherProxy);
+app.use("/registration", registrationPageRouter);
+app.use("/wardrobeSelection", wardrobePageRouter);
+app.use('/auth/login', authenticationRouter);
 app.use(passport.initialize());
 app.use(passport.session());
-
-app.use('/registration', registrationPageRouter);
-
-app.use('/auth/login', authenticationRouter);
 //receive and direct request for authentication.
 
 app.get('/', (req, res) => {
-  res.send('Hello, world!');
+  res.send('Llamify server is running');
+
 });
 
 app.listen(port, () => {

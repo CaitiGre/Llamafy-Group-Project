@@ -3,6 +3,18 @@ const pool = require('../database/pool');
 async function registerUser(data) {
   try {
     const conn = await pool.getConnection();
+
+    // Check if the email already exists
+    const emailCheck = await conn.query(
+      'SELECT COUNT(*) AS count FROM Users WHERE email = ?',
+      [data.email]
+    );
+    if (emailCheck[0].count > 0) {
+      // If the email exists, throw an error
+      throw new Error('An account with that email already exists');
+    }
+
+    // If the email is unique, insert new user data
     const result = await conn.query(
       'INSERT INTO Users (firstName, lastName, email, password, location, gender) VALUES (?, ?, ?, ?, ?, ?)',
       [data.firstName, data.lastName, data.email, data.password, data.location, data.gender]
@@ -10,9 +22,10 @@ async function registerUser(data) {
     conn.release();
     return result[0].insertId;
   } catch (error) {
-    console.error(error);
+    
     throw error;
   }
+  
 }
 
 module.exports = { registerUser };
