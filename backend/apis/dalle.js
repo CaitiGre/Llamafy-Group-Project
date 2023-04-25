@@ -12,21 +12,21 @@ const openai = new OpenAIApi(configuration);
 
 
 // ********Def response variables here****************
-let prompt = "Photograph of a man with warm skin tone wearing black trackpants, boots, and a white long-sleeve top.";
-let numImages = 1;
-let size = "512x512"
-let resFormat = "url"
-let user = "llama developers"
+// let prompt = "Photograph of a man with warm skin tone wearing black trackpants, boots, and a white long-sleeve top.";
+// let numImages = 1;
+// let size = "512x512"
+// let resFormat = "url"
+// let user = "llama developers"
 // ***************************************************
 
-const imgGen = async () => {
+const imgGen = async (prompt) => {
 
   const response = await openai.createImage({
     prompt: prompt,
-    n: numImages ? numImages : 1,
-    size: size ? size : "1024x1024",
-    response_format : resFormat ? resFormat : "url",
-    user : user ? user : "unverified user!"
+    n: 1,
+    size: "512x512",
+    response_format : "url",
+    // user : "Lllamas",
   });
 
   
@@ -48,4 +48,6 @@ const imgGen = async () => {
   return genUrl;
 }
 
-imgGen();
+// imgGen();
+
+module.exports = { imgGen };

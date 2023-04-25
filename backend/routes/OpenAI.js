@@ -1,19 +1,59 @@
-
 // set up dotenv and grab openAI key
 require('dotenv').config();
 const key = process.env.OPEN_AI_KEY;
 
 // set up express
-const axios = require('axios');
 const express = require('express');
 const router = express.Router();
 
-// set up to instantiate openAI obj
+const axios = require('axios');
+
+// set up and instantiate openAI obj
 const { Configuration, OpenAIApi } = require("openai");
 const configuration = new Configuration({
     apiKey: key,
+    organisation : "Llamafy"
 })
 const openAi = new OpenAIApi(configuration);
+
+
+const data = {
+    tops : [
+        {id : 1, description : "plain", colour : "white", subCategory : "longsleeve"},
+        {id : 400, description : "extremely summery linen", colour : "blue", subCategory : "dressShirt"}
+    ],
+    bottoms: [
+        {id : 2, description : "riddled with holes", colour : "rainbow", subCategory : "shorts"},
+        {id : 3, description : "adidas trackpants", colour : "black", subCategory : "trackpants"}
+    ],
+    one_piece:
+    [
+        {id : 100, description : "coal mining overalls", colour : "coal", subCategory : "overalls"},
+        {id : 101, description : "very short and flirty", colour : "yellow", subCategory : "dress"}
+    ],
+    shoes:
+    [
+        {id : 9000, description : "fancy italian leather", colour : "tan", subCategory : "dress"},
+        {id : 1000, description : "standard doc marten's boots", colour : "brown", subCategory : "boots"}
+    ],
+}
+
+const responseFormat = {
+    top : [
+        {id : "%", description : "%", colour : "%", subCategory : "%"}
+    ],
+    bottom : [
+        {id : "%", description : "%", colour : "%", subCategory : "%"}
+    ],
+    one_piece : [
+        {id : "%", description : "%", colour : "%", subCategory : "%"}
+    ],
+    shoes : [
+        {id : "%", description : "%", colour : "%", subCategory : "%"}
+    ],
+}
+
+
 
 
 
@@ -45,7 +85,6 @@ app.post('/davinci', async (req, res) => {
     }
 
 })
-
 
 
 app.get('/dalle', async (req, res) => {
