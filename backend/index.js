@@ -27,7 +27,7 @@ app.use(bodyParser.json());
 
 //express-session middleware
 app.use(session({
-  secret: 'your-session-secret',
+  secret: 'i-like-butterchicken',
   resave: false,
   saveUninitialized: false,
   cookie: {
@@ -42,7 +42,7 @@ app.use(session({
 app.use('/weather', weatherProxy);
 app.use("/registration", registrationPageRouter);
 app.use("/wardrobeSelection", wardrobePageRouter);
-app.use("/auth/login", authenticationRouter);
+app.use("/auth", authenticationRouter);
 app.use(passport.initialize());
 app.use(passport.session());
 //receive and direct request for authentication.

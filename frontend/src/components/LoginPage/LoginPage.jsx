@@ -2,6 +2,7 @@ import './LoginPage.module.css';
 import { Box, Input, InputLabel, Typography } from "@mui/material";
 import { useState } from "react";
 import styles from './LoginPage.module.css';
+import getUserEmail from '../../helpers/getUserEmail';
 
 function LoginPage() {
 
@@ -14,13 +15,10 @@ function LoginPage() {
         setData(prevState => ({ ...prevState, [event.target.name]: event.target.value }));
     };
 
-    console.log(data);
-
     const handleSubmit = async (event) => {
 
         event.preventDefault();
-        console.log(data.email);
-        console.log(data.password);
+      
 
         try {
             const response = await fetch('http://localhost:3006/auth/login', {
@@ -38,7 +36,7 @@ function LoginPage() {
             if (response.ok) {
                 const result = await response.json();
                 alert(result.message);
-                window.location.href = '/';
+                window.location.href = '/wardrobeSelection';
             } else {
                 const error = await response.json();
                 console.error(error);

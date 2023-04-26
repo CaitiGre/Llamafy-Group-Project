@@ -22,7 +22,6 @@ const Navbar = () => {
 
     setScrollPosition(currentPageScroll);
   };
-
   /**Handles the scrolling event to trigger the navbar transition */
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);

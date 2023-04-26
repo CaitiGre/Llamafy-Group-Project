@@ -63,17 +63,23 @@ function login(req, res, next) {
             if (err) {
                 return next(err);
             }
+            res.cookie('user_email', user.email, { httpOnly: false, path: '/' });
             return res.json({ message: 'Logged in' });
         });
     })(req, res, next);
 }
 
 function logout(req, res) {
-    req.logout();
-    req.session.destroy();
-    res.clearCookie('connect.sid'); // Clear the session cookie
-    res.json({ message: 'Logged out' });
-    //redirect?
+    req.session.passport = null;
+    
+    req.session.destroy((err) => {
+        if (err) {
+            return res.status(500).json({ message: 'Error while logging out.' });
+        }
+        res.clearCookie('connect.sid');
+        res.clearCookie('user_email'); // Clear the user_email cookie
+        res.json({ message: 'Logged out' });
+    });
 }
 
 module.exports = {
