@@ -27,13 +27,15 @@ async function generateOutfits(user_email) {
             echo: false,
         });
 
-        const responseText = response.data.choices[0].text;
-        console.log(responseText)
+        let responseText = response.data.choices[0].text;
+        responseText = responseText.trim();
+        console.log(responseText);
 
         const tokensUsed = response.data.usage.total_tokens;
 
         try {
-            const toJson = JSON.parse(responseText);
+            let toJson = JSON.stringify(responseText);
+            toJson = JSON.parse(responseText);
 
             const dallePrompt1 = toJson.recommendation1.dalle;
             const dallePrompt2 = toJson.recommendation2.dalle;
