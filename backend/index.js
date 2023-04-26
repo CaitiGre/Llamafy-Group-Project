@@ -3,6 +3,8 @@ const bodyParser = require("body-parser");
 const registrationPageRouter = require("./routes/RegistrationPage");
 const wardrobePageRouter = require("./routes/WardrobePage");
 const weatherProxy = require('./routes/WeatherProxy');
+const generator = require('./routes/Generator')
+
 
 const app = express();
 const port = process.env.PORT || 3006;
@@ -22,6 +24,7 @@ app.use(bodyParser.json());
 app.use('/weather', weatherProxy);
 app.use("/registration", registrationPageRouter);
 app.use("/wardrobeSelection", wardrobePageRouter);
+app.use("/api", generator);
 
 app.get('/', (req, res) => {
   res.send('Llamify server is running');
