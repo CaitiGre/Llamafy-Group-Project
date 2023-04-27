@@ -134,8 +134,7 @@ async function promptGenerator(user_email) {
     var prompt = `Given the following JSON of clothes, suggest three outfits to wear today for a ${userData}, given that the temperature outside is 20 degrees celsius and partly cloudy.
   ${JSON.stringify(userWardrobe)}
   Respond in the below format only, substituting % with the values. Do not provide a value for a category if it is covered by another. In the "dalle" property, provide a comprehensive prompt to give to the DALL-E model. Focus on providing detail on colour.
-  {
-  "recommendation1" : {
+  {"recommendation1" : {
     "top": [
         {"id": "%", "description": "%", "colour": "%", "subCategory": "%"}
     ],
@@ -150,8 +149,7 @@ async function promptGenerator(user_email) {
     ],
     "dalle": "A full-body lookbook style photograph of a male model wearing %"
   },
-  "recommendation2" : {"top" : "%..."},
-  }`;
+  "recommendation2" : {"top" : "%..."}}`;
 
     return prompt;
 }
