@@ -2,15 +2,15 @@
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   font-size: 20vw;
   color: rgba(255, 255, 255, 0);
-  padding-top: 15vh;
   -webkit-text-stroke: 5px #28002c;
+  margin-bottom: 10vh;
+  margin-top: 20vh;
 }
 
 .landingPageSubtitle {
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
-  font-size: 5vw;
+  font-size: 4vw;
   color: rgba(255, 255, 255, 0);
-  padding: 7vh;
   color: #58315c;
 }
 
@@ -27,14 +27,14 @@
   display: none;
 }
 
-.buttonContainer{
-    display: flex;
-    justify-content: space-between;
-    padding: 17vh;
-    padding-top: 3vh;
-    padding-bottom: 3vh;
-    z-index: 1;
-    width: 50vh;
+.buttonContainer {
+  display: flex;
+  justify-content: space-between;
+  padding: 17vh;
+  padding-top: 3vh;
+  padding-bottom: 3vh;
+  z-index: 1;
+  width: 50vh;
 }
 
 .landingLoginButton,
@@ -53,6 +53,10 @@
   margin: 0px 5px;
   outline: none;
   transition: background-color 0.3s, border-color 0.3s;
+}
+
+.registerButton {
+  margin-right: "2vw";
 }
 
 .landingLoginButton:hover,
