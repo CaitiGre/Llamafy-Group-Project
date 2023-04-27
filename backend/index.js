@@ -21,10 +21,6 @@ app.use(cors({
   credentials: true
 }));
 
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
-
-
 //express-session middleware
 app.use(session({
   secret: 'i-like-butterchicken',
@@ -36,17 +32,18 @@ app.use(session({
   }
 }));
 
-
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Routes here
 app.use('/weather', weatherProxy);
 app.use("/registration", registrationPageRouter);
 app.use("/wardrobeSelection", wardrobePageRouter);
 app.use("/auth", authenticationRouter);
-app.use(passport.initialize());
-app.use(passport.session());
-//receive and direct request for authentication.
 
+//receive and direct request for authentication.
 app.get('/', (req, res) => {
   res.send('Llamify server is running');
 

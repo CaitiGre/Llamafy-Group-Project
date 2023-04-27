@@ -1,4 +1,3 @@
-// controllers/authentication.js
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const bcrypt = require('bcryptjs');
@@ -12,7 +11,7 @@ passport.use(new LocalStrategy(
             const conn = await pool.getConnection();
             const [rows] = await conn.query('SELECT * FROM Users WHERE email = ?', [username]);
             const user = rows[0];
-            
+
             if (!user) {
                 return done(null, false, { message: 'Incorrect username.' });
             }
@@ -30,25 +29,25 @@ passport.use(new LocalStrategy(
 // Serialize user ID into the session
 passport.serializeUser((user, done) => {
     done(null, user.id);
-  });
-  
-  // Deserialize user by ID
-  passport.deserializeUser(async (id, done) => {
+});
+
+// Deserialize user by ID
+passport.deserializeUser(async (id, done) => {
     try {
-      const conn = await pool.getConnection();
-      const [rows] = await conn.query('SELECT * FROM Users WHERE id = ?', [id]);
-      const user = rows[0];
-      conn.release();
-  
-      if (!user) {
-        return done(null, false, { message: 'User not found.' });
-      }
-  
-      done(null, user);
+        const conn = await pool.getConnection();
+        const [rows] = await conn.query('SELECT * FROM Users WHERE id = ?', [id]);
+        const user = rows[0];
+        conn.release();
+
+        if (!user) {
+            return done(null, false, { message: 'User not found.' });
+        }
+
+        done(null, user);
     } catch (err) {
-      done(err);
+        done(err);
     }
-  });
+});
 
 function login(req, res, next) {
     //specifying the "local" strategy to authenticate requests. Sets the sessionID and redirects to / if successful. 
@@ -70,16 +69,33 @@ function login(req, res, next) {
 }
 
 function logout(req, res) {
-    req.session.passport = null;
     
-    req.session.destroy((err) => {
-        if (err) {
-            return res.status(500).json({ message: 'Error while logging out.' });
-        }
-        res.clearCookie('connect.sid');
-        res.clearCookie('user_email'); // Clear the user_email cookie
-        res.json({ message: 'Logged out' });
+    req.logout(function (err) {
+        if (err) { return next(err); }
+        // res.clearCookie('user_email', { path: '/' }); // Clear the session ID
+        res.redirect('/');
     });
+    // req.session.destroy(function (err) {
+    //     if (!err) {
+    //         res.status(200).clearCookie('connect.sid', {path: '/'}).json({status: "Success"});
+    //         res.redirect('/');
+    //     } 
+
+    // });
+    //     req.session.passport = null;
+    // //    res.clearCookie('connect.sid', { domain: 'localhost' , path: '/' }); // Clear the session ID
+    //     //res.clearCookie('user_email', { domain: 'localhost' , path: '/' }); // Clear the user_email cookie
+    // req.session.destroy((err) => {
+    //     if (err) {
+    //         return res.status(500).json({ message: 'Error while logging out.' });
+    //     }
+
+    //     res.clearCookie('connect.sid', { domain: 'localhost', path: '/' }); // Clear the session ID
+    //     console.log("hi");
+    //     res.json({ message: 'Logged out' });
+    // });
+
+
 }
 
 module.exports = {

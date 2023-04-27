@@ -26,7 +26,7 @@ function CollapsibleSidebar() {
 
   async function handleLogOut() {
     try {
-      await axios.post('http://localhost:3006/auth/logout');
+      await axios.post('http://localhost:3006/auth/logout', { withCredentials: true });
       document.cookie = 'user_email=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
       setLoggedIn(false);
     } catch (err) {
