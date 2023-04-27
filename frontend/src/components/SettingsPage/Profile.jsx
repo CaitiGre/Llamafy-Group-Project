@@ -30,9 +30,9 @@ function Profile() {
     const locations = [
         "Auckland",
         "Wellington",
-        "Seoul",
-        "Paris",
-        "Tokyo"
+        "Christchurch",
+        "Dunedin",
+        "Invercargill"
     ];
 
     const inputData = [

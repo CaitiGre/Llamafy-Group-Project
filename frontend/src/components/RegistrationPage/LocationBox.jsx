@@ -6,9 +6,9 @@ export default function LocationBox({ data, handleChange }) {
     const locations = [
         "Auckland",
         "Wellington",
-        "Seoul",
-        "Paris",
-        "Tokyo"
+        "Christchurch",
+        "Dunedin",
+        "Invercargill"
     ];
 
     return (
