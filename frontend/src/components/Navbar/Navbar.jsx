@@ -64,6 +64,7 @@ const Navbar = () => {
 
           {!isMatch && (
             <Box
+            style={{ top: visible ? "0" : "-6vh" }}
               sx={{
                 display: "flex",
                 justifyContent: "center",
