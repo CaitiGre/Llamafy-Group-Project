@@ -25,6 +25,7 @@ const Navbar = () => {
   const handleScroll = () => {
     const currentPageScroll = window.pageYOffset;
 
+    /* Sets the height of the page scroll. Looks at the initial page scroll position of 0 and sets the height that it is visible */
     setVisible(
       (initalScrollPosition > currentPageScroll &&
         initalScrollPosition - currentPageScroll > 60) ||
@@ -43,28 +44,32 @@ const Navbar = () => {
 
   return (
     <React.Fragment>
-      <AppBar sx={{ background: "transparent", boxShadow: "none" }}>
+      <AppBar sx={{ background: "transparent", boxShadow: "none"}}
+      style={{ top: visible ? "0" : "-100vh" }}>
         <Toolbar
+        className="toolbarContainer"
           sx={{
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
+            fontFamily: "Franklin Gothic"
           }}
         >
           <Box sx={{ display: "flex", alignItems: "center" }}>
             <NavLink to="/">
-              <img src={Llama} alt="llama homepage icon" width="50px" />
+              <img src={Llama} alt="llama homepage icon" width="40px" />
             </NavLink>
             {isMatch && (
-              <Typography sx={{ fontSize: "2rem", paddingLeft: "10px" }}>
+              <NavLink to="/" style={{textDecoration: "none"}} >
+              <Typography sx={{ fontSize: "2rem", paddingLeft: "10px", color: "white" }}>
                 LLAMAFY
               </Typography>
+              </NavLink>
             )}
           </Box>
 
           {!isMatch && (
             <Box
-            style={{ top: visible ? "0" : "-6vh" }}
               sx={{
                 display: "flex",
                 justifyContent: "center",
@@ -90,7 +95,7 @@ const Navbar = () => {
                     fontSize: 20,
                   }}
                 >
-                  Outfit
+                  OUTFIT
                 </NavLink>
                 <NavLink
                   to="/wardrobe"
@@ -102,7 +107,7 @@ const Navbar = () => {
                     fontSize: 20,
                   }}
                 >
-                  Wardrobe
+                  WARDROBE
                 </NavLink>
                 <NavLink
                   to="/pastOutfits"
@@ -114,7 +119,7 @@ const Navbar = () => {
                     fontSize: 20,
                   }}
                 >
-                  Favourites
+                  FAVOURITES
                 </NavLink>
                 <NavLink
                   to="/settings"
@@ -126,7 +131,7 @@ const Navbar = () => {
                     fontSize: 20,
                   }}
                 >
-                  Settings
+                  SETTINGS
                 </NavLink>
               </Box>
               <Box
@@ -134,12 +139,13 @@ const Navbar = () => {
                   display: "flex",
                   justifyContent: "flex-end",
                   marginLeft: "auto",
+                  fontSize: 20
                 }}
               >
                 <Button sx={{ marginRight: "10px", color: "white" }}>
-                  Login
+                  LOGIN
                 </Button>
-                <Button sx={{ color: "white" }}>SignUp</Button>
+                <Button sx={{ color: "white" }}>REGISTER</Button>
               </Box>
             </Box>
           )}

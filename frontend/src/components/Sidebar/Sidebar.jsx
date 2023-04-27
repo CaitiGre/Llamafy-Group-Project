@@ -10,7 +10,7 @@ import {
 } from "@mui/material";
 import { NavLink } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu";
-const pages = ["Outfit", "Wardrobe", "Favourites", "Settings"];
+const pages = ["OUTFIT", "WARDROBE", "FAVOURITES", "SETTINGS"];
 const Sidebar = () => {
   const [openDrawer, setOpenDrawer] = useState(false);
 

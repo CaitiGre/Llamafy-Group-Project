@@ -1,6 +1,5 @@
 .landingPageTitle {
-  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
-  font-size: 20vw;
+  font-size: 15vw;
   color: rgba(255, 255, 255, 0);
   -webkit-text-stroke: 5px #28002c;
   margin-bottom: 10vh;
@@ -17,28 +16,23 @@
 .llamaSubheading {
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   font-size: 5vh;
-  color: #58315c;
-  -webkit-text-stroke: 1px #f0f0f0;
+  color: #f0f0f0;
   padding: 6vh;
   text-shadow: #2f2e31;
 }
 
-.parallax::-webkit-scrollbar {
-  display: none;
-}
 
 .buttonContainer {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   padding: 17vh;
   padding-top: 3vh;
   padding-bottom: 3vh;
+  gap: 10vh;
   z-index: 1;
-  width: 50vh;
 }
 
-.landingLoginButton,
-.registerButton {
+.buttonContainer Button {
   border-radius: 40px;
   box-shadow: 2px 2px 5px rgba(255, 255, 255, 0.8);
   text-align: center;
@@ -74,7 +68,7 @@
 .backgroundImage,
 .bottomSection {
   margin: 0;
-  width: 100vw;
+  
 }
 
 .aboutContainer,
@@ -83,7 +77,7 @@
   padding: 35px;
   justify-content: space-evenly;
   align-content: space-evenly;
-  width: 100vw;
+  
 }
 
 .aboutContainer2 p,
@@ -109,4 +103,17 @@
   padding: 20px;
   border-radius: 8%;
   box-shadow: 3px 5px rgba(255, 255, 255, 0.39);
+}
+
+@media screen and (max-width: 1200) {
+
+  .aboutContainer p, .aboutContainer2 p {
+    max-width: 50vh;
+    padding: 2vh;
+  }
+
+  .gifContainer, .parallaxContainer {
+    max-width: 20vh;
+  }
+  
 }
