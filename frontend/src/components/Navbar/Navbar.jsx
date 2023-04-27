@@ -19,6 +19,28 @@ const Navbar = () => {
   const isMatch = useMediaQuery(theme.breakpoints.down("md"));
   console.log(isMatch);
 
+  const [initalScrollPosition, setScrollPosition] = useState(0);
+  const [visible, setVisible] = useState(true);
+  /*Creates the hooks that account for the position of the navbar before scrolling down the page and sets when the navbar will be visible again based on the current scroll position against the previous scroll position */
+  const handleScroll = () => {
+    const currentPageScroll = window.pageYOffset;
+
+    setVisible(
+      (initalScrollPosition > currentPageScroll &&
+        initalScrollPosition - currentPageScroll > 60) ||
+        currentPageScroll < 10
+    );
+
+    setScrollPosition(currentPageScroll);
+  };
+
+  /**Handles the scrolling event to trigger the navbar transition */
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [initalScrollPosition, visible, handleScroll]);
+
   return (
     <React.Fragment>
       <AppBar sx={{ background: "transparent", boxShadow: "none" }}>
