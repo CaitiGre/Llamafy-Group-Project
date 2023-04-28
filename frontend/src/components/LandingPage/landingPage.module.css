@@ -74,17 +74,17 @@
 .aboutContainer,
 .aboutContainer2 {
   display: flex;
-  padding: 35px;
   justify-content: space-evenly;
   align-content: space-evenly;
-  
+  align-items: center;
 }
 
 .aboutContainer2 p,
 .aboutContainer p {
   display: flex;
-  padding: 40px;
+  height: fit-content;
   width: 70%;
+  padding: 4vh;
   background-color: rgba(255, 255, 255, 0.966);
   border-radius: 25px;
   box-shadow: 3px 5px rgba(255, 255, 255, 0.39);
@@ -95,25 +95,30 @@
 
 .gifContainer,
 .parallaxContainer {
-  height: 250px;
-  width: 250px;
+  height: 30vh;
+  width:30vh;
   background-color: white;
+  padding: 2vh;
   display: flex;
   z-index: 1;
-  padding: 20px;
   border-radius: 8%;
   box-shadow: 3px 5px rgba(255, 255, 255, 0.39);
 }
 
+.parallaxContainer{
+  padding: 5vh;
+
+}
+
 @media screen and (max-width: 1200) {
 
-  .aboutContainer p, .aboutContainer2 p {
-    max-width: 50vh;
-    padding: 2vh;
+  .aboutContainer, .aboutContainer2 {
+    flex-direction: column;
+    flex-wrap: wrap;
   }
-
+  
   .gifContainer, .parallaxContainer {
-    max-width: 20vh;
+    
   }
   
 }

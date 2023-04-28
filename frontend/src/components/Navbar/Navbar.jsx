@@ -45,7 +45,7 @@ const Navbar = () => {
   return (
     <React.Fragment>
       <AppBar sx={{ background: "transparent", boxShadow: "none"}}
-      style={{ top: visible ? "0" : "-100vh" }}>
+      style={{ top: visible ? "0" : "-20vh", transition: "top 0.2s" }}>
         <Toolbar
         className="toolbarContainer"
           sx={{

@@ -25,7 +25,7 @@ function LandingPage() {
      **/
     <React.Fragment>
       <Box className={styles.landingPage}>
-        <div style={{ width: "cover", height: "100vh", margin: "auto" }}>
+        <Box style={{ width: "cover", height: "100vh", margin: "auto" }}>
           <h1 className={styles.landingPageTitle}>LLAMAFY</h1>
           <h2 className={styles.landingPageSubtitle}>
             IT'S TIME TO BUTTON UP OR SHUT UP
@@ -38,12 +38,12 @@ function LandingPage() {
               <Button >REGISTER</Button>
             </NavLink>
           </Box>
-        </div>
+        </Box>
       </Box>
       <h2 className={styles.llamaSubheading}>
         No time for drama? Trust in Llama!
       </h2>
-      <div style={classes.root}></div>
+      
       <Box sx={{
         flexGrow: 1,
         }}>
@@ -92,7 +92,6 @@ function LandingPage() {
           alignContent: "space-evenly",
           margin: "auto",
           }}
-          
         >
           <Box
             className={styles.parallaxContainer}
