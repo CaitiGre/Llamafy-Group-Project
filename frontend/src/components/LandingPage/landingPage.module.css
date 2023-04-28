@@ -1,9 +1,14 @@
+@font-face {
+  font-family: "moonlite-outline";
+  src: url("/src/assets/fonts/moonlite-outline.ttf");
+}
+
 .landingPageTitle {
-  font-size: 15vw;
-  color: rgba(255, 255, 255, 0);
-  -webkit-text-stroke: 5px #28002c;
+  font-size: 30vw;
+  font-family: "moonlite-outline";
   margin-bottom: 10vh;
   margin-top: 20vh;
+  color: #58315c;
 }
 
 .landingPageSubtitle {
@@ -16,9 +21,10 @@
 .llamaSubheading {
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   font-size: 5vh;
-  color: #f0f0f0;
+  color: #ffffff;
   padding: 6vh;
   text-shadow: #2f2e31;
+  -webkit-text-stroke: 2px #58315c;
 }
 
 

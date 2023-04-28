@@ -2,15 +2,6 @@
   margin: 0;
 }
 
-.heading {
-  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
-  font-size: 100px;
-  color: rgba(255, 255, 255, 0);
-  margin-top: 10%;
-  -webkit-text-stroke: 3px #28002c;
-  margin-bottom: 50px;
-}
-
 .submitButton {
   width: 100px;
   background-color: white;
@@ -33,7 +24,6 @@
 }
 
 .formContainer {
-  background-color: rgba(209, 119, 209, 0.685);
   padding: 30px;
   margin: 3% 12% 5% 12%;
   border-radius: 20px;

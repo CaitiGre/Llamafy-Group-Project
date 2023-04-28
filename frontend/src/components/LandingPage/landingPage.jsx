@@ -31,7 +31,8 @@ function LandingPage() {
         </Box>
       </Box>
       <h2 className={styles.llamaSubheading}>
-        No time for drama? Trust in Llama!
+        NO TIME FOR DRAMA?
+        TRUST IN LLAMA!
       </h2>
       
       <Box sx={{

@@ -3,16 +3,44 @@ import {
   Drawer,
   IconButton,
   List,
-  ListItemButton,
-  ListItemIcon,
   ListItemText,
   Divider,
 } from "@mui/material";
 import { NavLink } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu";
-const pages = ["OUTFIT", "WARDROBE", "FAVOURITES", "SETTINGS"];
+import style from "./Sidebar.module.css";
+
 const Sidebar = () => {
+
+  const [userAuthenticated, setUserAuthenticated] = useState(false);
   const [openDrawer, setOpenDrawer] = useState(false);
+
+  const loggedInSidebar = (
+    <List style={{fontSize: "30px"}}>
+      <NavLink to={"/ootd"}>
+        <ListItemText>OUTFIT</ListItemText>
+      </NavLink>
+      <NavLink to={"/wardrobe"}>
+        <ListItemText>WARDROBE</ListItemText>
+      </NavLink>
+      <NavLink to={"/Settings"}>
+        <ListItemText>SETTINGS</ListItemText>
+      </NavLink>
+
+      <ListItemText>LOGOUT</ListItemText>
+    </List>
+  );
+
+  const loggedOutSidebar = (
+    <List style={{fontSize: "30px"}}>
+      <NavLink to={"/login"}>
+        <ListItemText>LOGIN</ListItemText>
+      </NavLink>
+      <NavLink to={"/register"}>
+        <ListItemText>REGISTER</ListItemText>
+      </NavLink>
+    </List>
+  );
 
   return (
     <React.Fragment>
@@ -24,28 +52,13 @@ const Sidebar = () => {
         open={openDrawer}
         onClose={() => setOpenDrawer(false)}
       >
-        <List>
-          {pages.map((page, index) => (
-            <ListItemButton key={index}>
-              <ListItemIcon>
-                <NavLink
-                  style={{
-                    marginLeft: "4vw",
-                    textDecoration: "none",
-                    color: "black",
-                  }}
-                  to="/"
-                >
-                  <ListItemText>{page}</ListItemText>
-                </NavLink>
-              </ListItemIcon>
-            </ListItemButton>
-          ))}
+        <List className={style.navbarLinks}>
+          {userAuthenticated ? loggedOutSidebar : loggedInSidebar}
         </List>
         <Divider />
         <NavLink
           to="/disclaimer"
-          style={{ marginLeft: "4vw", color: "lightgrey" }}
+          style={{ textAlign: "center", color: "lightgrey" }}
         >
           Disclaimer
         </NavLink>
