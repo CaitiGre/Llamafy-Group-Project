@@ -34,25 +34,33 @@ npm run start
 ```
 in the terminal within the front end folder to get the application up and running.
 
-## Back end
-
-To get the server up and running you simply need to type within the terminal for the backend folder: (I dont remember this one but its something to do with node)
-
-```
-
-```
-
 # Pages you can visit:
 
 ## Landing Page
 
+The landing page is the first of the pages that you will see when you open our application. From here you are able to navigate to different pages depending on whether you are logged in or not, and are introduced to a bit about the purpose of the application.
+
 ## Registration Page
 
+The registration page allows users to sign up and register some information about themselves. They are able to specify their:
+- Name
+- Email (used for login purposes)
+- Password (which also checks that the passwords match and allow users to view the entered password by clicking on the eye icon)
+- Primary location (accounts for the city that the person is based in and helps in the generating an outfit based on the local weather)
+- Style preference (generates outfits based on the traditional preferences of each gender although this can be changed based on what the user has in their wardrobe)
+
 ## Login Page
+
+The login page allows the users to log in with their provided email address and password that they provided on registration. This login information and the authentication token generated from this is what sets the links that appear in the navbar and sidebar depending on logged in status. This key is stored in a users local storage.
 
 ## Wardrobe
 
 ## Outfit Generation 
+
+The wardrobe generation page allows users to specify the type of outfit that they are looking to wear on the day and can be customised based on what they have registered as being in their closet. It then generates three possible outfit choices using Dalle to provide images based on the AI prompt created by the user.
+
+They are able to specify:
+- Colour (the primary colour that they would like the outfit to be)
 
 ## Settings 
 

@@ -6,16 +6,6 @@ import WardrobeChange from "../../assets/Wardorbe-Change.gif";
 import { Box, Button, Grid } from "@mui/material";
 
 function LandingPage() {
-  const classes = {
-    root: {
-      flexGrow: 1,
-    },
-
-    paper: {
-      padding: 20,
-      textAligh: "justify",
-    },
-  };
 
   return (
     /** A div that contains the main components for the landing page. Contains three separate divs.
