@@ -7,7 +7,7 @@ import top from "./../../assets/tshirt.png";
 import bottom from "./../../assets/pants.png";
 import onepiece from "./../../assets/jumpsuit.png";
 import shoes from "./../../assets/shoes.png";
-import cropTop from "./../../assets/CropTop.png";
+import cropTop from "./../../assets/crop-top.png";
 import shirt from "./../../assets/shirt.png";
 import blouse from "./../../assets/blouse.png";
 import shorts from "./../../assets/shorts.png";
