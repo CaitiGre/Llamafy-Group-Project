@@ -11,7 +11,12 @@ Introducting LLAMAFY!
 
 ## What we are
 
-LLAMAFY aims to make your life at least 10x easier by allowing you to forgo making one more decision a day. Based on the items that you already have in your wardrobe, we will generate three potential outfits for you to choose from at a time and make your life that much simpler. 
+Are we human? Dancer? No! We're LLAMAFY! Powered by AI and run by a team of indecisive lavender llamas (that moonlight as insomniacs), we decided to make our lives easier and your lives cooler by simplifying one of the hardest parts of the day; getting dressed!
+
+LLAMAFY aims to make your life at least 10x* easier and save you up to 16** hours a week by allowing you to forgo making one more decision a day. Based on the items that you already have in your wardrobe, we will generate three potential outfits for you to choose from at a time and make your life that much simpler. 
+
+*Gross overestimation for dramatic effect.
+**Another guestimate. Some of the llamas are not great at maths but are full of enthusiasm.
 
 ## How to use
 
