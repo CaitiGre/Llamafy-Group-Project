@@ -1,20 +1,11 @@
 import styles from "./landingPage.module.css";
+import React from "react";
 import { NavLink } from "react-router-dom";
 import ClothingRail from "../../assets/cothingRail.gif";
 import WardrobeChange from "../../assets/Wardorbe-Change.gif";
 import { Box, Button, Grid } from "@mui/material";
 
 function LandingPage() {
-  const classes = {
-    root: {
-      flexGrow: 1,
-    },
-
-    paper: {
-      padding: 20,
-      textAligh: "justify",
-    },
-  };
 
   return (
     /** A div that contains the main components for the landing page. Contains three separate divs.
@@ -22,27 +13,28 @@ function LandingPage() {
      * The aboutContainer contains the first section of the about page that explains about what Llamafy does
      * The third div explains why customers should use our product.
      **/
-    <div>
+    <React.Fragment>
       <Box className={styles.landingPage}>
-        <div style={{ width: "cover", height: "100vh", margin: "auto" }}>
+        <Box style={{ width: "cover", height: "100vh", margin: "auto" }}>
           <h1 className={styles.landingPageTitle}>LLAMAFY</h1>
           <h2 className={styles.landingPageSubtitle}>
             IT'S TIME TO BUTTON UP OR SHUT UP
           </h2>
-          <Button className={styles.buttonContainer}>
+          <Box className={styles.buttonContainer}>
             <NavLink to="/login">
-              <button className={styles.landingLoginButton}>LOGIN</button>
+              <Button >LOGIN</Button>
             </NavLink>
             <NavLink to="/register">
-              <button className={styles.registerButton}>REGISTER</button>
+              <Button >REGISTER</Button>
             </NavLink>
-          </Button>
-        </div>
+          </Box>
+        </Box>
       </Box>
       <h2 className={styles.llamaSubheading}>
-        No time for drama? Trust in Llama!
+        NO TIME FOR DRAMA?
+        TRUST IN LLAMA!
       </h2>
-      <div style={classes.root}></div>
+      
       <Box sx={{
         flexGrow: 1,
         }}>
@@ -53,13 +45,11 @@ function LandingPage() {
         width={"100%"}
       >
         <Box
-          display={"flex"}
-          flexDirection={"row"}
-          justifyContent={"space-evenly"}
-          alignContent={"space-evenly"}
-          margin={"auto"}
-          padding={"3.5vh"}
-          width={"100%"}
+          sx={{display: "flex",
+          flexDirection: "row",          
+          justifyContent: "space-evenly",
+          alignContent: "space-evenly",
+          margin: "auto"}}
           className={styles.aboutContainer}
         >
           <p>
@@ -79,8 +69,6 @@ function LandingPage() {
             display={"flex"}
             style={{
               backgroundImage: `url(${ClothingRail})`,
-              width: "25vh",
-              height: "25vh",
               backgroundPosition: "center",
               backgroundSize: "cover",
               border: "0.3vh solid white",
@@ -89,17 +77,16 @@ function LandingPage() {
         </Box>
         <Box
           className={styles.aboutContainer2}
-          display={"flex"}
-          flexDirection={"row"}
-          justifyContent={"space-evenly"}
-          alignContent={"space-evenly"}
-          margin={"auto"}
-          padding={"3.5vh"}
-          width={"100%"}
+          sx={{display: "flex",
+          flexDirection: "row",          
+          justifyContent: "space-evenly",
+          alignContent: "space-evenly",
+          margin: "auto",
+          }}
         >
           <Box
             className={styles.parallaxContainer}
-            style={{
+            sx={{
               backgroundImage: `url(${WardrobeChange})`,
               width: "25vh",
               height: "25vh",
@@ -126,7 +113,7 @@ function LandingPage() {
         </Box>
       </Grid>
       </Box>
-    </div>
+    </React.Fragment>
   );
 }
 

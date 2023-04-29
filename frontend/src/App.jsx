@@ -20,10 +20,10 @@ function App() {
 
         <Routes>
           <Route path="/" element={<LandingPage />} />
-          <Route path="home" element={<HomePage />} />
+          <Route path="pastOutfits" element={<HomePage />} />
           <Route path="register" element={<RegistrationPage />} />
           <Route path="login" element={<LoginPage />} />
-          <Route path="wardrobeSelection" element={<WardrobeSelection />} />
+          <Route path="wardrobe" element={<WardrobeSelection />} />
           <Route path="settings" element={<SettingsPage />} />
           <Route path="ootd" element={< OutfitOfTheDay />} />
         </Routes>

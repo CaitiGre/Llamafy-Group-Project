@@ -2,6 +2,7 @@ import './LoginPage.module.css';
 import { Box, Input, InputLabel, Typography } from "@mui/material";
 import { useState } from "react";
 import styles from './LoginPage.module.css';
+import Heading from '../Heading/Heading';
 import bcrypt from 'bcryptjs';
 
 function LoginPage() {
@@ -59,7 +60,7 @@ function LoginPage() {
     return (
 
         <div>
-            <Typography variant="h1" mt="10%" className={styles.heading}>LOGIN</Typography>
+            <Heading title="Login"/>
 
             <div className={styles.formContainer}>
                 <form onSubmit={handleSubmit}>
