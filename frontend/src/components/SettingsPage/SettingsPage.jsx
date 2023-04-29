@@ -1,4 +1,5 @@
 import { useLocalStorage } from "../../helpers/useLocalStorage";
+import { useState } from "react";
 import { ButtonGroup, Button, Typography } from "@mui/material";
 import styles from './SettingsPage.module.css';
 import Profile from './Profile';
@@ -6,7 +7,7 @@ import Wardrobe from './Wardrobe';
 
 function SettingsPage() {
     const [isProfile, setProfile] = useLocalStorage(true);
-    const [isWardrobe, setWardrobe] = useLocalStorage(false);
+    // const [isWardrobe, setWardrobe] = useLocalStorage(false);
 
     function handleProfileClick() {
         setProfile(true);
@@ -14,7 +15,7 @@ function SettingsPage() {
 
     function handleWardrobeClick() {
         setProfile(false);
-        setWardrobe(true);
+        // setWardrobe(true);
     }
 
 
@@ -34,7 +35,8 @@ function SettingsPage() {
 
                 </ButtonGroup>
             </div>
-            {isProfile ? <Profile /> : isWardrobe ? <Wardrobe /> : <Profile />}
+            {/* {isProfile ? <Profile /> : isWardrobe ? <Wardrobe /> : <Profile />} */}
+            {isProfile ? <Profile /> : <Wardrobe />}
         </div>
     );
 }
