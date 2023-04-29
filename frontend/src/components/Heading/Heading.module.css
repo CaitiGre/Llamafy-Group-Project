@@ -6,8 +6,9 @@
 .title {
   text-align: center;
   font-family: "moonlite-outline";
-  font-size: 90px;
+  font-size: 120px;
   color: #58315c;
   text-transform: uppercase;
-  margin: auto;
+  margin-top: 14vh;
+  margin-bottom: 1vh;
 }

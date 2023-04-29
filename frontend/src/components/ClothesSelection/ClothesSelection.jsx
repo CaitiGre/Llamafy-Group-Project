@@ -6,7 +6,7 @@ import SubSelectionModal from "../SubSelectionModal/SubSelectionModal";
 import top from "./../../assets/tshirt.png";
 import bottom from "./../../assets/pants.png";
 import onepiece from "./../../assets/jumpsuit.png";
-import shoes from "./../../assets/shoe.png";
+import shoes from "./../../assets/shoes.png";
 import cropTop from "./../../assets/CropTop.png";
 import shirt from "./../../assets/shirt.png";
 import blouse from "./../../assets/blouse.png";
@@ -19,6 +19,24 @@ import heel from "./../../assets/heel.png";
 import dressShoes from "./../../assets/dress-shoes.png";
 import boots from "./../../assets/boots.png";
 import close from "./../../assets/close.png";
+import jumper from "./../../assets/jumper.png";
+import jacket from "./../../assets/jacket.png";
+import accessories from "./../../assets/accessories.png";
+import swimwear from "./../../assets/swimwear.png";
+import trunks from "./../../assets/trunks.png";
+import bikini from "./../../assets/bikini.png";
+import onepieceSwim from "./../../assets/onepiece-swim.png";
+import speedo from "./../../assets/speedo.png";
+import trench from "./../../assets/trench.png";
+import blazer from "./../../assets/blazer.png";
+import raincoat from "./../../assets/rain-coat.png";
+import cardigan from "./../../assets/cardi.png";
+import jersey from "./../../assets/jersey.png";
+import hoodie from "./../../assets/hoodie.png";
+import gloves from "./../../assets/gloves.png";
+import scarf from "./../../assets/scarf.png";
+import glasses from "./../../assets/glasses.png";
+import cap from "./../../assets/cap.png";
 
 function ClothesSelection() {
   // Defining state variables for the modal
@@ -30,8 +48,12 @@ function ClothesSelection() {
   const clothesItems = [
     { src: top, name: "TOP" },
     { src: bottom, name: "BOTTOM" },
+    { src: jumper, name: "JUMPER" },
+    { src: jacket, name: "JACKET" },
     { src: onepiece, name: "ONEPIECE" },
+    { src: swimwear, name: "SWIMWEAR" },
     { src: shoes, name: "SHOES" },
+    { src: accessories, name: "ACCESSORIES" },
   ];
   // Defining an object that maps each clothes item to an array of its sub-selection items and their images
   const subSelectionItemsByClothesItem = {
@@ -39,60 +61,29 @@ function ClothesSelection() {
       {
         src: top,
         name: "Tshirt",
-        length: ["cropped", "full", "oversized"],
-        sleeves: [
-          "no sleeves",
-          "straps",
-          "short sleeves",
-          "3/4 sleeves",
-          "long sleeves",
-        ],
+        sleeves: ["straps", "short sleeves", "3/4 sleeves", "long sleeves"],
         style: ["crew neck", "V neck", "Henley", "Polo"],
-        fabric: ["cotton", "denim", "linen", "wool"],
         pattern: ["striped", "Graphic", "baseball", "floral"],
       },
       {
         src: shirt,
         name: "Shirt",
-        length: ["cropped", "full", "oversized"],
-        sleeves: [
-          "no sleeves",
-          "straps",
-          "short sleeves",
-          "3/4 sleeves",
-          "long sleeves",
-        ],
+        sleeves: ["straps", "short sleeves", "3/4 sleeves", "long sleeves"],
         style: ["crew neck", "V neck", "Henley", "Polo"],
-        fabric: ["cotton", "denim", "linen", "wool"],
         pattern: ["striped", "Graphic", "baseball", "floral"],
       },
       {
         src: blouse,
         name: "Blouse",
-        length: ["cropped", "full", "oversized"],
-        sleeves: [
-          "no sleeves",
-          "straps",
-          "short sleeves",
-          "3/4 sleeves",
-          "long sleeves",
-        ],
+        sleeves: ["straps", "short sleeves", "3/4 sleeves", "long sleeves"],
         style: ["crew neck", "V neck", "Henley", "Polo"],
-        fabric: ["cotton", "denim", "linen", "wool"],
         pattern: ["striped", "Graphic", "baseball", "floral"],
       },
       {
         src: cropTop,
         name: "Crop Top",
-        sleeves: [
-          "no sleeves",
-          "straps",
-          "short sleeves",
-          "3/4 sleeves",
-          "long sleeves",
-        ],
+        sleeves: ["straps", "short sleeves", "3/4 sleeves", "long sleeves"],
         style: ["crew neck", "V neck", "Henley", "Polo"],
-        fabric: ["cotton", "denim", "linen", "wool"],
         pattern: ["striped", "Graphic", "baseball", "floral"],
       },
     ],
@@ -100,17 +91,13 @@ function ClothesSelection() {
       {
         src: bottom,
         name: "Pants",
-        length: ["cropped", "3/4", "full length"],
         style: ["flared", "slim", "cargo", "straight", "sweat"],
-        fabric: ["cotton", "denim", "linen", "wool"],
         pattern: ["striped", "checkered", "animal print", "floral"],
       },
       {
         src: shorts,
         name: "shorts",
-        length: ["mini", "above knee", "3/4"],
         style: ["flared", "slim", "cargo", "straight", "sweat"],
-        fabric: ["cotton", "denim", "linen", "wool"],
         pattern: ["striped", "checkered", "animal print", "floral"],
       },
       {
@@ -118,8 +105,86 @@ function ClothesSelection() {
         name: "skirt",
         length: ["mini", "3/4", "maxi"],
         style: ["flared", "slim", "cargo", "straight", "sweat"],
-        fabric: ["cotton", "denim", "linen", "wool"],
         pattern: ["striped", "checkered", "animal print", "floral"],
+      },
+    ],
+    JUMPER: [
+      {
+        src: jumper,
+        name: "jumper",
+        style: ["crew neck", "V neck", "Henley", "Polo"],
+        pattern: ["striped", "christmas", "baseball", "floral"],
+      },
+      {
+        src: cardigan,
+        name: "cardigan",
+        pattern: ["striped", "Graphic", "baseball", "floral"],
+      },
+      {
+        src: hoodie,
+        name: "hoodie",
+        style: ["crew neck", "V neck", "Henley", "Polo"],
+        pattern: ["striped", "Graphic", "baseball", "floral"],
+      },
+      {
+        src: jersey,
+        name: "knitwear",
+        style: ["crew neck", "V neck", "Henley", "Polo"],
+        pattern: ["striped", "Graphic", "baseball", "floral"],
+      },
+    ],
+    JACKET: [
+      {
+        src: jacket,
+        name: "jacket",
+        style: ["bomber", "leather", "parka", "denim"],
+        pattern: [
+          "striped",
+          "Graphic",
+          "animal print",
+          "geometric",
+          "abstract",
+          "floral",
+        ],
+      },
+      {
+        src: blazer,
+        name: "blazer",
+        style: ["double breasted", "single breasted", "velvet"],
+        pattern: [
+          "striped",
+          "Graphic",
+          "animal print",
+          "geometric",
+          "abstract",
+          "floral",
+        ],
+      },
+      {
+        src: raincoat,
+        name: "raincoat",
+        style: ["trench", "poncho", "anorak", "parka"],
+        pattern: [
+          "striped",
+          "Graphic",
+          "animal print",
+          "geometric",
+          "abstract",
+          "floral",
+        ],
+      },
+      {
+        src: trench,
+        name: "trenchcoat",
+        style: ["classic", "military", "long"],
+        pattern: [
+          "striped",
+          "Graphic",
+          "animal print",
+          "geometric",
+          "abstract",
+          "floral",
+        ],
       },
     ],
     ONEPIECE: [
@@ -127,16 +192,15 @@ function ClothesSelection() {
         src: onepiece,
         name: "Jumpsuit",
         length: ["cropped", "3/4", "full length"],
-        sleeves: ["no sleeves", "short sleeves", "3/4 sleeves", "long sleeves"],
+        sleeves: ["short sleeves", "3/4 sleeves", "long sleeves"],
         style: ["flared", "slim", "cargo", "straight", "sweat"],
-        fabric: ["cotton", "denim", "linen", "wool"],
         pattern: ["striped", "checkered", "animal print", "floral"],
       },
       {
         src: dress,
         name: "Dress",
         length: ["mini", "knee-high", "3/4", "maxi"],
-        sleeves: ["no sleeves", "short sleeves", "3/4 sleeves", "long sleeves"],
+        sleeves: ["short sleeves", "3/4 sleeves", "long sleeves"],
         style: ["crew neck", "V neck", "Henley", "Polo"],
         fabric: ["cotton", "denim", "linen", "wool"],
         pattern: ["striped", "checkered", "animal print", "floral"],
@@ -145,25 +209,41 @@ function ClothesSelection() {
         src: suit,
         name: "Onesie",
         length: ["cropped", "3/4", "full length"],
-        sleeves: ["no sleeves", "short sleeves", "3/4 sleeves", "long sleeves"],
+        sleeves: ["short sleeves", "3/4 sleeves", "long sleeves"],
         style: ["crew neck", "V neck", "Henley", "Polo"],
-        fabric: ["cotton", "denim", "linen", "wool"],
         pattern: ["striped", "checkered", "animal print", "floral"],
       },
       {
         src: overall,
         name: "Overall",
         length: ["shorts", "cropped", "full"],
-        sleeves: [
-          "no sleeves",
-          "straps",
-          "short sleeves",
-          "3/4 sleeves",
-          "long sleeves",
-        ],
+        sleeves: ["straps", "short sleeves", "3/4 sleeves", "long sleeves"],
         style: ["crew neck", "V neck", "Henley", "Polo"],
-        fabric: ["cotton", "denim", "linen", "wool"],
         pattern: ["striped", "checkered", "animal print", "floral"],
+      },
+    ],
+    SWIMWEAR: [
+      {
+        src: onepieceSwim,
+        name: "one piece",
+        style: ["crew neck", "V neck", "Henley", "Polo"],
+        pattern: ["striped", "Graphic", "baseball", "floral"],
+      },
+      {
+        src: bikini,
+        name: "bikini",
+        sleeves: ["straps", "short sleeves", "3/4 sleeves", "long sleeves"],
+        pattern: ["striped", "Graphic", "baseball", "floral"],
+      },
+      {
+        src: trunks,
+        name: "trunks",
+        pattern: ["striped", "Graphic", "baseball", "floral"],
+      },
+      {
+        src: speedo,
+        name: "speedo",
+        pattern: ["striped", "Graphic", "baseball", "floral"],
       },
     ],
     SHOES: [
@@ -192,6 +272,32 @@ function ClothesSelection() {
         pattern: ["striped", "checkered", "animal print", "floral"],
       },
     ],
+    ACCESSORIES: [
+      {
+        src: cap,
+        name: "hats",
+        style: ["cap", "beanie", "fedora", "beret"],
+        pattern: ["striped", "checkered", "animal print", "floral"],
+      },
+      {
+        src: glasses,
+        name: "glasses",
+        style: ["crew neck", "V neck", "Henley", "Polo"],
+        pattern: ["striped", "geometric", "animal print", "floral"],
+      },
+      {
+        src: scarf,
+        name: "scarf",
+        style: ["crew neck", "V neck", "Henley", "Polo"],
+        pattern: ["striped", "geometric", "animal print", "floral"],
+      },
+      {
+        src: gloves,
+        name: "gloves",
+        style: ["crew neck", "V neck", "Henley", "Polo"],
+        pattern: ["striped", "geometric", "animal print", "floral"],
+      },
+    ],
   };
   // Handling the open modal event and setting the selected item and its sub-selection items to show
   const handleOpenModal = (item) => {
@@ -216,7 +322,7 @@ function ClothesSelection() {
           columns={{ xs: 2, sm: 6, md: 9, lg: 12 }}
           sx={{
             justifyContent: "center",
-            backgroundColor: "rgba(235, 73, 227, 0.315)",
+            backgroundColor: "rgba(235, 90, 220, 0.315)",
           }}
         >
           {/* Map over the clothes items and create a ClothesItem for each one */}
@@ -236,7 +342,7 @@ function ClothesSelection() {
       >
         <Box
           sx={{
-            backgroundColor: "rgba(248, 201, 244, 1)",
+            backgroundColor: "rgba(248, 201, 244, 0.89)",
             borderRadius: "16px",
             position: "absolute",
             top: "50%",
