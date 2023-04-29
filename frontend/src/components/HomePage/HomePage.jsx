@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import OutfitTile from "./OutfitTile";
 import shirt from "../../assets/shirt.png";
+import SubHeading from "../SubHeading/SubHeading"
 import styles from "./HomePage.module.css";
 
 const HomePage = () => {
@@ -35,7 +36,7 @@ const HomePage = () => {
         {weatherValues 
         ?   
             <div className={styles.title}> 
-            <img src={weatherValues.iconUrl} /> <br />
+            <img src={weatherValues.iconUrl} alt="Weather icon based on the weather today"/> <br />
             Hey {username}. {weatherValues.condition} in {weatherValues.location}.
             <p>{weatherValues.tempC} right now with {weatherValues.humidity} humidity. Windspeed at {weatherValues.windKph}. <small>Powered by <a href="https://www.weatherapi.com/" title="Weather API">WeatherAPI.com</a></small></p>
             </div>
@@ -47,10 +48,7 @@ const HomePage = () => {
         
         <br />
 
-        {/* Button to call the OpenAI models (Davinci and Dalle) and then navigate to the OOTD page*/}
-        <button className={styles.button} onClick={() => alert("not set up yet dude")}>Generate an Outfit of the Day</button>
-
-        <h2><div className={styles.header}>Past Outfits</div></h2>
+        <SubHeading subtitle="PAST OUTFITS"/>
 
         {/* Loop over all the user's past outfits for history*/}
       <div className={styles.outfitTileContainer}>

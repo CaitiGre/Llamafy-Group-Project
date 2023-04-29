@@ -32,6 +32,7 @@ export default function PasswordBox({ data, handleChange }) {
                         src={showPassword ? lashIcon : eyeIcon}
                         className={style["password-icon"]}
                         onClick={toggleShowPassword}
+                        alt="Eye icon to display or hide password"
                     />
                 </div>
             </Box>

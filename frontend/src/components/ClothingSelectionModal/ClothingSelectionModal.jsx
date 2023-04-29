@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Modal, Card, Box, Button, Typography, Grid } from "@mui/material";
-import { SliderPicker } from "react-color";
+import { TwitterPicker } from "react-color";
 import close from "./../../assets/close.png";
 import ClotheCustomisation from "../ClotheCustomisation/ClotheCustomisation";
 import axios from "axios";
@@ -49,9 +49,7 @@ function ClothingSelectionModal({ selectedItem, showModal, onCloseModal }) {
         }
       );
       console.log("New Item added to your wardbrobe:", response.data);
-      alert(
-        "New Wardrobe item added successfully!"
-      );
+      alert("New Wardrobe item added successfully!");
     } catch (error) {
       console.error(error);
       alert(
@@ -116,9 +114,23 @@ function ClothingSelectionModal({ selectedItem, showModal, onCloseModal }) {
                     Colour
                   </Typography>
 
-                  <SliderPicker
-                    width={300}
-                    height={300}
+                  <TwitterPicker
+                    width={500}
+                    height={100}
+                    colors={[
+                      
+                      "#F4A460",
+                      "#FCB900",
+                      "#7BDCB5",
+                      "#00D084",
+                      "#8ED1FC",
+                      "#0693E3",
+                      "#EB144C",
+                      "#F78DA7",
+                      "#FFFFFF",
+                      "#ABB8C3",
+                      "#000000",
+                    ]}
                     color={color}
                     onChange={handleColorChange}
                   />

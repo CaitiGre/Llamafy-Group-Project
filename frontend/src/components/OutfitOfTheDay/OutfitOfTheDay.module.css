@@ -7,11 +7,43 @@
     width: auto;
 }
 
+.subSubHeading {
+    color: #58315c;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    padding-bottom: 4vh;
+}
+
+.formBox{
+    display: flex;
+    flex-direction: column;
+    row-gap: 5vh;
+}
+
+.formBox label {
+    color: #58315c;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: larger;
+}
+
+.Ootd{
+    display: flex;
+    justify-content: center;
+}
+
+.dropdownMenus, .secondDropdown{
+    display: flex;
+    flex-direction: row;
+    align-content:space-between ;
+}
+
 .OotdTile {
+    display: flex;
+    justify-content: center;
     width: min(33vw,512px);
     height: min(33vw,512px);
-    border: 2px solid black;
-    box-shadow: 6px 6px 10px;
+    box-shadow:  3px 5px #58315c;
+    border-radius: 25px;
+    padding-top: 2vh; 
 }
 
 .OotdTile:hover {
@@ -24,40 +56,48 @@
 }
 
 .tileDesc {
-    background-color: black;
+    display: flex;
+    justify-content: center;
+    padding: 1vh;
     color: white;
     text-align: center;
     margin-top: 15px;
     height: auto;
-    margin: 5px;
-}
-
-.landingpageTitle {
+    background-color: #58315cd8;
+    border-radius: 15px;
+    text-transform: uppercase;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-size: 140px;
-    color: rgba(255, 255, 255, 0);
-    padding-top: 7vh;
-    -webkit-text-stroke: 5px #28002c;
+    
 }
 
-.landingpageSubtitle{
+.modalButton {
+    display: flex;
+    justify-content: center;
+    padding: 1vh;
+    gap: 1vh;
+}
+
+.modalButton button {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 0.5vh;
+    align-content: space-between;
+    border-radius: 20px;
+    text-transform: uppercase;
+    width: 10vh;
+}
+
+.ootdSubtitle{
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-size: 50px;
     color: #28002c;
     padding: 25px;
-    
 }
 
 @media screen and (max-width: 1600px) {
-    .landingpageTitle{
-        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-        font-size: 10vw;
-        color: rgba(255, 255, 255, 0);
-        padding-top: 7vh;
-        -webkit-text-stroke: 7px #28002c;
-    }
-
-    .landingpageSubtitle{
+    
+    .ootdSubtitle{
         font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
         font-size: 5vw;
         color: #28002c;
@@ -66,6 +106,7 @@
     .recommendationTiles {
         display: flex;
         flex-direction: column;
+        align-items: center;
     }
     .OotdTile {
         width: min(50vw,512px);
@@ -77,12 +118,3 @@
     }
 
 }
-
-@media screen and (max-width: 1000px) {
-
-    .landingpageTitle {
-        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-        color: black;
-        -webkit-text-stroke: unset;
-    }
-    }

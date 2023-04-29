@@ -6,6 +6,7 @@ const authenticationRouter = require('./routes/Authentication');
 const authenticationController = require('./controllers/Authentication');
 const passport = authenticationController.passport;
 const wardrobePageRouter = require("./routes/WardrobePage");
+const settingsProfilePageRouter = require("./routes/SettingsProfilePage");
 const weatherProxy = require('./routes/WeatherProxy');
 const session = require('express-session');
 const cors = require('cors');
@@ -42,6 +43,7 @@ app.use('/weather', weatherProxy);
 app.use("/registration", registrationPageRouter);
 app.use("/wardrobeSelection", wardrobePageRouter);
 app.use("/auth", authenticationRouter);
+app.use("/profile", settingsProfilePageRouter);
 
 //receive and direct request for authentication.
 app.get('/', (req, res) => {
