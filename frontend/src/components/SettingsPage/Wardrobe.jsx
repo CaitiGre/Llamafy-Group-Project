@@ -19,102 +19,102 @@ function Wardrobe() {
 
   // Defining an array of objects for the clothes items and their images
   const clothesItems = [
-    { src: top, name: "TOP" },
-    { src: bottom, name: "BOTTOM" },
-    { src: onepiece, name: "ONEPIECE" },
-    { src: shoes, name: "SHOES" },
+    { src: top, name: "top" },
+    { src: bottom, name: "bottom" },
+    { src: onepiece, name: "onepiece" },
+    { src: shoes, name: "shoes" },
   ];
 
   // Get clothes data from database once set up
-  // const [clothes, setClothes] = useState([
-  //   {
-  //     id: 1,
-  //     categoryName: "top",
-  //     category: top,
-  //     color: "green",
-  //     sleeves: "short",
-  //     pattern: "plain"
-  //   },
-  //   {
-  //     id: 1,
-  //     categoryName: "top",
-  //     category: top,
-  //     color: "pink",
-  //     sleeves: "long",
-  //     pattern: "houndstooth"
-  //   },
-  //   {
-  //     id: 2,
-  //     categoryName: "bottom",
-  //     category: bottom,
-  //     color: "beige",
-  //     pattern: "plain"
-  //   },
-  //   {
-  //     id: 3,
-  //     categoryName: "onepiece",
-  //     category: onepiece,
-  //     sleeves: "sleeveless",
-  //     color: "red",
-  //     pattern: "striped"
-  //   },
-  //   {
-  //     id: 4,
-  //     categoryName: "shoes",
-  //     category: shoes,
-  //     color: "brown",
-  //     pattern: "plain"
-  //   },
-  // ]);
+  const [clothes, setClothes] = useState([
+    {
+      id: 1,
+      categoryName: "top",
+      category: top,
+      color: "green",
+      sleeves: "short",
+      pattern: "plain"
+    },
+    {
+      id: 5,
+      categoryName: "top",
+      category: top,
+      color: "pink",
+      sleeves: "long",
+      pattern: "houndstooth"
+    },
+    {
+      id: 2,
+      categoryName: "bottom",
+      category: bottom,
+      color: "beige",
+      pattern: "plain"
+    },
+    {
+      id: 3,
+      categoryName: "onepiece",
+      category: onepiece,
+      sleeves: "sleeveless",
+      color: "red",
+      pattern: "striped"
+    },
+    {
+      id: 4,
+      categoryName: "shoes",
+      category: shoes,
+      color: "brown",
+      pattern: "plain"
+    },
+  ]);
 
-  const clothes = {
-    TOP: [
-      {
-        id: 1,
-        categoryName: "top",
-        category: top,
-        color: "green",
-        sleeves: "short",
-        pattern: "plain"
-      },
-      {
-        id: 1,
-        categoryName: "top",
-        category: top,
-        color: "pink",
-        sleeves: "long",
-        pattern: "houndstooth"
-      },
-    ],
-    BOTTOM: [
-      {
-        id: 2,
-        categoryName: "bottom",
-        category: bottom,
-        color: "beige",
-        pattern: "plain"
-      },
-    ],
-    ONEPIECE: [
-      {
-        id: 3,
-        categoryName: "onepiece",
-        category: onepiece,
-        sleeves: "sleeveless",
-        color: "red",
-        pattern: "striped"
-      },
-    ],
-    SHOES: [
-      {
-        id: 4,
-        categoryName: "shoes",
-        category: shoes,
-        color: "brown",
-        pattern: "plain"
-      },
-    ]
-  }
+  // const clothes = {
+  //   TOP: [
+  //     {
+  //       id: 1,
+  //       categoryName: "top",
+  //       category: top,
+  //       color: "green",
+  //       sleeves: "short",
+  //       pattern: "plain"
+  //     },
+  //     {
+  //       id: 5,
+  //       categoryName: "top",
+  //       category: top,
+  //       color: "pink",
+  //       sleeves: "long",
+  //       pattern: "houndstooth"
+  //     },
+  //   ],
+  //   BOTTOM: [
+  //     {
+  //       id: 2,
+  //       categoryName: "bottom",
+  //       category: bottom,
+  //       color: "beige",
+  //       pattern: "plain"
+  //     },
+  //   ],
+  //   ONEPIECE: [
+  //     {
+  //       id: 3,
+  //       categoryName: "onepiece",
+  //       category: onepiece,
+  //       sleeves: "sleeveless",
+  //       color: "red",
+  //       pattern: "striped"
+  //     },
+  //   ],
+  //   SHOES: [
+  //     {
+  //       id: 4,
+  //       categoryName: "shoes",
+  //       category: shoes,
+  //       color: "brown",
+  //       pattern: "plain"
+  //     },
+  //   ]
+  // }
 
 
 
@@ -122,7 +122,11 @@ function Wardrobe() {
   const handleOpenModal = (item) => {
     // setSelectedItem(outfit);
     setSelectedItem(item);
-    setCategoryItemsToShow(clothes[item.name]);
+    // setCategoryItemsToShow(clothes[item.name]); 
+
+    const itemsToShow = clothes.filter((clothe) => clothe.categoryName === item.name);
+    setCategoryItemsToShow(itemsToShow);
+
     setOpenModal(true);
   };
 
@@ -130,6 +134,18 @@ function Wardrobe() {
   const handleCloseModal = () => {
     setOpenModal(false);
   };
+
+  function handleDeleteItem(item) {
+    const remainingItemsToShow = categoryItemsToShow.filter((catItem) => catItem.id !== item.id);
+    setCategoryItemsToShow(remainingItemsToShow);
+
+
+    const remainingClothes = clothes.filter((clothe) => clothe.id !== item.id);
+    setClothes(remainingClothes);
+
+    alert(`${item.color} ${item.pattern} ${item.sleeves} sleeve ${item.categoryName} deleted.`);
+
+  }
 
   // Handling delete item: clothe array to retain only items whose id does not match the id of the deleted item
   // function handleDeleteButton(outfitId) {
@@ -153,7 +169,10 @@ function Wardrobe() {
   // };
 
   // Card for each clothes item in the list
-  const CategoryItem = ({ items }) => {
+  const CategoryItem = ({ items }) => { // Items in a particular category
+    // Filter to keep only items where categoryName = clothesItem.name
+    // Then map through those filtered in items. This way when handling delete item, clothes can be set using useState.
+
     return (
       <>
         {items.map((item, index) => (
@@ -161,21 +180,24 @@ function Wardrobe() {
           <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
 
             <ListItem alignItems="flex-start">
-              {/* <ListItemAvatar>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
-              </ListItemAvatar> */}
 
               <ListItemText
-                // primary="Brunch this weekend?"
                 secondary={
                   <>
-
                     <Typography
                       sx={{ display: 'inline' }}
                       component="span"
                       variant="body2"
                       color="text.primary"
                     >
+
+                      <Button
+                        onClick={() => handleDeleteItem(item)}
+                        sx={{ position: "absolute", top: 8, right: 2, padding: "5px" }}
+                      >
+                        <img src={close} alt="close button" width="10px" />
+                      </Button>
+
                       {item.color} {item.pattern} {item.sleeves} sleeve {item.categoryName}
                     </Typography>
 
@@ -192,83 +214,6 @@ function Wardrobe() {
   }
 
   return (
-    // <>
-    //   {/* The clothes panel */}
-    //   <Box sx={{ margin: 3 }}>
-    //     <Grid
-    //       container
-    //       columns={{ xs: 2, sm: 6, md: 9, lg: 12 }}
-    //       sx={{
-    //         justifyContent: "center",
-    //         columnGap: "3vw",
-    //         rowGap: "3vh",
-    //         margin: 0
-    //       }}
-    //     >
-    //       {/* Iterate over the clothes array and map each of the item to create an OutfitTile component */}
-    //       {clothes.map((outfitObj) => (
-    //         <Grid xs={3} key={outfitObj.id} className={styles.card} sx={{ margin: 0 }}>
-    //           <OutfitTile outfit={outfitObj} onClick={handleOpenModal} />
-    //           <Button
-    //             color="secondary"
-    //             onClick={() => handleDeleteButton(outfitObj.id)}
-    //             sx={{
-    //               textTransform: "lowercase",
-    //             }}
-    //           >
-    //             Delete
-    //           </Button>
-    //         </Grid>
-    //       ))}
-    //     </Grid>
-    //   </Box>
-
-    //   {/* The modal which is opened when the OutfitTile's image is clicked */}
-    //   <Modal
-    //     open={openModal}
-    //     onClose={handleCloseModal}
-    //     closeAfterTransition
-    //     disableAutoFocus={true}
-    //     sx={{ overflowX: "scroll" }}
-    //   >
-    //     <Box
-    //       sx={{
-    //         backgroundColor: "rgba(255, 255, 255, 1)",
-    //         borderRadius: "16px",
-    //         position: "absolute",
-    //         top: "50%",
-    //         left: "50%",
-    //         transform: "translate(-50%, -50%)",
-    //         outline: "none",
-    //         height: "fit-content",
-    //         margin: "auto",
-    //         padding: "40px",
-    //       }}
-    //     >
-    //       <Button
-    //         onClick={handleCloseModal}
-    //         sx={{ position: "absolute", top: 8, right: 2, padding: "5px" }}
-    //       >
-    //         <img src={close} alt="close button" width="20px" />
-    //       </Button>
-
-    //       {/* Display item description as the heading of the modal */}
-    //       {selectedItem && (
-    //         <Typography
-    //           variant="h5"
-    //           sx={{ textAlign: "center", marginBottom: "5%" }}
-    //         >
-    //           {selectedItem.desc}
-    //         </Typography>
-    //       )}
-
-    //       {/* Display a bigger image of the selected item/ outfit */}
-    //       {selectedItem && (<img src={selectedItem.render} style={{ width: "400px" }} alt={selectedItem.desc}></img>)}
-
-    //     </Box>
-    //   </Modal>
-
-    // </>
 
     // NEW LAYOUT
     <>
@@ -329,7 +274,7 @@ function Wardrobe() {
               variant="h4"
               sx={{ textAlign: "center", margin: "10px", color: "#58315c" }}
             >
-              {selectedItem.name} ITEMS YOU HAVE
+              {selectedItem.name} items you have
             </Typography>
           )}
 
