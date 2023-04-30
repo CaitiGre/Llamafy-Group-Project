@@ -31,7 +31,7 @@ function Wardrobe() {
       categoryName: "top",
       category: top,
       color: "green",
-      sleeves: "short",
+      sleeves: "short sleeve",
       pattern: "plain"
     },
     {
@@ -39,7 +39,7 @@ function Wardrobe() {
       categoryName: "top",
       category: top,
       color: "pink",
-      sleeves: "long",
+      sleeves: "long sleeve",
       pattern: "houndstooth"
     },
     {
@@ -121,7 +121,7 @@ function Wardrobe() {
                         <img src={bin} alt="bin button" width="15px" />
                       </Button>
 
-                      {item.color} {item.pattern} {item.sleeves} sleeve {item.categoryName}
+                      {item.color} {item.pattern} {item.sleeves} {item.categoryName}
                     </Typography>
 
                   </>
