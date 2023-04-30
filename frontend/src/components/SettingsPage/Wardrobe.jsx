@@ -1,5 +1,5 @@
 import { Button, Box, Grid, Modal, Typography, List, ListItem, ListItemText } from "@mui/material";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { NavLink } from 'react-router-dom';
 import styles from "./SettingsPage.module.css";
 import close from "./../../assets/close.png";
@@ -9,8 +9,50 @@ import top from "./../../assets/tshirt.png";
 import bottom from "./../../assets/pants.png";
 import onepiece from "./../../assets/jumpsuit.png";
 import shoes from "./../../assets/shoe.png";
+import useGet from '../../helpers/useGet';
+import axios from 'axios';
 
 function Wardrobe() {
+
+  const [clothes, setClothes] = useState({});
+
+  // Get user's email from cookie once cookie's set up
+  const userEmail = "ysoo501@aucklanduni.ac.nz";
+
+  // Get user's current profile data from database
+  const { data: dataObj, isLoading } = useGet(`http://localhost:3006/wardrobe/getWardrobeItems/${userEmail}`);
+
+  useEffect(() => {
+    if (!isLoading && dataObj) {
+
+      // Assign the object containing properties needed to wardrobeItems.
+      setClothes(dataObj.wardrobeItems);
+
+      console.log('clothes', clothes); // clothes is an array of objects.
+      // Each object includes clothing_id, color, sleeves, pattern and main_category of a wardrobe item.
+
+      // setData(
+      //     {
+      //         fname: profileData.firstName,
+      //         lname: profileData.lastName,
+      //         email: profileData.email,
+      //         gender: profileData.gender,
+      //         skinTone: profileData.skinTone,
+      //         location: profileData.location,
+      //         size: profileData.clothingSize,
+      //         newPassword: '',
+      //         password: profileData.password
+      //     }
+      // )
+    }
+
+  }, [isLoading, dataObj]); // Once isLoading and profileData and dataObj changed (meaning the fetch is completed), useEffect() will run and setData to fetched data
+  // Remember that initially when the data was still being fetched, the values of isLoading and dataObj would be different
+
+
+
+
+
   // Defining stateful variables for the modal
   const [openModal, setOpenModal] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
@@ -20,57 +62,18 @@ function Wardrobe() {
   const clothesItems = [
     { src: top, name: "top" },
     { src: bottom, name: "bottom" },
-    { src: onepiece, name: "onepiece" },
+    { src: onepiece, name: "one-piece" },
     { src: shoes, name: "shoes" },
   ];
 
-  // Get clothes data from database once set up
-  const [clothes, setClothes] = useState([
-    {
-      id: 1,
-      categoryName: "top",
-      category: top,
-      color: "green",
-      sleeves: "short sleeve",
-      pattern: "plain"
-    },
-    {
-      id: 5,
-      categoryName: "top",
-      category: top,
-      color: "pink",
-      sleeves: "long sleeve",
-      pattern: "houndstooth"
-    },
-    {
-      id: 2,
-      categoryName: "bottom",
-      category: bottom,
-      color: "beige",
-      pattern: "plain"
-    },
-    {
-      id: 3,
-      categoryName: "onepiece",
-      category: onepiece,
-      sleeves: "sleeveless",
-      color: "red",
-      pattern: "striped"
-    },
-    {
-      id: 4,
-      categoryName: "shoes",
-      category: shoes,
-      color: "brown",
-      pattern: "plain"
-    },
-  ]);
+
 
 
   // Handling the open modal event and setting the selected item to show
   const handleOpenModal = (item) => {
     setSelectedItem(item);
-    const itemsToShow = clothes.filter((clothe) => clothe.categoryName === item.name);
+    // const itemsToShow = clothes.filter((clothe) => clothe.categoryName === item.name);
+    const itemsToShow = clothes.filter((clothe) => clothe.main_category === item.name);
     setCategoryItemsToShow(itemsToShow);
     setOpenModal(true);
   };
@@ -82,13 +85,13 @@ function Wardrobe() {
 
   // Handling the delete item event in CategoryItem
   function handleDeleteItem(item) {
-    const remainingItemsToShow = categoryItemsToShow.filter((catItem) => catItem.id !== item.id);
+    const remainingItemsToShow = categoryItemsToShow.filter((catItem) => catItem.clothing_id !== item.clothing_id);
     setCategoryItemsToShow(remainingItemsToShow);
 
-    const remainingClothes = clothes.filter((clothe) => clothe.id !== item.id);
+    const remainingClothes = clothes.filter((clothe) => clothe.clothing_id !== item.clothing_id);
     setClothes(remainingClothes);
 
-    alert(`${item.color} ${item.pattern} ${item.sleeves} sleeve ${item.categoryName} deleted.`);
+    alert(`${item.color} ${item.pattern} ${item.sleeves} sleeve ${item.main_category} deleted.`);
 
   }
 
@@ -121,7 +124,7 @@ function Wardrobe() {
                         <img src={bin} alt="bin button" width="15px" />
                       </Button>
 
-                      {item.color} {item.pattern} {item.sleeves} {item.categoryName}
+                      {item.color} {item.pattern} {item.sleeves} {item.main_category}
                     </Typography>
 
                   </>
