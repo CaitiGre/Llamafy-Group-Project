@@ -15,9 +15,8 @@ import Sidebar from "../Sidebar/Sidebar";
 const Navbar = () => {
   const [value, setValue] = useState();
   const theme = useTheme();
-  console.log(theme);
   const isMatch = useMediaQuery(theme.breakpoints.down("md"));
-  console.log(isMatch);
+
 
   const [initalScrollPosition, setScrollPosition] = useState(0);
   const [visible, setVisible] = useState(true);
