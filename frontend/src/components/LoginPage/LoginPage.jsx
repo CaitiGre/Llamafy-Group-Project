@@ -37,7 +37,7 @@ function LoginPage() {
             if (response.ok) {
                 const result = await response.json();
                 alert(result.message);
-                window.location.href = '/wardrobeSelection';
+                window.location.href = '/wardrobe';
             } else {
                 const error = await response.json();
                 console.error(error);

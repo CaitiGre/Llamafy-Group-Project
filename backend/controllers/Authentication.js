@@ -31,11 +31,11 @@ passport.serializeUser((user, done) => {
     done(null, user.id);
 });
 
-// Deserialize user by ID
-passport.deserializeUser(async (id, done) => {
+// Deserialize user by email
+passport.deserializeUser(async (email, done) => {
     try {
         const conn = await pool.getConnection();
-        const [rows] = await conn.query('SELECT * FROM Users WHERE id = ?', [id]);
+        const [rows] = await conn.query('SELECT * FROM UserSession WHERE user_email = ?', [email]);
         const user = rows[0];
         conn.release();
 
@@ -58,48 +58,69 @@ function login(req, res, next) {
         if (!user) {
             return res.status(401).json({ message: info.message });
         }
-        req.logIn(user, (err) => {
+        req.logIn(user, async (err) => {
             if (err) {
                 return next(err);
             }
-            res.cookie('user_email', user.email, { httpOnly: false, path: '/' });
+            try {
+                const conn = await pool.getConnection();
+                await conn.query(
+                    'REPLACE INTO UserSession (user_email, session_id) VALUES (?, ?)',
+                    [user.email, req.sessionID]
+                );
+                conn.release();
+            } catch (err) {
+                console.error('Error storing session ID:', err);
+            }
             return res.json({ message: 'Logged in' });
         });
     })(req, res, next);
 }
 
-function logout(req, res) {
+async function logout(req, res) {
+    // Set the session ID to NULL in the table
+    console.log(req.sessionID);
+    console.log(`UPDATE UserSession SET session_id = NULL WHERE session_id = ${req.sessionID}`);
+    const conn = await pool.getConnection();
+   
+    try {
+        await conn.query('UPDATE UserSession SET session_id = NULL WHERE session_id = ?', [req.sessionID], (error, results) => {
+            if (error) {
+              console.error('Error setting session ID to NULL:', error);
+            } else {
+              console.log('Affected rows:', results.affectedRows);
+            }
+          });
+        console.log("hello");
+    } catch (err) {
+        console.error('Error setting session ID to NULL:', err);
+    }
+           
+    conn.release();
     
-    req.logout(function (err) {
-        if (err) { return next(err); }
-        // res.clearCookie('user_email', { path: '/' }); // Clear the session ID
-        res.redirect('/');
-    });
-    // req.session.destroy(function (err) {
-    //     if (!err) {
-    //         res.status(200).clearCookie('connect.sid', {path: '/'}).json({status: "Success"});
-    //         res.redirect('/');
-    //     } 
-
-    // });
-    //     req.session.passport = null;
-    // //    res.clearCookie('connect.sid', { domain: 'localhost' , path: '/' }); // Clear the session ID
-    //     //res.clearCookie('user_email', { domain: 'localhost' , path: '/' }); // Clear the user_email cookie
-    // req.session.destroy((err) => {
-    //     if (err) {
-    //         return res.status(500).json({ message: 'Error while logging out.' });
-    //     }
-
-    //     res.clearCookie('connect.sid', { domain: 'localhost', path: '/' }); // Clear the session ID
-    //     console.log("hi");
-    //     res.json({ message: 'Logged out' });
-    // });
+}
 
 
+async function checkAuthenticated(req, res) {
+    try {
+        const conn = await pool.getConnection();
+        const [rows] = await conn.query('SELECT * FROM UserSession WHERE session_id = ?', [req.sessionID]);
+        const userSession = rows[0];
+        conn.release();
+
+        if (userSession) {
+            return res.json({ isAuthenticated: true });
+        }
+    } catch (err) {
+        console.error('Error checking session ID:', err);
+    }
+
+    res.json({ isAuthenticated: false });
 }
 
 module.exports = {
     login,
     logout,
+    checkAuthenticated,
     passport,
 };
