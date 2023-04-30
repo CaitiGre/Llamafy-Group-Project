@@ -7,8 +7,8 @@ import { Box } from "@mui/material";
 function Heading({ title }) {
   return (
     <React.Fragment>
-      <Box className={styles.title}>
-        <h1>{title}</h1>
+      <Box >
+        <h1 className={styles.title}>{title}</h1>
       </Box>
     </React.Fragment>
   );

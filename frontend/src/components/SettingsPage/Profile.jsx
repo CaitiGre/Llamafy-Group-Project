@@ -1,17 +1,130 @@
-import { Input, InputLabel, Grid } from "@mui/material";
-import { useState } from "react";
+import { InputLabel, Grid } from "@mui/material";
+import { useState, useEffect } from "react";
 import styles from './SettingsPage.module.css';
+import useGet from '../../helpers/useGet';
+import axios from 'axios';
 
 function Profile() {
+
     const [data, setData] = useState({
         fname: '',
         lname: '',
         email: '',
-        stylePreference: '',
+        gender: '',
         skinTone: '',
         location: '',
+        size: '',
+        newPassword: '',
+        reNewPassword: '',
         password: ''
     });
+
+    const [profileData, setProfileData] = useState({});
+
+    // Get user's email from cookie once cookie's set up
+    const userEmail = "test1@sth.com";
+
+    // Get user's current profile data from database
+    const { data: dataObj, isLoading } = useGet(`http://localhost:3006/profile/getProfile/${userEmail}`);
+
+    useEffect(() => {
+        if (!isLoading && dataObj) {
+
+            // Assign the object containing properties needed to profileData.
+            setProfileData(dataObj.userData);
+
+            setData(
+                {
+                    fname: profileData.firstName,
+                    lname: profileData.lastName,
+                    email: profileData.email,
+                    gender: profileData.gender,
+                    skinTone: profileData.skinTone,
+                    location: profileData.location,
+                    size: profileData.clothingSize,
+                    newPassword: '',
+                    password: profileData.password
+                }
+            )
+        }
+
+    }, [isLoading, dataObj]); // Once isLoading and profileData and dataObj changed (meaning the fetch is completed), useEffect() will run and setData to fetched data
+    // Remember that initially when the data was still being fetched, the values of isLoading and dataObj would be different
+
+
+    const inputData = [
+        {
+            displayName: "Email",
+            type: "email",
+            name: "email",
+            id: "profileEmail",
+            value: data.email,
+            readOnly: true
+        },
+        {
+            displayName: "First Name",
+            type: "text",
+            name: "fname",
+            id: "fname",
+            value: data.fname,
+        },
+        {
+            displayName: "Last Name",
+            type: "text",
+            name: "lname",
+            id: "lname",
+            value: data.lname,
+        },
+        {
+            displayName: "Gender",
+            type: "text",
+            name: "gender",
+            id: "gender",
+            value: data.gender,
+        },
+        {
+            displayName: "Skin Tone",
+            type: "text",
+            name: "skinTone",
+            id: "skinTone",
+            value: data.skinTone,
+        },
+        {
+            displayName: "Location",
+            type: "text",
+            name: "location",
+            id: "location",
+            value: data.location,
+        },
+        {
+            displayName: "Clothing size",
+            type: "text",
+            name: "size",
+            id: "size",
+            value: data.size,
+        },
+        {
+            displayName: "New Password",
+            type: "password",
+            name: "newPassword",
+            id: "newPassword",
+            value: '',
+        },
+        {
+            displayName: "Re-enter New Password",
+            type: "password",
+            name: "reNewPassword",
+            id: "reNewPassword",
+            value: '',
+        },
+        {
+            displayName: "Enter Password to confirm changes",
+            type: "password",
+            name: "password",
+            id: "password",
+            value: '',
+        }
+    ]
 
     async function handleChange(event) {
         const inputData = await event.target.value;
@@ -22,121 +135,94 @@ function Profile() {
     }
 
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
-        alert(JSON.stringify(data));
+
+        if ((data.newPassword || data.reNewPassword) && (data.newPassword !== data.reNewPassword)) {
+            alert("Your new passwords must match.");
+        } else {
+
+            try {
+                const response = await axios.post(`http://localhost:3006/profile/updateProfile/${userEmail}`, {
+                    firstName: data.fname,
+                    lastName: data.lname,
+                    email: data.email,
+                    gender: data.gender,
+                    skinTone: data.skinTone,
+                    location: data.location,
+                    size: data.size,
+                    password: data.newPassword,
+                    inputPassword: data.password,
+                });
+
+                console.log("new password to post:", data.newPassword);
+
+                if (response.data.validPass) {
+                    console.log("true - response.data.validPass: ", response.data.validPass);
+                    alert('Update successful!');
+                } else {
+                    console.log("false - response.data.validPass: ", response.data.validPass);
+                    alert('Incorrect password. Please try again!');
+                }
+
+
+            } catch (error) {
+                console.error(error);
+                alert('An error occurred while registering. Please try again later.');
+            }
+        }
     }
 
-
-    const inputData = [
-        {
-            displayName: "First Name",
-            type: "text",
-            name: "fname",
-            id: "fname",
-            value: data.fname,
-            placeHolder: "First name from database"
-        },
-        {
-            displayName: "Last Name",
-            type: "text",
-            name: "lname",
-            id: "lname",
-            value: data.lname,
-            placeHolder: "Last name from database"
-        },
-        {
-            displayName: "Email",
-            type: "email",
-            name: "email",
-            id: "email",
-            value: data.email,
-            placeHolder: "Email from database"
-        },
-
-        {
-            displayName: "Style Preference",
-            type: "text",
-            name: "stylePreference",
-            id: "stylePreference",
-            value: data.stylePreference,
-            placeHolder: "Style preference from database"
-        },
-        {
-            displayName: "Skin Tone",
-            type: "text",
-            name: "skinTone",
-            id: "skinTone",
-            value: data.skinTone,
-            placeHolder: "Skin tone from database"
-        },
-        {
-            displayName: "Location",
-            type: "text",
-            name: "location",
-            id: "location",
-            value: data.location,
-            placeHolder: "Location from database"
-        },
-        {
-            displayName: "Password",
-            type: "password",
-            name: "password",
-            id: "password",
-            value: data.password,
-            placeHolder: "Password from database"
-        }
-    ]
-
     return (
-        <div className={styles.formContainer}>
-            <form onSubmit={handleSubmit}>
-                {inputData.map((item) => (
-                    <Grid container key={item.id} spacing={2}
-                        sx={{ margin: 0 }}>
+        <>
+            {(!isLoading && dataObj) ? (
+                <div className={styles.formContainer}>
+                    <form onSubmit={handleSubmit}>
+                        {inputData.map((item) => (
+                            <Grid container key={item.id} spacing={2}
+                                sx={{ margin: 0 }}>
 
-                        <Grid item xs={4}>
-                            <InputLabel
-                                sx={{
-                                    marginBottom: "2px",
-                                    textAlign: "center",
-                                    color: "#eee"
-                                }}>
+                                <Grid item xs={4}>
+                                    <InputLabel
+                                        sx={{
+                                            marginBottom: "2px",
+                                            textAlign: "center",
+                                            color: "#eee"
+                                        }}>
 
-                                {item.displayName}
+                                        {item.displayName}
 
-                            </InputLabel>
-                        </Grid>
+                                    </InputLabel>
+                                </Grid>
 
-                        <Grid item xs={8}
-                            display={'flex'}
-                            justifyContent="flex-start">
-                            <Input
-                                sx={{
-                                    borderRadius: "20px",
-                                    boxShadow: "2px 2px 5px rgba(255, 255, 255, 0.8)",
-                                    height: "30px",
-                                    width: "90%",
-                                    marginBottom: "15px",
-                                    backgroundColor: "white",
-                                    margin: "0px"
-                                }}
-                                type={item.type}
-                                name={item.name}
-                                id={item.id}
-                                value={item.value}
-                                onChange={handleChange}
-                                inputProps={{ style: { textAlign: "center" } }}
-                                disableUnderline={true}
-                                placeholder={item.placeHolder}
-                            />
-                        </Grid>
+                                <Grid item xs={8}
+                                    display={'flex'}
+                                    justifyContent="flex-start">
 
-                    </Grid>
-                ))}
-                <button id="submit-button" type="submit" className={styles.submitButton}>Submit</button>
-            </form >
-        </div>
+                                    <input className={styles.field}
+                                        type={item.type}
+                                        name={item.name}
+                                        id={item.id}
+                                        defaultValue={item.value}
+                                        onChange={handleChange}
+                                        placeholder={item.value}
+                                        readOnly={item.readOnly}
+                                        style={item.readOnly && { backgroundColor: "#e4e0e0" }}
+                                    />
+
+                                </Grid>
+
+                            </Grid>
+                        ))}
+                        <button id="submit-button" type="submit" className={styles.submitButton}>Submit</button>
+                    </form >
+                </div>
+            )
+                :
+                <div><p>Loading...</p></div>
+            }
+        </>
+
     );
 }
 

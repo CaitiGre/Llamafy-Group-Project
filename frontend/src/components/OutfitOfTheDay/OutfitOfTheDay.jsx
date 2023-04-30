@@ -21,7 +21,10 @@ const OutfitOfTheDay = () => {
       img: "images/good-bad-ugly.jpeg",
       desc: "A cozy poncho and fleece vest topped with a dapper hat.",
     },
-    { id: 2, img: "images/generated/triple.png", desc: "Purple wool" },
+    { 
+      id: 2, 
+      img: "images/generated/triple.png", 
+      desc: "Purple wool" },
     {
       id: 3,
       img: "images/dirty_harry.jpeg",
@@ -33,20 +36,22 @@ const OutfitOfTheDay = () => {
   const [showRecommendations, setShowRecommendations] = useState(false);
 
   function handleRecommendationTiles() {
-    const tiles = temp
-      .map((rec) => ({
-        id: rec.id,
-        img: rec.img,
-        desc: rec.desc,
-      }))
-      .map((rec) => (
-        <div key={rec.id} className={styles.Ootd}>
-          <OotdTile description={rec.desc} imgLink={rec.img} />
-        </div>
-      ));
+    // const tiles = temp
+    //   .map((rec) => ({
+    //     id: rec.id,
+    //     img: rec.img,
+    //     desc: rec.desc,
+    //   }))
+    //   .map((rec) => (
+    //     <div key={rec.id} className={styles.Ootd}>
+    //       <OotdTile description={rec.desc} imgLink={rec.img} />
+    //     </div>
+    //   ));
 
-    setRecommendations(tiles);
-    setShowRecommendations(true);
+    // setRecommendations(tiles);
+    // setShowRecommendations(true);
+
+    console.log("generating")
   }
 
   return (
@@ -55,113 +60,19 @@ const OutfitOfTheDay = () => {
 
       <Box className={styles.formBox} sx={{ gap: "2vh" }}>
         <form className={styles.formBox}>
-          <SubHeading subtitle="What are we feeling like today?" />
-          <h2 className={styles.subSubHeading}>
-            ADD SOME SPECIFICS OR YOU CAN JUST CLICK GENERATE
-          </h2>
-
-          <Box
-            className={styles.dropdownMenus}
-            sx={{
-              display: "flex",
-              justifyContent: "space-evenly",
-            }}
-          >
+          <SubHeading subtitle="Generate a few options below" />
             <Box
-              className={styles.topSelection}
+              className={styles.secondDropdown}
               sx={{
                 display: "flex",
-                rowGap: "2vh",
-                flexDirection: "column",
+                justifyContent: "space-evenly",
               }}
             >
-              <InputLabel
-                className={styles.topLabel}
-                sx={{
-                  marginTop: "2vh",
-                  colour: "black",
-                }}
+              <Box
+                sx={{ display: "flex", rowGap: "2vh", flexDirection: "column" }}
               >
-                TOPS
-              </InputLabel>
-              <Select
-                sx={{
-                  backgroundColor: "white",
-                  width: 300,
-                  overflow: "shown",
-                  width: "25vh",
-                }}
-                placeholder="CHOOSE A TOP HALF"
-              >
-                <MenuItem value={1}>T-SHIRT</MenuItem>
-                <MenuItem value={2}>LONG SLEEVE</MenuItem>
-                <MenuItem value={3}>BUTTON UP</MenuItem>
-                <MenuItem value={4}>SINGLET OR TANK TOP</MenuItem>
-                <MenuItem value={5}>DRESS</MenuItem>
-              </Select>
-              <CompactPicker />
-            </Box>
-
-            <Box
-              className={styles.bottomSelection}
-              sx={{ display: "flex", rowGap: "2vh", flexDirection: "column" }}
-            >
-              <InputLabel
-                sx={{
-                  marginTop: "2vh",
-                }}
-              >
-                BOTTOMS
-              </InputLabel>
-              <Select
-                sx={{
-                  backgroundColor: "white",
-                  width: 250,
-                  overflow: "shown",
-                  width: "25vh",
-                }}
-              >
-                <MenuItem value={1}>SHORTS</MenuItem>
-                <MenuItem value={2}>SKIRT</MenuItem>
-                <MenuItem value={3}>JEANS</MenuItem>
-                <MenuItem value={4}>FUR SUIT</MenuItem>
-              </Select>
-              <CompactPicker />
-            </Box>
-          </Box>
-
-          <Box
-            className={styles.secondDropdown}
-            sx={{
-              display: "flex",
-              justifyContent: "space-evenly",
-            }}
-          >
-            <Box
-              sx={{ display: "flex", rowGap: "2vh", flexDirection: "column" }}
-            >
-              <InputLabel>HOW ABOUT A GENERAL COLOUR SCHEME</InputLabel>
-              <CompactPicker />
-            </Box>
-            <Box
-              sx={{ display: "flex", rowGap: "2vh", flexDirection: "column" }}
-            >
-              <InputLabel>OR SOME SHOES?</InputLabel>
-              <Select
-                sx={{
-                  backgroundColor: "white",
-                  width: 250,
-                  overflow: "shown",
-                  width: "25vh",
-                }}
-              >
-                <MenuItem value={1}>BOOTS</MenuItem>
-                <MenuItem value={2}>SNEAKERS</MenuItem>
-                <MenuItem value={3}>HOOVES</MenuItem>
-                <MenuItem value={4}>JANDALS</MenuItem>
-                <MenuItem value={5}>HEELS</MenuItem>
-              </Select>
-              <CompactPicker />
+                <InputLabel>Select a general color scheme (<i>optional</i>)</InputLabel>
+                <CompactPicker />
             </Box>
           </Box>
         </form>
