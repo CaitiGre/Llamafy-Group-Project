@@ -10,7 +10,9 @@ const HomePage = () => {
     // init states
     let tempArr = [];
     const [username, setUsername] = useState('UsernameFromCookies');
-    const [weatherValues, setWeatherValues] = useState([]);
+    const [weatherValues, setWeatherValues] = useState({
+      tempC : null,
+    });
     const [fileNames, setFileNames] = useState([]);
     const [pastOutfits, setPastOutfits] = useState([]);
    
@@ -33,7 +35,7 @@ const HomePage = () => {
     return <div className={styles.homePage}>
 
         {/* If there is an error getting weather values, greeet the user and inform them that the api is not working*/}
-        {weatherValues 
+        {weatherValues.tempC
         ?   
             <div className={styles.title}> 
             <img src={weatherValues.iconUrl} alt="Weather icon based on the weather today"/> <br />
@@ -41,7 +43,7 @@ const HomePage = () => {
             <p>{weatherValues.tempC} right now with {weatherValues.humidity} humidity. Windspeed at {weatherValues.windKph}. <small>Powered by <a href="https://www.weatherapi.com/" title="Weather API">WeatherAPI.com</a></small></p>
             </div>
         : 
-            <div className={styles.title}> Hello {username}! 
+            <div className={styles.title}> Hello! 
             <p>Unable to fetch weather details at the moment. Try again soon.</p>
             </div>
         }
