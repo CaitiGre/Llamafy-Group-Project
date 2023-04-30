@@ -11,7 +11,6 @@ function ClothingSelectionModal({ selectedItem, showModal, onCloseModal }) {
   const [selectedSleeves, setSelectedSleeves] = useState(null);
   const [selectedLength, setSelectedLength] = useState(null);
   const [selectedStyle, setSelectedStyle] = useState(null);
-  const [selectedFabric, setSelectedFabric] = useState(null);
   const [selectedPattern, setSelectedPattern] = useState(null);
   const [wardrobe, setWardrobe] = useState(null);
   // To be removed: Just checking that a JSON object was correctly created upon clicking the add button
@@ -26,12 +25,12 @@ function ClothingSelectionModal({ selectedItem, showModal, onCloseModal }) {
   const handleAddClick = async () => {
     const selectedWardrobeItem = {
       name: selectedItem.name,
+      category_id: selectedItem.category_id,
       style: selectedStyle,
       pattern: selectedPattern,
       length: selectedLength,
       color: color.hex,
       sleeves: selectedSleeves,
-      fabric: selectedFabric,
     };
 
     try {
@@ -40,6 +39,8 @@ function ClothingSelectionModal({ selectedItem, showModal, onCloseModal }) {
         "http://localhost:3006/wardrobeSelection/addWardrobeItem",
         {
           name: selectedItem.name,
+          category_id: selectedItem.category_id,
+          style: selectedStyle,
           pattern: selectedPattern,
           length: selectedLength,
           color: color.hex,
@@ -176,13 +177,6 @@ function ClothingSelectionModal({ selectedItem, showModal, onCloseModal }) {
                     selectedItemAttribute={selectedItem.style}
                     name="Style"
                     setFunction={setSelectedStyle}
-                  />
-                )}
-                {selectedItem.fabric && (
-                  <ClotheCustomisation
-                    selectedItemAttribute={selectedItem.fabric}
-                    name="Fabric"
-                    setFunction={setSelectedFabric}
                   />
                 )}
                 {selectedItem.pattern && (

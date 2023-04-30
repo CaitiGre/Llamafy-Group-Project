@@ -1,51 +1,69 @@
-import shirt from "../../assets/shirt.png";
-import { Button, Box, Grid, Modal, Typography } from "@mui/material";
-import { useState } from "react";
+import { Button, Box, Grid, Modal, Typography, List, ListItem, ListItemText } from "@mui/material";
+import { useState, useEffect } from "react";
+import { NavLink } from 'react-router-dom';
 import styles from "./SettingsPage.module.css";
 import close from "./../../assets/close.png";
+import bin from "./../../assets/bin.png";
+import ClothesItem from "../ClotheItem/ClotheItem";
+import top from "./../../assets/tshirt.png";
+import bottom from "./../../assets/pants.png";
+import onepiece from "./../../assets/jumpsuit.png";
+import shoes from "./../../assets/shoes.png";
+import jumper from "./../../assets/jumper.png";
+import jacket from "./../../assets/jacket.png";
+import accessories from "./../../assets/accessories.png";
+import swimwear from "./../../assets/swimwear.png";
+import useGet from '../../helpers/useGet';
+import axios from 'axios';
 
 function Wardrobe() {
-  // Get clothes data from database once set up
-  const [clothes, setClothes] = useState([
-    {
-      id: 1,
-      render: shirt,
-      desc: "item1",
-    },
-    {
-      id: 2,
-      render: shirt,
-      desc: "item2",
-    },
-    {
-      id: 3,
-      render: shirt,
-      desc: "item3",
-    },
-    {
-      id: 4,
-      render: shirt,
-      desc: "item4",
-    },
-    {
-      id: 5,
-      render: shirt,
-      desc: "item5",
-    },
-    {
-      id: 6,
-      render: shirt,
-      desc: "item6",
-    },
-  ]);
+
+  const [clothes, setClothes] = useState({});
+
+  // Get user's email from cookie once cookie's set up
+  const userEmail = "cass@sth.com";
+
+  // Get user's current profile data from database
+  const { data: dataObj, isLoading } = useGet(`http://localhost:3006/wardrobe/getWardrobeItems/${userEmail}`);
+
+  useEffect(() => {
+    if (!isLoading && dataObj) {
+
+      // Assign the object containing properties needed to wardrobeItems.
+      setClothes(dataObj.wardrobeItems);
+
+      console.log('clothes', clothes); // clothes is an array of objects.
+      // Each object includes clothing_id, color, sleeves, pattern and main_category of a wardrobe item.
+    }
+
+  }, [isLoading, dataObj]); // Once isLoading and dataObj changed (meaning the fetch is completed), useEffect() will run and setData to fetched data
+  // Remember that initially when the data was still being fetched, the values of isLoading and dataObj would be an empty object
+
 
   // Defining stateful variables for the modal
   const [openModal, setOpenModal] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
+  const [categoryItemsToShow, setCategoryItemsToShow] = useState([]);
+
+  // Defining an array of objects for the clothes items and their images
+  const clothesItems = [
+    { src: top, name: "top" },
+    { src: bottom, name: "bottom" },
+    { src: jumper, name: "jumper" },
+    { src: jacket, name: "jacket" },
+    { src: onepiece, name: "one-piece" },
+    { src: swimwear, name: "swimwear" },
+    { src: shoes, name: "shoes" },
+    { src: accessories, name: "accessories" },
+  ];
+
 
   // Handling the open modal event and setting the selected item to show
-  const handleOpenModal = (outfit) => {
-    setSelectedItem(outfit);
+  const handleOpenModal = (item) => {
+    setSelectedItem(item);
+    // const itemsToShow = clothes.filter((clothe) => clothe.categoryName === item.name);
+    const itemsToShow = clothes.filter((clothe) => clothe.main_category === item.name);
+    setCategoryItemsToShow(itemsToShow);
     setOpenModal(true);
   };
 
@@ -54,70 +72,115 @@ function Wardrobe() {
     setOpenModal(false);
   };
 
-  // Handling delete item: clothe array to retain only items whose id does not match the id of the deleted item
-  function handleDeleteButton(outfitId) {
-    const remainingClothes = clothes.filter((clothe) => clothe.id !== outfitId);
+  // Handling the delete item event in CategoryItem
+  async function handleDeleteItem(item) {
+    const remainingItemsToShow = categoryItemsToShow.filter((catItem) => catItem.clothing_id !== item.clothing_id);
+    setCategoryItemsToShow(remainingItemsToShow);
+
+    const remainingClothes = clothes.filter((clothe) => clothe.clothing_id !== item.clothing_id);
     setClothes(remainingClothes);
 
-    alert(`Outfit ${outfitId} deleted.`);
+    // Send Post request to delete item from the database
+    try {
+      const response = await axios.post(`http://localhost:3006/wardrobe/deleteWardrobeItem`,
+        { itemId: item.clothing_id }
+      );
 
-    // To remove from database once it's set up.
+      if (response.data.isItemDeleted) {
+        console.log("item has been deleted ", response.data.isItemDeleted);
+        alert(`Item id#${item.clothing_id} deleted.`);
+      }
+
+    } catch (error) {
+      console.error(error);
+      alert('An error occurred while trying to delete the item. Please try again later.');
+    }
+    //
   }
 
-  // Might delete this and iimport OutfitTile once merged with main
-  const OutfitTile = ({ outfit, onClick }) => {
+
+  // Card for each clothes item in the list
+  const CategoryItem = ({ items }) => { // items param: items in a particular category
+
     return (
-      <div>
-        <img src={outfit.render} style={{ width: "200px" }} alt={outfit.desc}
-          onClick={() => onClick(outfit)} />
-        <p>{outfit.desc}</p>
-      </div>
+      <>
+        {items.map((item) => (
+
+          <List key={item.clothing_id} sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
+
+            <ListItem alignItems="flex-start">
+
+              <ListItemText
+                secondary={
+                  <>
+                    <Typography
+                      sx={{ display: 'inline' }}
+                      component="span"
+                      variant="body2"
+                      color="text.primary"
+                    >
+
+                      <Button
+                        onClick={() => handleDeleteItem(item)}
+                        sx={{ position: "absolute", top: 8, right: 2, padding: "5px" }}
+                      >
+                        <img src={bin} alt="bin button" width="15px" />
+                      </Button>
+
+                      id#{item.clothing_id}: {item.color} {item.pattern} {item.sleeves} {item.sub_category}
+                    </Typography>
+
+                  </>
+                }
+              />
+
+            </ListItem>
+          </List>
+        ))}
+
+        <div className={styles.navLinkContainer}>
+          <NavLink to="../wardrobe" className={styles.navLink}>Add items</NavLink>
+        </div>
+
+      </>
     );
-  };
+  }
 
   return (
     <>
       {/* The clothes panel */}
-      <Box sx={{ margin: 3 }}>
-        <Grid
-          container
-          columns={{ xs: 2, sm: 6, md: 9, lg: 12 }}
-          sx={{
-            justifyContent: "center",
-            columnGap: "3vw",
-            rowGap: "3vh",
-            margin: 0
-          }}
-        >
-          {/* Iterate over the clothes array and map each of the item to create an OutfitTile component */}
-          {clothes.map((outfitObj) => (
-            <Grid xs={3} key={outfitObj.id} className={styles.card} sx={{ margin: 0 }}>
-              <OutfitTile outfit={outfitObj} onClick={handleOpenModal} />
-              <Button
-                color="secondary"
-                onClick={() => handleDeleteButton(outfitObj.id)}
-                sx={{
-                  textTransform: "lowercase",
-                }}
-              >
-                Delete
-              </Button>
-            </Grid>
-          ))}
-        </Grid>
-      </Box>
+      <section className={styles.wardrobe}>
+        <Box sx={{ flexGrow: 1, maxWidth: "90vw", alignItems: "center", display: "flex" }}>
+          <Grid
+            className={styles.clothespanel}
+            container
+            spacing={{ xs: 2, md: 3 }}
+            columns={{ xs: 2, sm: 6, md: 9, lg: 12 }}
+            sx={{
+              justifyContent: "center",
+              backgroundColor: "rgba(235, 73, 227, 0.315)"
+            }}
+          >
+            {/* Map over the clothesItems and create a ClothesItem for each one */}
+            {clothesItems.map((item, index) => (
+              <Grid key={index} item xs={3}>
+                <ClothesItem item={item} onClick={handleOpenModal} />
+              </Grid>
+            ))}
+          </Grid>
+        </Box>
+      </section>
 
-      {/* The modal which is opened when the OutfitTile's image is clicked */}
       <Modal
         open={openModal}
         onClose={handleCloseModal}
         closeAfterTransition
         disableAutoFocus={true}
-        sx={{ overflowX: "scroll" }}
+        sx={{ overflowY: "scroll" }}
       >
         <Box
           sx={{
-            backgroundColor: "rgba(255, 255, 255, 1)",
+            backgroundColor: "rgba(248, 201, 244, 1)",
             borderRadius: "16px",
             position: "absolute",
             top: "50%",
@@ -127,6 +190,8 @@ function Wardrobe() {
             height: "fit-content",
             margin: "auto",
             padding: "40px",
+            maxHeight: "80vh",
+            overflowY: "scroll",
           }}
         >
           <Button
@@ -136,22 +201,19 @@ function Wardrobe() {
             <img src={close} alt="close button" width="20px" />
           </Button>
 
-          {/* Display item description as the heading of the modal */}
           {selectedItem && (
             <Typography
-              variant="h5"
-              sx={{ textAlign: "center", marginBottom: "5%" }}
+              variant="h4"
+              sx={{ textAlign: "center", margin: "10px", color: "#58315c" }}
             >
-              {selectedItem.desc}
+              {selectedItem.name} items you have
             </Typography>
           )}
 
-          {/* Display a bigger image of the selected item/ outfit */}
-          {selectedItem && (<img src={selectedItem.render} style={{ width: "400px" }} alt={selectedItem.desc}></img>)}
+          <CategoryItem items={categoryItemsToShow}></CategoryItem>
 
         </Box>
       </Modal>
-
     </>
   );
 }

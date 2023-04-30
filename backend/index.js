@@ -3,6 +3,7 @@ const bodyParser = require("body-parser");
 const registrationPageRouter = require("./routes/RegistrationPage");
 const wardrobePageRouter = require("./routes/WardrobePage");
 const settingsProfilePageRouter = require("./routes/SettingsProfilePage");
+const settingsWardrobePageRouter = require("./routes/SettingsWardrobePage");
 const weatherProxy = require('./routes/WeatherProxy');
 
 const app = express();
@@ -24,6 +25,7 @@ app.use('/weather', weatherProxy);
 app.use("/registration", registrationPageRouter);
 app.use("/wardrobeSelection", wardrobePageRouter);
 app.use("/profile", settingsProfilePageRouter);
+app.use("/wardrobe", settingsWardrobePageRouter);
 
 app.get('/', (req, res) => {
   res.send('Llamify server is running');
