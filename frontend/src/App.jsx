@@ -8,7 +8,8 @@ import LoginPage from './components/LoginPage/LoginPage';
 import WardrobeSelection from './components/WardrobeSelection/WardrobeSelection';
 import Navbar from './components/Navbar/Navbar';
 import SettingsPage from './components/SettingsPage/SettingsPage';
-import OutfitOfTheDay from './components/OutfitOfTheDay/OutfitOfTheDay'
+import OutfitOfTheDay from './components/OutfitOfTheDay/OutfitOfTheDay';
+import Disclaimers from "./components/Disclaimers/Disclaimer";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           <Route path="wardrobe" element={<WardrobeSelection />} />
           <Route path="settings" element={<SettingsPage />} />
           <Route path="ootd" element={< OutfitOfTheDay />} />
+          <Route path="disclaimer" element={<Disclaimers />} />
         </Routes>
       </React.Fragment>
     </div>

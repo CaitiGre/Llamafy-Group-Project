@@ -4,7 +4,7 @@
 }
 
 .landingPageTitle {
-  font-size: 30vw;
+  font-size: 26vw;
   font-family: "moonlite-outline";
   margin-bottom: 10vh;
   margin-top: 20vh;
@@ -23,10 +23,10 @@
   font-size: 5vh;
   color: #ffffff;
   padding: 6vh;
+  padding-top: 20%;
   text-shadow: #2f2e31;
   -webkit-text-stroke: 2px #58315c;
 }
-
 
 .buttonContainer {
   display: flex;
@@ -69,51 +69,6 @@
   background-repeat: no-repeat;
   height: 800px;
   z-index: 0;
-}
-
-.backgroundImage,
-.bottomSection {
-  margin: 0;
-  
-}
-
-.aboutContainer,
-.aboutContainer2 {
-  display: flex;
-  justify-content: space-evenly;
-  align-content: space-evenly;
-  align-items: center;
-}
-
-.aboutContainer2 p,
-.aboutContainer p {
-  display: flex;
-  height: fit-content;
-  width: 70%;
-  padding: 4vh;
-  background-color: rgba(255, 255, 255, 0.966);
-  border-radius: 25px;
-  box-shadow: 3px 5px rgba(255, 255, 255, 0.39);
-  text-align: justify;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-  line-height: 25px;
-}
-
-.gifContainer,
-.parallaxContainer {
-  height: 30vh;
-  width:30vh;
-  background-color: white;
-  padding: 2vh;
-  display: flex;
-  z-index: 1;
-  border-radius: 8%;
-  box-shadow: 3px 5px rgba(255, 255, 255, 0.39);
-}
-
-.parallaxContainer{
-  padding: 5vh;
-
 }
 
 @media screen and (max-width: 1200) {

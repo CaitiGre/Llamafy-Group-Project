@@ -3,10 +3,9 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import ClothingRail from "../../assets/cothingRail.gif";
 import WardrobeChange from "../../assets/Wardorbe-Change.gif";
-import { Box, Button, Grid } from "@mui/material";
+import { Box, Button, Grid, Typography } from "@mui/material";
 
 function LandingPage() {
-
   return (
     /** A div that contains the main components for the landing page. Contains three separate divs.
      * The first is for the top section of the landing page that controls the buttons and the title
@@ -22,97 +21,107 @@ function LandingPage() {
           </h2>
           <Box className={styles.buttonContainer}>
             <NavLink to="/login">
-              <Button >LOGIN</Button>
+              <Button>LOGIN</Button>
             </NavLink>
             <NavLink to="/register">
-              <Button >REGISTER</Button>
+              <Button>REGISTER</Button>
             </NavLink>
           </Box>
         </Box>
       </Box>
       <h2 className={styles.llamaSubheading}>
-        NO TIME FOR DRAMA?
-        TRUST IN LLAMA!
+        NO TIME FOR DRAMA? TRUST IN LLAMA!
       </h2>
-      
-      <Box sx={{
-        flexGrow: 1,
-        }}>
-      <Grid
-        className={styles.bottomSection}
-        flexDirection={"column"}
-        height={"70vh"}
-        width={"100%"}
-      >
-        <Box
-          sx={{display: "flex",
-          flexDirection: "row",          
-          justifyContent: "space-evenly",
-          alignContent: "space-evenly",
-          margin: "auto"}}
-          className={styles.aboutContainer}
-        >
-          <p>
-            Have you ever wanted to feel like Cher from clueless minus the
-            incestuous undertones? Well now you can! LLAMAFY was created to ease
-            your worries and allow you to make one less decision in your already
-            overwhelming day. Unlike other applications that can make
-            suggestions surrounding potential wardrobe choices, LLAMAFY employs
-            the use of artificial intelligence to account for your gender,
-            general clothing preferences based on what you already have in your
-            wardrobe, and the temperature of your home location. This way you
-            can rest easy knowing you will not be suggested speedos when it is
-            10 degrees celcius outside! Amazing!
-          </p>
+
+      <Grid container spacing={3} sx={{padding: "3vh"}}>
+        <Grid item xs={8} md={10}>
           <Box
-            className={styles.gifContainer}
-            display={"flex"}
-            style={{
-              backgroundImage: `url(${ClothingRail})`,
-              backgroundPosition: "center",
+            className={styles.aboutContainer}
+            bgcolor="white"
+            sx={{
+              borderRadius: "25px",
+              padding: "3vh",
+              fontFamily: "Verdana, Geneva, Tahoma, sans-serif",
+              height: "auto",
+              alignItems: "center",
+            }}
+            p={2}
+          >
+            <Typography sx={{ alignItems: "center", textAlign: "justify", margin: "auto" }}>
+              Have you ever wanted to feel like Cher from clueless minus the
+              incestuous undertones? Well now you can! LLAMAFY was created to
+              ease your worries and allow you to make one less decision in your
+              already overwhelming day. Unlike other applications that can make
+              suggestions surrounding potential wardrobe choices, LLAMAFY
+              employs the use of artificial intelligence to account for your
+              gender, general clothing preferences based on what you already
+              have in your wardrobe, and the temperature of your home location.
+              This way you can rest easy knowing you will not be suggested
+              speedos when it is 10 degrees celcius outside! Amazing!
+            </Typography>
+          </Box>
+        </Grid>
+        <Grid item xs={1} md={2} >
+          <Box
+            sx={{
+              margin: "auto",
+              textAlign: "center",
               backgroundSize: "cover",
-              border: "0.3vh solid white",
+              borderRadius: "25px",
+              height: "fit",
+              width: "fit",
+              backgroundRepeat: "no-repeat",
+              backgroundImage: `url(${WardrobeChange})`,
+            }}
+            p={2}
+          ></Box>
+        </Grid>
+        <Grid item xs={1} md={2}>
+          <Box
+            p={2}
+            sx={{
+              backgroundImage: `url(${ClothingRail})`,
+              margin: "auto",
+              textAlign: "center",
+              backgroundSize: "cover",
+              borderRadius: "25px",
+              height: "fit",
+              width: "fit",
+              backgroundRepeat: "no-repeat",
             }}
           ></Box>
-        </Box>
-        <Box
-          className={styles.aboutContainer2}
-          sx={{display: "flex",
-          flexDirection: "row",          
-          justifyContent: "space-evenly",
-          alignContent: "space-evenly",
-          margin: "auto",
-          }}
-        >
+        </Grid>
+        <Grid item xs={8} md={10}>
           <Box
-            className={styles.parallaxContainer}
+            bgcolor="white"
+            p={2}
             sx={{
-              backgroundImage: `url(${WardrobeChange})`,
-              width: "25vh",
-              height: "25vh",
-              backgroundPosition: "center",
-              backgroundSize: "cover",
-              border: "0.3vh solid white",
+              borderRadius: "25px",
+              padding: "3vh",
+              fontFamily: "Verdana, Geneva, Tahoma, sans-serif",
+              height: "30vh",
+              alignItems: "center",
+              height: "auto"
             }}
-          />
-          <p>
-            Simply register with us, answer some basic questions about your
-            current wardrobe and you're done! Worry not, these answers can be
-            altered later and change as your style and current wardrobe change
-            too. We can save you up to 16* hours a week in choosing clothes to
-            wear with the simple click of a button. Why waste time opening and
-            closing the closet trying to decide what to wear? No longer do you
-            have to take the Steve Jobs approach of wearing the same outfit day
-            in and day out simply to have one less decision to make per day. Try
-            LLAMAFY today!
-            <br></br>
-            <br></br>
-            *Don't quote us on this. We're just enthusiastic! Bordering on
-            unhinged! Just look at all the exclamation marks!
-          </p>
-        </Box>
+          >
+            <Typography sx={{ alignItems: "center", textAlign: "justify" }}>
+              Simply register with us, answer some basic questions about your
+              current wardrobe and you're done! Worry not, these answers can be
+              altered later and change as your style and current wardrobe change
+              too. We can save you up to 16* hours a week in choosing clothes to
+              wear with the simple click of a button. Why waste time opening and
+              closing the closet trying to decide what to wear? No longer do you
+              have to take the Steve Jobs approach of wearing the same outfit
+              day in and day out simply to have one less decision to make per
+              day. Try LLAMAFY today!
+              <br></br>
+              <br></br>
+              *Don't quote us on this. We're just enthusiastic! Bordering on
+              unhinged! Just look at all the exclamation marks!
+            </Typography>
+          </Box>
+        </Grid>
       </Grid>
-      </Box>
     </React.Fragment>
   );
 }
