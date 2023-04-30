@@ -65,15 +65,29 @@ function Wardrobe() {
   };
 
   // Handling the delete item event in CategoryItem
-  function handleDeleteItem(item) {
+  async function handleDeleteItem(item) {
     const remainingItemsToShow = categoryItemsToShow.filter((catItem) => catItem.clothing_id !== item.clothing_id);
     setCategoryItemsToShow(remainingItemsToShow);
 
     const remainingClothes = clothes.filter((clothe) => clothe.clothing_id !== item.clothing_id);
     setClothes(remainingClothes);
 
-    alert(`${item.color} ${item.pattern} ${item.sleeves} sleeve ${item.main_category} deleted.`);
+    // Send Post request to delete item from the database
+    try {
+      const response = await axios.post(`http://localhost:3006/wardrobe/deleteWardrobeItem`,
+        { itemId: item.clothing_id }
+      );
 
+      if (response.data.isItemDeleted) {
+        console.log("item has been deleted ", response.data.isItemDeleted);
+        alert(`Item id#${item.clothing_id} deleted.`);
+      }
+
+    } catch (error) {
+      console.error(error);
+      alert('An error occurred while trying to delete the item. Please try again later.');
+    }
+    //
   }
 
 
@@ -82,9 +96,9 @@ function Wardrobe() {
 
     return (
       <>
-        {items.map((item, index) => (
+        {items.map((item) => (
 
-          <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
+          <List key={item.clothing_id} sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
 
             <ListItem alignItems="flex-start">
 
@@ -105,7 +119,7 @@ function Wardrobe() {
                         <img src={bin} alt="bin button" width="15px" />
                       </Button>
 
-                      {item.color} {item.pattern} {item.sleeves} {item.main_category}
+                      id#{item.clothing_id}: {item.color} {item.pattern} {item.sleeves} {item.main_category}
                     </Typography>
 
                   </>

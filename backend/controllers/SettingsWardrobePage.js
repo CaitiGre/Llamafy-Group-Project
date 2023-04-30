@@ -10,7 +10,6 @@ async function getWardrobeItems(userEmail) {
             AND ci.user_email = "${userEmail}"`
         );
         conn.release();
-
         return result[0];
 
     } catch (error) {
@@ -19,4 +18,19 @@ async function getWardrobeItems(userEmail) {
     }
 }
 
-module.exports = { getWardrobeItems };
+
+async function deleteWardrobeItem(itemId) {
+    try {
+        const conn = await pool.getConnection();
+        await conn.query(`
+        DELETE FROM ClothingItem
+        WHERE clothing_id='${itemId}'`
+        );
+        conn.release();
+    } catch (error) {
+        console.error(error);
+        throw error;
+    }
+}
+
+module.exports = { getWardrobeItems, deleteWardrobeItem };
