@@ -150,8 +150,7 @@ async function promptGenerator(user_email) {
     ],
     "dalle": "A full-body lookbook style photograph of a male model wearing %"
   },
-  "recommendation2" : {"top" : "%..."},
-  }`;
+  "recommendation2" : {"top" : "%..."}}`;
 
     return prompt;
 }
