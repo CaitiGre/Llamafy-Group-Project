@@ -3,7 +3,7 @@ const axios = require('axios');
 const { v4: uuidv4 } = require('uuid');
 const fs = require('fs');
 
-const key = process.env.OPEN_AI_KEY;
+const key = "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";
 
 const { Configuration, OpenAIApi } = require("openai");
 const configuration = new Configuration({ apiKey: key });
