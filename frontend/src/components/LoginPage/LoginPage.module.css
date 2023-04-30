@@ -1,45 +1,30 @@
-* {
-    box-sizing: border-box;
-    margin: auto;
-}
-
 .backgroundImage {
-    margin: 0;
-}
-
-.heading {
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-size: 100px;
-    color: rgba(255, 255, 255, 0);
-    margin-top: 10%;
-    -webkit-text-stroke: 3px #28002c;
-    margin-bottom: 50px;
+  margin: 0;
 }
 
 .submitButton {
-    width: 100px;
-    background-color: white;
-    border: 1px solid #ccc;
-    border-radius: 20px;
-    color: #333;
-    cursor: pointer;
-    font-size: 14px;
-    margin: 0px 5px;
-    outline: none;
-    padding: 12px 22px;
-    transition: background-color 0.3s, border-color 0.3s;
-    box-shadow: 2px 2px 5px rgba(255, 255, 255, 0.8);
-    margin-top: 5%;
+  width: 100px;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  color: #333;
+  cursor: pointer;
+  font-size: 14px;
+  margin: 0px 5px;
+  outline: none;
+  padding: 12px 22px;
+  transition: background-color 0.3s, border-color 0.3s;
+  box-shadow: 2px 2px 5px rgba(255, 255, 255, 0.8);
+  margin-top: 5%;
 }
 
 .submitButton:hover {
-    background-color: #e0e0e0;
-    border-color: #aaa;
+  background-color: #e0e0e0;
+  border-color: #aaa;
 }
 
 .formContainer {
-    background-color: rgba(209, 119, 209, 0.685);
-    padding: 30px;
-    margin: 3% 12% 5% 12%;
-    border-radius: 20px;
+  padding: 30px;
+  margin: 3% 12% 5% 12%;
+  border-radius: 20px;
 }

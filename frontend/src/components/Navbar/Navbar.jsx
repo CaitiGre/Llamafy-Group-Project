@@ -1,59 +1,181 @@
-import { useState, useEffect } from "react";
-import React from "react";
+import React, { useEffect, useState, useContext } from "react";
+import {
+  AppBar,
+  Button,
+  Box,
+  Toolbar,
+  Typography,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
 import { NavLink } from "react-router-dom";
-import style from "./Navbar.module.css";
-import ColourChangeLlama from "../../assets/colourChangeLlama.gif";
-import LlamaIcon from "../../assets/llamaProfile.png";
+import Llama from "../../assets/llama.png";
 import Sidebar from "../Sidebar/Sidebar";
-import { HiMenu } from "react-icons/hi";
+import AuthContext from "../../AuthContext";
+import checkSession from "../../helpers/checkSession";
+import handleLogout from "../../helpers/handleLogout";
 
 const Navbar = () => {
+  const theme = useTheme();
+  const isMatch = useMediaQuery(theme.breakpoints.down("md"));
+
+
   const [initalScrollPosition, setScrollPosition] = useState(0);
   const [visible, setVisible] = useState(true);
   /*Creates the hooks that account for the position of the navbar before scrolling down the page and sets when the navbar will be visible again based on the current scroll position against the previous scroll position */
   const handleScroll = () => {
     const currentPageScroll = window.pageYOffset;
 
+    /* Sets the height of the page scroll. Looks at the initial page scroll position of 0 and sets the height that it is visible */
     setVisible(
       (initalScrollPosition > currentPageScroll &&
         initalScrollPosition - currentPageScroll > 60) ||
-        currentPageScroll < 10
+      currentPageScroll < 10
     );
 
     setScrollPosition(currentPageScroll);
   };
 
+
+  const { userAuthenticated, setUserAuthenticated } = useContext(AuthContext);
+
   /**Handles the scrolling event to trigger the navbar transition */
   useEffect(() => {
+    //authenticated status check
+    // Call the checkSession function when the component mounts.
+    //checks authenticated status to toggle between login and logout buttons. 
+    checkSession(setUserAuthenticated);
     window.addEventListener("scroll", handleScroll);
 
     return () => window.removeEventListener("scroll", handleScroll);
   }, [initalScrollPosition, visible, handleScroll]);
 
+  async function handleLogOut() {
+    await handleLogout(setUserAuthenticated);
+  }
+
   return (
-    <div>
-      {/* Creates a div which the side bar is called within */}
-      <div style={{ margin: "0" }}>
-        <Sidebar />
-      </div>
-      <div
-        className={style.navbarStyle}
-        style={{ top: visible ? "0" : "-6vh" }}
-      >
-        {/* Links the llama gif and the LLamafy title to the homepage */}
-        <div className={style.homeNav}>
-          <NavLink to="/">
-            <img src={ColourChangeLlama} className={style.LlamaGifColour} style={{ height: "5vh" }} />
-            <h2>LLAMAFY</h2>
-          </NavLink>
-        </div>
-        <div className={style.navbarRight} style={{height: "5vh"}}>
-          <NavLink to="/settings">
-            <img src={LlamaIcon} style={{ height: "4vh" }}></img>
-          </NavLink>
-        </div>
-      </div>
-    </div>
+    <React.Fragment>
+      <AppBar sx={{ background: "transparent", boxShadow: "none" }}
+        style={{ top: visible ? "0" : "-20vh", transition: "top 0.2s" }}>
+        <Toolbar
+          className="toolbarContainer"
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            fontFamily: "Franklin Gothic"
+          }}
+        >
+          <Box sx={{ display: "flex", alignItems: "center" }}>
+            <NavLink to="/">
+              <img src={Llama} alt="llama homepage icon" width="40px" />
+            </NavLink>
+            {isMatch && (
+              <NavLink to="/" style={{ textDecoration: "none" }} >
+                <Typography sx={{ fontSize: "2rem", paddingLeft: "10px", color: "white" }}>
+                  LLAMAFY
+                </Typography>
+              </NavLink>
+            )}
+          </Box>
+
+          {!isMatch && (
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                flexGrow: 1,
+              }}
+            >
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  marginLeft: "auto",
+                }}
+              >
+                <NavLink
+                  to="/ootd"
+                  style={{
+                    textDecoration: "none",
+                    marginLeft: "2vw",
+                    marginRight: "2vw",
+                    color: "white",
+                    fontSize: 20,
+                  }}
+                >
+                  OUTFIT
+                </NavLink>
+                <NavLink
+                  to="/wardrobe"
+                  style={{
+                    textDecoration: "none",
+                    marginLeft: "2vw",
+                    marginRight: "2vw",
+                    color: "white",
+                    fontSize: 20,
+                  }}
+                >
+                  WARDROBE
+                </NavLink>
+                <NavLink
+                  to="/pastOutfits"
+                  style={{
+                    textDecoration: "none",
+                    marginLeft: "2vw",
+                    marginRight: "2vw",
+                    color: "white",
+                    fontSize: 20,
+                  }}
+                >
+                  FAVOURITES
+                </NavLink>
+                <NavLink
+                  to="/settings"
+                  style={{
+                    textDecoration: "none",
+                    marginLeft: "2vw",
+                    marginRight: "2vw",
+                    color: "white",
+                    fontSize: 20,
+                  }}
+                >
+                  SETTINGS
+                </NavLink>
+              </Box>
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: "flex-end",
+                  marginLeft: "auto",
+                  fontSize: 20
+                }}
+              >
+                {userAuthenticated ? (
+                  <>
+                    <Button onClick={handleLogOut} sx={{ marginRight: "10px", color: "white" }}>LOGOUT</Button>
+                    <Button sx={{ color: "white" }}>REGISTER</Button>
+                  </>
+
+                ) : (
+                  <>
+                    <NavLink to="/login" style={{ textDecoration: "none" }}>
+                      <Button sx={{ marginRight: "10px", color: "white" }}>LOGIN</Button>
+                    </NavLink>
+                    <Button sx={{ color: "white" }}>REGISTER</Button>
+                  </>
+                )}
+              </Box>
+            </Box>
+          )}
+
+          {isMatch && <Sidebar />}
+        </Toolbar>
+      </AppBar>
+    </React.Fragment>
   );
 };
 

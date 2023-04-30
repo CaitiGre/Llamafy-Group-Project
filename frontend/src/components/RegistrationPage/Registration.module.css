@@ -1,37 +1,30 @@
-.register-h1{
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-size: 100px;
-    color: rgba(255, 255, 255, 0);
-    padding-top: 5%;
-    -webkit-text-stroke: 3px #28002c;
-    
-}
-
 .register-input {
     border-radius: 20px;
-    box-shadow: 2px 2px 5px rgba(255, 255, 255, 0.8);;
+    box-shadow: 2px 2px 5px rgb(255, 255, 255);;
     border: none;
     height: 40px;
+    text-transform: upper;
     text-align: center;
 }
 
 .register-label {
     padding-bottom: 5px;
+    text-transform: uppercase;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 
 
-#email, #location, #password, #repassword {
-    width: 210%;
+#email, #password, #repassword {
+    width: 230%;
     position: relative;
-    left: -55%;
+    left: -66%;
 }
 
 .form-container {
-    /* background-color: rgba(235, 73, 227, 0.315); */
     padding: 20px;
     margin: 0% 10% 0% 10%;
-    border-radius: 20px;
+    border-radius: 10px;
 }
 
 .form-container div {
@@ -40,14 +33,13 @@
 
 .gender-div {
     display: flex;
-    justify-content: space-evenly
-
+    justify-content: space-evenly;
 }
 
 .gender-button {
     width: 100px;
-    background-color: #f0f0f0;
-    border: 1px solid #ccc;
+    background-color: #ffffff;
+    border: 1px solid #e2e2e2;
     border-radius: 20px;
     color: #333;
     cursor: pointer;
@@ -72,7 +64,7 @@
 
 #submit-button {
     width: 320px;
-    background-color: #f0f0f0;
+    background-color: #ffffff;
     border: 1px solid #ccc;
     border-radius: 20px;
     color: #333;

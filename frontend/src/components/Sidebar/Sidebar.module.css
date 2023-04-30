@@ -1,36 +1,17 @@
-.SidebarContainer{
-    width: 28vh;
-    position: absolute;
-    display: flex;
-    margin: 0;
-    align-self: flex-start;
-    height: 100%;
-    z-index: 2;
-    background-color: rgba(137, 43, 226, 0);
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-}
-
-.SidebarContainer h2{
-    font-family: 'url(../../assets/fonts/moonlite-outline.ttf)';
-    font-size: x-large;
-}
-
-.sidebarTitle{
-    padding-left: 1.5vh;
-    font-family: url(../../assets/fonts/moonlite-outline.ttf);
-}
-
-.SidebarContainer a{
+.navbarLinks a{
     color: black;
-    padding-left: 2vh;
-    text-align: left;
-    padding-right: 2vh;
-    font-size: larger;
+    text-transform: uppercase;
     text-decoration: none;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: 2px;
+    font-size: x-large;
+    padding: 2vh;
 }
 
-Menuitem {
-    height: 7vh;
-    size-adjust: larger;
+.navbarLinks {
+    font-size: 30px;
 }
-
+.MuiList-root{
+    font-size: 40px;
+    
+}
