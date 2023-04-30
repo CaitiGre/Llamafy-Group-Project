@@ -3,7 +3,6 @@ import { Box, Input, InputLabel, Typography } from "@mui/material";
 import { useState } from "react";
 import styles from './LoginPage.module.css';
 import Heading from '../Heading/Heading';
-import getUserEmail from '../../helpers/getUserEmail';
 
 function LoginPage() {
 

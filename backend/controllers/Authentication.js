@@ -64,10 +64,20 @@ function login(req, res, next) {
             }
             try {
                 const conn = await pool.getConnection();
-                await conn.query(
-                    'REPLACE INTO UserSession (user_email, session_id) VALUES (?, ?)',
-                    [user.email, req.sessionID]
-                );
+                const [rows] = await conn.query('SELECT * FROM UserSession WHERE user_email = ?', [user.email]);
+                if (rows.length === 0) {
+                    // If no row exists for the user_email, insert a new row
+                    await conn.query(
+                        'INSERT INTO UserSession (user_email, session_id) VALUES (?, ?)',
+                        [user.email, req.sessionID]
+                    );
+                } else {
+                    // If a row exists for the user_email, update the session_id
+                    await conn.query(
+                        'UPDATE UserSession SET session_id = ? WHERE user_email = ?',
+                        [req.sessionID, user.email]
+                    );
+                }
                 conn.release();
             } catch (err) {
                 console.error('Error storing session ID:', err);
@@ -79,25 +89,24 @@ function login(req, res, next) {
 
 async function logout(req, res) {
     // Set the session ID to NULL in the table
-    console.log(req.sessionID);
-    console.log(`UPDATE UserSession SET session_id = NULL WHERE session_id = ${req.sessionID}`);
+
     const conn = await pool.getConnection();
-   
+
     try {
         await conn.query('UPDATE UserSession SET session_id = NULL WHERE session_id = ?', [req.sessionID], (error, results) => {
             if (error) {
-              console.error('Error setting session ID to NULL:', error);
+                console.error('Error setting session ID to NULL:', error);
             } else {
-              console.log('Affected rows:', results.affectedRows);
+                console.log('Affected rows:', results.affectedRows);
             }
-          });
-        console.log("hello");
+        });
+        
     } catch (err) {
         console.error('Error setting session ID to NULL:', err);
     }
-           
+
     conn.release();
-    
+
 }
 
 

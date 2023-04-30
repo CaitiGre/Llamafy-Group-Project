@@ -39,19 +39,18 @@ const Navbar = () => {
   const [userAuthenticated, setUserAuthenticated] = useState(false);
   //checks authenticated status to toggle between login and logout buttons. 
   async function checkSession() {
-    console.log("calling");
+    console.log("checkSession");
     try {
       const response = await axios.post('http://localhost:3006/auth/checkSession', null, {
         withCredentials: true,
       });
-
-      console.log('Server response:', response.data);
 
       if (response.data.isAuthenticated) {
         setUserAuthenticated(true);
       } else {
         setUserAuthenticated(false);
       }
+      console.log(response.data.isAuthenticated);
     } catch (err) {
       console.error('Error checking session:', err);
     }
@@ -77,6 +76,7 @@ const Navbar = () => {
     } catch (err) {
       console.error("Error logging out:", err);
     }
+    window.location.replace('/login');
   }
 
   return (
