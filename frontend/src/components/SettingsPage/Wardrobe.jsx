@@ -30,27 +30,10 @@ function Wardrobe() {
 
       console.log('clothes', clothes); // clothes is an array of objects.
       // Each object includes clothing_id, color, sleeves, pattern and main_category of a wardrobe item.
-
-      // setData(
-      //     {
-      //         fname: profileData.firstName,
-      //         lname: profileData.lastName,
-      //         email: profileData.email,
-      //         gender: profileData.gender,
-      //         skinTone: profileData.skinTone,
-      //         location: profileData.location,
-      //         size: profileData.clothingSize,
-      //         newPassword: '',
-      //         password: profileData.password
-      //     }
-      // )
     }
 
   }, [isLoading, dataObj]); // Once isLoading and profileData and dataObj changed (meaning the fetch is completed), useEffect() will run and setData to fetched data
   // Remember that initially when the data was still being fetched, the values of isLoading and dataObj would be different
-
-
-
 
 
   // Defining stateful variables for the modal
@@ -65,8 +48,6 @@ function Wardrobe() {
     { src: onepiece, name: "one-piece" },
     { src: shoes, name: "shoes" },
   ];
-
-
 
 
   // Handling the open modal event and setting the selected item to show
