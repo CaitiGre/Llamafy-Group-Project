@@ -1,6 +1,7 @@
 import shirt from "../../assets/shirt.png";
 import { Button, Box, Grid, Modal, Typography, List, ListItem, ListItemText, ListItemAvatar, Avatar } from "@mui/material";
 import { useState, useEffect } from "react";
+import { NavLink } from 'react-router-dom';
 import styles from "./SettingsPage.module.css";
 import close from "./../../assets/close.png";
 import ClothesItem from "../ClotheItem/ClotheItem";
@@ -208,6 +209,10 @@ function Wardrobe() {
             </ListItem>
           </List>
         ))}
+
+        <div className={styles.navLinkContainer}>
+          <NavLink to="../wardrobe" className={styles.navLink}>Add items</NavLink>
+        </div>
 
       </>
     );
