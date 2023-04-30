@@ -135,7 +135,7 @@ async function promptGenerator(user_email) {
   ${JSON.stringify(userWardrobe)}
   Respond in the below format only, substituting % with the values. Do not provide a value for a category if it is covered by another. In the "dalle" property, provide a comprehensive prompt to give to the DALL-E model. Focus on providing detail on colour.
   {
-  "recommendation1" : {
+  "recommendation1":{
     "top": [
         {"id": "%", "description": "%", "colour": "%", "subCategory": "%"}
     ],
