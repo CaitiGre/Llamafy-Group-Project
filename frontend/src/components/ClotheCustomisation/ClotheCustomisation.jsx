@@ -21,7 +21,7 @@ function ClotheCustomisation({ selectedItemAttribute, name, setFunction }) {
       <Box>
         <Typography
           variant="h5"
-          sx={{ paddingTop: "4vh", paddingBottom: "2vh", color: "#58315c" }}
+          sx={{ paddingRight:"4vw", paddingTop: "4vh", paddingBottom: "2vh", color: "#58315c" }}
         >
           {name}
         </Typography>

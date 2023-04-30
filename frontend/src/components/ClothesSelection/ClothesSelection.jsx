@@ -6,8 +6,8 @@ import SubSelectionModal from "../SubSelectionModal/SubSelectionModal";
 import top from "./../../assets/tshirt.png";
 import bottom from "./../../assets/pants.png";
 import onepiece from "./../../assets/jumpsuit.png";
-import shoes from "./../../assets/shoe.png";
-import cropTop from "./../../assets/CropTop.png";
+import shoes from "./../../assets/shoes.png";
+import cropTop from "./../../assets/crop-top.png";
 import shirt from "./../../assets/shirt.png";
 import blouse from "./../../assets/blouse.png";
 import shorts from "./../../assets/shorts.png";
@@ -19,6 +19,24 @@ import heel from "./../../assets/heel.png";
 import dressShoes from "./../../assets/dress-shoes.png";
 import boots from "./../../assets/boots.png";
 import close from "./../../assets/close.png";
+import jumper from "./../../assets/jumper.png";
+import jacket from "./../../assets/jacket.png";
+import accessories from "./../../assets/accessories.png";
+import swimwear from "./../../assets/swimwear.png";
+import trunks from "./../../assets/trunks.png";
+import bikini from "./../../assets/bikini.png";
+import onepieceSwim from "./../../assets/onepiece-swim.png";
+import speedo from "./../../assets/speedo.png";
+import trench from "./../../assets/trench.png";
+import blazer from "./../../assets/blazer.png";
+import raincoat from "./../../assets/rain-coat.png";
+import cardigan from "./../../assets/cardi.png";
+import jersey from "./../../assets/jersey.png";
+import hoodie from "./../../assets/hoodie.png";
+import gloves from "./../../assets/gloves.png";
+import scarf from "./../../assets/scarf.png";
+import glasses from "./../../assets/glasses.png";
+import cap from "./../../assets/cap.png";
 
 function ClothesSelection() {
   // Defining state variables for the modal
@@ -30,8 +48,12 @@ function ClothesSelection() {
   const clothesItems = [
     { src: top, name: "TOP" },
     { src: bottom, name: "BOTTOM" },
+    { src: jumper, name: "JUMPER" },
+    { src: jacket, name: "JACKET" },
     { src: onepiece, name: "ONEPIECE" },
+    { src: swimwear, name: "SWIMWEAR" },
     { src: shoes, name: "SHOES" },
+    { src: accessories, name: "ACCESSORIES" },
   ];
   // Defining an object that maps each clothes item to an array of its sub-selection items and their images
   const subSelectionItemsByClothesItem = {
@@ -39,157 +61,320 @@ function ClothesSelection() {
       {
         src: top,
         name: "Tshirt",
-        length: ["cropped", "full", "oversized"],
-        sleeves: [
-          "no sleeves",
-          "straps",
-          "short sleeves",
-          "3/4 sleeves",
-          "long sleeves",
-        ],
+        category_id: 1,
+        sleeves: ["straps", "short sleeves", "3/4 sleeves", "long sleeves"],
         style: ["crew neck", "V neck", "Henley", "Polo"],
-        fabric: ["cotton", "denim", "linen", "wool"],
         pattern: ["striped", "Graphic", "baseball", "floral"],
       },
       {
         src: shirt,
-        name: "Shirt",
-        length: ["cropped", "full", "oversized"],
-        sleeves: [
-          "no sleeves",
-          "straps",
-          "short sleeves",
-          "3/4 sleeves",
-          "long sleeves",
-        ],
+        name: "shirt",
+        category_id: 2,
+        sleeves: ["straps", "short sleeves", "3/4 sleeves", "long sleeves"],
         style: ["crew neck", "V neck", "Henley", "Polo"],
-        fabric: ["cotton", "denim", "linen", "wool"],
         pattern: ["striped", "Graphic", "baseball", "floral"],
       },
       {
         src: blouse,
-        name: "Blouse",
-        length: ["cropped", "full", "oversized"],
-        sleeves: [
-          "no sleeves",
-          "straps",
-          "short sleeves",
-          "3/4 sleeves",
-          "long sleeves",
-        ],
+        name: "blouse",
+        category_id: 3,
+        sleeves: ["straps", "short sleeves", "3/4 sleeves", "long sleeves"],
         style: ["crew neck", "V neck", "Henley", "Polo"],
-        fabric: ["cotton", "denim", "linen", "wool"],
         pattern: ["striped", "Graphic", "baseball", "floral"],
       },
       {
         src: cropTop,
-        name: "Crop Top",
-        sleeves: [
-          "no sleeves",
-          "straps",
-          "short sleeves",
-          "3/4 sleeves",
-          "long sleeves",
-        ],
+        name: "crop-top",
+        category_id: 4,
+        sleeves: ["straps", "short sleeves", "3/4 sleeves", "long sleeves"],
         style: ["crew neck", "V neck", "Henley", "Polo"],
-        fabric: ["cotton", "denim", "linen", "wool"],
         pattern: ["striped", "Graphic", "baseball", "floral"],
       },
     ],
     BOTTOM: [
       {
         src: bottom,
-        name: "Pants",
-        length: ["cropped", "3/4", "full length"],
+        name: "pants",
+        category_id: 5,
         style: ["flared", "slim", "cargo", "straight", "sweat"],
-        fabric: ["cotton", "denim", "linen", "wool"],
         pattern: ["striped", "checkered", "animal print", "floral"],
       },
       {
         src: shorts,
         name: "shorts",
-        length: ["mini", "above knee", "3/4"],
+        category_id: 6,
         style: ["flared", "slim", "cargo", "straight", "sweat"],
-        fabric: ["cotton", "denim", "linen", "wool"],
         pattern: ["striped", "checkered", "animal print", "floral"],
       },
       {
         src: skirt,
         name: "skirt",
+        category_id: 6,
         length: ["mini", "3/4", "maxi"],
         style: ["flared", "slim", "cargo", "straight", "sweat"],
-        fabric: ["cotton", "denim", "linen", "wool"],
         pattern: ["striped", "checkered", "animal print", "floral"],
+      },
+    ],
+    JUMPER: [
+      {
+        src: jumper,
+        name: "jumper",
+        category_id: 16,
+        style: ["crew neck", "V neck", "turtle neck"],
+        pattern: [
+          "striped",
+          "Graphic",
+          "animal print",
+          "christmas",
+          "abstract",
+          "floral",
+        ],
+      },
+      {
+        src: cardigan,
+        name: "cardigan",
+        category_id: 17,
+        style: ["crew neck", "V neck", "turtle neck"],
+        pattern: [
+          "striped",
+          "Graphic",
+          "animal print",
+          "geometric",
+          "abstract",
+          "floral",
+        ],
+      },
+      {
+        src: hoodie,
+        name: "hoodie",
+        category_id: 18,
+        pattern: [
+          "striped",
+          "Graphic",
+          "animal print",
+          "geometric",
+          "abstract",
+          "floral",
+        ],
+      },
+      {
+        src: jersey,
+        name: "jersey",
+        category_id: 19,
+        style: ["crew neck", "V neck", "turtle neck"],
+        pattern: [
+          "striped",
+          "Graphic",
+          "animal print",
+          "geometric",
+          "abstract",
+          "floral",
+        ],
+      },
+    ],
+    JACKET: [
+      {
+        src: jacket,
+        name: "jacket",
+        category_id: 20,
+        style: ["bomber", "leather", "parka", "denim"],
+        pattern: [
+          "striped",
+          "Graphic",
+          "animal print",
+          "geometric",
+          "abstract",
+          "floral",
+        ],
+      },
+      {
+        src: blazer,
+        name: "blazer",
+        category_id: 21,
+        style: ["double breasted", "single breasted", "velvet"],
+        pattern: [
+          "striped",
+          "Graphic",
+          "animal print",
+          "geometric",
+          "abstract",
+          "floral",
+        ],
+      },
+      {
+        src: raincoat,
+        name: "raincoat",
+        category_id: 22,
+        style: ["trench", "poncho", "anorak", "parka"],
+        pattern: [
+          "striped",
+          "Graphic",
+          "animal print",
+          "geometric",
+          "abstract",
+          "floral",
+        ],
+      },
+      {
+        src: trench,
+        name: "trenchcoat",
+        category_id: 23,
+        style: ["classic", "military", "long"],
+        pattern: [
+          "striped",
+          "Graphic",
+          "animal print",
+          "geometric",
+          "abstract",
+          "floral",
+        ],
       },
     ],
     ONEPIECE: [
       {
         src: onepiece,
-        name: "Jumpsuit",
-        length: ["cropped", "3/4", "full length"],
-        sleeves: ["no sleeves", "short sleeves", "3/4 sleeves", "long sleeves"],
-        style: ["flared", "slim", "cargo", "straight", "sweat"],
-        fabric: ["cotton", "denim", "linen", "wool"],
+        name: "jumpsuit",
+        category_id: 8,
+        length: ["shorts", "3/4", "full length"],
+        sleeves: ["straps", "short sleeves", "3/4 sleeves", "long sleeves"],
         pattern: ["striped", "checkered", "animal print", "floral"],
       },
       {
         src: dress,
-        name: "Dress",
+        name: "dress",
+        category_id: 9,
         length: ["mini", "knee-high", "3/4", "maxi"],
-        sleeves: ["no sleeves", "short sleeves", "3/4 sleeves", "long sleeves"],
-        style: ["crew neck", "V neck", "Henley", "Polo"],
-        fabric: ["cotton", "denim", "linen", "wool"],
+        sleeves: ["straps", "short sleeves", "3/4 sleeves", "long sleeves"],
         pattern: ["striped", "checkered", "animal print", "floral"],
       },
       {
         src: suit,
-        name: "Onesie",
-        length: ["cropped", "3/4", "full length"],
-        sleeves: ["no sleeves", "short sleeves", "3/4 sleeves", "long sleeves"],
-        style: ["crew neck", "V neck", "Henley", "Polo"],
-        fabric: ["cotton", "denim", "linen", "wool"],
+        name: "suit",
+        category_id: 10,
+        length: ["shorts", "3/4", "full length"],
+        sleeves: ["straps", "short sleeves", "3/4 sleeves", "long sleeves"],
         pattern: ["striped", "checkered", "animal print", "floral"],
       },
       {
         src: overall,
-        name: "Overall",
+        name: "overalls",
+        category_id: 11,
         length: ["shorts", "cropped", "full"],
-        sleeves: [
-          "no sleeves",
-          "straps",
-          "short sleeves",
-          "3/4 sleeves",
-          "long sleeves",
-        ],
-        style: ["crew neck", "V neck", "Henley", "Polo"],
-        fabric: ["cotton", "denim", "linen", "wool"],
+        sleeves: ["straps", "short sleeves", "3/4 sleeves", "long sleeves"],
         pattern: ["striped", "checkered", "animal print", "floral"],
+      },
+    ],
+    SWIMWEAR: [
+      {
+        src: onepieceSwim,
+        name: "onepiece",
+        category_id: 24,
+        pattern: [
+          "striped",
+          "Graphic",
+          "animal print",
+          "geometric",
+          "abstract",
+          "floral",
+        ],
+      },
+      {
+        src: bikini,
+        name: "bikini",
+        category_id: 25,
+        sleeves: ["straps", "short sleeves", "3/4 sleeves", "long sleeves"],
+        pattern: [
+          "striped",
+          "Graphic",
+          "animal print",
+          "geometric",
+          "abstract",
+          "floral",
+        ],
+      },
+      {
+        src: trunks,
+        name: "trunks",
+        category_id: 26,
+        pattern: [
+          "striped",
+          "Graphic",
+          "animal print",
+          "geometric",
+          "abstract",
+          "floral",
+        ],
+      },
+      {
+        src: speedo,
+        name: "speedo",
+        category_id: 27,
+        pattern: [
+          "striped",
+          "Graphic",
+          "animal print",
+          "geometric",
+          "abstract",
+          "floral",
+        ],
       },
     ],
     SHOES: [
       {
         src: shoes,
-        name: "Shoe",
-        style: ["sneakers", "flats", "loafers", "sandals"],
+        name: "sneakers",
+        category_id: 12,
+        style: ["running shoes", "high-tops", "low-tops", "retro"],
         pattern: ["striped", "checkered", "animal print", "floral"],
       },
       {
         src: heel,
         name: "Heels",
+        category_id: 13,
         style: ["stiletto", "platform", "block", "flare"],
         pattern: ["striped", "checkered", "animal print", "floral"],
       },
       {
         src: dressShoes,
         name: "dress-shoes",
+        category_id: 14,
         style: ["flats", "loafers", "oxford", "derby"],
         pattern: ["striped", "checkered", "animal print", "floral"],
       },
       {
         src: boots,
         name: "boots",
-        style: ["chelsea", "combat", "work", "hiking"],
+        category_id: 15,
+        style: ["chelsea", "combat", "work", "hiking", "gumboots"],
         pattern: ["striped", "checkered", "animal print", "floral"],
+      },
+    ],
+    ACCESSORIES: [
+      {
+        src: cap,
+        name: "hat",
+        category_id: 28,
+        style: ["cap", "beanie", "fedora", "beret"],
+        pattern: ["striped", "checkered", "animal print", "floral"],
+      },
+      {
+        src: glasses,
+        name: "glasses",
+        category_id: 29,
+        style: ["aviator", "wayfarer", "sport", "butterfly"],
+      },
+      {
+        src: scarf,
+        name: "scarf",
+        category_id: 30,
+        style: ["shawl", "infinity", "pashmina", "bandana"],
+        pattern: ["striped", "checkered", "animal print", "floral"],
+      },
+      {
+        src: gloves,
+        name: "gloves",
+        category_id: 31,
+        style: ["winter", "fingerless", "ski", "dress"],
       },
     ],
   };
@@ -216,7 +401,7 @@ function ClothesSelection() {
           columns={{ xs: 2, sm: 6, md: 9, lg: 12 }}
           sx={{
             justifyContent: "center",
-            backgroundColor: "rgba(235, 73, 227, 0.315)",
+            backgroundColor: "rgba(235, 90, 220, 0.315)",
           }}
         >
           {/* Map over the clothes items and create a ClothesItem for each one */}
@@ -236,7 +421,7 @@ function ClothesSelection() {
       >
         <Box
           sx={{
-            backgroundColor: "rgba(248, 201, 244, 1)",
+            backgroundColor: "rgba(248, 201, 244, 0.89)",
             borderRadius: "16px",
             position: "absolute",
             top: "50%",
