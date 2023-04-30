@@ -22,7 +22,7 @@ function Profile() {
     const [profileData, setProfileData] = useState({});
 
     // Get user's email from cookie once cookie's set up
-    const userEmail = "test1@sth.com";
+    const userEmail = "cass@sth.com";
 
     // Get user's current profile data from database
     const { data: dataObj, isLoading } = useGet(`http://localhost:3006/profile/getProfile/${userEmail}`);
