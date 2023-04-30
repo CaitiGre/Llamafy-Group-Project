@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import {
   Drawer,
   IconButton,
@@ -9,34 +9,21 @@ import {
 import { NavLink } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu";
 import style from "./Sidebar.module.css";
-import axios from 'axios';
+import AuthContext from "../../AuthContext";
+import checkSession from "../../helpers/checkSession";
+import handleLogout from "../../helpers/handleLogout";
 
 const Sidebar = () => {
 
-  const [userAuthenticated, setUserAuthenticated] = useState(false);
+  const { userAuthenticated, setUserAuthenticated } = useContext(AuthContext);
   const [openDrawer, setOpenDrawer] = useState(false);
   
-  async function checkSession() {
-    console.log("calling");
-    try {
-      const response = await axios.post('http://localhost:3006/auth/checkSession', {
-        withCredentials: true,
-      });
-
-      console.log('Server response:', response.data);
-
-      if (response.data.isAuthenticated) {
-        setUserAuthenticated(true);
-      } else {
-        setUserAuthenticated(false);
-      }
-    } catch (err) {
-      console.error('Error checking session:', err);
-    }
+  async function handleLogOut() {
+    await handleLogout(setUserAuthenticated);
   }
 
   useEffect(() => {
-    checkSession();
+    checkSession(setUserAuthenticated);
   }, []);
 
   const loggedInSidebar = (
@@ -51,7 +38,7 @@ const Sidebar = () => {
         <ListItemText>SETTINGS</ListItemText>
       </NavLink>
 
-      <ListItemText>LOGOUT</ListItemText>
+      <ListItemText onClick={handleLogOut}>LOGOUT</ListItemText>
     </List>
   );
 

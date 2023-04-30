@@ -1,10 +1,11 @@
-export default function getUserEmail() {
-    const cookies = document.cookie.split('; ');
-    for (const cookie of cookies) {
-        const [key, value] = cookie.split('=');
-        if (key === 'user_email') {
-            return decodeURIComponent(value);
-        };
-    };
+import axios from 'axios';
+
+async function getUserEmail() {
+  try {
+    const response = await axios.get(`/auth/getUserEmail/`);
+    return response.data.user_email;
+  } catch (error) {
+    console.error('Error getting user email:', error);
     return null;
-};
+  }
+}

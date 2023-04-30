@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import {
   AppBar,
   Button,
@@ -11,7 +11,9 @@ import {
 import { NavLink } from "react-router-dom";
 import Llama from "../../assets/llama.png";
 import Sidebar from "../Sidebar/Sidebar";
-import axios from 'axios';
+import AuthContext from "../../AuthContext";
+import checkSession from "../../helpers/checkSession";
+import handleLogout from "../../helpers/handleLogout";
 
 const Navbar = () => {
   const theme = useTheme();
@@ -36,47 +38,21 @@ const Navbar = () => {
   };
 
 
-  const [userAuthenticated, setUserAuthenticated] = useState(false);
-  //checks authenticated status to toggle between login and logout buttons. 
-  async function checkSession() {
-    console.log("checkSession");
-    try {
-      const response = await axios.post('http://localhost:3006/auth/checkSession', null, {
-        withCredentials: true,
-      });
-
-      if (response.data.isAuthenticated) {
-        setUserAuthenticated(true);
-      } else {
-        setUserAuthenticated(false);
-      }
-      console.log(response.data.isAuthenticated);
-    } catch (err) {
-      console.error('Error checking session:', err);
-    }
-  }
+  const { userAuthenticated, setUserAuthenticated } = useContext(AuthContext);
 
   /**Handles the scrolling event to trigger the navbar transition */
   useEffect(() => {
     //authenticated status check
-    // Call the checkSession function when the component mounts
-    checkSession();
+    // Call the checkSession function when the component mounts.
+    //checks authenticated status to toggle between login and logout buttons. 
+    checkSession(setUserAuthenticated);
     window.addEventListener("scroll", handleScroll);
 
     return () => window.removeEventListener("scroll", handleScroll);
   }, [initalScrollPosition, visible, handleScroll]);
 
   async function handleLogOut() {
-    try {
-      await axios.post("http://localhost:3006/auth/logout", null, {
-        withCredentials: true,
-      });
-      setUserAuthenticated(false);
-
-    } catch (err) {
-      console.error("Error logging out:", err);
-    }
-    window.location.replace('/login');
+    await handleLogout(setUserAuthenticated);
   }
 
   return (
