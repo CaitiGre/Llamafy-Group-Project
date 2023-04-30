@@ -16,10 +16,6 @@ router.get('/getWardrobeItems/:userEmail', async (req, res) => {
 router.post('/deleteWardrobeItem', async (req, res) => {
     try {
         const itemId = req.body.itemId;
-
-        console.log("req.body: ", req.body); //TESTING
-        console.log("itemId to delete: ", itemId); //TESTING
-
         await deleteWardrobeItem(itemId);
         res.status(201).json({ isItemDeleted: true });
     } catch (error) {

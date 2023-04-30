@@ -32,8 +32,8 @@ function Wardrobe() {
       // Each object includes clothing_id, color, sleeves, pattern and main_category of a wardrobe item.
     }
 
-  }, [isLoading, dataObj]); // Once isLoading and profileData and dataObj changed (meaning the fetch is completed), useEffect() will run and setData to fetched data
-  // Remember that initially when the data was still being fetched, the values of isLoading and dataObj would be different
+  }, [isLoading, dataObj]); // Once isLoading and dataObj changed (meaning the fetch is completed), useEffect() will run and setData to fetched data
+  // Remember that initially when the data was still being fetched, the values of isLoading and dataObj would be an empty object
 
 
   // Defining stateful variables for the modal
