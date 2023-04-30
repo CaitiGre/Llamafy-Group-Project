@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import {
   Drawer,
   IconButton,
@@ -9,11 +9,22 @@ import {
 import { NavLink } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu";
 import style from "./Sidebar.module.css";
+import AuthContext from "../../AuthContext";
+import checkSession from "../../helpers/checkSession";
+import handleLogout from "../../helpers/handleLogout";
 
 const Sidebar = () => {
 
-  const [userAuthenticated, setUserAuthenticated] = useState(false);
+  const { userAuthenticated, setUserAuthenticated } = useContext(AuthContext);
   const [openDrawer, setOpenDrawer] = useState(false);
+  
+  async function handleLogOut() {
+    await handleLogout(setUserAuthenticated);
+  }
+
+  useEffect(() => {
+    checkSession(setUserAuthenticated);
+  }, []);
 
   const loggedInSidebar = (
     <List style={{fontSize: "30px"}}>
@@ -27,7 +38,7 @@ const Sidebar = () => {
         <ListItemText>SETTINGS</ListItemText>
       </NavLink>
 
-      <ListItemText>LOGOUT</ListItemText>
+      <ListItemText onClick={handleLogOut}>LOGOUT</ListItemText>
     </List>
   );
 

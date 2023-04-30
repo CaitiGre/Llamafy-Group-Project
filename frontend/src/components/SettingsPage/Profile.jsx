@@ -52,6 +52,14 @@ function Profile() {
     // Remember that initially when the data was still being fetched, the values of isLoading and dataObj would be different
 
 
+    const locations = [
+        "Auckland",
+        "Wellington",
+        "Christchurch",
+        "Dunedin",
+        "Invercargill"
+    ];
+
     const inputData = [
         {
             displayName: "Email",
@@ -91,7 +99,7 @@ function Profile() {
         },
         {
             displayName: "Location",
-            type: "text",
+            type: "select",
             name: "location",
             id: "location",
             value: data.location,
