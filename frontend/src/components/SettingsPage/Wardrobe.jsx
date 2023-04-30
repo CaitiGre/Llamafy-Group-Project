@@ -8,7 +8,7 @@ import ClothesItem from "../ClotheItem/ClotheItem";
 import top from "./../../assets/tshirt.png";
 import bottom from "./../../assets/pants.png";
 import onepiece from "./../../assets/jumpsuit.png";
-import shoes from "./../../assets/shoe.png";
+import shoes from "./../../assets/shoes.png";
 import useGet from '../../helpers/useGet';
 import axios from 'axios';
 
