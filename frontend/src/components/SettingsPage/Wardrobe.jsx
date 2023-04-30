@@ -1,9 +1,9 @@
-import shirt from "../../assets/shirt.png";
-import { Button, Box, Grid, Modal, Typography, List, ListItem, ListItemText, ListItemAvatar, Avatar } from "@mui/material";
-import { useState, useEffect } from "react";
+import { Button, Box, Grid, Modal, Typography, List, ListItem, ListItemText } from "@mui/material";
+import { useState } from "react";
 import { NavLink } from 'react-router-dom';
 import styles from "./SettingsPage.module.css";
 import close from "./../../assets/close.png";
+import bin from "./../../assets/bin.png";
 import ClothesItem from "../ClotheItem/ClotheItem";
 import top from "./../../assets/tshirt.png";
 import bottom from "./../../assets/pants.png";
@@ -15,8 +15,6 @@ function Wardrobe() {
   const [openModal, setOpenModal] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
   const [categoryItemsToShow, setCategoryItemsToShow] = useState([]);
-
-  useEffect(() => console.log(categoryItemsToShow));
 
   // Defining an array of objects for the clothes items and their images
   const clothesItems = [
@@ -68,66 +66,12 @@ function Wardrobe() {
     },
   ]);
 
-  // const clothes = {
-  //   TOP: [
-  //     {
-  //       id: 1,
-  //       categoryName: "top",
-  //       category: top,
-  //       color: "green",
-  //       sleeves: "short",
-  //       pattern: "plain"
-  //     },
-  //     {
-  //       id: 5,
-  //       categoryName: "top",
-  //       category: top,
-  //       color: "pink",
-  //       sleeves: "long",
-  //       pattern: "houndstooth"
-  //     },
-  //   ],
-  //   BOTTOM: [
-  //     {
-  //       id: 2,
-  //       categoryName: "bottom",
-  //       category: bottom,
-  //       color: "beige",
-  //       pattern: "plain"
-  //     },
-  //   ],
-  //   ONEPIECE: [
-  //     {
-  //       id: 3,
-  //       categoryName: "onepiece",
-  //       category: onepiece,
-  //       sleeves: "sleeveless",
-  //       color: "red",
-  //       pattern: "striped"
-  //     },
-  //   ],
-  //   SHOES: [
-  //     {
-  //       id: 4,
-  //       categoryName: "shoes",
-  //       category: shoes,
-  //       color: "brown",
-  //       pattern: "plain"
-  //     },
-  //   ]
-  // }
-
-
 
   // Handling the open modal event and setting the selected item to show
   const handleOpenModal = (item) => {
-    // setSelectedItem(outfit);
     setSelectedItem(item);
-    // setCategoryItemsToShow(clothes[item.name]); 
-
     const itemsToShow = clothes.filter((clothe) => clothe.categoryName === item.name);
     setCategoryItemsToShow(itemsToShow);
-
     setOpenModal(true);
   };
 
@@ -136,10 +80,10 @@ function Wardrobe() {
     setOpenModal(false);
   };
 
+  // Handling the delete item event in CategoryItem
   function handleDeleteItem(item) {
     const remainingItemsToShow = categoryItemsToShow.filter((catItem) => catItem.id !== item.id);
     setCategoryItemsToShow(remainingItemsToShow);
-
 
     const remainingClothes = clothes.filter((clothe) => clothe.id !== item.id);
     setClothes(remainingClothes);
@@ -148,31 +92,9 @@ function Wardrobe() {
 
   }
 
-  // Handling delete item: clothe array to retain only items whose id does not match the id of the deleted item
-  // function handleDeleteButton(outfitId) {
-  //   const remainingClothes = clothes.filter((clothe) => clothe.id !== outfitId);
-  //   setClothes(remainingClothes);
-
-  //   alert(`Outfit ${outfitId} deleted.`);
-
-  //   // To remove from database once it's set up.
-  // }
-
-  // Might delete this and iimport OutfitTile once merged with main
-  // const OutfitTile = ({ outfit, onClick }) => {
-  //   return (
-  //     <div>
-  //       <img src={outfit.render} style={{ width: "200px" }} alt={outfit.desc}
-  //         onClick={() => onClick(outfit)} />
-  //       <p>{outfit.desc}</p>
-  //     </div>
-  //   );
-  // };
 
   // Card for each clothes item in the list
-  const CategoryItem = ({ items }) => { // Items in a particular category
-    // Filter to keep only items where categoryName = clothesItem.name
-    // Then map through those filtered in items. This way when handling delete item, clothes can be set using useState.
+  const CategoryItem = ({ items }) => { // items param: items in a particular category
 
     return (
       <>
@@ -196,7 +118,7 @@ function Wardrobe() {
                         onClick={() => handleDeleteItem(item)}
                         sx={{ position: "absolute", top: 8, right: 2, padding: "5px" }}
                       >
-                        <img src={close} alt="close button" width="10px" />
+                        <img src={bin} alt="bin button" width="15px" />
                       </Button>
 
                       {item.color} {item.pattern} {item.sleeves} sleeve {item.categoryName}
@@ -219,8 +141,6 @@ function Wardrobe() {
   }
 
   return (
-
-    // NEW LAYOUT
     <>
       {/* The clothes panel */}
       <section className={styles.wardrobe}>
@@ -235,7 +155,7 @@ function Wardrobe() {
               backgroundColor: "rgba(235, 73, 227, 0.315)"
             }}
           >
-            {/* Map over the clothes items and create a ClothesItem for each one */}
+            {/* Map over the clothesItems and create a ClothesItem for each one */}
             {clothesItems.map((item, index) => (
               <Grid key={index} item xs={3}>
                 <ClothesItem item={item} onClick={handleOpenModal} />
@@ -274,6 +194,7 @@ function Wardrobe() {
           >
             <img src={close} alt="close button" width="20px" />
           </Button>
+
           {selectedItem && (
             <Typography
               variant="h4"
