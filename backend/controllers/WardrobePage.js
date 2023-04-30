@@ -4,16 +4,8 @@ async function addWardrobeItem(data) {
   try {
     const connection = await pool.getConnection();
     const result = await connection.query(
-      "INSERT INTO UserWardrobe (name, color, length, sleeves, style, fabric, pattern) VALUES (?, ?, ?, ?, ?, ?, ?)",
-      [
-        data.name,
-        data.color,
-        data.length,
-        data.sleeves,
-        data.style,
-        data.fabric,
-        data.pattern,
-      ]
+      "INSERT INTO ClothingItem (name, color, length, sleeves, pattern) VALUES (?, ?, ?, ?, ?)",
+      [data.name, data.color, data.length, data.sleeves, data.pattern]
     );
     connection.release();
     return result[0].insertId;
