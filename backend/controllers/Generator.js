@@ -15,6 +15,7 @@ const openAi = new OpenAIApi(configuration);
 // FUNCTIONS
 
 async function generateOutfits(user_email) {
+    console.log("Called Generating outfits function for " + user_email)
     const prompt = await promptGenerator(user_email);
     try {
         const response = await openAi.createCompletion({
@@ -45,11 +46,14 @@ async function generateOutfits(user_email) {
             console.log(dallePrompt2);
             console.log(dallePrompt3);
 
-            var imgUrl1 = imgGen(dallePrompt1);
-            var imgUrl2 = imgGen(dallePrompt2);
-            var imgUrl3 = imgGen(dallePrompt3);
+            var imgUrl1 = await imgGen(dallePrompt1);
+            var imgUrl2 = await imgGen(dallePrompt2);
+            var imgUrl3 = await imgGen(dallePrompt3);
 
-            return [responseText, [imgUrl1, imgUrl2, imgUrl3]]
+            return {
+                responseText: responseText,
+                imageUrls: [imgUrl1, imgUrl2, imgUrl3]
+            };
             
         } catch (dalleErr) {
             console.log(dalleErr);
@@ -135,6 +139,7 @@ async function promptGenerator(user_email) {
   ${JSON.stringify(userWardrobe)}
   Respond in the below format only, substituting % with the values. Do not provide a value for a category if it is covered by another. In the "dalle" property, provide a comprehensive prompt to give to the DALL-E model. Focus on providing detail on colour.
   {
+    {
   "recommendation1":{
     "top": [
         {"id": "%", "description": "%", "colour": "%", "subCategory": "%"}
@@ -150,17 +155,17 @@ async function promptGenerator(user_email) {
     ],
     "dalle": "A full-body lookbook style photograph of a male model wearing %"
   },
-  "recommendation2" : {"top" : "%..."}}`;
+  "recommendation2" : {"top" : "%..."}}}`;
 
     return prompt;
 }
 
-generateOutfits("ysoo501@aucklanduni.ac.nz").then(prompt => {
-    // Output the generated prompt to the console
-    console.log(prompt);
-  })
-  .catch(error => {
-    console.error(error);
-  });
+// generateOutfits("ysoo501@aucklanduni.ac.nz").then(prompt => {
+//     // Output the generated prompt to the console
+//     console.log(prompt);
+//   })
+//   .catch(error => {
+//     console.error(error);
+//   });
 
 module.exports = { generateOutfits };

@@ -36,22 +36,65 @@ const OutfitOfTheDay = () => {
   const [showRecommendations, setShowRecommendations] = useState(false);
 
   function handleRecommendationTiles() {
-    // const tiles = temp
-    //   .map((rec) => ({
-    //     id: rec.id,
-    //     img: rec.img,
-    //     desc: rec.desc,
-    //   }))
-    //   .map((rec) => (
-    //     <div key={rec.id} className={styles.Ootd}>
-    //       <OotdTile description={rec.desc} imgLink={rec.img} />
-    //     </div>
-    //   ));
-
-    // setRecommendations(tiles);
-    // setShowRecommendations(true);
+    
 
     console.log("generating")
+
+    const email = "ysoo501@aucklanduni.ac.nz";
+
+  fetch("http://localhost:3006/api/generateOutfits", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      email: email,
+    }),
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Unable to access generate outfits api");
+      }
+      return response.json();
+    })
+    .then((data) => {
+      console.log(data)
+
+      const temp2 = [
+        {
+          id: 1,
+          img: data.imageUrls[0],
+          desc: "A cozy poncho and fleece vest topped with a dapper hat.",
+        },
+        { 
+          id: 2, 
+          img: data.imageUrls[1], 
+          desc: "Purple wool" },
+        {
+          id: 3,
+          img: data.imageUrls[2],
+          desc: "Grey tweed jacket over a red knitted vest with a dashing tie. Formal justice wear.",
+        },
+      ];
+
+      const tiles = temp2
+      .map((rec) => ({
+        id: rec.id,
+        img: rec.img,
+        desc: rec.desc,
+      }))
+      .map((rec) => (
+        <div key={rec.id} className={styles.Ootd}>
+          <OotdTile description={rec.desc} imgLink={rec.img} />
+        </div>
+      ));
+
+    setRecommendations(tiles);
+    setShowRecommendations(true);
+    })
+    .catch((error) => {
+      console.error("There was a problem with the fetch operation:", error);
+    });
   }
 
   return (
