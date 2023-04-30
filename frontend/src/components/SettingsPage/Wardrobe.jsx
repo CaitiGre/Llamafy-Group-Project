@@ -9,6 +9,10 @@ import top from "./../../assets/tshirt.png";
 import bottom from "./../../assets/pants.png";
 import onepiece from "./../../assets/jumpsuit.png";
 import shoes from "./../../assets/shoes.png";
+import jumper from "./../../assets/jumper.png";
+import jacket from "./../../assets/jacket.png";
+import accessories from "./../../assets/accessories.png";
+import swimwear from "./../../assets/swimwear.png";
 import useGet from '../../helpers/useGet';
 import axios from 'axios';
 
@@ -17,7 +21,7 @@ function Wardrobe() {
   const [clothes, setClothes] = useState({});
 
   // Get user's email from cookie once cookie's set up
-  const userEmail = "ysoo501@aucklanduni.ac.nz";
+  const userEmail = "cass@sth.com";
 
   // Get user's current profile data from database
   const { data: dataObj, isLoading } = useGet(`http://localhost:3006/wardrobe/getWardrobeItems/${userEmail}`);
@@ -45,8 +49,12 @@ function Wardrobe() {
   const clothesItems = [
     { src: top, name: "top" },
     { src: bottom, name: "bottom" },
+    { src: jumper, name: "jumper" },
+    { src: jacket, name: "jacket" },
     { src: onepiece, name: "one-piece" },
+    { src: swimwear, name: "swimwear" },
     { src: shoes, name: "shoes" },
+    { src: accessories, name: "accessories" },
   ];
 
 
@@ -119,7 +127,7 @@ function Wardrobe() {
                         <img src={bin} alt="bin button" width="15px" />
                       </Button>
 
-                      id#{item.clothing_id}: {item.color} {item.pattern} {item.sleeves} {item.main_category}
+                      id#{item.clothing_id}: {item.color} {item.pattern} {item.sleeves} {item.sub_category}
                     </Typography>
 
                   </>
