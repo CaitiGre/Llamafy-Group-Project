@@ -19,7 +19,15 @@ function LandingPage() {
           <h2 className={styles.landingPageSubtitle}>
             IT'S TIME TO BUTTON UP OR SHUT UP
           </h2>
-          <Box className={styles.buttonContainer}>
+          <Box
+            className={styles.buttonContainer}
+            sx={{
+              display: "flex",
+              flexDirection: { xs: "column", md: "row" },
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
             <NavLink to="/login">
               <Button>LOGIN</Button>
             </NavLink>
@@ -34,7 +42,7 @@ function LandingPage() {
           NO TIME FOR DRAMA? TRUST IN LLAMA!
         </h2>
 
-        <Grid container spacing={4} sx={{ padding: "3vh" }}>
+        <Grid container spacing={10} sx={{ padding: "3vh", height: "auto" }}>
           <Grid item xs={8} md={10}>
             <Box
               className={styles.aboutContainer}
@@ -45,6 +53,7 @@ function LandingPage() {
                 fontFamily: "Verdana, Geneva, Tahoma, sans-serif",
                 height: "auto",
                 alignItems: "center",
+                boxShadow: "2px 2px 8px 2px rgba(0, 0, 0, 0.2)",
               }}
               p={2}
             >
@@ -77,6 +86,7 @@ function LandingPage() {
                 width: "100%",
                 padding: "0",
                 backgroundSize: "cover",
+                boxShadow: "2px 2px 8px 2px rgba(0, 0, 0, 0.2)",
               }}
             >
               <img
@@ -94,6 +104,7 @@ function LandingPage() {
                 width: "100%",
                 padding: "0",
                 backgroundSize: "cover",
+                boxShadow: "2px 2px 8px 2px rgba(0, 0, 0, 0.2)",
               }}
             >
               <img
@@ -114,9 +125,13 @@ function LandingPage() {
                 height: "30vh",
                 alignItems: "center",
                 height: "auto",
+                boxShadow: "2px 2px 8px 2px rgba(0, 0, 0, 0.2)",
               }}
             >
-              <Typography sx={{ alignItems: "center", textAlign: "justify" }}>
+              <Typography
+                variant="subtitle1"
+                sx={{ alignItems: "center", textAlign: "justify" }}
+              >
                 Simply register with us, answer some basic questions about your
                 current wardrobe and you're done! Worry not, these answers can
                 be altered later and change as your style and current wardrobe

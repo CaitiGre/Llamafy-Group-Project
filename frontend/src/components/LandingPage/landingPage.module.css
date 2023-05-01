@@ -13,7 +13,8 @@
 
 .landingPageSubtitle {
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
-  font-size: 6vh;
+  font-size: 4vw;
+  margin-bottom: 6vh;
   color: rgba(255, 255, 255, 0);
   color: #58315c;
 }
@@ -43,7 +44,7 @@
   box-shadow: 2px 2px 5px rgba(255, 255, 255, 0.8);
   text-align: center;
   padding: 18px 25px;
-  width: fit-content;
+  width: 200px;
   font-size: 3vh;
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   background-color: #f0f0f0;
