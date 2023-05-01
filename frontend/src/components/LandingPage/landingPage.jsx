@@ -3,7 +3,15 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import ClothingRail from "../../assets/cothingRail.gif";
 import WardrobeChange from "../../assets/Wardorbe-Change.gif";
-import { Box, Button, Grid, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  Grid,
+  Typography,
+  Card,
+  CardContent,
+  CardMedia,
+} from "@mui/material";
 
 function LandingPage() {
   return (
@@ -33,7 +41,7 @@ function LandingPage() {
         NO TIME FOR DRAMA? TRUST IN LLAMA!
       </h2>
 
-      <Grid container spacing={3} sx={{padding: "3vh"}}>
+      <Grid container spacing={4} sx={{ padding: "3vh" }}>
         <Grid item xs={8} md={10}>
           <Box
             className={styles.aboutContainer}
@@ -47,7 +55,13 @@ function LandingPage() {
             }}
             p={2}
           >
-            <Typography sx={{ alignItems: "center", textAlign: "justify", margin: "auto" }}>
+            <Typography
+              sx={{
+                alignItems: "center",
+                textAlign: "justify",
+                margin: "auto",
+              }}
+            >
               Have you ever wanted to feel like Cher from clueless minus the
               incestuous undertones? Well now you can! LLAMAFY was created to
               ease your worries and allow you to make one less decision in your
@@ -61,35 +75,39 @@ function LandingPage() {
             </Typography>
           </Box>
         </Grid>
-        <Grid item xs={1} md={2} >
-          <Box
+        <Grid item xs={4} md={2}>
+          <Card
             sx={{
-              margin: "auto",
-              textAlign: "center",
-              backgroundSize: "cover",
               borderRadius: "25px",
-              height: "fit",
-              width: "fit",
-              backgroundRepeat: "no-repeat",
-              backgroundImage: `url(${WardrobeChange})`,
+              height: "100%",
+              width: "100%",
+              padding: "0",
+              backgroundSize: "cover",
             }}
-            p={2}
-          ></Box>
+          >
+            <img
+              src={WardrobeChange}
+              alt="wardrobe change GIF"
+              style={{ height: "100%", width: "100%", borderRadius: "25px" }}
+            />
+          </Card>
         </Grid>
-        <Grid item xs={1} md={2}>
-          <Box
-            p={2}
+        <Grid item xs={4} md={2}>
+          <Card
             sx={{
-              backgroundImage: `url(${ClothingRail})`,
-              margin: "auto",
-              textAlign: "center",
-              backgroundSize: "cover",
               borderRadius: "25px",
-              height: "fit",
-              width: "fit",
-              backgroundRepeat: "no-repeat",
+              height: "100%",
+              width: "100%",
+              padding: "0",
+              backgroundSize: "cover",
             }}
-          ></Box>
+          >
+            <img
+              src={ClothingRail}
+              alt="clothing rail GIF"
+              style={{ height: "100%", width: "100%", borderRadius: "25px" }}
+            />
+          </Card>
         </Grid>
         <Grid item xs={8} md={10}>
           <Box
@@ -101,7 +119,7 @@ function LandingPage() {
               fontFamily: "Verdana, Geneva, Tahoma, sans-serif",
               height: "30vh",
               alignItems: "center",
-              height: "auto"
+              height: "auto",
             }}
           >
             <Typography sx={{ alignItems: "center", textAlign: "justify" }}>
