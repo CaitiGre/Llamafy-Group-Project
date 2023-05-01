@@ -206,7 +206,7 @@ function Wardrobe() {
               variant="h4"
               sx={{ textAlign: "center", margin: "10px", color: "#58315c" }}
             >
-              {selectedItem.name} items you have
+              Your {selectedItem.name}
             </Typography>
           )}
 
