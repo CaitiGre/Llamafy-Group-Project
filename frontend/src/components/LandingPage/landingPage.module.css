@@ -4,16 +4,16 @@
 }
 
 .landingPageTitle {
-  font-size: 26vw;
+  font-size: 22vw;
   font-family: "moonlite-outline";
-  margin-bottom: 10vh;
-  margin-top: 20vh;
+  margin-bottom: 6vh;
+  margin-top: 10vh;
   color: #58315c;
 }
 
 .landingPageSubtitle {
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
-  font-size: 4vw;
+  font-size: 6vh;
   color: rgba(255, 255, 255, 0);
   color: #58315c;
 }
@@ -23,7 +23,7 @@
   font-size: 5vh;
   color: #ffffff;
   padding: 6vh;
-  padding-top: 20%;
+  padding-top: 5%;
   text-shadow: #2f2e31;
   -webkit-text-stroke: 2px #58315c;
 }
@@ -31,20 +31,20 @@
 .buttonContainer {
   display: flex;
   justify-content: center;
-  padding: 17vh;
-  padding-top: 3vh;
+  padding: 12vh;
+  padding-top: 2vh;
   padding-bottom: 3vh;
   gap: 10vh;
   z-index: 1;
 }
 
-.buttonContainer Button {
+.buttonContainer button {
   border-radius: 40px;
   box-shadow: 2px 2px 5px rgba(255, 255, 255, 0.8);
   text-align: center;
-  padding: 25px 55px;
-  width: 250px;
-  font-size: x-large;
+  padding: 18px 25px;
+  width: fit-content;
+  font-size: 3vh;
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   background-color: #f0f0f0;
   border: 1px solid #ccc;
@@ -72,12 +72,9 @@
 }
 
 @media screen and (max-width: 1200) {
-
-  .aboutContainer, .aboutContainer2 {
+  .aboutContainer,
+  .aboutContainer2 {
     flex-direction: column;
     flex-wrap: wrap;
   }
-
- 
-  
 }
