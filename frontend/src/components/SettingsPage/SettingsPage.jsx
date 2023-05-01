@@ -4,6 +4,7 @@ import { ButtonGroup, Button, Typography } from "@mui/material";
 import styles from './SettingsPage.module.css';
 import Profile from './Profile';
 import Wardrobe from './Wardrobe';
+import Heading from "../Heading/Heading";
 
 function SettingsPage() {
     const [isProfile, setProfile] = useLocalStorage(true);
@@ -21,7 +22,7 @@ function SettingsPage() {
 
     return (
         <div>
-            <Typography variant="h1" paddingTop="10%" className={styles.heading}>SETTINGS</Typography>
+            <Heading title="SETTINGS" className={styles.heading}/>
             <h2 className={styles.subHeading}>No need for drama llama, alpaca the bags</h2>
 
             <div>
