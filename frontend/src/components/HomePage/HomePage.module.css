@@ -59,15 +59,7 @@
   box-shadow: 6px 6px 10px;
 }
 
-.title {
-  padding-top: 10vh;
-  font-size: 40px;
-  font-weight: bolder;
-}
 
-.title p {
-  font-size: medium;
-}
 
 @media screen and (max-width: 1400px) {
 

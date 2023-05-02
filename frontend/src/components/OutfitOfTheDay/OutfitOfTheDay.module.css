@@ -125,3 +125,13 @@
     margin-top: -150px;
     margin-bottom: 100px;
 }
+
+.title {
+    padding-top: 10vh;
+    font-size: 40px;
+    font-weight: bolder;
+  }
+  
+  .title p {
+    font-size: medium;
+  }
