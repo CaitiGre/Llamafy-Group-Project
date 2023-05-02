@@ -45,18 +45,12 @@ const Navbar = () => {
     //checks authenticated status to toggle between login and logout buttons.
     checkSession(setUserAuthenticated);
     window.addEventListener("scroll", handleScroll);
-
+   
     return () => window.removeEventListener("scroll", handleScroll);
   }, [initalScrollPosition, visible, handleScroll]);
 
   async function handleLogOut() {
     await handleLogout(setUserAuthenticated);
-  }
-
-  if (userAuthenticated) {
-    getUserEmail().then((userEmail) => {
-      console.log(userEmail);
-    });
   }
 
   return (
