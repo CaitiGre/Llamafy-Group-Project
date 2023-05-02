@@ -34,6 +34,7 @@ function App() {
             } />
             <Route path="register" element={<RegistrationPage />} />
             <Route path="login" element={<LoginPage />} />
+            <Route path="disclaimer" element={<Disclaimers />} />
             <Route path="wardrobe" element={
               <Protected isAuthenticated={userAuthenticated}>
                 <WardrobeSelection />
