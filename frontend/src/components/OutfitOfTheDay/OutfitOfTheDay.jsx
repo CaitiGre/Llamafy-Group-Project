@@ -59,6 +59,7 @@ const OutfitOfTheDay = () => {
     },
     body: JSON.stringify({
       email: email,
+      weatherValues : weatherValues,
     }),
   })
     .then((response) => {

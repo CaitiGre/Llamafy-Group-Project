@@ -14,9 +14,15 @@ const openAi = new OpenAIApi(configuration);
 
 // FUNCTIONS
 
-async function generateOutfits(user_email) {
+async function generateOutfits(user_email, weatherValues) {
     console.log("Called Generating outfits function for " + user_email)
-    const prompt = await promptGenerator(user_email);
+
+    const weatherVals = {
+      temp : weatherValues.tempC,
+      condition : weatherValues.condition,
+    }
+
+    const prompt = await promptGenerator(user_email, weatherVals);
     try {
         const response = await openAi.createCompletion({
             model: "text-davinci-003",
@@ -129,13 +135,13 @@ async function getUserData(user_email) {
     }
 }
 
-async function promptGenerator(user_email) {
+async function promptGenerator(user_email, weatherValsObj) {
     const [userData, userWardrobe] = await Promise.all([
         getUserData(user_email),
         getUserWardrobe(user_email),
     ]);
 
-    var prompt = `Given the following JSON of clothes, suggest three outfits to wear today for a ${userData}, given that the temperature outside is 20 degrees celsius and partly cloudy.
+    var prompt = `Given the following JSON of clothes, suggest three outfits to wear today for a ${userData}, given that the temperature outside is ${weatherValsObj.temp} degrees celsius and ${weatherValsObj.condition}.
   ${JSON.stringify(userWardrobe)}
   Respond in the below valid JSON format only, substituting % with the values (do not actually include the % sign if there are no values). Do not provide a value for a category if it is covered by another. In the "dalle" property, provide a comprehensive prompt to give to the DALL-E model. Focus on providing detail on colour. For the outfitDescription, give a small sentence of what the is included in the outfit
   {
@@ -179,7 +185,7 @@ async function promptGenerator(user_email) {
       "top": "%..."
     }
   }`;
-
+  
     return prompt;
 }
 

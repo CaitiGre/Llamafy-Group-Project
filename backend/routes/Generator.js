@@ -5,8 +5,10 @@ const { generateOutfits } = require('../controllers/Generator')
 
 router.post('/generateOutfits', async (req, res) => {
   try {
+    // const response = await generateOutfits(req.body.email);
     console.log("Generating Outfits for " + req.body.email)
-    const response = await generateOutfits(req.body.email);
+    const response = await generateOutfits(req.body.email, req.body.weatherValues);
+
     res.status(201).json(response);
   } catch (error) {
     console.error(error);
