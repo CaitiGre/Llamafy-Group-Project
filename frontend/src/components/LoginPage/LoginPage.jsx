@@ -1,11 +1,14 @@
 import './LoginPage.module.css';
 import { Box, Input, InputLabel, Typography } from "@mui/material";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import styles from './LoginPage.module.css';
 import Heading from '../Heading/Heading';
-import bcrypt from 'bcryptjs';
+import AuthContext from '../../AuthContext';
+import { useNavigate } from 'react-router-dom';
 
-function LoginPage() {
+function LoginPage() { 
+    const { setUserAuthenticated } = useContext(AuthContext);
+    const navigate = useNavigate();
 
     const [data, setData] = useState({
         email: '',
@@ -13,27 +16,39 @@ function LoginPage() {
     });
 
     const handleChange = (event) => {
-        setData({ [event.target.name]: event.target.value });
+        setData(prevState => ({ ...prevState, [event.target.name]: event.target.value }));
     };
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
 
-        const hashedPassword = ""; // Get user password from database
-        const inputPassword = data.password; // Get the password input by user
+        try {
+            const response = await fetch('http://localhost:3006/auth/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    username: data.email,
+                    password: data.password,
+                }),
+                credentials: 'include'
+            });
 
-        // Compare the passwords. Code is sth like:
-        // const validPassword = bcrypt.compare(inputPassword, hashedPassword);
-
-        // To replace if condition below with validPassword once connected to database
-
-        if (hashedPassword === inputPassword) {
-            // Send user to Home Page
-        } else {
-            alert("Invalid username or password. Please try again.");
+            if (response.ok) {
+                await setUserAuthenticated(true);
+                const result = await response.json();
+                navigate('/wardrobe');
+            } else {
+                const error = await response.json();
+                console.error(error);
+                alert("Invalid username or password. Please try again.");
+            }
+        } catch (err) {
+            console.error(err);
+            alert("An error occurred while logging in. Please try again.");
         }
-    }
-
+    };
 
     const inputData = [
         {
@@ -58,7 +73,6 @@ function LoginPage() {
     ]
 
     return (
-
         <div>
             <Heading title="Login"/>
 

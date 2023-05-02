@@ -1,22 +1,27 @@
-import React, { useState } from "react";
-import {
-  Drawer,
-  IconButton,
-  List,
-  ListItemText,
-  Divider,
-} from "@mui/material";
+import React, { useState, useEffect, useContext } from "react";
+import { Drawer, IconButton, List, ListItemText, Divider } from "@mui/material";
 import { NavLink } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu";
 import style from "./Sidebar.module.css";
+import AuthContext from "../../AuthContext";
+import checkSession from "../../helpers/checkSession";
+import handleLogout from "../../helpers/handleLogout";
 
 const Sidebar = () => {
-
-  const [userAuthenticated, setUserAuthenticated] = useState(false);
+  const { userAuthenticated, setUserAuthenticated } = useContext(AuthContext);
   const [openDrawer, setOpenDrawer] = useState(false);
 
+  async function handleLogOut() {
+    await handleLogout(setUserAuthenticated);
+  }
+
+  useEffect(() => {
+    checkSession(setUserAuthenticated);
+  }, []);
+
   const loggedInSidebar = (
-    <List style={{fontSize: "30px"}}>
+
+    <List style={{ fontSize: "30px", paddingLeft: "20px" }}>
       <NavLink to={"/ootd"}>
         <ListItemText>OUTFIT</ListItemText>
       </NavLink>
@@ -26,13 +31,16 @@ const Sidebar = () => {
       <NavLink to={"/Settings"}>
         <ListItemText>SETTINGS</ListItemText>
       </NavLink>
-
-      <ListItemText>LOGOUT</ListItemText>
+      <NavLink to={'/'}>
+        <ListItemText onClick={handleLogOut}>LOGOUT</ListItemText>
+      </NavLink>
+      
     </List>
   );
 
   const loggedOutSidebar = (
-    <List style={{fontSize: "30px"}}>
+
+    <List style={{ fontSize: "30px", paddingLeft: "20px" }}>
       <NavLink to={"/login"}>
         <ListItemText>LOGIN</ListItemText>
       </NavLink>
@@ -53,7 +61,7 @@ const Sidebar = () => {
         onClose={() => setOpenDrawer(false)}
       >
         <List className={style.navbarLinks}>
-          {userAuthenticated ? loggedOutSidebar : loggedInSidebar}
+          {userAuthenticated ? loggedInSidebar : loggedOutSidebar}
         </List>
         <Divider />
         <NavLink

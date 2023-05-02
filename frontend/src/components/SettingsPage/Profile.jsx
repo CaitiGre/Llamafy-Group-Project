@@ -22,7 +22,7 @@ function Profile() {
     const [profileData, setProfileData] = useState({});
 
     // Get user's email from cookie once cookie's set up
-    const userEmail = "test1@sth.com";
+    const userEmail = "cass@sth.com";
 
     // Get user's current profile data from database
     const { data: dataObj, isLoading } = useGet(`http://localhost:3006/profile/getProfile/${userEmail}`);
@@ -51,6 +51,14 @@ function Profile() {
     }, [isLoading, dataObj]); // Once isLoading and profileData and dataObj changed (meaning the fetch is completed), useEffect() will run and setData to fetched data
     // Remember that initially when the data was still being fetched, the values of isLoading and dataObj would be different
 
+
+    const locations = [
+        "Auckland",
+        "Wellington",
+        "Christchurch",
+        "Dunedin",
+        "Invercargill"
+    ];
 
     const inputData = [
         {
@@ -91,7 +99,7 @@ function Profile() {
         },
         {
             displayName: "Location",
-            type: "text",
+            type: "select",
             name: "location",
             id: "location",
             value: data.location,

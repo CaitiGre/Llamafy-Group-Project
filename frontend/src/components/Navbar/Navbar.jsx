@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import {
   AppBar,
   Button,
@@ -11,13 +11,14 @@ import {
 import { NavLink } from "react-router-dom";
 import Llama from "../../assets/llama.png";
 import Sidebar from "../Sidebar/Sidebar";
+import AuthContext from "../../AuthContext";
+import checkSession from "../../helpers/checkSession";
+import handleLogout from "../../helpers/handleLogout";
+import getUserEmail from "../../helpers/getUserEmail";
 
 const Navbar = () => {
-  const [value, setValue] = useState();
   const theme = useTheme();
-  console.log(theme);
   const isMatch = useMediaQuery(theme.breakpoints.down("md"));
-  console.log(isMatch);
 
   const [initalScrollPosition, setScrollPosition] = useState(0);
   const [visible, setVisible] = useState(true);
@@ -35,24 +36,36 @@ const Navbar = () => {
     setScrollPosition(currentPageScroll);
   };
 
+  const { userAuthenticated, setUserAuthenticated } = useContext(AuthContext);
+
   /**Handles the scrolling event to trigger the navbar transition */
   useEffect(() => {
+    //authenticated status check
+    // Call the checkSession function when the component mounts.
+    //checks authenticated status to toggle between login and logout buttons.
+    checkSession(setUserAuthenticated);
     window.addEventListener("scroll", handleScroll);
-
+   
     return () => window.removeEventListener("scroll", handleScroll);
   }, [initalScrollPosition, visible, handleScroll]);
 
+  async function handleLogOut() {
+    await handleLogout(setUserAuthenticated);
+  }
+
   return (
     <React.Fragment>
-      <AppBar sx={{ background: "transparent", boxShadow: "none"}}
-      style={{ top: visible ? "0" : "-20vh", transition: "top 0.2s" }}>
+      <AppBar
+        sx={{ background: "transparent", boxShadow: "none" }}
+        style={{ top: visible ? "0" : "-20vh", transition: "top 0.2s" }}
+      >
         <Toolbar
-        className="toolbarContainer"
+          className="toolbarContainer"
           sx={{
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
-            fontFamily: "Franklin Gothic"
+            fontFamily: "Franklin Gothic",
           }}
         >
           <Box sx={{ display: "flex", alignItems: "center" }}>
@@ -60,10 +73,12 @@ const Navbar = () => {
               <img src={Llama} alt="llama homepage icon" width="40px" />
             </NavLink>
             {isMatch && (
-              <NavLink to="/" style={{textDecoration: "none"}} >
-              <Typography sx={{ fontSize: "2rem", paddingLeft: "10px", color: "white" }}>
-                LLAMAFY
-              </Typography>
+              <NavLink to="/" style={{ textDecoration: "none" }}>
+                <Typography
+                  sx={{ fontSize: "2rem", paddingLeft: "10px", color: "white" }}
+                >
+                  LLAMAFY
+                </Typography>
               </NavLink>
             )}
           </Box>
@@ -85,67 +100,90 @@ const Navbar = () => {
                   marginLeft: "auto",
                 }}
               >
-                <NavLink
-                  to="/ootd"
-                  style={{
-                    textDecoration: "none",
-                    marginLeft: "2vw",
-                    marginRight: "2vw",
-                    color: "white",
-                    fontSize: 20,
-                  }}
-                >
-                  OUTFIT
-                </NavLink>
-                <NavLink
-                  to="/wardrobe"
-                  style={{
-                    textDecoration: "none",
-                    marginLeft: "2vw",
-                    marginRight: "2vw",
-                    color: "white",
-                    fontSize: 20,
-                  }}
-                >
-                  WARDROBE
-                </NavLink>
-                <NavLink
-                  to="/pastOutfits"
-                  style={{
-                    textDecoration: "none",
-                    marginLeft: "2vw",
-                    marginRight: "2vw",
-                    color: "white",
-                    fontSize: 20,
-                  }}
-                >
-                  FAVOURITES
-                </NavLink>
-                <NavLink
-                  to="/settings"
-                  style={{
-                    textDecoration: "none",
-                    marginLeft: "2vw",
-                    marginRight: "2vw",
-                    color: "white",
-                    fontSize: 20,
-                  }}
-                >
-                  SETTINGS
-                </NavLink>
+                {userAuthenticated && (
+                  <>
+                    <NavLink
+                      to="/ootd"
+                      style={{
+                        textDecoration: "none",
+                        marginLeft: "2vw",
+                        marginRight: "2vw",
+                        color: "white",
+                        fontSize: 20,
+                      }}
+                    >
+                      OUTFIT
+                    </NavLink>
+                    <NavLink
+                      to="/wardrobe"
+                      style={{
+                        textDecoration: "none",
+                        marginLeft: "2vw",
+                        marginRight: "2vw",
+                        color: "white",
+                        fontSize: 20,
+                      }}
+                    >
+                      WARDROBE
+                    </NavLink>
+                    <NavLink
+                      to="/pastOutfits"
+                      style={{
+                        textDecoration: "none",
+                        marginLeft: "2vw",
+                        marginRight: "2vw",
+                        color: "white",
+                        fontSize: 20,
+                      }}
+                    >
+                      FAVOURITES
+                    </NavLink>
+                    <NavLink
+                      to="/settings"
+                      style={{
+                        textDecoration: "none",
+                        marginLeft: "2vw",
+                        marginRight: "2vw",
+                        color: "white",
+                        fontSize: 20,
+                      }}
+                    >
+                      SETTINGS
+                    </NavLink>
+                  </>
+                )}
               </Box>
               <Box
                 sx={{
                   display: "flex",
                   justifyContent: "flex-end",
                   marginLeft: "auto",
-                  fontSize: 20
+                  fontSize: 20,
                 }}
               >
-                <Button sx={{ marginRight: "10px", color: "white" }}>
-                  LOGIN
-                </Button>
-                <Button sx={{ color: "white" }}>REGISTER</Button>
+                {userAuthenticated ? (
+                  <>
+                    <NavLink to="/" style={{ textDecoration: "none" }}>
+                      <Button
+                        onClick={handleLogOut}
+                        sx={{ marginRight: "10px", color: "white" }}
+                      >
+                        LOGOUT
+                      </Button>
+                    </NavLink>
+                  </>
+                ) : (
+                  <>
+                    <NavLink to="/login" style={{ textDecoration: "none" }}>
+                      <Button sx={{ marginRight: "10px", color: "white" }}>
+                        LOGIN
+                      </Button>
+                    </NavLink>
+                    <NavLink to="/register" style={{ textDecoration: "none" }}>
+                      <Button sx={{ color: "white" }}>REGISTER</Button>
+                    </NavLink>
+                  </>
+                )}
               </Box>
             </Box>
           )}
