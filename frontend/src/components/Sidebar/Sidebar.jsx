@@ -1,11 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import {
-  Drawer,
-  IconButton,
-  List,
-  ListItemText,
-  Divider,
-} from "@mui/material";
+import { Drawer, IconButton, List, ListItemText, Divider } from "@mui/material";
 import { NavLink } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu";
 import style from "./Sidebar.module.css";
@@ -14,7 +8,6 @@ import checkSession from "../../helpers/checkSession";
 import handleLogout from "../../helpers/handleLogout";
 
 const Sidebar = () => {
-
   const { userAuthenticated, setUserAuthenticated } = useContext(AuthContext);
   const [openDrawer, setOpenDrawer] = useState(false);
 
@@ -27,7 +20,8 @@ const Sidebar = () => {
   }, []);
 
   const loggedInSidebar = (
-    <List style={{ fontSize: "30px" }}>
+
+    <List style={{ fontSize: "30px", paddingLeft: "20px" }}>
       <NavLink to={"/ootd"}>
         <ListItemText>OUTFIT</ListItemText>
       </NavLink>
@@ -45,7 +39,8 @@ const Sidebar = () => {
   );
 
   const loggedOutSidebar = (
-    <List style={{ fontSize: "30px" }}>
+
+    <List style={{ fontSize: "30px", paddingLeft: "20px" }}>
       <NavLink to={"/login"}>
         <ListItemText>LOGIN</ListItemText>
       </NavLink>

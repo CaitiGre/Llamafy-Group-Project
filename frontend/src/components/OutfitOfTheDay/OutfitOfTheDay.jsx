@@ -71,7 +71,7 @@ const OutfitOfTheDay = () => {
               <Box
                 sx={{ display: "flex", rowGap: "2vh", flexDirection: "column" }}
               >
-                <InputLabel>Select a general color scheme (<i>optional</i>)</InputLabel>
+                <InputLabel>Select a color scheme<br></br> (<i>optional</i>)</InputLabel>
                 <CompactPicker />
             </Box>
           </Box>
