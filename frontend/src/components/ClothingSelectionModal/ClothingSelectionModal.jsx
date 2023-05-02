@@ -4,7 +4,7 @@ import { TwitterPicker } from "react-color";
 import close from "./../../assets/close.png";
 import ClotheCustomisation from "../ClotheCustomisation/ClotheCustomisation";
 import axios from "axios";
-import getUserEmail from "../../helpers/getUserEmail";
+import { getUserEmail } from "../../helpers/getUserEmail";
 
 function ClothingSelectionModal({ selectedItem, showModal, onCloseModal }) {
   // All the states to be recorded in the new wardrobe item JSON
@@ -26,10 +26,10 @@ function ClothingSelectionModal({ selectedItem, showModal, onCloseModal }) {
 
   // Function to create new wardobe item JSON upon clicking the add button on the modal
   const handleAddClick = async () => {
-    const userEmail = await getUserEmail();
+  //  const userEmail = await getUserEmail();
     const selectedWardrobeItem = {
       name: selectedItem.name,
-      user_email: userEmail,
+   //   user_email: userEmail,
       category_id: selectedItem.category_id,
       style: selectedStyle,
       pattern: selectedPattern,
@@ -44,7 +44,7 @@ function ClothingSelectionModal({ selectedItem, showModal, onCloseModal }) {
         "http://localhost:3006/wardrobeSelection/addWardrobeItem",
         {
           name: selectedItem.name,
-          user_email: userEmail,
+          //user_email: userEmail,
           category_id: selectedItem.category_id,
           style: selectedStyle,
           pattern: selectedPattern,
