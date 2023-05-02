@@ -1,10 +1,14 @@
 import './LoginPage.module.css';
 import { Box, Input, InputLabel, Typography } from "@mui/material";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import styles from './LoginPage.module.css';
 import Heading from '../Heading/Heading';
+import AuthContext from '../../AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 function LoginPage() { 
+    const { setUserAuthenticated } = useContext(AuthContext);
+    const navigate = useNavigate();
 
     const [data, setData] = useState({
         email: '',
@@ -16,9 +20,7 @@ function LoginPage() {
     };
 
     const handleSubmit = async (event) => {
-
         event.preventDefault();
-      
 
         try {
             const response = await fetch('http://localhost:3006/auth/login', {
@@ -34,9 +36,9 @@ function LoginPage() {
             });
 
             if (response.ok) {
+                await setUserAuthenticated(true);
                 const result = await response.json();
-                alert(result.message);
-                window.location.href = '/wardrobe';
+                navigate('/wardrobe');
             } else {
                 const error = await response.json();
                 console.error(error);
@@ -47,7 +49,6 @@ function LoginPage() {
             alert("An error occurred while logging in. Please try again.");
         }
     };
-
 
     const inputData = [
         {
@@ -72,7 +73,6 @@ function LoginPage() {
     ]
 
     return (
-
         <div>
             <Heading title="Login"/>
 
