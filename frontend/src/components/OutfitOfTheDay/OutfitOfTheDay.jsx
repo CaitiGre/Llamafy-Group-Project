@@ -58,7 +58,8 @@ const OutfitOfTheDay = () => {
       return response.json();
     })
     .then((data) => {
-      console.log(data)
+      console.log(JSON.parse(data.responseText))
+      console.log(data.imageUrls)
 
       const temp2 = [
         {
