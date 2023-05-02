@@ -47,14 +47,14 @@ function Wardrobe() {
 
   // Defining an array of objects for the clothes items and their images
   const clothesItems = [
-    { src: top, name: "top" },
-    { src: bottom, name: "bottom" },
-    { src: jumper, name: "jumper" },
-    { src: jacket, name: "jacket" },
-    { src: onepiece, name: "one-piece" },
-    { src: swimwear, name: "swimwear" },
-    { src: shoes, name: "shoes" },
-    { src: accessories, name: "accessories" },
+    { src: top, name: "TOPS" },
+    { src: bottom, name: "BOTTOMS" },
+    { src: jumper, name: "JUMPERS" },
+    { src: jacket, name: "JACKETS" },
+    { src: onepiece, name: "ONEPIECE" },
+    { src: swimwear, name: "SWIMWEAR" },
+    { src: shoes, name: "SHOES" },
+    { src: accessories, name: "ACCESSORIES" },
   ];
 
 
