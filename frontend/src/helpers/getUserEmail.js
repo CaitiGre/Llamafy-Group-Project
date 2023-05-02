@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-async function getUserEmail() {
+export default async function getUserEmail() {
   try {
     const response = await axios.get(`/auth/getUserEmail/`);
     return response.data.user_email;
