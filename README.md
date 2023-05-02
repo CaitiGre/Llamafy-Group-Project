@@ -49,6 +49,10 @@ npm run start
 ```
 Easy as that!
 
+## Back end
+
+To run the backend you need to open up a terminal in the backend folder and run node.js
+
 ## Functional login credentials
 
 If for whatever reason you do not wish to register but still want to have a look around the website, we have set up an account populated with dummy data that you are free to use.
