@@ -14,6 +14,7 @@ import Sidebar from "../Sidebar/Sidebar";
 import AuthContext from "../../AuthContext";
 import checkSession from "../../helpers/checkSession";
 import handleLogout from "../../helpers/handleLogout";
+import getUserEmail from "../../helpers/getUserEmail";
 
 const Navbar = () => {
   const theme = useTheme();
@@ -44,7 +45,7 @@ const Navbar = () => {
     //checks authenticated status to toggle between login and logout buttons.
     checkSession(setUserAuthenticated);
     window.addEventListener("scroll", handleScroll);
-
+   
     return () => window.removeEventListener("scroll", handleScroll);
   }, [initalScrollPosition, visible, handleScroll]);
 
@@ -163,7 +164,12 @@ const Navbar = () => {
                 {userAuthenticated ? (
                   <>
                     <NavLink to="/" style={{ textDecoration: "none" }}>
-                      <Button onClick={handleLogOut} sx={{ marginRight: "10px", color: "white" }}>LOGOUT</Button>
+                      <Button
+                        onClick={handleLogOut}
+                        sx={{ marginRight: "10px", color: "white" }}
+                      >
+                        LOGOUT
+                      </Button>
                     </NavLink>
                   </>
                 ) : (
@@ -176,11 +182,6 @@ const Navbar = () => {
                     <NavLink to="/register" style={{ textDecoration: "none" }}>
                       <Button sx={{ color: "white" }}>REGISTER</Button>
                     </NavLink>
-
-                    <NavLink to="/register" style={{ textDecoration: "none" }}>
-                      <Button sx={{ color: "white" }}>REGISTER</Button>
-                    </NavLink>
-
                   </>
                 )}
               </Box>

@@ -100,7 +100,7 @@ async function logout(req, res) {
                 console.log('Affected rows:', results.affectedRows);
             }
         });
-        
+
     } catch (err) {
         console.error('Error setting session ID to NULL:', err);
     }
@@ -130,18 +130,19 @@ async function checkAuthenticated(req, res) {
 async function getEmail(req, res) {
     const conn = await pool.getConnection();
     try {
-      const [rows] = await conn.query('SELECT user_email FROM UserSession WHERE session_id = ?', [req.sessionID]);
-      if (rows.length > 0) {
-        return rows[0].user_email;
-      } else {
-        console.error('No user found with session ID:', req.sessionID);
-        return null;
-      }
+
+        const [rows] = await conn.query('SELECT user_email FROM UserSession WHERE session_id = ?', [req.sessionID]);
+        if (rows.length > 0) {
+            return rows[0].user_email;
+        } else {
+            console.error('No user found with session ID:', req.sessionID);
+            return null;
+        }
     } catch (err) {
-      console.error('Error getting user email:', err);
-      return null;
+        console.error('Error getting user email:', err);
+        return null;
     } finally {
-      conn.release();
+        conn.release();
     }
 }
 
