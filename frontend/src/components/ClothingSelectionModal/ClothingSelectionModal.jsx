@@ -4,7 +4,7 @@ import { TwitterPicker } from "react-color";
 import close from "./../../assets/close.png";
 import ClotheCustomisation from "../ClotheCustomisation/ClotheCustomisation";
 import axios from "axios";
-import { getUserEmail } from "../../helpers/getUserEmail";
+import getUserEmail from "../../helpers/getUserEmail";
 
 function ClothingSelectionModal({ selectedItem, showModal, onCloseModal }) {
   // All the states to be recorded in the new wardrobe item JSON

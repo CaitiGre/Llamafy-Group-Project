@@ -14,6 +14,7 @@ import Sidebar from "../Sidebar/Sidebar";
 import AuthContext from "../../AuthContext";
 import checkSession from "../../helpers/checkSession";
 import handleLogout from "../../helpers/handleLogout";
+import getUserEmail from "../../helpers/getUserEmail";
 
 const Navbar = () => {
   const theme = useTheme();
@@ -50,6 +51,12 @@ const Navbar = () => {
 
   async function handleLogOut() {
     await handleLogout(setUserAuthenticated);
+  }
+
+  if (userAuthenticated) {
+    getUserEmail().then((userEmail) => {
+      console.log(userEmail);
+    });
   }
 
   return (
