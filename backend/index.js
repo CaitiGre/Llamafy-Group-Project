@@ -47,6 +47,7 @@ app.use("/registration", registrationPageRouter);
 app.use("/wardrobeSelection", wardrobePageRouter);
 app.use("/auth", authenticationRouter);
 app.use("/profile", settingsProfilePageRouter);
+app.use("/api", generator)
 
 //receive and direct request for authentication.
 app.get('/', (req, res) => {
