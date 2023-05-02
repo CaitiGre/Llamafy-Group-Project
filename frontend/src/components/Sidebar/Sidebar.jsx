@@ -17,7 +17,7 @@ const Sidebar = () => {
 
   const { userAuthenticated, setUserAuthenticated } = useContext(AuthContext);
   const [openDrawer, setOpenDrawer] = useState(false);
-  
+
   async function handleLogOut() {
     await handleLogout(setUserAuthenticated);
   }
@@ -27,7 +27,7 @@ const Sidebar = () => {
   }, []);
 
   const loggedInSidebar = (
-    <List style={{fontSize: "30px"}}>
+    <List style={{ fontSize: "30px" }}>
       <NavLink to={"/ootd"}>
         <ListItemText>OUTFIT</ListItemText>
       </NavLink>
@@ -37,13 +37,15 @@ const Sidebar = () => {
       <NavLink to={"/Settings"}>
         <ListItemText>SETTINGS</ListItemText>
       </NavLink>
-
-      <ListItemText onClick={handleLogOut}>LOGOUT</ListItemText>
+      <NavLink to={'/'}>
+        <ListItemText onClick={handleLogOut}>LOGOUT</ListItemText>
+      </NavLink>
+      
     </List>
   );
 
   const loggedOutSidebar = (
-    <List style={{fontSize: "30px"}}>
+    <List style={{ fontSize: "30px" }}>
       <NavLink to={"/login"}>
         <ListItemText>LOGIN</ListItemText>
       </NavLink>
@@ -64,7 +66,7 @@ const Sidebar = () => {
         onClose={() => setOpenDrawer(false)}
       >
         <List className={style.navbarLinks}>
-          {userAuthenticated ? loggedOutSidebar : loggedInSidebar}
+          {userAuthenticated ? loggedInSidebar : loggedOutSidebar}
         </List>
         <Divider />
         <NavLink

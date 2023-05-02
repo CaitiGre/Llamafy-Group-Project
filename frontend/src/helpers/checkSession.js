@@ -11,7 +11,7 @@ export default async function checkSession(setUserAuthenticated) {
         } else {
           setUserAuthenticated(false);
         }
-        console.log(response.data.isAuthenticated);
+        
       } catch (err) {
         console.error('Error checking session:', err);
       }

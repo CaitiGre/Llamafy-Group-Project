@@ -11,6 +11,7 @@ import SettingsPage from './components/SettingsPage/SettingsPage';
 import OutfitOfTheDay from './components/OutfitOfTheDay/OutfitOfTheDay'
 import AuthContext from './AuthContext';
 import { useState } from 'react';
+import Protected from './Protected';
 
 
 function App() {
@@ -26,12 +27,28 @@ function App() {
 
           <Routes>
             <Route path="/" element={<LandingPage />} />
-            <Route path="pastOutfits" element={<HomePage />} />
+            <Route path="pastOutfits" element={
+              <Protected isAuthenticated={userAuthenticated}>
+                <HomePage />
+              </Protected>
+            } />
             <Route path="register" element={<RegistrationPage />} />
             <Route path="login" element={<LoginPage />} />
-            <Route path="wardrobe" element={<WardrobeSelection />} />
-            <Route path="settings" element={<SettingsPage />} />
-            <Route path="ootd" element={< OutfitOfTheDay />} />
+            <Route path="wardrobe" element={
+              <Protected isAuthenticated={userAuthenticated}>
+                <WardrobeSelection />
+              </Protected>
+            } />
+            <Route path="settings" element={
+              <Protected isAuthenticated={userAuthenticated}>
+                <SettingsPage />
+              </Protected>
+            } />
+            <Route path="ootd" element={
+              <Protected isAuthenticated={userAuthenticated}>
+                < OutfitOfTheDay />
+              </Protected>
+            } />
           </Routes>
         </React.Fragment>
       </div>
