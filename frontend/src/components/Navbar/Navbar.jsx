@@ -163,7 +163,12 @@ const Navbar = () => {
                 {userAuthenticated ? (
                   <>
                     <NavLink to="/" style={{ textDecoration: "none" }}>
-                      <Button onClick={handleLogOut} sx={{ marginRight: "10px", color: "white" }}>LOGOUT</Button>
+                      <Button
+                        onClick={handleLogOut}
+                        sx={{ marginRight: "10px", color: "white" }}
+                      >
+                        LOGOUT
+                      </Button>
                     </NavLink>
                   </>
                 ) : (
@@ -176,11 +181,6 @@ const Navbar = () => {
                     <NavLink to="/register" style={{ textDecoration: "none" }}>
                       <Button sx={{ color: "white" }}>REGISTER</Button>
                     </NavLink>
-
-                    <NavLink to="/register" style={{ textDecoration: "none" }}>
-                      <Button sx={{ color: "white" }}>REGISTER</Button>
-                    </NavLink>
-
                   </>
                 )}
               </Box>
