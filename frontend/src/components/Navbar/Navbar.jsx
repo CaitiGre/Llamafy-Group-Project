@@ -99,54 +99,58 @@ const Navbar = () => {
                   marginLeft: "auto",
                 }}
               >
-                <NavLink
-                  to="/ootd"
-                  style={{
-                    textDecoration: "none",
-                    marginLeft: "2vw",
-                    marginRight: "2vw",
-                    color: "white",
-                    fontSize: 20,
-                  }}
-                >
-                  OUTFIT
-                </NavLink>
-                <NavLink
-                  to="/wardrobe"
-                  style={{
-                    textDecoration: "none",
-                    marginLeft: "2vw",
-                    marginRight: "2vw",
-                    color: "white",
-                    fontSize: 20,
-                  }}
-                >
-                  WARDROBE
-                </NavLink>
-                <NavLink
-                  to="/pastOutfits"
-                  style={{
-                    textDecoration: "none",
-                    marginLeft: "2vw",
-                    marginRight: "2vw",
-                    color: "white",
-                    fontSize: 20,
-                  }}
-                >
-                  FAVOURITES
-                </NavLink>
-                <NavLink
-                  to="/settings"
-                  style={{
-                    textDecoration: "none",
-                    marginLeft: "2vw",
-                    marginRight: "2vw",
-                    color: "white",
-                    fontSize: 20,
-                  }}
-                >
-                  SETTINGS
-                </NavLink>
+                {userAuthenticated && (
+                  <>
+                    <NavLink
+                      to="/ootd"
+                      style={{
+                        textDecoration: "none",
+                        marginLeft: "2vw",
+                        marginRight: "2vw",
+                        color: "white",
+                        fontSize: 20,
+                      }}
+                    >
+                      OUTFIT
+                    </NavLink>
+                    <NavLink
+                      to="/wardrobe"
+                      style={{
+                        textDecoration: "none",
+                        marginLeft: "2vw",
+                        marginRight: "2vw",
+                        color: "white",
+                        fontSize: 20,
+                      }}
+                    >
+                      WARDROBE
+                    </NavLink>
+                    <NavLink
+                      to="/pastOutfits"
+                      style={{
+                        textDecoration: "none",
+                        marginLeft: "2vw",
+                        marginRight: "2vw",
+                        color: "white",
+                        fontSize: 20,
+                      }}
+                    >
+                      FAVOURITES
+                    </NavLink>
+                    <NavLink
+                      to="/settings"
+                      style={{
+                        textDecoration: "none",
+                        marginLeft: "2vw",
+                        marginRight: "2vw",
+                        color: "white",
+                        fontSize: 20,
+                      }}
+                    >
+                      SETTINGS
+                    </NavLink>
+                  </>
+                )}
               </Box>
               <Box
                 sx={{
@@ -158,13 +162,9 @@ const Navbar = () => {
               >
                 {userAuthenticated ? (
                   <>
-                    <Button
-                      onClick={handleLogOut}
-                      sx={{ marginRight: "10px", color: "white" }}
-                    >
-                      LOGOUT
-                    </Button>
-                    <Button sx={{ color: "white" }}>REGISTER</Button>
+                    <NavLink to="/" style={{ textDecoration: "none" }}>
+                      <Button onClick={handleLogOut} sx={{ marginRight: "10px", color: "white" }}>LOGOUT</Button>
+                    </NavLink>
                   </>
                 ) : (
                   <>
@@ -176,6 +176,11 @@ const Navbar = () => {
                     <NavLink to="/register" style={{ textDecoration: "none" }}>
                       <Button sx={{ color: "white" }}>REGISTER</Button>
                     </NavLink>
+
+                    <NavLink to="/register" style={{ textDecoration: "none" }}>
+                      <Button sx={{ color: "white" }}>REGISTER</Button>
+                    </NavLink>
+
                   </>
                 )}
               </Box>
