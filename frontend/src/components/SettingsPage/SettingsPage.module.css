@@ -23,7 +23,7 @@
 
   background-color: rgba(209, 119, 209, 0.685);
   padding: 30px;
-  margin: 2% 10% 2% 10%;
+  margin: 2% 15% 2% 15%;
   border-radius: 20px;
 }
 
@@ -31,7 +31,7 @@
   border-radius: 20px;
   box-shadow: 2px 2px 5px rgba(255, 255, 255, 0.8);
   height: 30px;
-  width: 90%;
+  width: 50%;
   margin-bottom: 15px;
   background-color: white;
   margin: 0px;

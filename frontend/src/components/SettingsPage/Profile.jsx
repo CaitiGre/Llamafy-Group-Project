@@ -126,7 +126,7 @@ function Profile() {
             value: '',
         },
         {
-            displayName: "Enter Password to confirm changes",
+            displayName: "Current Password",
             type: "password",
             name: "password",
             id: "password",
@@ -190,11 +190,11 @@ function Profile() {
                             <Grid container key={item.id} spacing={2}
                                 sx={{ margin: 0 }}>
 
-                                <Grid item xs={4}>
+                                <Grid item xs={5}>
                                     <InputLabel
                                         sx={{
                                             marginBottom: "2px",
-                                            textAlign: "center",
+                                            textAlign: "right",
                                             color: "#eee"
                                         }}>
 
@@ -203,7 +203,7 @@ function Profile() {
                                     </InputLabel>
                                 </Grid>
 
-                                <Grid item xs={8}
+                                <Grid item xs={7}
                                     display={'flex'}
                                     justifyContent="flex-start">
 
