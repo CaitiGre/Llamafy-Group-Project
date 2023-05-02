@@ -18,11 +18,14 @@ function WardrobeItems({ items, itom }) {
   const [openModal, setOpenModal] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
   const [subSelectionItemsToShow, setSubSelectionItemsToShow] = useState([]);
+  const [isItemsVisible, setIsItemsVisible] = useState(true); // add state variable to control item visibility
+
   // Handling the open modal event and setting the selected item and its sub-selection items to show
   const handleOpenModal = (item) => {
     setSelectedItem(item);
     setSubSelectionItemsToShow(subSelectionItemsByClothesItem[item.name]);
     setOpenModal(true);
+    setIsItemsVisible(false); // hide items when modal is open
     console.log(selectedItem);
     console.log(subSelectionItemsToShow);
   };
@@ -62,51 +65,53 @@ function WardrobeItems({ items, itom }) {
   }
   return (
     <>
-      {items.map((item) => (
-        <List
-          key={item.clothing_id}
-          sx={{
-            width: "100%",
-            maxWidth: 360,
-            bgcolor: "background.paper",
-            textAlign: "center",
-            margin: "0 auto",
-          }}
-        >
-          <ListItem alignItems="center">
-            <ListItemText
-              secondary={
-                <>
-                  <Typography
-                    sx={{ display: "inline" }}
-                    component="span"
-                    variant="body2"
-                    color="text.primary"
-                  >
-                    <Button
-                      onClick={() => handleDeleteItem(item)}
-                      sx={{
-                        position: "absolute",
-                        top: 8,
-                        right: 2,
-                        padding: "5px",
-                      }}
+      {isItemsVisible &&
+        items.map((item) => (
+          <List
+            key={item.clothing_id}
+            sx={{
+              width: "100%",
+              maxWidth: 360,
+              bgcolor: "background.paper",
+              textAlign: "center",
+              margin: "0 auto",
+            }}
+          >
+            <ListItem alignItems="center">
+              <ListItemText
+                secondary={
+                  <>
+                    <Typography
+                      sx={{ display: "inline" }}
+                      component="span"
+                      variant="body2"
+                      color="text.primary"
                     >
-                      <img src={bin} alt="bin button" width="15px" />
-                    </Button>
-                    {item.color} {item.sub_category} with {item.sleeves} and{" "}
-                    {item.pattern} pattern
-                  </Typography>
-                </>
-              }
-            />
-          </ListItem>
-        </List>
-      ))}
-
-      <Box className={styles.navLinkContainer}>
-        <Button onClick={() => handleOpenModal(itom)}>Add items</Button>
-      </Box>
+                      <Button
+                        onClick={() => handleDeleteItem(item)}
+                        sx={{
+                          position: "absolute",
+                          top: 8,
+                          right: 2,
+                          padding: "5px",
+                        }}
+                      >
+                        <img src={bin} alt="bin button" width="15px" />
+                      </Button>
+                      {item.color} {item.sub_category} with {item.sleeves} and{" "}
+                      {item.pattern} pattern
+                    </Typography>
+                  </>
+                }
+              />
+            </ListItem>
+          </List>
+        ))}
+      {isItemsVisible && (
+        <Box className={styles.navLinkContainer}>
+          <Button onClick={() => handleOpenModal(itom)}>Add items</Button>
+        </Box>
+      )}
       {subSelectionItemsToShow && (
         <SubSelectionModal itemsToShow={subSelectionItemsToShow} />
       )}
