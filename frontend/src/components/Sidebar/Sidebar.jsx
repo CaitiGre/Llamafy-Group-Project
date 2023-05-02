@@ -20,6 +20,7 @@ const Sidebar = () => {
   }, []);
 
   const loggedInSidebar = (
+
     <List style={{ fontSize: "30px", paddingLeft: "20px" }}>
       <NavLink to={"/ootd"}>
         <ListItemText>OUTFIT</ListItemText>
@@ -30,12 +31,15 @@ const Sidebar = () => {
       <NavLink to={"/Settings"}>
         <ListItemText>SETTINGS</ListItemText>
       </NavLink>
-
-      <ListItemText onClick={handleLogOut}>LOGOUT</ListItemText>
+      <NavLink to={'/'}>
+        <ListItemText onClick={handleLogOut}>LOGOUT</ListItemText>
+      </NavLink>
+      
     </List>
   );
 
   const loggedOutSidebar = (
+
     <List style={{ fontSize: "30px", paddingLeft: "20px" }}>
       <NavLink to={"/login"}>
         <ListItemText>LOGIN</ListItemText>
@@ -57,7 +61,7 @@ const Sidebar = () => {
         onClose={() => setOpenDrawer(false)}
       >
         <List className={style.navbarLinks}>
-          {userAuthenticated ? loggedOutSidebar : loggedInSidebar}
+          {userAuthenticated ? loggedInSidebar : loggedOutSidebar}
         </List>
         <Divider />
         <NavLink

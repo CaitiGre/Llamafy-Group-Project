@@ -10,6 +10,6 @@ export default async function handleLogout(setUserAuthenticated) {
       } catch (err) {
         console.error("Error logging out:", err);
       }
-      window.location.replace('/login');
-    
+      
+      
 }
