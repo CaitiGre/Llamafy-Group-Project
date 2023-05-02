@@ -4,7 +4,7 @@ import { useState } from "react";
 import styles from './LoginPage.module.css';
 import Heading from '../Heading/Heading';
 
-function LoginPage() {
+function LoginPage() { 
 
     const [data, setData] = useState({
         email: '',
