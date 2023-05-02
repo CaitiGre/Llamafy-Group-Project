@@ -34,10 +34,10 @@ import cap from "./../../assets/cap.png";
 
 // Defining an array of objects for the clothes items and their images
 export const clothesItems = [
-  { src: top, name: "TOP" },
-  { src: bottom, name: "BOTTOM" },
-  { src: jumper, name: "JUMPER" },
-  { src: jacket, name: "JACKET" },
+  { src: top, name: "TOPS" },
+  { src: bottom, name: "BOTTOMS" },
+  { src: jumper, name: "JUMPERS" },
+  { src: jacket, name: "JACKETS" },
   { src: onepiece, name: "ONEPIECE" },
   { src: swimwear, name: "SWIMWEAR" },
   { src: shoes, name: "SHOES" },
@@ -45,7 +45,7 @@ export const clothesItems = [
 ];
 // Defining an object that maps each clothes item to an array of its sub-selection items and their images
 export const subSelectionItemsByClothesItem = {
-  TOP: [
+  TOPS: [
     {
       src: top,
       name: "Tshirt",
@@ -79,7 +79,7 @@ export const subSelectionItemsByClothesItem = {
       pattern: ["striped", "Graphic", "baseball", "floral"],
     },
   ],
-  BOTTOM: [
+  BOTTOMS: [
     {
       src: bottom,
       name: "pants",
@@ -103,7 +103,7 @@ export const subSelectionItemsByClothesItem = {
       pattern: ["striped", "checkered", "animal print", "floral"],
     },
   ],
-  JUMPER: [
+  JUMPERS: [
     {
       src: jumper,
       name: "jumper",
@@ -160,7 +160,7 @@ export const subSelectionItemsByClothesItem = {
       ],
     },
   ],
-  JACKET: [
+  JACKETS: [
     {
       src: jacket,
       name: "jacket",

@@ -2,26 +2,48 @@ import React, { useEffect, useState } from "react";
 import styles from "./ClothesSelection.module.css";
 import { Grid, Box, Modal, Button, Typography } from "@mui/material";
 import ClothesItem from "../ClotheItem/ClotheItem";
-import SubSelectionModal from "../SubSelectionModal/SubSelectionModal";
 import close from "./../../assets/close.png";
-
+import useGet from "../../helpers/useGet";
 import { clothesItems } from "./data";
-import { subSelectionItemsByClothesItem } from "./data";
+import WardrobeItems from "../WardrobeItems/WardrobeItems";
 
 function ClothesSelection() {
   // Defining state variables for the modal
   const [openModal, setOpenModal] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
-  const [subSelectionItemsToShow, setSubSelectionItemsToShow] = useState([]);
-  useEffect(() => console.log(selectedItem));
+  const [categoryItemsToShow, setCategoryItemsToShow] = useState([]);
+  const [clothes, setClothes] = useState({});
+  // Get user's email from cookie once cookie's set up
+  const userEmail = "cass@sth.com";
 
-  // Handling the open modal event and setting the selected item and its sub-selection items to show
-  const handleOpenModal = (item) => {
+  // Get user's current profile data from database
+  const { data: dataObj, isLoading } = useGet(
+    `http://localhost:3006/wardrobe/getWardrobeItems/${userEmail}`
+  );
+
+  useEffect(() => {
+    if (!isLoading && dataObj) {
+      setClothes(dataObj.wardrobeItems);
+    }
+
+    if (selectedItem && clothes.length > 0) {
+      const itemsToShow = clothes.filter(
+        (clothe) => clothe.main_category === selectedItem.name
+      );
+      setCategoryItemsToShow(itemsToShow);
+      setOpenModal(true);
+    }
+  }, [isLoading, dataObj, selectedItem, clothes]);
+  // Handling the open modal event and setting the selected item to show
+  const openWardrobeModal = (item) => {
     setSelectedItem(item);
-    setSubSelectionItemsToShow(subSelectionItemsByClothesItem[item.name]);
+    // const itemsToShow = clothes.filter((clothe) => clothe.categoryName === item.name);
+    const itemsToShow = clothes.filter(
+      (clothe) => clothe.main_category === item.name
+    );
+    setCategoryItemsToShow(itemsToShow);
     setOpenModal(true);
   };
-
   // Handling the close modal event
   const handleCloseModal = () => {
     setOpenModal(false);
@@ -44,7 +66,7 @@ function ClothesSelection() {
           {/* Map over the clothes items and create a ClothesItem for each one */}
           {clothesItems.map((item, index) => (
             <Grid key={index} item xs={3}>
-              <ClothesItem item={item} onClick={handleOpenModal} />
+              <ClothesItem item={item} onClick={openWardrobeModal} />
             </Grid>
           ))}
         </Grid>
@@ -83,11 +105,15 @@ function ClothesSelection() {
               variant="h4"
               sx={{ textAlign: "center", margin: "10px", color: "#58315c" }}
             >
-              SELECT TYPE OF {selectedItem.name}
+              YOUR {selectedItem.name}
             </Typography>
           )}
-          {/* The sub-selection modal */}
-          <SubSelectionModal itemsToShow={subSelectionItemsToShow} />
+          {selectedItem && (
+            <WardrobeItems
+              items={categoryItemsToShow}
+              itom={selectedItem}
+            ></WardrobeItems>
+          )}
         </Box>
       </Modal>
     </React.Fragment>
