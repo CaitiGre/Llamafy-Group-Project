@@ -3,8 +3,7 @@ const axios = require('axios');
 const { v4: uuidv4 } = require('uuid');
 const fs = require('fs');
 
-const key = process.env.OPEN_AI_KEY;
-
+const key = "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";
 
 const { Configuration, OpenAIApi } = require("openai");
 const configuration = new Configuration({ apiKey: key });
@@ -12,21 +11,21 @@ const openai = new OpenAIApi(configuration);
 
 
 // ********Def response variables here****************
-let prompt = "Photograph of a man with warm skin tone wearing black trackpants, boots, and a white long-sleeve top.";
-let numImages = 1;
-let size = "512x512"
-let resFormat = "url"
-let user = "llama developers"
+// let prompt = "Photograph of a man with warm skin tone wearing black trackpants, boots, and a white long-sleeve top.";
+// let numImages = 1;
+// let size = "512x512"
+// let resFormat = "url"
+// let user = "llama developers"
 // ***************************************************
 
-const imgGen = async () => {
+const imgGen = async (prompt) => {
 
   const response = await openai.createImage({
     prompt: prompt,
-    n: numImages ? numImages : 1,
-    size: size ? size : "1024x1024",
-    response_format : resFormat ? resFormat : "url",
-    user : user ? user : "unverified user!"
+    n: 1,
+    size: "512x512",
+    response_format : "url",
+    // user : "Lllamas",
   });
 
   
@@ -37,15 +36,18 @@ const imgGen = async () => {
 
 // axios call to the URL provided by the DALL-E API
 // and save the image at the endpoint
-  try {
-  const imgRes = await axios.get(genUrl, {responseType: 'stream'});
-  const file = fs.createWriteStream(`${uuidv4()}.png`);
-  imgRes.data.pipe(file);
-  } catch (err) {
-    console.log("Image could not be saved to the server");
-    console.log(err);
-  }
+  // try {
+  // const imgRes = await axios.get(genUrl, {responseType: 'stream'});
+  // const id = uuidv4()
+  // const file = fs.createWriteStream(`public/${uuidv4()}.png`);
+  // imgRes.data.pipe(file);
+  // } catch (err) {
+  //   console.log("Image could not be saved to the server");
+  //   console.log(err);
+  // }
   return genUrl;
 }
 
-imgGen();
+// imgGen();
+
+module.exports = { imgGen };

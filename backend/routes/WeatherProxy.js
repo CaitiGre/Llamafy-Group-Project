@@ -1,12 +1,11 @@
 // Require dotenv for weather API key in .env and configure process.env.
 require('dotenv').config();
-require('../controllers/HomePage');
-const axios = require('axios');
+const key = process.env.WEATHER_API_KEY;
 
+const axios = require('axios');
 const express = require('express');
 const { fetchUserLocation } = require('../controllers/HomePage');
 const router = express.Router();
-const key = process.env.WEATHER_API_KEY;
 
 /* 
 Weather API proxy route so we can isolate the API key to the backend. 
@@ -15,8 +14,8 @@ We will call this route from the frontend to make a call to the weather API
 router.get('/data', async (req, res) => {
     console.log('accessed /weather/data');
 
-    // Grab username from /data?username=foo query string
-    // const currUser = req.query.username;
+    // Grab email from /data?email=foo query string
+    // const currUserEmail = req.query.email;
     const currUserEmail = 'kkap897@aucklanduni.ac.nz';
 
     // Get current user's city via controller using username from query string

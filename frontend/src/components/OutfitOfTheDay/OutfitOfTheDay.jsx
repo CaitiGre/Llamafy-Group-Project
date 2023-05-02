@@ -46,22 +46,67 @@ const OutfitOfTheDay = () => {
   const [showRecommendations, setShowRecommendations] = useState(false);
 
   function handleRecommendationTiles() {
-    // const tiles = temp
-    //   .map((rec) => ({
-    //     id: rec.id,
-    //     img: rec.img,
-    //     desc: rec.desc,
-    //   }))
-    //   .map((rec) => (
-    //     <div key={rec.id} className={styles.Ootd}>
-    //       <OotdTile description={rec.desc} imgLink={rec.img} />
-    //     </div>
-    //   ));
-
-    // setRecommendations(tiles);
-    // setShowRecommendations(true);
+    
 
     console.log("generating")
+
+    const email = "ysoo501@aucklanduni.ac.nz";
+
+  fetch("http://localhost:3006/api/generateOutfits", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      email: email,
+    }),
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Unable to access generate outfits api");
+      }
+      return response.json();
+    })
+    .then((data) => {
+  
+      let responseText = JSON.parse(data.responseText)
+      console.log(responseText.recommendation1.outfitDescription)
+
+      const temp2 = [
+        {
+          id: 1,
+          img: data.imageUrls[0],
+          desc: responseText.recommendation1.outfitDescription,
+        },
+        { 
+          id: 2, 
+          img: data.imageUrls[1], 
+          desc: responseText.recommendation2.outfitDescription,},
+        {
+          id: 3,
+          img: data.imageUrls[2],
+          desc: responseText.recommendation3.outfitDescription,
+        },
+      ];
+
+      const tiles = temp2
+      .map((rec) => ({
+        id: rec.id,
+        img: rec.img,
+        desc: rec.desc,
+      }))
+      .map((rec) => (
+        <div key={rec.id} className={styles.Ootd}>
+          <OotdTile description={rec.desc} imgLink={rec.img} />
+        </div>
+      ));
+
+    setRecommendations(tiles);
+    setShowRecommendations(true);
+    })
+    .catch((error) => {
+      console.error("There was a problem with the fetch operation:", error);
+    });
   }
 
   return (
