@@ -1,5 +1,5 @@
 import './LoginPage.module.css';
-import { Box, Input, InputLabel, Typography } from "@mui/material";
+import { Box, Input, InputLabel, Typography, Grid } from "@mui/material";
 import { useContext, useState } from "react";
 import styles from './LoginPage.module.css';
 import Heading from '../Heading/Heading';
@@ -52,7 +52,7 @@ function LoginPage() {
 
     const inputData = [
         {
-            displayName: "Username/ Email",
+            displayName: "EMAIL",
             type: "email",
             name: "email",
             id: "email",
@@ -62,7 +62,7 @@ function LoginPage() {
         },
 
         {
-            displayName: "Password",
+            displayName: "PASSWORD",
             type: "password",
             name: "password",
             id: "password",
@@ -80,37 +80,46 @@ function LoginPage() {
                 <form onSubmit={handleSubmit}>
 
                     {inputData.map((item) => (
+                        <Grid>
                         <Box display="flex" flexDirection="column" alignItems="center" key={item.id}>
                             <InputLabel
                                 sx={{
-                                    marginBottom: "5px",
-                                    color: "#eee"
+                                    paddingTop: "5vh",
+                                    color: "#eee",
+                                    fontFamily: "'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif"
                                 }}>
                                 {item.displayName}
                             </InputLabel>
-
+                        </Box>
+                            <Box display="flex" alignItems="center" textAlign="center" paddingTop="2vh">
                             <Input required
                                 sx={{
+                                    display: "flex",
+                                    justifyContent: "center",
                                     borderRadius: "20px",
                                     boxShadow: "2px 2px 5px rgba(255, 255, 255, 0.8)",
                                     height: "40px",
-                                    width: "85%",
-                                    marginBottom: "35px",
+                                    width: "50%",
+                                    margin: "auto",
                                     backgroundColor: "white",
+                                    textAlign: "center",
+                                    alignContent: "center",
+                                    caretColor: "black",
                                 }}
                                 type={item.type}
                                 name={item.name}
                                 id={item.id}
                                 value={item.value}
                                 onChange={handleChange}
-                                inputProps={{ style: { textAlign: "center" } }}
                                 disableUnderline={true}
                                 placeholder={item.placeHolder}
                             />
                         </Box>
+                        </Grid>
                     ))}
+                    
 
-                    <button id="submit-button" type="submit" className={styles.submitButton}>Submit</button>
+                    <button id="submit-button" type="submit" className={styles.submitButton}>SUBMIT</button>
 
                 </form>
             </div>
