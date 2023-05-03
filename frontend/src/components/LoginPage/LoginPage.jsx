@@ -1,8 +1,8 @@
-import './LoginPage.module.css';
+import "./LoginPage.module.css";
 import { Box, Input, InputLabel, Typography, Grid } from "@mui/material";
 import { useContext, useState } from "react";
-import styles from './LoginPage.module.css';
-import Heading from '../Heading/Heading';
+import styles from "./LoginPage.module.css";
+import Heading from "../Heading/Heading";
 import AuthContext from '../../AuthContext';
 import { useNavigate } from 'react-router-dom';
 
@@ -15,9 +15,12 @@ function LoginPage() {
         password: ''
     });
 
-    const handleChange = (event) => {
-        setData(prevState => ({ ...prevState, [event.target.name]: event.target.value }));
-    };
+  const handleChange = (event) => {
+    setData((prevState) => ({
+      ...prevState,
+      [event.target.name]: event.target.value,
+    }));
+  };
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -38,7 +41,7 @@ function LoginPage() {
             if (response.ok) {
                 await setUserAuthenticated(true);
                 const result = await response.json();
-                navigate('/wardrobe');
+                navigate('/ootd');
             } else {
                 const error = await response.json();
                 console.error(error);

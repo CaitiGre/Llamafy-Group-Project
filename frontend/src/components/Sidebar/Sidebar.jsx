@@ -6,13 +6,17 @@ import style from "./Sidebar.module.css";
 import AuthContext from "../../AuthContext";
 import checkSession from "../../helpers/checkSession";
 import handleLogout from "../../helpers/handleLogout";
+import { useNavigate } from "react-router-dom";
 
 const Sidebar = () => {
+  const navigate = useNavigate();
   const { userAuthenticated, setUserAuthenticated } = useContext(AuthContext);
   const [openDrawer, setOpenDrawer] = useState(false);
 
   async function handleLogOut() {
     await handleLogout(setUserAuthenticated);
+    navigate('/login');
+
   }
 
   useEffect(() => {
