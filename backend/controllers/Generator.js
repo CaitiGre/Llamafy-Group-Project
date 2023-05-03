@@ -38,9 +38,9 @@ async function generateOutfits(user_email) {
             let toJson = JSON.stringify(responseText);
             toJson = JSON.parse(responseText);
 
-            const dallePrompt1 = toJson.recommendation1.dalle;
-            const dallePrompt2 = toJson.recommendation2.dalle;
-            const dallePrompt3 = toJson.recommendation3.dalle;
+            const dallePrompt1 = toJson.recommendation1.dalle + " Hyper Realistic Style";
+            const dallePrompt2 = toJson.recommendation2.dalle + " Hyper Realistic Style";
+            const dallePrompt3 = toJson.recommendation3.dalle + " Hyper Realistic Style";
 
             console.log(dallePrompt1);
             console.log(dallePrompt2);
