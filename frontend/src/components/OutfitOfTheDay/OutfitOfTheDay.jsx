@@ -120,7 +120,7 @@ const OutfitOfTheDay = () => {
               {weatherValues 
         ?   
             <div className={styles.title}> 
-            <img src={weatherValues.iconUrl} alt="Weather icon based on the weather today"/> <br />
+            <img src={weatherValues.iconUrl} style={{}} alt="Weather icon based on the weather today"/> <br />
             Hey {username}. {weatherValues.condition} in {weatherValues.location}.
             <p>{weatherValues.tempC} right now with {weatherValues.humidity} humidity. Windspeed at {weatherValues.windKph}. <small>Powered by <a href="https://www.weatherapi.com/" title="Weather API">WeatherAPI.com</a></small></p>
             </div>
