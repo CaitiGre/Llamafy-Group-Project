@@ -13,7 +13,6 @@ const generator = require('./routes/Generator')
 
 const session = require('express-session');
 const cors = require('cors');
-const generator = require('./routes/Generator')
 
 
 const app = express();
