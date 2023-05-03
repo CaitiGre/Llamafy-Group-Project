@@ -38,7 +38,7 @@ function LoginPage() {
             if (response.ok) {
                 await setUserAuthenticated(true);
                 const result = await response.json();
-                navigate('/wardrobe');
+                navigate('/ootd');
             } else {
                 const error = await response.json();
                 console.error(error);
