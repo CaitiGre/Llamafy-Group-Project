@@ -53,12 +53,6 @@ const Navbar = () => {
     await handleLogout(setUserAuthenticated);
   }
 
-  if (userAuthenticated) {
-    getUserEmail().then((userEmail) => {
-      console.log(userEmail);
-    });
-  }
-
   return (
     <React.Fragment>
       <AppBar

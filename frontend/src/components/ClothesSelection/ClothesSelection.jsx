@@ -6,15 +6,25 @@ import close from "./../../assets/close.png";
 import useGet from "../../helpers/useGet";
 import { clothesItems } from "./data";
 import WardrobeItems from "../WardrobeItems/WardrobeItems";
+import getUserEmail from "../../helpers/getUserEmail";
 
 function ClothesSelection() {
   // Defining state variables for the modal
   const [openModal, setOpenModal] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
   const [categoryItemsToShow, setCategoryItemsToShow] = useState([]);
-  const [clothes, setClothes] = useState({});
+  const [clothes, setClothes] = useState([]);
   // Get user's email from cookie once cookie's set up
-  const userEmail = "cass@sth.com";
+  const [userEmail, setUserEmail] = useState(null);
+  useEffect(() => {
+    async function fetchUserEmail() {
+      const email = await getUserEmail();
+      console.log('User email:', email);
+      setUserEmail(email);
+    }
+  
+    fetchUserEmail();
+  }, []);
 
   // Get user's current profile data from database
   const { data: dataObj, isLoading } = useGet(

@@ -16,7 +16,7 @@ function Disclaimers() {
   return (
     <Box>
       <Box>
-        <Heading title="DISCLAIMERS AND FAQ" />
+        <Heading title="DISCLAIMERS AND FAQs" />
       </Box>
       <Box className={style.Accordion} >
         <Accordion >

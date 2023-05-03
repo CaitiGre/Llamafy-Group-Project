@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import bin from "./../../assets/bin.png";
 import {
   List,
@@ -30,19 +30,29 @@ function WardrobeItems({ items, itom }) {
     console.log(subSelectionItemsToShow);
   };
   // items param: items in a particular category
-  const [clothes, setClothes] = useState({});
+  const [clothes, setClothes] = useState([]);
   const [categoryItemsToShow, setCategoryItemsToShow] = useState([]);
   // Handling the delete item event in CategoryItem
+  // Get the category items to show when the component mounts or when the category changes
+  useEffect(() => {
+    setCategoryItemsToShow(items);
+  }, [items]);
+
+  useEffect(() => {
+    setClothes(items);
+  }, [items]);
+
   async function handleDeleteItem(item) {
     const remainingItemsToShow = categoryItemsToShow.filter(
       (catItem) => catItem.clothing_id !== item.clothing_id
     );
+    console.log("remaining items to show:", remainingItemsToShow);
     setCategoryItemsToShow(remainingItemsToShow);
-
     const remainingClothes = clothes.filter(
       (clothe) => clothe.clothing_id !== item.clothing_id
     );
     setClothes(remainingClothes);
+    console.log("clothes remaining", remainingClothes);
 
     // Send Post request to delete item from the database
     try {
@@ -61,12 +71,11 @@ function WardrobeItems({ items, itom }) {
         "An error occurred while trying to delete the item. Please try again later."
       );
     }
-    //
   }
   return (
     <>
       {isItemsVisible &&
-        items.map((item) => (
+        clothes.map((item) => (
           <List
             key={item.clothing_id}
             sx={{

@@ -59,7 +59,9 @@ const OutfitOfTheDay = () => {
     },
     body: JSON.stringify({
       email: email,
+
       weatherValues : weatherValues,
+
     }),
   })
     .then((response) => {
@@ -69,23 +71,24 @@ const OutfitOfTheDay = () => {
       return response.json();
     })
     .then((data) => {
-      console.log(JSON.parse(data.responseText))
-      console.log(data.imageUrls)
+  
+      let responseText = JSON.parse(data.responseText)
 
       const temp2 = [
         {
           id: 1,
           img: data.imageUrls[0],
-          desc: "A cozy poncho and fleece vest topped with a dapper hat.",
+          desc: responseText.recommendation1.outfitDescription,
         },
         { 
           id: 2, 
           img: data.imageUrls[1], 
-          desc: "Purple wool" },
+          desc: responseText.recommendation2.outfitDescription,
+        },
         {
           id: 3,
           img: data.imageUrls[2],
-          desc: "Grey tweed jacket over a red knitted vest with a dashing tie. Formal justice wear.",
+          desc: responseText.recommendation3.outfitDescription,
         },
       ];
 
