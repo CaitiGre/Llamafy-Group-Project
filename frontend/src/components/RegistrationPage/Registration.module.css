@@ -1,47 +1,53 @@
+*{
+    margin: auto;
+}
+
 .register-input {
     border-radius: 20px;
     box-shadow: 2px 2px 5px rgb(255, 255, 255);;
     border: none;
-    height: 40px;
-    text-transform: upper;
+    height: 6vh;
+    text-transform: uppercase;
     text-align: center;
 }
 
-.register-label {
-    padding-bottom: 5px;
-    text-transform: uppercase;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+.NameBoxContainer {
+    justify-content: center;
+    display: flex;
+    justify-content: space-between;
+    padding: 0px;
+    margin: 0px;
+    width: 100%;
 }
 
-
-
 #password, #repassword {
-    width: 230%;
+    width: 70vh;
     position: relative;
-    left: -66%;
 }
 
 #email {
-    width: 230%;
+    width: 70vh;
 }
 
 .form-container {
-    padding: 20px;
-    margin: 0% 10% 0% 10%;
     border-radius: 10px;
 }
 
 .form-container div {
-    padding: 10px;
+    padding: 5px;
 }
 
 .gender-div {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
+    column-gap: 2.2vh;
+    padding: 0px;
+    margin: 0px;
+    width: 100%;
 }
 
-.gender-button {
-    width: 100px;
+.gender-button Button {
+    width: 26vh;
     background-color: #ffffff;
     border: 1px solid #e2e2e2;
     border-radius: 20px;
@@ -66,8 +72,23 @@
     color: #fff;
 }
 
-#submit-button {
-    width: 320px;
+.GenderButtonBox Button {
+    border-radius: 25px;
+    width: 20vh;
+    background-color: #ffffff;
+    border: 1px solid #e2e2e2;
+    color: #333;
+    cursor: pointer;
+    font-size: 14px;
+    margin: 0px 5px;
+    outline: none;
+    padding: 12px 22px;
+    transition: background-color 0.3s, border-color 0.3s;
+    box-shadow: 2px 2px 5px rgba(255, 255, 255, 0.8);
+}
+
+.submitButton {
+    width: 70vh;
     background-color: #ffffff;
     border: 1px solid #ccc;
     border-radius: 20px;
@@ -81,13 +102,13 @@
     box-shadow: 2px 2px 5px rgba(255, 255, 255, 0.8);
 }
 
-#submit-button:hover {
+.submitButton:hover {
     background-color: #ee69ec8b;
 }
 
 .password-icon {
     position: absolute;
-    right: -50px;
+    right: 4vh;
     top: 50%;
     transform: translateY(-50%);
     cursor: pointer;
