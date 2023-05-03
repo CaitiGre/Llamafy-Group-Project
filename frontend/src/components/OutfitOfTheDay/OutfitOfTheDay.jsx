@@ -59,6 +59,9 @@ const OutfitOfTheDay = () => {
     },
     body: JSON.stringify({
       email: email,
+
+      weatherValues : weatherValues,
+
     }),
   })
     .then((response) => {
@@ -70,7 +73,6 @@ const OutfitOfTheDay = () => {
     .then((data) => {
   
       let responseText = JSON.parse(data.responseText)
-      console.log(responseText.recommendation1.outfitDescription)
 
       const temp2 = [
         {
@@ -81,7 +83,8 @@ const OutfitOfTheDay = () => {
         { 
           id: 2, 
           img: data.imageUrls[1], 
-          desc: responseText.recommendation2.outfitDescription,},
+          desc: responseText.recommendation2.outfitDescription,
+        },
         {
           id: 3,
           img: data.imageUrls[2],
