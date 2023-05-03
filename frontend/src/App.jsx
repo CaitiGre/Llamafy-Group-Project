@@ -15,7 +15,14 @@ import { useState } from 'react';
 import Protected from './Protected';
 
 function App() {
-  const [userAuthenticated, setUserAuthenticated] = useState(false);
+  const [userAuthenticated, setUserAuthenticatedState] = useState(false);
+
+  const setUserAuthenticated = async (value) => {
+    return new Promise((resolve) => {
+      setUserAuthenticatedState(value);
+      resolve();
+    });
+  };
 
   return (
     <AuthContext.Provider value={{ userAuthenticated, setUserAuthenticated }}>

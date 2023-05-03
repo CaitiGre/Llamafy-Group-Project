@@ -9,10 +9,13 @@ import GenderButtons from "./GenderButtons";
 import PasswordBox from "./PasswordBox";
 import axios from "axios";
 import Heading from "../Heading/Heading";
+import { useNavigate } from "react-router";
 
 const salt = bcrypt.genSaltSync(10);
 
 function RegistrationPage() {
+  const navigate = useNavigate();
+
   const [data, setData] = useState({
     firstName: "",
     lastName: "",
@@ -51,8 +54,8 @@ function RegistrationPage() {
             gender: data.gender,
           }
         );
-        console.log(response.data);
         alert("Registration successful!");
+        navigate('/login');
       } catch (error) {
         console.log(error);
         alert(
