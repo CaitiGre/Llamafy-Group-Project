@@ -13,7 +13,7 @@ function ClothesSelection() {
   const [openModal, setOpenModal] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
   const [categoryItemsToShow, setCategoryItemsToShow] = useState([]);
-  const [clothes, setClothes] = useState({});
+  const [clothes, setClothes] = useState([]);
   // Get user's email from cookie once cookie's set up
   const [userEmail, setUserEmail] = useState(null);
   useEffect(() => {
