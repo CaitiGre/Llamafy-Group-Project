@@ -5,6 +5,7 @@ import styles from "./OutfitOfTheDay.module.css";
 import { InputLabel, MenuItem, form } from "@mui/material";
 import { CompactPicker } from "react-color";
 import Heading from "../Heading/Heading";
+import getUserEmail from "../../helpers/getUserEmail"
 import {
   Button,
   FormControl,
