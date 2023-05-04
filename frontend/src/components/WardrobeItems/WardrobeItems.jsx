@@ -13,6 +13,7 @@ import axios from "axios";
 import { subSelectionItemsByClothesItem } from "../ClothesSelection/data";
 import SubSelectionModal from "../SubSelectionModal/SubSelectionModal";
 
+
 // Card for each clothes item in the list
 function WardrobeItems({ items, itom }) {
   const [selectedItem, setSelectedItem] = useState(null);

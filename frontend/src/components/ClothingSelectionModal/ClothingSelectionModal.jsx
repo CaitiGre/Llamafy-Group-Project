@@ -5,6 +5,7 @@ import close from "./../../assets/close.png";
 import ClotheCustomisation from "../ClotheCustomisation/ClotheCustomisation";
 import axios from "axios";
 import  getUserEmail  from "../../helpers/getUserEmail";
+import { GetColorName } from "hex-color-to-color-name";
 
 function ClothingSelectionModal({ selectedItem, showModal, onCloseModal }) {
   // All the states to be recorded in the new wardrobe item JSON
@@ -35,7 +36,7 @@ function ClothingSelectionModal({ selectedItem, showModal, onCloseModal }) {
       style: selectedStyle,
       pattern: selectedPattern,
       length: selectedLength,
-      color: color.hex,
+      color: GetColorName(color.hex),
       sleeves: selectedSleeves,
     };
 
@@ -50,7 +51,7 @@ function ClothingSelectionModal({ selectedItem, showModal, onCloseModal }) {
           style: selectedStyle,
           pattern: selectedPattern,
           length: selectedLength,
-          color: color.hex,
+          color: GetColorName(color.hex),
           sleeves: selectedSleeves,
         }
       );
