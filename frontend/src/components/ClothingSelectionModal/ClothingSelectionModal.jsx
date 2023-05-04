@@ -4,14 +4,13 @@ import { TwitterPicker } from "react-color";
 import close from "./../../assets/close.png";
 import ClotheCustomisation from "../ClotheCustomisation/ClotheCustomisation";
 import axios from "axios";
-import  getUserEmail  from "../../helpers/getUserEmail";
+import getUserEmail from "../../helpers/getUserEmail";
 import { GetColorName } from "hex-color-to-color-name";
 
 function ClothingSelectionModal({ selectedItem, showModal, onCloseModal }) {
   // All the states to be recorded in the new wardrobe item JSON
   const [color, setColor] = useState("#000000");
   const [selectedSleeves, setSelectedSleeves] = useState(null);
-  const [selectedLength, setSelectedLength] = useState(null);
   const [selectedStyle, setSelectedStyle] = useState(null);
   const [selectedPattern, setSelectedPattern] = useState(null);
   const [wardrobe, setWardrobe] = useState(null);
@@ -35,7 +34,6 @@ function ClothingSelectionModal({ selectedItem, showModal, onCloseModal }) {
       category_id: selectedItem.category_id,
       style: selectedStyle,
       pattern: selectedPattern,
-      length: selectedLength,
       color: GetColorName(color.hex),
       sleeves: selectedSleeves,
     };
@@ -50,7 +48,6 @@ function ClothingSelectionModal({ selectedItem, showModal, onCloseModal }) {
           category_id: selectedItem.category_id,
           style: selectedStyle,
           pattern: selectedPattern,
-          length: selectedLength,
           color: GetColorName(color.hex),
           sleeves: selectedSleeves,
         }
@@ -171,13 +168,6 @@ function ClothingSelectionModal({ selectedItem, showModal, onCloseModal }) {
                     selectedItemAttribute={selectedItem.sleeves}
                     name="Sleeves"
                     setFunction={setSelectedSleeves}
-                  />
-                )}
-                {selectedItem.length && (
-                  <ClotheCustomisation
-                    selectedItemAttribute={selectedItem.length}
-                    name="Length"
-                    setFunction={setSelectedLength}
                   />
                 )}
                 {selectedItem.style && (
