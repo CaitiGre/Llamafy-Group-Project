@@ -15,7 +15,6 @@ import SubSelectionModal from "../SubSelectionModal/SubSelectionModal";
 
 // Card for each clothes item in the list
 function WardrobeItems({ items, itom }) {
-  const [openModal, setOpenModal] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
   const [subSelectionItemsToShow, setSubSelectionItemsToShow] = useState([]);
   const [isItemsVisible, setIsItemsVisible] = useState(true); // add state variable to control item visibility
@@ -24,7 +23,6 @@ function WardrobeItems({ items, itom }) {
   const handleOpenModal = (item) => {
     setSelectedItem(item);
     setSubSelectionItemsToShow(subSelectionItemsByClothesItem[item.name]);
-    setOpenModal(true);
     setIsItemsVisible(false); // hide items when modal is open
     console.log(selectedItem);
     console.log(subSelectionItemsToShow);
@@ -107,8 +105,8 @@ function WardrobeItems({ items, itom }) {
                       >
                         <img src={bin} alt="bin button" width="15px" />
                       </Button>
-                      {item.color} {item.sub_category} with {item.sleeves} and{" "}
-                      {item.pattern} pattern
+                      {item.color} {item.sleeves} {item.pattern}{" "}
+                      {item.sub_category}{" "}
                     </Typography>
                   </>
                 }
