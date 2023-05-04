@@ -1,6 +1,6 @@
 import { useState } from "react";
 import style from "../RegistrationPage/Registration.module.css";
-import { Box } from "@mui/material";
+import { Box, Button } from "@mui/material";
 import bcrypt from "bcryptjs";
 import NamesBox from "./NameBox";
 import EmailBox from "./EmailBox";
@@ -70,12 +70,13 @@ function RegistrationPage() {
     <>
       <Heading title="Register" />
       <div className={style["form-container"]}>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} style={{width: "90vh"}}>
           <Box
             display="flex"
             justifyContent="center"
             alignItems="center"
             flexDirection="column"
+            rowGap="0.5vh"
           >
             <NamesBox data={data} handleChange={handleChange} />
             {/*Need to add alert function if email entered is already in use.*/}
@@ -83,9 +84,9 @@ function RegistrationPage() {
             <PasswordBox data={data} handleChange={handleChange} />
             <LocationBox data={data} handleChange={handleChange} />
             <GenderButtons data={data} handleButtonClick={handleButtonClick} />
-            <button id={style["submit-button"]} type="submit">
-              Submit
-            </button>
+            <Button className={style.submitButton} style={{backgroundColor: "white", color: "black", borderRadius: "25px", padding: "2vh"}} type="submit">
+              SUBMIT
+            </Button>
           </Box>
         </form>
       </div>

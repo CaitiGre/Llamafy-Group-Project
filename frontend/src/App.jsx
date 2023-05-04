@@ -13,6 +13,7 @@ import Disclaimers from "./components/Disclaimers/Disclaimer";
 import AuthContext from './AuthContext';
 import { useState } from 'react';
 import Protected from './Protected';
+import Prevented from './Prevented';
 
 function App() {
   const [userAuthenticated, setUserAuthenticatedState] = useState(false);
@@ -33,14 +34,26 @@ function App() {
           </header>
 
           <Routes>
-            <Route path="/" element={<LandingPage />} />
+            <Route path="/" element={
+              <Prevented isAuthenticated={userAuthenticated}>
+                <LandingPage />
+              </Prevented>
+            } />
             <Route path="pastOutfits" element={
               <Protected isAuthenticated={userAuthenticated}>
                 <HomePage />
               </Protected>
             } />
-            <Route path="register" element={<RegistrationPage />} />
-            <Route path="login" element={<LoginPage />} />
+            <Route path="register" element={
+              <Prevented isAuthenticated={userAuthenticated}>
+                <RegistrationPage />
+              </Prevented>
+            } />
+            <Route path="login" element={
+              <Prevented isAuthenticated={userAuthenticated}>
+                <LoginPage />
+              </Prevented>
+            } />
             <Route path="disclaimer" element={<Disclaimers />} />
             <Route path="wardrobe" element={
               <Protected isAuthenticated={userAuthenticated}>

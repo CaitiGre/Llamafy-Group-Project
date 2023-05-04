@@ -2,21 +2,6 @@
   margin: 0;
 }
 
-.heading {
-  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
-  font-size: 100px;
-  color: rgba(255, 255, 255, 0);
-  margin-top: 5%;
-  -webkit-text-stroke: 3px #28002c;
-}
-
-.subHeading {
-  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
-  font-size: 40px;
-  color: #28002c;
-  margin-bottom: 3%;
-}
-
 /* Profile*/
 
 .field {
@@ -45,7 +30,6 @@
   transition: background-color 0.3s, border-color 0.3s;
   box-shadow: 2px 2px 5px rgba(255, 255, 255, 0.8);
   margin-top: 5%;
-
 }
 
 .submitButton:hover {

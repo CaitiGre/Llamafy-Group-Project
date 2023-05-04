@@ -14,9 +14,11 @@ import Sidebar from "../Sidebar/Sidebar";
 import AuthContext from "../../AuthContext";
 import checkSession from "../../helpers/checkSession";
 import handleLogout from "../../helpers/handleLogout";
-import getUserEmail from "../../helpers/getUserEmail";
+import { useNavigate } from "react-router-dom";
+
 
 const Navbar = () => {
+  const navigate = useNavigate();
   const theme = useTheme();
   const isMatch = useMediaQuery(theme.breakpoints.down("md"));
 
@@ -45,12 +47,13 @@ const Navbar = () => {
     //checks authenticated status to toggle between login and logout buttons.
     checkSession(setUserAuthenticated);
     window.addEventListener("scroll", handleScroll);
-   
+
     return () => window.removeEventListener("scroll", handleScroll);
   }, [initalScrollPosition, visible, handleScroll]);
 
   async function handleLogOut() {
     await handleLogout(setUserAuthenticated);
+    navigate('/login');
   }
 
   return (

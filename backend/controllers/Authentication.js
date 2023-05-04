@@ -133,7 +133,7 @@ async function getEmail(req, res) {
 
         const [rows] = await conn.query('SELECT user_email FROM UserSession WHERE session_id = ?', [req.sessionID]);
         if (rows.length > 0) {
-            return rows[0].user_email;
+            return res.json(rows[0].user_email);
         } else {
             console.error('No user found with session ID:', req.sessionID);
             return null;

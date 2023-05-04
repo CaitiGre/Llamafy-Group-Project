@@ -9,10 +9,11 @@
   border-radius: 20px;
   color: #333;
   cursor: pointer;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   font-size: 14px;
   margin: 0px 5px;
   outline: none;
-  padding: 12px 22px;
+  padding: 12px 25px;
   transition: background-color 0.3s, border-color 0.3s;
   box-shadow: 2px 2px 5px rgba(255, 255, 255, 0.8);
   margin-top: 5%;
@@ -24,7 +25,13 @@
 }
 
 .formContainer {
-  padding: 30px;
-  margin: 3% 12% 5% 12%;
+  padding: 3vh 12vh 5vh 12vh;
   border-radius: 20px;
+  caret-color: "black";
+  text-align: center;
+}
+
+.formContainer Input {
+  padding: 3vh;
+  text-align: center;
 }
