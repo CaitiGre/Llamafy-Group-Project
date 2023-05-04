@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import styles from './SettingsPage.module.css';
 import useGet from '../../helpers/useGet';
 import axios from 'axios';
+import getUserEmail from "../../helpers/getUserEmail";
 
 function Profile() {
 
@@ -22,10 +23,22 @@ function Profile() {
     const [profileData, setProfileData] = useState({});
 
     // Get user's email from cookie once cookie's set up
-    const userEmail = "cass@sth.com";
+    // const userEmail = "cass@sth.com";
+
+    const [userEmail, setUserEmail] = useState(null);
+    useEffect(() => {
+        async function fetchUserEmail() {
+            const email = await getUserEmail();
+            console.log("User email:", email);
+            setUserEmail(email);
+        }
+
+        fetchUserEmail();
+    }, []);
 
     // Get user's current profile data from database
     const { data: dataObj, isLoading } = useGet(`http://localhost:3006/profile/getProfile/${userEmail}`);
+    console.log("URL: ", `http://localhost:3006/profile/getProfile/${userEmail}`);
 
     useEffect(() => {
         if (!isLoading && dataObj) {
