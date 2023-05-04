@@ -1,4 +1,4 @@
-import { InputLabel, Grid } from "@mui/material";
+import { InputLabel, Box } from "@mui/material";
 import { useState, useEffect } from "react";
 import styles from './SettingsPage.module.css';
 import useGet from '../../helpers/useGet';
@@ -62,7 +62,7 @@ function Profile() {
 
     const inputData = [
         {
-            displayName: "Email",
+            displayName: "EMAIL",
             type: "email",
             name: "email",
             id: "profileEmail",
@@ -70,67 +70,68 @@ function Profile() {
             readOnly: true
         },
         {
-            displayName: "First Name",
+            displayName: "FIRST NAME",
             type: "text",
             name: "fname",
             id: "fname",
             value: data.fname,
         },
         {
-            displayName: "Last Name",
+            displayName: "LAST NAME",
             type: "text",
             name: "lname",
             id: "lname",
             value: data.lname,
         },
         {
-            displayName: "Gender",
+            displayName: "GENDER",
             type: "text",
             name: "gender",
             id: "gender",
             value: data.gender,
         },
         {
-            displayName: "Skin Tone",
+            displayName: "SKIN TONE",
             type: "text",
             name: "skinTone",
             id: "skinTone",
             value: data.skinTone,
         },
         {
-            displayName: "Location",
+            displayName: "LOCATION",
             type: "select",
             name: "location",
             id: "location",
             value: data.location,
         },
         {
-            displayName: "Clothing size",
+            displayName: "CLOTHING SIZE",
             type: "text",
             name: "size",
             id: "size",
             value: data.size,
         },
         {
-            displayName: "New Password",
+            displayName: "NEW PASSWORD",
             type: "password",
             name: "newPassword",
             id: "newPassword",
             value: '',
         },
         {
-            displayName: "Re-enter New Password",
+            displayName: "RE-ENTER NEW PASSWORD",
             type: "password",
             name: "reNewPassword",
             id: "reNewPassword",
             value: '',
         },
         {
-            displayName: "Current Password",
+            displayName: "CURRENT PASSWORD*",
             type: "password",
             name: "password",
             id: "password",
             value: '',
+            required: true
         }
     ]
 
@@ -187,40 +188,35 @@ function Profile() {
                 <div className={styles.formContainer}>
                     <form onSubmit={handleSubmit}>
                         {inputData.map((item) => (
-                            <Grid container key={item.id} spacing={2}
-                                sx={{ margin: 0 }}>
+                            <Box display="flex" flexDirection="column" alignItems="center" key={item.id}>
+                                <InputLabel
+                                    sx={{
+                                        paddingTop: "25px",
+                                        marginBottom: "2px",
+                                        textAlign: "right",
+                                        color: "#48124c",
+                                        fontSize: "small",
+                                        fontWeight: "bold"
+                                    }}>
 
-                                <Grid item xs={5}>
-                                    <InputLabel
-                                        sx={{
-                                            marginBottom: "2px",
-                                            textAlign: "right",
-                                            color: "#eee"
-                                        }}>
+                                    {item.displayName}
 
-                                        {item.displayName}
+                                </InputLabel>
 
-                                    </InputLabel>
-                                </Grid>
 
-                                <Grid item xs={7}
-                                    display={'flex'}
-                                    justifyContent="flex-start">
+                                <input className={styles.field}
+                                    type={item.type}
+                                    name={item.name}
+                                    id={item.id}
+                                    defaultValue={item.value}
+                                    onChange={handleChange}
+                                    placeholder={item.value}
+                                    readOnly={item.readOnly}
+                                    required={item.required}
+                                    style={item.readOnly && { backgroundColor: "#e4e0e0" }}
+                                />
 
-                                    <input className={styles.field}
-                                        type={item.type}
-                                        name={item.name}
-                                        id={item.id}
-                                        defaultValue={item.value}
-                                        onChange={handleChange}
-                                        placeholder={item.value}
-                                        readOnly={item.readOnly}
-                                        style={item.readOnly && { backgroundColor: "#e4e0e0" }}
-                                    />
-
-                                </Grid>
-
-                            </Grid>
+                            </Box>
                         ))}
                         <button id="submit-button" type="submit" className={styles.submitButton}>Submit</button>
                     </form >
