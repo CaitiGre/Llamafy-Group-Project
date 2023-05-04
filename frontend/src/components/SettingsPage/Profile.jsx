@@ -194,9 +194,9 @@ function Profile() {
                                         paddingTop: "25px",
                                         marginBottom: "2px",
                                         textAlign: "right",
-                                        color: "#48124c",
-                                        fontSize: "small",
-                                        fontWeight: "bold"
+                                        color: "#eee",
+                                        fontWeight: "bold",
+                                        fontFamily: "'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif"
                                     }}>
 
                                     {item.displayName}
