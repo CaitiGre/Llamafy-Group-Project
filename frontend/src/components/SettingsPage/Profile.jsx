@@ -1,4 +1,4 @@
-import { InputLabel, Box } from "@mui/material";
+import { InputLabel, Box, Select, MenuItem } from "@mui/material";
 import { useState, useEffect } from "react";
 import styles from './SettingsPage.module.css';
 import useGet from '../../helpers/useGet';
@@ -196,33 +196,80 @@ function Profile() {
                     <form onSubmit={handleSubmit}>
                         {inputData.map((item) => (
                             <Box display="flex" flexDirection="column" alignItems="center" key={item.id}>
-                                <InputLabel
-                                    sx={{
-                                        paddingTop: "25px",
-                                        marginBottom: "2px",
-                                        textAlign: "right",
-                                        color: "#eee",
-                                        fontWeight: "bold",
-                                        fontFamily: "'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif"
-                                    }}>
+                                {item.type !== "select" ?
+                                    <>
+                                        <InputLabel
+                                            sx={{
+                                                paddingTop: "25px",
+                                                marginBottom: "2px",
+                                                textAlign: "right",
+                                                color: "#eee",
+                                                fontWeight: "bold",
+                                                fontFamily: "'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif"
+                                            }}>
 
-                                    {item.displayName}
+                                            {item.displayName}
 
-                                </InputLabel>
+                                        </InputLabel>
 
 
-                                <input className={styles.field}
-                                    type={item.type}
-                                    name={item.name}
-                                    id={item.id}
-                                    defaultValue={item.value}
-                                    onChange={handleChange}
-                                    placeholder={item.value}
-                                    readOnly={item.readOnly}
-                                    required={item.required}
-                                    style={item.readOnly && { backgroundColor: "#e4e0e0" }}
-                                />
+                                        <input className={styles.field}
+                                            type={item.type}
+                                            name={item.name}
+                                            id={item.id}
+                                            defaultValue={item.value}
+                                            onChange={handleChange}
+                                            placeholder={item.value}
+                                            readOnly={item.readOnly}
+                                            required={item.required}
+                                            style={item.readOnly && { backgroundColor: "#e4e0e0" }}
+                                        />
+                                    </>
+                                    :
+                                    <>
+                                        <InputLabel
+                                            sx={{
+                                                paddingTop: "25px",
+                                                marginBottom: "2px",
+                                                textAlign: "right",
+                                                color: "#eee",
+                                                fontWeight: "bold",
+                                                fontFamily: "'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif"
+                                            }}>
 
+                                            {item.displayName}
+
+                                        </InputLabel>
+
+                                        <Select
+                                            name="location"
+                                            id={styles["location"]}
+                                            className={styles["register-input"]}
+                                            value={data.location}
+                                            onChange={handleChange}
+                                            style={{
+                                                backgroundColor: "white",
+                                                borderRadius: "25px",
+                                                width: "32.5vw",
+                                                padding: "2vh",
+                                                height: "5vh",
+                                                fontSize: "small",
+                                                textAlign: "center",
+                                                justifyContent: "center"
+                                            }}
+
+                                            disableUnderline={true}
+                                        >
+                                            <MenuItem value="" style={{ color: "black" }} disabled>Which city should LLAMAFY base recommendations on?</MenuItem>
+                                            {locations.map((location) => (
+                                                <MenuItem key={location} value={location}>
+                                                    {location}
+                                                </MenuItem>
+                                            ))}
+                                        </Select>
+                                    </>
+
+                                }
                             </Box>
                         ))}
                         <button id="submit-button" type="submit" className={styles.submitButton}>Submit</button>

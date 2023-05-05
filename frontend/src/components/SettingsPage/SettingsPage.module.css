@@ -5,11 +5,12 @@
 /* Profile*/
 
 .field {
-  border-radius: 20px;
+  border-radius: 25px;
   box-shadow: 2px 2px 5px rgba(255, 255, 255, 0.8);
-  height: 30px;
-  width: 30%;
-  margin-bottom: 15px;
+  height: 1vh;
+  width: 30vw;
+  /* margin-bottom: 15px; */
+  padding: 2vh;
   background-color: white;
   margin: 0px;
   text-align: center;
@@ -37,7 +38,7 @@
   border-color: #aaa;
 }
 
-@media screen and (max-width: 1000px) {
+/* @media screen and (max-width: 1000px) {
   .field {
     width: 50%;
   }
@@ -53,7 +54,7 @@
   .field {
     width: 80%;
   }
-}
+} */
 
 /* Wardrobe*/
 
