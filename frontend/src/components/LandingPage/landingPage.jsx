@@ -27,6 +27,7 @@ function LandingPage() {
               justifyContent: "center",
               paddingLeft: "5%",
               paddingRight: "5%",
+              width: "80%"
             }}
           >
             <Grid
@@ -35,7 +36,7 @@ function LandingPage() {
               justifyContent="center"
               spacing={5}
             >
-              <Grid item>
+              <Grid item className={styles.buttonStyle}>
                 <NavLink to="/login">
                   <Button
                     sx={{
@@ -43,7 +44,8 @@ function LandingPage() {
                       boxShadow: "2px 2px 5px rgba(255, 255, 255, 0.8)",
                       textAlign: "center",
                       padding: "5% 5%",
-                      width: "200px",
+                      width: "30vh",
+                      fontFamily: "Franklin Gothic Medium, Arial Narrow, Arial, sans-serif",
                       fontSize: "3vh",
                       backgroundColor: "#f0f0f0",
                       border: "1px solid #ccc",
@@ -57,7 +59,7 @@ function LandingPage() {
                   </Button>
                 </NavLink>
               </Grid>
-              <Grid item>
+              <Grid item className={styles.buttonStyle}>
                 <NavLink to="/register">
                   <Button
                     sx={{
@@ -65,8 +67,9 @@ function LandingPage() {
                       boxShadow: "2px 2px 5px rgba(255, 255, 255, 0.8)",
                       textAlign: "center",
                       padding: "5% 5%",
-                      width: "200px",
+                      width: "30vh",
                       fontSize: "3vh",
+                      fontFamily: "Franklin Gothic Medium, Arial Narrow, Arial, sans-serif",
                       backgroundColor: "#f0f0f0",
                       border: "1px solid #ccc",
                       color: "#333",
@@ -88,8 +91,8 @@ function LandingPage() {
           NO TIME FOR DRAMA? TRUST IN LLAMA!
         </h2>
 
-        <Grid container spacing={10} sx={{ padding: "3vh", height: "auto" }}>
-          <Grid item xs={8} md={10}>
+        <Grid container spacing={10} sx={{ padding: "2vh", height: "auto" }}>
+          <Grid item xs={12} md={9}>
             <Box
               className={styles.aboutContainer}
               bgcolor="white"
@@ -100,6 +103,7 @@ function LandingPage() {
                 height: "auto",
                 alignItems: "center",
                 boxShadow: "2px 2px 8px 2px rgba(0, 0, 0, 0.2)",
+                alignContent: "center"
               }}
               p={2}
             >
@@ -108,6 +112,7 @@ function LandingPage() {
                   alignItems: "center",
                   textAlign: "justify",
                   margin: "auto",
+                  padding: "2.5vh"
                 }}
               >
                 Have you ever wanted to feel like Cher from clueless minus the
@@ -124,13 +129,13 @@ function LandingPage() {
               </Typography>
             </Box>
           </Grid>
-          <Grid item xs={4} md={2}>
+          <Grid item xs={6} md={3}>
             <Card
               sx={{
                 borderRadius: "25px",
                 height: "100%",
                 width: "100%",
-                padding: "0",
+                padding: "0px",
                 backgroundSize: "cover",
                 boxShadow: "2px 2px 8px 2px rgba(0, 0, 0, 0.2)",
               }}
@@ -142,25 +147,25 @@ function LandingPage() {
               />
             </Card>
           </Grid>
-          <Grid item xs={4} md={2}>
+          <Grid item xs={6} md={3}>
             <Card
               sx={{
+                
                 borderRadius: "25px",
                 height: "100%",
                 width: "100%",
-                padding: "0",
-                backgroundSize: "cover",
+                backgroundSize: "fit",
                 boxShadow: "2px 2px 8px 2px rgba(0, 0, 0, 0.2)",
               }}
             >
               <img
                 src={ClothingRail}
                 alt="clothing rail GIF"
-                style={{ height: "100%", width: "100%", borderRadius: "25px" }}
+                style={{ height: "110%", width: "110%",  borderRadius: "25px" }}
               />
             </Card>
           </Grid>
-          <Grid item xs={8} md={10}>
+          <Grid item xs={12} md={9}>
             <Box
               bgcolor="white"
               p={2}
@@ -176,7 +181,7 @@ function LandingPage() {
             >
               <Typography
                 variant="subtitle1"
-                sx={{ alignItems: "center", textAlign: "justify" }}
+                sx={{ alignItems: "center", textAlign: "justify", padding: "2.5vh"}}
               >
                 Simply register with us, answer some basic questions about your
                 current wardrobe and you're done! Worry not, these answers can

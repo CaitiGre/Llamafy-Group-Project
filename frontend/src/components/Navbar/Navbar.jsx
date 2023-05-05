@@ -17,6 +17,7 @@ import handleLogout from "../../helpers/handleLogout";
 import { useNavigate } from "react-router-dom";
 
 
+
 const Navbar = () => {
   const navigate = useNavigate();
   const theme = useTheme();
@@ -59,26 +60,27 @@ const Navbar = () => {
   return (
     <React.Fragment>
       <AppBar
-        sx={{ background: "transparent", boxShadow: "none" }}
+        sx={{ background: "transparent", boxShadow: "none" , justifyContent: "space-between", display: "flex", margin: "auto"}}
         style={{ top: visible ? "0" : "-20vh", transition: "top 0.2s" }}
       >
         <Toolbar
           className="toolbarContainer"
           sx={{
             display: "flex",
-            justifyContent: "space-between",
             alignItems: "center",
             fontFamily: "Franklin Gothic",
+            justifyContent: "space-between",
+            width: "95%"
           }}
         >
-          <Box sx={{ display: "flex", alignItems: "center" }}>
+          <Box sx={{ display: "flex"}}>
             <NavLink to="/">
               <img src={Llama} alt="llama homepage icon" width="40px" />
             </NavLink>
             {isMatch && (
               <NavLink to="/" style={{ textDecoration: "none" }}>
                 <Typography
-                  sx={{ fontSize: "2rem", paddingLeft: "10px", color: "white" }}
+                  sx={{ fontSize: "2rem", paddingLeft: "10px", color: "white" , flexGrow: 1}}
                 >
                   LLAMAFY
                 </Typography>
@@ -90,21 +92,23 @@ const Navbar = () => {
             <Box
               sx={{
                 display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
+                justifyContent: "space-between",
                 flexGrow: 1,
               }}
             >
               <Box
                 sx={{
+                  flexGrow: 1,
                   display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  marginLeft: "auto",
+                  justifyContent: "space-between",
+                  margin: "auto",
+                  textAlign: "right",
+                  float: "right"
                 }}
               >
                 {userAuthenticated && (
                   <>
+                  <Box sx={{display: "flex", justifyContent: "flex-end", }}>
                     <NavLink
                       to="/ootd"
                       style={{
@@ -153,6 +157,7 @@ const Navbar = () => {
                     >
                       SETTINGS
                     </NavLink>
+                    </Box>
                   </>
                 )}
               </Box>
@@ -166,6 +171,7 @@ const Navbar = () => {
               >
                 {userAuthenticated ? (
                   <>
+                  <Box>
                     <NavLink to="/" style={{ textDecoration: "none" }}>
                       <Button
                         onClick={handleLogOut}
@@ -174,9 +180,11 @@ const Navbar = () => {
                         LOGOUT
                       </Button>
                     </NavLink>
+                    </Box>
                   </>
                 ) : (
                   <>
+                  <Box sx={{display: "flex", justifyContent: "flex-end", textAlign: "right"}}>
                     <NavLink to="/login" style={{ textDecoration: "none" }}>
                       <Button sx={{ marginRight: "10px", color: "white" }}>
                         LOGIN
@@ -185,6 +193,8 @@ const Navbar = () => {
                     <NavLink to="/register" style={{ textDecoration: "none" }}>
                       <Button sx={{ color: "white" }}>REGISTER</Button>
                     </NavLink>
+                    </Box>
+                    
                   </>
                 )}
               </Box>

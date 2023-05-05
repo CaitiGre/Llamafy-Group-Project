@@ -10,13 +10,13 @@
 .subSubHeading {
     color: #58315c;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    padding-bottom: 4vh;
+    padding-bottom: 3vh;
 }
 
 .formBox{
     display: flex;
     flex-direction: column;
-    row-gap: 5vh;
+    row-gap: 1.5vh;
 }
 
 .formBox label {
@@ -28,14 +28,6 @@
 .Ootd{
     display: flex;
     justify-content: center;
-}
-
-.dropdownMenus, .secondDropdown{
-    display: flex;
-    flex-direction: row;
-    align-content:space-between ;
-    margin-top: -5%;
-    margin-bottom: 12%;
 }
 
 .OotdTile {
