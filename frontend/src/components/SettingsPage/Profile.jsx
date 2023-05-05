@@ -20,11 +20,7 @@ function Profile() {
         password: ''
     });
 
-    const [profileData, setProfileData] = useState({});
-
-    // Get user's email from cookie once cookie's set up
-    // const userEmail = "cass@sth.com";
-
+    // Get user's email
     const [userEmail, setUserEmail] = useState(null);
     useEffect(() => {
         async function fetchUserEmail() {
@@ -38,31 +34,29 @@ function Profile() {
 
     // Get user's current profile data from database
     const { data: dataObj, isLoading } = useGet(`http://localhost:3006/profile/getProfile/${userEmail}`);
-    console.log("URL: ", `http://localhost:3006/profile/getProfile/${userEmail}`);
 
     useEffect(() => {
-        if (!isLoading && dataObj) {
-
-            // Assign the object containing properties needed to profileData.
-            setProfileData(dataObj.userData);
+        if (!isLoading && dataObj.userData) {
+            console.log("isLoading: ", isLoading, "dataObj: ", dataObj);
 
             setData(
                 {
-                    fname: profileData.firstName,
-                    lname: profileData.lastName,
-                    email: profileData.email,
-                    gender: profileData.gender,
-                    skinTone: profileData.skinTone,
-                    location: profileData.location,
-                    size: profileData.clothingSize,
+                    fname: dataObj.userData.firstName,
+                    lname: dataObj.userData.lastName,
+                    email: dataObj.userData.email,
+                    gender: dataObj.userData.gender,
+                    skinTone: dataObj.userData.skinTone,
+                    location: dataObj.userData.location,
+                    size: dataObj.userData.clothingSize,
                     newPassword: '',
-                    password: profileData.password
+                    password: dataObj.userData.password
                 }
             )
+
+            console.log("data", data);
         }
 
-    }, [isLoading, dataObj]); // Once isLoading and profileData and dataObj changed (meaning the fetch is completed), useEffect() will run and setData to fetched data
-    // Remember that initially when the data was still being fetched, the values of isLoading and dataObj would be different
+    }, [isLoading, dataObj]);
 
 
     const locations = [
