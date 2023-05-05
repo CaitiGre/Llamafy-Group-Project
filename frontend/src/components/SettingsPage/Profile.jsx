@@ -4,6 +4,7 @@ import styles from './SettingsPage.module.css';
 import useGet from '../../helpers/useGet';
 import axios from 'axios';
 import getUserEmail from "../../helpers/getUserEmail";
+import { locations } from "./locations";
 
 function Profile() {
 
@@ -58,14 +59,6 @@ function Profile() {
 
     }, [isLoading, dataObj]);
 
-
-    const locations = [
-        "Auckland",
-        "Wellington",
-        "Christchurch",
-        "Dunedin",
-        "Invercargill"
-    ];
 
     const inputData = [
         {
