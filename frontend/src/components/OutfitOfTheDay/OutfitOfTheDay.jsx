@@ -17,13 +17,16 @@ import { Box } from "@mui/material";
 
 const OutfitOfTheDay = () => {
 
+  // def states
   const [username, setUsername] = useState('UsernameFromCookies');
   const [weatherText, setWeatherText] = useState(false);
   const [weatherErr, setWeatherErr] = useState(false);
   const [weatherValues, setWeatherValues] = useState([]);
+  const [recommendations, setRecommendations] = useState();
+  const [showRecommendations, setShowRecommendations] = useState(false);
 
-  // get weather data from weatherAPI proxy
-  useEffect(() => {axios.get('http://localhost:3006/weather/data/poo')
+  // get weather data from weatherAPI proxy and update states according to response
+  useEffect(() => {axios.get('http://localhost:3006/weather/data')
   .then(res => {
     setWeatherValues(res.data)
     setWeatherText(true)})
@@ -32,26 +35,6 @@ const OutfitOfTheDay = () => {
     setWeatherErr(true);
   })
   },[]);
-
-  // const temp = [
-  //   {
-  //     id: 1,
-  //     img: "images/good-bad-ugly.jpeg",
-  //     desc: "A cozy poncho and fleece vest topped with a dapper hat.",
-  //   },
-  //   { 
-  //     id: 2, 
-  //     img: "images/generated/triple.png", 
-  //     desc: "Purple wool" },
-  //   {
-  //     id: 3,
-  //     img: "images/dirty_harry.jpeg",
-  //     desc: "Grey tweed jacket over a red knitted vest with a dashing tie. Formal justice wear.",
-  //   },
-  // ];
-
-  const [recommendations, setRecommendations] = useState();
-  const [showRecommendations, setShowRecommendations] = useState(false);
 
   function handleRecommendationTiles() {
     
