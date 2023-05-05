@@ -16,36 +16,26 @@ import SubHeading from "../SubHeading/SubHeading";
 import { Box } from "@mui/material";
 
 const OutfitOfTheDay = () => {
+
+  // def states
+  const [username, setUsername] = useState('UsernameFromCookies');
+  const [weatherText, setWeatherText] = useState(false);
+  const [weatherErr, setWeatherErr] = useState(false);
   const [username, setUsername] = useState("UsernameFromCookies");
   const [weatherValues, setWeatherValues] = useState([]);
-
-  // get weather data from weatherAPI proxy
-  useEffect(() => {
-    axios
-      .get("http://localhost:3006/weather/data")
-      .then((res) => setWeatherValues(res.data));
-  }, []);
-
-  const temp = [
-    {
-      id: 1,
-      img: "images/good-bad-ugly.jpeg",
-      desc: "A cozy poncho and fleece vest topped with a dapper hat.",
-    },
-    {
-      id: 2,
-      img: "images/generated/triple.png",
-      desc: "Purple wool",
-    },
-    {
-      id: 3,
-      img: "images/dirty_harry.jpeg",
-      desc: "Grey tweed jacket over a red knitted vest with a dashing tie. Formal justice wear.",
-    },
-  ];
-
-  const [recommendations, setRecommendations] = useState(temp);
+  const [recommendations, setRecommendations] = useState();
   const [showRecommendations, setShowRecommendations] = useState(false);
+
+  // get weather data from weatherAPI proxy and update states according to response
+  useEffect(() => {axios.get('http://localhost:3006/weather/data')
+  .then(res => {
+    setWeatherValues(res.data)
+    setWeatherText(true)})
+  .catch(err => {
+    console.log(err)
+    setWeatherErr(true);
+  })
+  },[]);
 
   function handleRecommendationTiles() {
     console.log("generating");
@@ -114,47 +104,22 @@ const OutfitOfTheDay = () => {
     <>
       <Heading title="OUTFIT OF THE DAY" />
 
-      {/* If there is an error getting weather values, greeet the user and inform them that the api is not working*/}
-      {weatherValues ? (
-        <Box className={styles.title}>
-          <img
-            src={weatherValues.iconUrl}
-            alt="Weather icon based on the weather today"
-          />{" "}
-          <br />
-          <Typography
-            style={{
-              fontFamily:
-                "'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif",
-            }}
-          >
-            Hey {username}. {weatherValues.condition} in{" "}
-            {weatherValues.location}.
-          </Typography>
-          <Typography
-            style={{
-              fontFamily:
-                "'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif",
-            }}
-          >
-            {weatherValues.tempC} right now with {weatherValues.humidity}{" "}
-            humidity. Windspeed at {weatherValues.windKph}.{" "}
-            <small>
-              Powered by{" "}
-              <a href="https://www.weatherapi.com/" title="Weather API">
-                WeatherAPI.com
-              </a>
-            </small>
-          </Typography>
-        </Box>
-      ) : (
-        <Box className={styles.title}>
-          {" "}
-          Hello {username}!
-          <p>Unable to fetch weather details at the moment. Try again soon.</p>
-        </Box>
-      )}
+      {!weatherText && !weatherErr && <div>Fetching weather...</div>}
 
+      {/* If there is an error getting weather values, greeet the user and inform them that the api is not working*/}
+      {weatherValues && weatherText &&
+      
+      <div className={styles.title}> 
+        <img src={weatherValues.iconUrl} style={{}} alt="Weather icon based on the weather today"/> <br />
+        Hey {username}. {weatherValues.condition} in {weatherValues.location}.
+        <p>{weatherValues.tempC} right now with {weatherValues.humidity} humidity. Windspeed at {weatherValues.windKph}. {/*<small>Powered by <a href="https://www.weatherapi.com/" title="Weather API">WeatherAPI.com</a></small>*/}</p>
+      </div>
+      }
+      
+      {weatherErr && 
+          <div className={styles.title}> 
+            <p>Unable to fetch weather details at the moment. Try again soon.</p>
+          </div>}
       <br />
 
       <Box className={styles.formBox} sx={{ gap: "1vh", paddingBottom: "4vh" }}>
