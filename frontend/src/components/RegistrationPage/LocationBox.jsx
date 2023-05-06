@@ -19,7 +19,7 @@ export default function LocationBox({ data, handleChange }) {
           paddingBottom: "5px",
           textTransform: "uppercase",
           fontFamily:
-            "'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif",
+          "'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif",
           color: "#fefefe",
         }}
       >
@@ -35,16 +35,19 @@ export default function LocationBox({ data, handleChange }) {
           backgroundColor: "white",
           borderRadius: "25px",
           width: "71vh",
-          padding: "2vh",
-          height: "6vh",
-          color: "black", fontFamily: "Franklin Gothic Medium, 'Arial Narrow', Arial, sans-serif",
+          height: "4.5vh",
+          color: "black",
+          fontFamily:
+          "Franklin Gothic Medium, 'Arial Narrow', Arial, sans-serif",
           textAlign: "center",
           fontWeight: "1px",
-          justifyContent: "center"
+          justifyContent: "center",
         }}
         disableUnderline={true}
       >
-        <MenuItem value="" style={{color: "black"}} disabled>Which city should LLAMAFY base recommendations on?</MenuItem>
+        <MenuItem value="" style={{ color: "black" }} disabled>
+          Which city should LLAMAFY base recommendations on?
+        </MenuItem>
         {locations.map((location) => (
           <MenuItem key={location} value={location}>
             {location}

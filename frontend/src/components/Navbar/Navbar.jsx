@@ -16,8 +16,6 @@ import checkSession from "../../helpers/checkSession";
 import handleLogout from "../../helpers/handleLogout";
 import { useNavigate } from "react-router-dom";
 
-
-
 const Navbar = () => {
   const navigate = useNavigate();
   const theme = useTheme();
@@ -70,17 +68,17 @@ const Navbar = () => {
             alignItems: "center",
             fontFamily: "Franklin Gothic",
             justifyContent: "space-between",
-            width: "95%"
+            width: "90%"
           }}
         >
-          <Box sx={{ display: "flex"}}>
+          <Box sx={{ display: "flex", justifyContent: "flex-start",  float: "left", }}>
             <NavLink to="/">
               <img src={Llama} alt="llama homepage icon" width="40px" />
             </NavLink>
             {isMatch && (
               <NavLink to="/" style={{ textDecoration: "none" }}>
                 <Typography
-                  sx={{ fontSize: "2rem", paddingLeft: "10px", color: "white" , flexGrow: 1}}
+                  sx={{ fontSize: "2rem", paddingLeft: "10px", color: "white" ,}}
                 >
                   LLAMAFY
                 </Typography>

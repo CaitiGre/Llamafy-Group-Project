@@ -12,6 +12,7 @@ import {
   Select,
   FormLabel,
   TextField,
+  
 } from "@mui/material";
 import SubHeading from "../SubHeading/SubHeading";
 import { Box } from "@mui/material";
@@ -125,10 +126,6 @@ const OutfitOfTheDay = () => {
     );
   }
   
-  
-  
-  
-
   return (
     <>
       <Heading title="OUTFIT OF THE DAY" />
@@ -191,7 +188,7 @@ const OutfitOfTheDay = () => {
               >
                 <InputLabel>Select a color scheme<br></br> (<i>optional</i>)</InputLabel>
                 <CompactPicker color={outfitColor} onChange={setColor}/>
-
+            </Box>
             </Box>
           </form>
 
