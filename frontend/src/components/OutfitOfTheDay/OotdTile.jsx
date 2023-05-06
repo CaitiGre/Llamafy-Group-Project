@@ -35,6 +35,10 @@ const OotdTile = ({ imgLink, description }) => {
     setIsOpen(false);
   }
 
+  function onClickHandler() {
+    console.log(`User attempting to save: ${imgLink}`);
+  }
+
   return (
     <div>
       <img
@@ -55,10 +59,10 @@ const OotdTile = ({ imgLink, description }) => {
         <div>You like what you see?</div>
         <img src={imgLink} style={{ width: "min(90vw,512px)", borderRadius: "25px", paddingTop: "1.5vh", paddingBottom: "1.5vh" }}></img>
         <div className={styles.modalButton}>
-          <button onClick={() => alert("obviously not set up yet, come on")}>
-            Select
+          <button onClick={onClickHandler}>
+            Yeah!
           </button>
-          <button onClick={closeModal}>Nah</button>
+          <button onClick={closeModal}>Are you joking</button>
         </div>
       </Modal>
     </div>
