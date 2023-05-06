@@ -10,6 +10,7 @@ const settingsProfilePageRouter = require("./routes/SettingsProfilePage");
 const settingsWardrobePageRouter = require("./routes/SettingsWardrobePage");
 const weatherProxy = require('./routes/WeatherProxy');
 const generator = require('./routes/Generator')
+const ootdRouter = require('./routes/OotdPage')
 const session = require('express-session');
 const cors = require('cors');
 
@@ -48,7 +49,7 @@ app.use("/auth", authenticationRouter);
 app.use("/profile", settingsProfilePageRouter);
 app.use("/api", generator);
 app.use("/wardrobe", settingsWardrobePageRouter);
-
+app.use("/ootd", ootdRouter);
 
 //receive and direct request for authentication.
 app.get('/', (req, res) => {

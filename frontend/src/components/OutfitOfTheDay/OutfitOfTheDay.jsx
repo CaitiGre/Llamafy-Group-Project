@@ -21,25 +21,36 @@ import "react-toastify/dist/ReactToastify.css";
 const OutfitOfTheDay = () => {
 
   // def states
-  const [username, setUsername] = useState('UsernameFromCookies');
+  const [username, setUsername] = useState('llama');
   const [weatherText, setWeatherText] = useState(false);
   const [weatherErr, setWeatherErr] = useState(false);
   const [weatherValues, setWeatherValues] = useState([]);
   const [outfitColor, setColor] = useState("undefined");
-  
-  // get weather data from weatherAPI proxy
-  useEffect(() => {axios.get('http://localhost:3006/weather/data')
-  .then(res => {
-    setWeatherValues(res.data)
-    setWeatherText(true)})
-  .catch(err => {
-    console.log(err)
-    setWeatherErr(true);
-  })
-  },[]);
-
   const [recommendations, setRecommendations] = useState();
   const [showRecommendations, setShowRecommendations] = useState(false);
+
+    // get weather data from weatherAPI proxy
+    useEffect(() => {axios.get('http://localhost:3006/weather/data')
+    .then(res => {
+      setWeatherValues(res.data)
+      setWeatherText(true)})
+    .catch(err => {
+      console.log(err)
+      setWeatherErr(true);
+    })
+    },[]);
+
+    useEffect(() => {
+      const getName = async () => {
+      const postBody = {
+        email : await getUserEmail(),
+      }
+      axios.post('http://localhost:3006/ootd/getName',postBody)
+      .then(res => setUsername(res.data.name))
+      .catch(err => console.log('big problem'))
+      }
+      getName()
+    })
 
   async function handleRecommendationTiles() {
     toast.promise(
