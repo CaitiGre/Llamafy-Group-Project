@@ -19,10 +19,10 @@ function ClothesSelection() {
   useEffect(() => {
     async function fetchUserEmail() {
       const email = await getUserEmail();
-      console.log('User email:', email);
+      console.log("User email:", email);
       setUserEmail(email);
     }
-  
+
     fetchUserEmail();
   }, []);
 

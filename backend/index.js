@@ -10,10 +10,8 @@ const settingsProfilePageRouter = require("./routes/SettingsProfilePage");
 const settingsWardrobePageRouter = require("./routes/SettingsWardrobePage");
 const weatherProxy = require('./routes/WeatherProxy');
 const generator = require('./routes/Generator')
-
 const session = require('express-session');
 const cors = require('cors');
-
 
 const app = express();
 const port = process.env.PORT || 3006;

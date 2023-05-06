@@ -138,6 +138,14 @@ async function getUserData(user_email) {
 
 async function promptGenerator(user_email, weatherValsObj) {
 
+    // if the weather API endpoint cannot be reached upstream, assume good weather
+    if (weatherValsObj.temp == undefined || weatherValsObj.condition == undefined) {
+      weatherValsObj.temp = 20;
+      weatherValsObj.condition = 'fine'
+    }
+
+    console.log(weatherValsObj);
+
     const [userData, userWardrobe] = await Promise.all([
         getUserData(user_email),
         getUserWardrobe(user_email),

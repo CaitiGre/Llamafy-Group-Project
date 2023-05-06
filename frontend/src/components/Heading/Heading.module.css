@@ -1,13 +1,14 @@
 @font-face {
   font-family: "moonlite-outline";
-  src: url("../../assets/fonts/FountainFont.ttf");
+  src: url("../../assets/fonts/moonlite-outline.ttf");
 }
 
 .title {
   text-align: center;
   font-family: "moonlite-outline";
-  font-size: 160px;
-  color: #fefefe;
+  font-weight: 200;
+  font-size: 100px;
+  color: #58315c;
   text-transform: uppercase;
   margin-top: 14vh;
   margin-bottom: 1vh;

@@ -20,20 +20,66 @@ function LandingPage() {
             IT'S TIME TO BUTTON UP OR SHUT UP
           </h2>
           <Box
-            className={styles.buttonContainer}
             sx={{
               display: "flex",
               flexDirection: { xs: "column", md: "row" },
               alignItems: "center",
               justifyContent: "center",
+              paddingLeft: "5%",
+              paddingRight: "5%",
             }}
           >
-            <NavLink to="/login">
-              <Button>LOGIN</Button>
-            </NavLink>
-            <NavLink to="/register">
-              <Button>REGISTER</Button>
-            </NavLink>
+            <Grid
+              container
+              alignItems="center"
+              justifyContent="center"
+              spacing={5}
+            >
+              <Grid item>
+                <NavLink to="/login">
+                  <Button
+                    sx={{
+                      borderRadius: "40px",
+                      boxShadow: "2px 2px 5px rgba(255, 255, 255, 0.8)",
+                      textAlign: "center",
+                      padding: "5% 5%",
+                      width: "200px",
+                      fontSize: "3vh",
+                      backgroundColor: "#f0f0f0",
+                      border: "1px solid #ccc",
+                      color: "#333",
+                      cursor: "pointer",
+                      margin: "0px 5px",
+                      outline: "none",
+                    }}
+                  >
+                    LOGIN
+                  </Button>
+                </NavLink>
+              </Grid>
+              <Grid item>
+                <NavLink to="/register">
+                  <Button
+                    sx={{
+                      borderRadius: "40px",
+                      boxShadow: "2px 2px 5px rgba(255, 255, 255, 0.8)",
+                      textAlign: "center",
+                      padding: "5% 5%",
+                      width: "200px",
+                      fontSize: "3vh",
+                      backgroundColor: "#f0f0f0",
+                      border: "1px solid #ccc",
+                      color: "#333",
+                      cursor: "pointer",
+                      margin: "0px 5px",
+                      outline: "none",
+                    }}
+                  >
+                    REGISTER
+                  </Button>
+                </NavLink>
+              </Grid>
+            </Grid>
           </Box>
         </Box>
       </Box>
