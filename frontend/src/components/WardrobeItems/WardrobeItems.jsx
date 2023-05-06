@@ -122,11 +122,26 @@ function WardrobeItems({ items, itom }) {
         ))}
       {isItemsVisible && (
         <Box className={styles.navLinkContainer}>
-          <Button sx={{color:"white"}}onClick={() => handleOpenModal(itom)}>Add items</Button>
+          <Button sx={{ color: "white" }} onClick={() => handleOpenModal(itom)}>
+            Add items
+          </Button>
         </Box>
       )}
-      {subSelectionItemsToShow && (
-        <SubSelectionModal itemsToShow={subSelectionItemsToShow} />
+      {!isItemsVisible && subSelectionItemsToShow && (
+        <>
+          {" "}
+          <SubSelectionModal itemsToShow={subSelectionItemsToShow} />
+          <Box className={styles.navLinkContainer}>
+            <Button
+              sx={{ color: "white" }}
+              onClick={() => {
+                setIsItemsVisible(true);
+              }}
+            >
+              Back
+            </Button>
+          </Box>
+        </>
       )}
     </>
   );
