@@ -14,6 +14,8 @@ import AuthContext from './AuthContext';
 import { useState } from 'react';
 import Protected from './Protected';
 import Prevented from './Prevented';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 function App() {
   const [userAuthenticated, setUserAuthenticatedState] = useState(false);
