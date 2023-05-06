@@ -1,19 +1,21 @@
 import "./LoginPage.module.css";
-import { Box, Input, InputLabel, Typography, Grid } from "@mui/material";
+import { Box, Input, InputLabel, Grid } from "@mui/material";
 import { useContext, useState } from "react";
 import styles from "./LoginPage.module.css";
 import Heading from "../Heading/Heading";
-import AuthContext from '../../AuthContext';
-import { useNavigate } from 'react-router-dom';
+import AuthContext from "../../AuthContext";
+import { useNavigate } from "react-router-dom";
+import eyeIcon from "../../assets/show.png";
+import lashIcon from "../../assets/hide.png";
 
-function LoginPage() { 
-    const { setUserAuthenticated } = useContext(AuthContext);
-    const navigate = useNavigate();
+function LoginPage() {
+  const { setUserAuthenticated } = useContext(AuthContext);
+  const navigate = useNavigate();
 
-    const [data, setData] = useState({
-        email: '',
-        password: ''
-    });
+  const [data, setData] = useState({
+    email: "",
+    password: "",
+  });
 
   const handleChange = (event) => {
     setData((prevState) => ({
@@ -22,112 +24,141 @@ function LoginPage() {
     }));
   };
 
-    const handleSubmit = async (event) => {
-        event.preventDefault();
+  const [showPassword, setShowPassword] = useState(false);
 
-        try {
-            const response = await fetch('http://localhost:3006/auth/login', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    username: data.email,
-                    password: data.password,
-                }),
-                credentials: 'include'
-            });
+  function toggleShowPassword() {
+    setShowPassword(!showPassword);
+  }
 
-            if (response.ok) {
-                await setUserAuthenticated(true);
-                const result = await response.json();
-                navigate('/ootd');
-            } else {
-                const error = await response.json();
-                console.error(error);
-                alert("Invalid username or password. Please try again.");
-            }
-        } catch (err) {
-            console.error(err);
-            alert("An error occurred while logging in. Please try again.");
-        }
-    };
+  const handleSubmit = async (event) => {
+    event.preventDefault();
 
-    const inputData = [
-        {
-            displayName: "EMAIL",
-            type: "email",
-            name: "email",
-            id: "email",
-            value: data.email,
-            onChange: handleChange,
-            placeHolder: "llama@lavenderllama.co.nz"
+    try {
+      const response = await fetch("http://localhost:3006/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
         },
+        body: JSON.stringify({
+          username: data.email,
+          password: data.password,
+        }),
+        credentials: "include",
+      });
 
-        {
-            displayName: "PASSWORD",
-            type: "password",
-            name: "password",
-            id: "password",
-            value: data.password,
-            onChange: handleChange,
-            placeHolder: ""
-        }
-    ]
+      if (response.ok) {
+        await setUserAuthenticated(true);
+        const result = await response.json();
+        navigate("/ootd");
+      } else {
+        const error = await response.json();
+        console.error(error);
+        alert("Invalid username or password. Please try again.");
+      }
+    } catch (err) {
+      console.error(err);
+      alert("An error occurred while logging in. Please try again.");
+    }
+  };
 
-    return (
-        <div>
-            <Heading title="Login"/>
+  return (
+    <div>
+      <Heading title="Login" />
 
-            <div className={styles.formContainer}>
-                <form onSubmit={handleSubmit}>
-
-                    {inputData.map((item) => (
-                        <Grid>
-                        <Box display="flex" flexDirection="column" alignItems="center" key={item.id}>
-                            <InputLabel
-                                sx={{
-                                    paddingTop: "5vh",
-                                    color: "#eee",
-                                    fontFamily: "'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif"
-                                }}>
-                                {item.displayName}
-                            </InputLabel>
-                        </Box>
-                            <Box display="flex" alignItems="center" textAlign="center" paddingTop="2vh">
-                            <Input required
-                                sx={{
-                                    display: "flex",
-                                    justifyContent: "center",
-                                    borderRadius: "20px",
-                                    boxShadow: "2px 2px 5px rgba(255, 255, 255, 0.8)",
-                                    height: "40px",
-                                    width: "50%",
-                                    margin: "auto",
-                                    backgroundColor: "white",
-                                    textAlign: "center",
-                                    alignContent: "center",
-                                    caretColor: "black",
-                                }}
-                                type={item.type}
-                                name={item.name}
-                                id={item.id}
-                                value={item.value}
-                                onChange={handleChange}
-                                disableUnderline={true}
-                                placeholder={item.placeHolder}
-                            />
-                        </Box>
-                        </Grid>
-                    ))}
-                    
-
-                    <button id="submit-button" type="submit" className={styles.submitButton}>SUBMIT</button>
-
-                </form>
-            </div>
-        </div>
-    )
+      <div className={styles.formContainer}>
+        <form onSubmit={handleSubmit}>
+          <Grid>
+            <Box>
+              <InputLabel
+                sx={{
+                  paddingTop: "5vh",
+                  paddingBottom: "2vh",
+                  color: "#fefefe",
+                  fontFamily:
+                    "'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif",
+                }}
+              >
+                EMAIL
+              </InputLabel>
+              <Input
+                required
+                sx={{
+                  display: "flex",
+                  justifyContent: "center",
+                  borderRadius: "20px",
+                  boxShadow: "2px 2px 5px rgba(255, 255, 255, 0.8)",
+                  height: "40px",
+                  width: "70vh",
+                  margin: "auto",
+                  backgroundColor: "white",
+                  textAlign: "center",
+                  alignContent: "center",
+                  caretColor: "black",
+                }}
+                type="email"
+                onChange={handleChange}
+                disableUnderline={true}
+                name="email"
+                id="email"
+                value={data.email}
+                placeholder={"llama@lavenderllama.co.nz"}
+              />
+              <InputLabel
+                sx={{
+                  paddingTop: "5vh",
+                  color: "#fefefe",
+                  fontFamily:
+                    "'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif",
+                }}
+              >
+                PASSWORD
+              </InputLabel>
+              <Box style={{display: "flex", width: "70vh", alignContent: "center", alignItems: "center", justifyContent: "flex-end", paddingTop: "2vh", }}>
+              <Input
+                required
+                sx={{
+                  display: "flex",
+                  justifyContent: "center",
+                  borderRadius: "20px",
+                  boxShadow: "2px 2px 5px rgba(255, 255, 255, 0.8)",
+                  height: "40px",
+                  width: "70vh",
+                  margin: "auto",
+                  backgroundColor: "white",
+                  textAlign: "center",
+                  alignContent: "center",
+                  caretColor: "black",
+                }}
+                type={showPassword ? "text" : "password"}
+                onChange={handleChange}
+                value={data.password}
+                disableUnderline={true}
+                placeholder={""}
+                name="password"
+                id="password"
+              />
+              
+                <img
+                src={showPassword ? lashIcon : eyeIcon}
+                className={styles.passwordIcon}
+                style={{}}
+                onClick={toggleShowPassword}
+                alt="Eye icon to display or hide password"
+              />
+              </Box>
+            </Box>
+          </Grid>
+          <button
+            id="submit-button"
+            type="submit"
+            className={styles.submitButton}
+          >
+            SUBMIT
+          </button>
+        </form>
+      </div>
+    </div>
+  );
 }
 
 export default LoginPage;
