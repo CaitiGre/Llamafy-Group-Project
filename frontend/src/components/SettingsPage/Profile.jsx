@@ -16,7 +16,6 @@ function Profile() {
         gender: '',
         skinTone: '',
         location: '',
-        size: '',
         newPassword: '',
         reNewPassword: '',
         password: ''
@@ -49,7 +48,6 @@ function Profile() {
                     gender: dataObj.userData.gender,
                     skinTone: dataObj.userData.skinTone,
                     location: dataObj.userData.location,
-                    size: dataObj.userData.clothingSize,
                     newPassword: '',
                     password: dataObj.userData.password
                 }
@@ -104,13 +102,6 @@ function Profile() {
             name: "location",
             id: "location",
             value: data.location,
-        },
-        {
-            displayName: "CLOTHING SIZE",
-            type: "text",
-            name: "size",
-            id: "size",
-            value: data.size,
         },
         {
             displayName: "NEW PASSWORD",
@@ -174,7 +165,6 @@ function Profile() {
                     gender: data.gender,
                     skinTone: data.skinTone,
                     location: data.location,
-                    size: data.size,
                     password: data.newPassword,
                     inputPassword: data.password,
                 });
@@ -199,7 +189,7 @@ function Profile() {
 
     return (
         <>
-            {(!isLoading && dataObj) ? (
+            {(!isLoading && dataObj.userData) ? (
                 <div className={styles.formContainer}>
                     <form onSubmit={handleSubmit}>
                         {inputData.map((item) => (
