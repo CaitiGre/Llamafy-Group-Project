@@ -5,6 +5,7 @@ import styles from "./OutfitOfTheDay.module.css";
 import { InputLabel, MenuItem, form } from "@mui/material";
 import { CompactPicker } from "react-color";
 import Heading from "../Heading/Heading";
+import getUserEmail from "../../helpers/getUserEmail"
 import {
   Button,
   FormControl,
@@ -14,6 +15,8 @@ import {
 } from "@mui/material";
 import SubHeading from "../SubHeading/SubHeading";
 import { Box } from "@mui/material";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const OutfitOfTheDay = () => {
 
@@ -22,10 +25,8 @@ const OutfitOfTheDay = () => {
   const [weatherText, setWeatherText] = useState(false);
   const [weatherErr, setWeatherErr] = useState(false);
   const [weatherValues, setWeatherValues] = useState([]);
-  const [recommendations, setRecommendations] = useState();
-  const [showRecommendations, setShowRecommendations] = useState(false);
-
-  // get weather data from weatherAPI proxy and update states according to response
+  
+  // get weather data from weatherAPI proxy
   useEffect(() => {axios.get('http://localhost:3006/weather/data')
   .then(res => {
     setWeatherValues(res.data)
@@ -36,72 +37,95 @@ const OutfitOfTheDay = () => {
   })
   },[]);
 
-  function handleRecommendationTiles() {
-    
+  const [recommendations, setRecommendations] = useState();
+  const [showRecommendations, setShowRecommendations] = useState(false);
 
-    console.log("generating")
-
-    const email = "ysoo501@aucklanduni.ac.nz";
-
-  fetch("http://localhost:3006/api/generateOutfits", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      email: email,
-
-      weatherValues : weatherValues,
-
-    }),
-  })
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error("Unable to access generate outfits api");
-      }
-      return response.json();
-    })
-    .then((data) => {
+  async function handleRecommendationTiles() {
+    toast.promise(
+      new Promise(async (resolve, reject) => {
+        console.log("Fetching User Email");
+        const email = await getUserEmail();
+        console.log("Generating 3 Outfits for " + email);
   
-      let responseText = JSON.parse(data.responseText)
-
-      const temp2 = [
-        {
-          id: 1,
-          img: data.imageUrls[0],
-          desc: responseText.recommendation1.outfitDescription,
-        },
-        { 
-          id: 2, 
-          img: data.imageUrls[1], 
-          desc: responseText.recommendation2.outfitDescription,
-        },
-        {
-          id: 3,
-          img: data.imageUrls[2],
-          desc: responseText.recommendation3.outfitDescription,
-        },
-      ];
-
-      const tiles = temp2
-      .map((rec) => ({
-        id: rec.id,
-        img: rec.img,
-        desc: rec.desc,
-      }))
-      .map((rec) => (
-        <div key={rec.id} className={styles.Ootd}>
-          <OotdTile description={rec.desc} imgLink={rec.img} />
-        </div>
-      ));
-
-    setRecommendations(tiles);
-    setShowRecommendations(true);
-    })
-    .catch((error) => {
-      console.error("There was a problem with the fetch operation:", error);
-    });
+        fetch("http://localhost:3006/api/generateOutfits", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email: email,
+            weatherValues : weatherValues,
+          }),
+        })
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error("Unable to access generate outfits api");
+            }
+            return response.json();
+          })
+          .then((data) => {
+            let responseText = JSON.parse(data.responseText);
+            console.log(responseText.recommendation1.outfitDescription);
+  
+            const temp2 = [
+              {
+                id: 1,
+                img: data.imageUrls[0],
+                desc: responseText.recommendation1.outfitDescription,
+              },
+              {
+                id: 2,
+                img: data.imageUrls[1],
+                desc: responseText.recommendation2.outfitDescription,
+              },
+              {
+                id: 3,
+                img: data.imageUrls[2],
+                desc: responseText.recommendation3.outfitDescription,
+              },
+            ];
+  
+            const tiles = temp2
+              .map((rec) => ({
+                id: rec.id,
+                img: rec.img,
+                desc: rec.desc,
+              }))
+              .map((rec) => (
+                <div key={rec.id} className={styles.Ootd}>
+                  <OotdTile description={rec.desc} imgLink={rec.img} />
+                </div>
+              ));
+  
+            setRecommendations(tiles);
+            setShowRecommendations(true);
+  
+            resolve({
+              message: "Outfits generated successfully",
+              type: toast.TYPE.SUCCESS,
+            });
+          })
+          .catch((error) => {
+            console.error("Error generating outfit recommendations:", error);
+            reject({
+              message: "Failed to generate outfits!",
+              type: toast.TYPE.ERROR,
+            });
+          });
+      }),
+      {
+        position: toast.POSITION.BOTTOM_RIGHT,
+        pending: "Generating Outfits",
+        success: "Outfits generated successfully 👌",
+        error: "Failed to generate outfits 🤯",
+        autoClose: 3000,
+      }
+    );
   }
+  
+  
+  
+  
 
   return (
     <>
@@ -168,6 +192,18 @@ const OutfitOfTheDay = () => {
       {showRecommendations && (
         <div className={styles.recommendationTiles}>{recommendations}</div>
       )}
+      <ToastContainer
+        position="bottom-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+        />
     </>
   );
 };
