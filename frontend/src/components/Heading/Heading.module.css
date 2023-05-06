@@ -1,14 +1,14 @@
 @font-face {
-  font-family: "moonlite-outline";
-  src: url("../../assets/fonts/moonlite-outline.ttf");
+  font-family: "marvel";
+  src: url("../../assets/fonts/Lorenta\ 400.ttf");
 }
 
 .title {
   text-align: center;
-  font-family: "moonlite-outline";
+  font-family: "marvel";
   font-weight: 200;
   font-size: 100px;
-  color: #f6ecf4;
+  color: #fefefe;
   text-transform: uppercase;
   margin-top: 14vh;
   margin-bottom: 3vh;

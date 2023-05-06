@@ -33,8 +33,7 @@ function ClothesSelection() {
   );
 
   useEffect(() => {
-   
-  if (!isLoading && dataObj) {
+    if (!isLoading && dataObj) {
       setClothes(dataObj.wardrobeItems);
     }
     if (selectedItem && clothes.length > 0) {
@@ -90,7 +89,9 @@ function ClothesSelection() {
       >
         <Box
           sx={{
-            backgroundColor: "rgba(221, 172, 247, 0.95)",
+            background: "rgb(247,209,244)",
+            background:
+              "linear-gradient(208deg, rgba(247,209,244,1) 31%, rgba(176,112,189,1) 85%)",
             borderRadius: "16px",
             position: "absolute",
             top: "50%",

@@ -3,7 +3,7 @@
 }
 
 .submitButton {
-  width: 100px;
+  width: 30vh;
   background-color: white;
   border: 1px solid #ccc;
   border-radius: 20px;
@@ -20,8 +20,9 @@
 }
 
 .submitButton:hover {
-  background-color: #e0e0e0;
+  background-color: #ee69ec8b;
   border-color: #aaa;
+  color: #fefefe;
 }
 
 .formContainer {
@@ -34,4 +35,17 @@
 .formContainer Input {
   padding: 3vh;
   text-align: center;
+}
+
+.passwordIcon {
+  position: absolute;
+  cursor: pointer;
+  width: 20px; 
+  height: 20px;
+  padding-right: 2vh;
+}
+
+.wrapper {
+  position: relative;
+  display: inline-block;
 }
