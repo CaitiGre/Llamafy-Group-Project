@@ -1,120 +1,117 @@
-*{
-    margin: auto;
-}
-
 .register-input {
-    border-radius: 20px;
-    box-shadow: 2px 2px 5px rgb(255, 255, 255);;
-    border: none;
-    height: auto;
-    text-transform: uppercase;
-    text-align: center;
+  border-radius: 20px;
+  box-shadow: 2px 2px 5px rgb(255, 255, 255);
+  border: none;
+  height: auto;
+  text-transform: uppercase;
+  text-align: center;
 }
 
 .NameBoxContainer {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 
-#password, #repassword {
-    width: 70vh;
-    position: relative;
+#password,
+#repassword {
+  width: 70vh;
+  position: relative;
 }
 
 #email {
-    width: 70vh;
+  width: 70vh;
 }
 
 .form-container {
-    border-radius: 10px;
+  border-radius: 10px;
 }
 
 .form-container div {
-    padding: 5px;
+  padding: 5px;
 }
 
 .gender-div {
-    display: flex;
-    justify-content: space-between;
-    column-gap: 2.2vh;
-    padding: 0px;
-    margin: 0px;
-    width: 100%;
+  display: flex;
+  justify-content: space-between;
+  column-gap: 2.2vh;
+  padding: 0px;
+  margin: 0px;
+  width: 100%;
 }
 
-.gender-button Button {
-    width: 26vh;
-    background-color: #ffffff;
-    border: 1px solid #e2e2e2;
-    border-radius: 20px;
-    color: #333;
-    cursor: pointer;
-    font-size: 14px;
-    margin: 0px 5px;
-    outline: none;
-    padding: 12px 22px;
-    transition: background-color 0.3s, border-color 0.3s;
-    box-shadow: 2px 2px 5px rgba(255, 255, 255, 0.8);
+.gender-button button {
+  width: 26vh;
+  background-color: #ffffff;
+  border: 1px solid #e2e2e2;
+  border-radius: 20px;
+  color: #333;
+  cursor: pointer;
+  font-size: 14px;
+  margin: 0px 5px;
+  outline: none;
+  padding: 12px 22px;
+  transition: background-color 0.3s, border-color 0.3s;
+  box-shadow: 2px 2px 5px rgba(255, 255, 255, 0.8);
 }
 
 .gender-button:hover {
-    background-color: #e0e0e0;
-    border-color: #aaa;
-    color: #fefefe;
+  background-color: #e0e0e0;
+  border-color: #aaa;
+  color: #fefefe;
 }
 
 .gender-button.selected {
-    background-color: #ee69ecbe;
-    border-color: #ee69ecbe;
-    color: #fff;
+  background-color: #ee69ecbe;
+  border-color: #ee69ecbe;
+  color: #fff;
 }
 
-.GenderButtonBox Button {
-    border-radius: 25px;
-    width: 20vh;
-    background-color: #ffffff;
-    border: 1px solid #e2e2e2;
-    color: #333;
-    cursor: pointer;
-    font-size: 14px;
-    margin: 0px 5px;
-    outline: none;
-    padding: 12px 22px;
-    transition: background-color 0.3s, border-color 0.3s;
-    box-shadow: 2px 2px 5px rgba(255, 255, 255, 0.8);
+.GenderButtonBox button {
+  border-radius: 25px;
+  width: 20vh;
+  background-color: #ffffff;
+  border: 1px solid #e2e2e2;
+  color: #333;
+  cursor: pointer;
+  font-size: 14px;
+  margin: 0px 5px;
+  outline: none;
+  padding: 12px 22px;
+  transition: background-color 0.3s, border-color 0.3s;
+  box-shadow: 2px 2px 5px rgba(255, 255, 255, 0.8);
 }
 
-.submitButton  {
-    width: 70vh;
-    background-color: #ffffff;
-    border: 1px solid #ccc;
-    border-radius: 20px;
-    color: #333;
-    padding: 2vh;
-    cursor: pointer;
-    font-size: 14px;
-    margin: 0px 5px;
-    outline: none;
-    height: 5vh;
-    transition: background-color 0.3s, border-color 0.3s;
-    box-shadow: 2px 2px 5px rgba(255, 255, 255, 0.8);
+.submitButton {
+  width: 70vh;
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  color: #333;
+  padding: 2vh;
+  cursor: pointer;
+  font-size: 14px;
+  margin: 0px 5px;
+  outline: none;
+  height: 5vh;
+  transition: background-color 0.3s, border-color 0.3s;
+  box-shadow: 2px 2px 5px rgba(255, 255, 255, 0.8);
 }
 
-.submitButton:hover  {
-    background-color: #ee69ec8b;
+.submitButton:hover {
+  background-color: #ee69ec8b;
 }
 
 .password-icon {
-    position: absolute;
-    right: 4vh;
-    top: 50%;
-    transform: translateY(-50%);
-    cursor: pointer;
-    width: 20px; 
-    height: 20px;
+  position: absolute;
+  right: 4vh;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
 }
 
 .wrapper {
-    position: relative;
-    display: inline-block;
+  position: relative;
+  display: inline-block;
 }

@@ -2,17 +2,14 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import OotdTile from "./OotdTile";
 import styles from "./OutfitOfTheDay.module.css";
-import { InputLabel, MenuItem, Typography, form } from "@mui/material";
+import { InputLabel, Typography} from "@mui/material";
 import { CompactPicker } from "react-color";
 import Heading from "../Heading/Heading";
 import getUserEmail from "../../helpers/getUserEmail";
 import { Card } from "react-bootstrap";
 import {
-    Button,
-    FormControl,
-    Select,
-    FormLabel,
-    TextField,
+  Button,
+  
 } from "@mui/material";
 import SubHeading from "../SubHeading/SubHeading";
 import { Box } from "@mui/material";

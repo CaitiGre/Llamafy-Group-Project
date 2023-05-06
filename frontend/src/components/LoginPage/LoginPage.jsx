@@ -113,7 +113,7 @@ function LoginPage() {
               >
                 PASSWORD
               </InputLabel>
-              <Box style={{display: "flex", width: "70vh", alignContent: "center", alignItems: "center", justifyContent: "flex-end", paddingTop: "2vh", }}>
+              <Box style={{display: "flex", width: "70vh", alignContent: "center", alignItems: "center", justifyContent: "flex-end", paddingTop: "2vh", margin:"auto" }}>
               <Input
                 required
                 sx={{

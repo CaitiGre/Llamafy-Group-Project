@@ -27,7 +27,8 @@ function LandingPage() {
               justifyContent: "center",
               paddingLeft: "5%",
               paddingRight: "5%",
-              width: "80%"
+              width: "80%",
+              margin: "auto",
             }}
           >
             <Grid

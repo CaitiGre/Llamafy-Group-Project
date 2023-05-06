@@ -14,6 +14,7 @@ function ClothesSelection() {
   const [selectedItem, setSelectedItem] = useState(null);
   const [categoryItemsToShow, setCategoryItemsToShow] = useState([]);
   const [clothes, setClothes] = useState([]);
+
   // Get user's email from cookie once cookie's set up
   const [userEmail, setUserEmail] = useState(null);
   useEffect(() => {
@@ -35,7 +36,6 @@ function ClothesSelection() {
     if (!isLoading && dataObj) {
       setClothes(dataObj.wardrobeItems);
     }
-
     if (selectedItem && clothes.length > 0) {
       const itemsToShow = clothes.filter(
         (clothe) => clothe.main_category === selectedItem.name
@@ -47,7 +47,6 @@ function ClothesSelection() {
   // Handling the open modal event and setting the selected item to show
   const openWardrobeModal = (item) => {
     setSelectedItem(item);
-    // const itemsToShow = clothes.filter((clothe) => clothe.categoryName === item.name);
     const itemsToShow = clothes.filter(
       (clothe) => clothe.main_category === item.name
     );
@@ -70,7 +69,7 @@ function ClothesSelection() {
           columns={{ xs: 2, sm: 6, md: 9, lg: 12 }}
           sx={{
             justifyContent: "center",
-            backgroundColor: "rgba(235, 90, 220, 0.315)",
+            backgroundColor: "transparent",
           }}
         >
           {/* Map over the clothes items and create a ClothesItem for each one */}
@@ -90,7 +89,9 @@ function ClothesSelection() {
       >
         <Box
           sx={{
-            backgroundColor: "rgba(248, 201, 244, 0.89)",
+            background: "rgb(99,93,191)",
+            background:
+              "linear-gradient(321deg, rgba(99,93,191,1) 3%, rgba(217,139,223,1) 61%)",
             borderRadius: "16px",
             position: "absolute",
             top: "50%",
@@ -108,12 +109,12 @@ function ClothesSelection() {
             onClick={handleCloseModal}
             sx={{ position: "absolute", top: 8, right: 2, padding: "5px" }}
           >
-            <img src={close} alt="close button" width="20px" />
+            <img src={close} alt="close button" width="15px" />
           </Button>
           {selectedItem && (
             <Typography
               variant="h4"
-              sx={{ textAlign: "center", margin: "10px", color: "#58315c" }}
+              sx={{ textAlign: "center", margin: "10px", color: "white" }}
             >
               YOUR {selectedItem.name}
             </Typography>
@@ -122,6 +123,8 @@ function ClothesSelection() {
             <WardrobeItems
               items={categoryItemsToShow}
               itom={selectedItem}
+              clothes={clothes}
+              setClothes={setClothes}
             ></WardrobeItems>
           )}
         </Box>

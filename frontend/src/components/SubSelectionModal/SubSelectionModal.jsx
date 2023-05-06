@@ -4,10 +4,10 @@ import styles from "./SubSelectionModal.module.css";
 import ClothingSelectionModal from "../ClothingSelectionModal/ClothingSelectionModal";
 
 /*Renders the sub-selection modal component, which displays the available options
-  for a selected item in the main selection modal
+  for a selected clothe category item in the main selection modal
   Takes one prop: `itemsToShow` which is an array of clothing items to be displayed in the modal.*/
 
-function SubSelectionModal({ itemsToShow }) {
+function SubSelectionModal({ itemsToShow, setClothes , clothes, wardrobe, setWardrobe}) {
   const [showModal, setShowModal] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
 
@@ -59,6 +59,10 @@ function SubSelectionModal({ itemsToShow }) {
         selectedItem={selectedItem}
         showModal={showModal}
         onCloseModal={onCloseModal}
+        wardrobe={wardrobe}
+        setWardrobe={setWardrobe}
+        setClothes={setClothes}
+        clothes={clothes}
       />
     </>
   );
