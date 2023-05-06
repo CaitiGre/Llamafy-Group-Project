@@ -68,7 +68,7 @@ const Navbar = () => {
             alignItems: "center",
             fontFamily: "Franklin Gothic",
             justifyContent: "space-between",
-            width: "90%"
+            width: "100%"
           }}
         >
           <Box sx={{ display: "flex", justifyContent: "flex-start",  float: "left", }}>
@@ -106,7 +106,7 @@ const Navbar = () => {
               >
                 {userAuthenticated && (
                   <>
-                  <Box sx={{display: "flex", justifyContent: "flex-end", }}>
+                  <Box sx={{display: "flex", justifyContent: "flex-end", margin:"auto"}}>
                     <NavLink
                       to="/ootd"
                       style={{

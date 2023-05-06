@@ -89,9 +89,8 @@ function ClothesSelection() {
       >
         <Box
           sx={{
-            background: "rgb(247,209,244)",
-            background:
-              "linear-gradient(208deg, rgba(247,209,244,1) 31%, rgba(176,112,189,1) 85%)",
+            background: "rgb(99,93,191)",
+            background: "linear-gradient(208deg, rgba(99,93,191,1) 6%, rgba(217,139,223,1) 95%)", 
             borderRadius: "16px",
             position: "absolute",
             top: "50%",

@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import LandingPage from './components/LandingPage/landingPage';
-import HomePage from './components/HomePage/HomePage';
+import Favourites from './components/Favourites/Favourites';
 import RegistrationPage from './components/RegistrationPage/Registration';
 import LoginPage from './components/LoginPage/LoginPage';
 import WardrobeSelection from './components/WardrobeSelection/WardrobeSelection';
@@ -43,7 +43,7 @@ function App() {
             } />
             <Route path="pastOutfits" element={
               <Protected isAuthenticated={userAuthenticated}>
-                <HomePage />
+                <Favourites />
               </Protected>
             } />
             <Route path="register" element={

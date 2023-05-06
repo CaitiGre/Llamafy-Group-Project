@@ -71,7 +71,7 @@ function RegistrationPage() {
     
       <Heading title="Register" />
       <div className={style["form-container"]}>
-        <form onSubmit={handleSubmit} style={{width: "90vh"}}>
+        <form onSubmit={handleSubmit} style={{width: "90vh", margin:"auto", maxHeight:'80vh'}}>
           <Box
             display="flex"
             justifyContent="center"
