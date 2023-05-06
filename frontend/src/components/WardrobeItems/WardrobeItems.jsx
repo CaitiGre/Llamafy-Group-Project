@@ -13,7 +13,6 @@ import axios from "axios";
 import { subSelectionItemsByClothesItem } from "../ClothesSelection/data";
 import SubSelectionModal from "../SubSelectionModal/SubSelectionModal";
 
-
 // Card for each clothes item in the list
 function WardrobeItems({ items, itom }) {
   const [selectedItem, setSelectedItem] = useState(null);
@@ -79,13 +78,19 @@ function WardrobeItems({ items, itom }) {
             key={item.clothing_id}
             sx={{
               width: "100%",
-              maxWidth: 360,
-              bgcolor: "background.paper",
+
               textAlign: "center",
               margin: "0 auto",
             }}
           >
-            <ListItem alignItems="center">
+            <ListItem
+              alignItems="center"
+              sx={{
+                boxShadow: "0px 3px 10px rgba(0, 0, 0, 0.3)",
+                bgcolor: "background.paper",
+                borderRadius: 4,
+              }}
+            >
               <ListItemText
                 secondary={
                   <>
@@ -117,7 +122,7 @@ function WardrobeItems({ items, itom }) {
         ))}
       {isItemsVisible && (
         <Box className={styles.navLinkContainer}>
-          <Button onClick={() => handleOpenModal(itom)}>Add items</Button>
+          <Button sx={{color:"white"}}onClick={() => handleOpenModal(itom)}>Add items</Button>
         </Box>
       )}
       {subSelectionItemsToShow && (

@@ -115,6 +115,7 @@ const OutfitOfTheDay = () => {
   return (
     <>
       <Heading title="OUTFIT OF THE DAY" />
+      <SubHeading subtitle="Generate a few options below" />
 
               {/* If there is an error getting weather values, greeet the user and inform them that the api is not working*/}
               {weatherValues 
@@ -134,7 +135,7 @@ const OutfitOfTheDay = () => {
 
       <Box className={styles.formBox} sx={{ gap: "2vh" }}>
         <form className={styles.formBox}>
-          <SubHeading subtitle="Generate a few options below" />
+       
             <Box
               className={styles.secondDropdown}
               sx={{
