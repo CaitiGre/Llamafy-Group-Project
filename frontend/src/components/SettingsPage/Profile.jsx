@@ -5,6 +5,7 @@ import useGet from '../../helpers/useGet';
 import axios from 'axios';
 import getUserEmail from "../../helpers/getUserEmail";
 import { locations } from "./locations";
+import Selection from "./Selection";
 
 function Profile() {
 
@@ -92,7 +93,7 @@ function Profile() {
         },
         {
             displayName: "SKIN TONE",
-            type: "text",
+            type: "select",
             name: "skinTone",
             id: "skinTone",
             value: data.skinTone,
@@ -139,6 +140,14 @@ function Profile() {
         "female",
         "male",
         "all"
+    ];
+
+    const skinTones = [
+        "warm",
+        "cool",
+        "neutral",
+        "neutral warm",
+        "neutral cool",
     ]
 
     async function handleChange(event) {
@@ -241,68 +250,12 @@ function Profile() {
                                         </InputLabel>
 
                                         {item.name == "location" ?
-
-                                            <Select
-                                                name={item.name}
-                                                id={item.id}
-                                                className={styles["register-input"]}
-                                                value={data.location}
-                                                onChange={handleChange}
-                                                style={{
-                                                    backgroundColor: "white",
-                                                    borderRadius: "25px",
-                                                    width: "32.5vw",
-                                                    padding: "2vh",
-                                                    height: "5vh",
-                                                    fontSize: "small",
-                                                    textAlign: "center",
-                                                    justifyContent: "center"
-                                                }}
-
-                                                disableUnderline={true}
-                                            >
-
-                                                <MenuItem value="" style={{ color: "black" }} disabled>Which city should LLAMAFY base recommendations on?</MenuItem>
-                                                {locations.map((location) => (
-                                                    <MenuItem key={location} value={location}>
-                                                        {location}
-                                                    </MenuItem>
-                                                ))}
-
-                                            </Select>
-
-
+                                            <Selection item={item} options={locations} selectionValue={data.location} handleChange={handleChange}></Selection>
                                             :
-
-
-                                            <Select
-                                                name={item.name}
-                                                id={item.id}
-                                                className={styles["register-input"]}
-                                                value={data.gender}
-                                                onChange={handleChange}
-                                                style={{
-                                                    backgroundColor: "white",
-                                                    borderRadius: "25px",
-                                                    width: "32.5vw",
-                                                    padding: "2vh",
-                                                    height: "5vh",
-                                                    fontSize: "small",
-                                                    textAlign: "center",
-                                                    justifyContent: "center"
-                                                }}
-
-                                                disableUnderline={true}
-                                            >
-
-                                                <MenuItem value="" style={{ color: "black" }} disabled>Which city should LLAMAFY base recommendations on?</MenuItem>
-                                                {genders.map((location) => (
-                                                    <MenuItem key={location} value={location}>
-                                                        {location}
-                                                    </MenuItem>
-                                                ))}
-
-                                            </Select>
+                                            item.name == "gender" ?
+                                                <Selection item={item} options={genders} selectionValue={data.gender} handleChange={handleChange}></Selection>
+                                                :
+                                                <Selection item={item} options={skinTones} selectionValue={data.skinTone} handleChange={handleChange}></Selection>
                                         }
 
 
