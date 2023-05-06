@@ -225,7 +225,7 @@ const OutfitOfTheDay = () => {
           className={styles.generateButton}
           onClick={handleRecommendationTiles}
         >
-          GENERATE OUTFIT
+          GENERATE OUTFITS
         </Button>
       </Box>
 

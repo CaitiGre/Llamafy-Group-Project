@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./OutfitOfTheDay.module.css";
 import Modal from "react-modal";
+import getUserEmail from "../../helpers/getUserEmail";
+import axios from 'axios';
 
 const customStyles = {
   content: {
@@ -23,7 +25,18 @@ const customStyles = {
 // Modal.setAppElement('#modal');
 
 const OotdTile = ({ imgLink, description }) => {
-  const [modalIsOpen, setIsOpen] = React.useState(false);
+  const [modalIsOpen, setIsOpen] = useState(false);
+  const [email, setEmail] = useState();
+
+  useEffect(() => {
+    const getEmail = async () => {
+      const email = await getUserEmail();
+      setEmail(email);
+    }
+    getEmail();
+  })
+
+  console.log(email)
 
   function openModal() {
     setIsOpen(true);
@@ -37,6 +50,25 @@ const OotdTile = ({ imgLink, description }) => {
 
   function onClickHandler() {
     console.log(`User attempting to save: ${imgLink}`);
+    console.log(imgLink.substring(0,16));
+    if(imgLink.substring(0,16) != 'https://oaidalle') {
+      alert("That's not an outfit, dude");
+      closeModal();
+      return;
+    }
+    const postBody = {
+      imgUrl : imgLink,
+      email : email,
+    }
+    console.log(postBody);
+    try {
+      axios.post('http://localhost:3006/ootd/saveFavourite', postBody);
+    } catch (err) {
+      console.log(err);
+      alert("Something went wrong trying to save. Try again later");
+    } finally {
+      closeModal();
+    }
   }
 
   return (

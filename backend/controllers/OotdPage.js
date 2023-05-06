@@ -1,4 +1,5 @@
 const pool = require('../database/pool');
+const { v4: uuidv4 } = require('uuid');
 
 async function fetchUserFirstName(email) {
     console.log(email)
@@ -16,15 +17,4 @@ async function fetchUserFirstName(email) {
   }
 }
 
-async function saveFavourite(imgUrl, userEmail) {
-  try {
-    const imgRes = await axios.get(imgUrl, {responseType: 'stream'});
-    const id = uuidv4()
-    const file = fs.createWriteStream(`public/${uuidv4()}.png`);
-    imgRes.data.pipe(file);
-  } catch (err) {
-    console.log("Image could not be saved to the server");
-    console.log(err);
-  }
-}
 module.exports = { fetchUserFirstName };
