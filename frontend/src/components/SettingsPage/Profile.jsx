@@ -129,7 +129,7 @@ function Profile() {
         }
     ]
 
-
+    // When there are changes in a field, set data to updat the property [event.target.name] to hold the value of what was inserted to the field
     async function handleChange(event) {
         const inputData = await event.target.value;
         setData({
@@ -143,8 +143,11 @@ function Profile() {
         event.preventDefault();
 
         if ((data.newPassword || data.reNewPassword) && (data.newPassword !== data.reNewPassword)) {
+            // If there is something in New Password or Re-enter New Passworf field and the values they don't match:
             alert("Your new passwords must match.");
+
         } else {
+            // Otherwise, try posting profile data to below URL
 
             try {
                 const response = await axios.post(`http://localhost:3006/profile/updateProfile/${userEmail}`, {
@@ -228,18 +231,16 @@ function Profile() {
 
                                         </InputLabel>
 
-                                        {item.name == "location" ?
+                                        {item.id == "location" ?
                                             <Selection item={item} options={locations} selectionValue={data.location} handleChange={handleChange}></Selection>
                                             :
-                                            item.name == "gender" ?
+                                            item.id == "gender" ?
                                                 <Selection item={item} options={genders} selectionValue={data.gender} handleChange={handleChange}></Selection>
                                                 :
                                                 <Selection item={item} options={skinTones} selectionValue={data.skinTone} handleChange={handleChange}></Selection>
                                         }
 
-
                                     </>
-
                                 }
                             </Box>
                         ))}
