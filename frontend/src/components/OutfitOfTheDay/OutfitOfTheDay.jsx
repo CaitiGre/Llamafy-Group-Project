@@ -80,7 +80,7 @@ const OutfitOfTheDay = () => {
       .catch(err => console.log('big problem'))
       }
       getName()
-    })
+    },[])
 
   async function handleRecommendationTiles() {
     toast.promise(

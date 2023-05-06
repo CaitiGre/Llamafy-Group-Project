@@ -1,4 +1,3 @@
-
 const express = require('express');
 const bodyParser = require('body-parser');
 const registrationPageRouter = require('./routes/RegistrationPage');
@@ -11,8 +10,11 @@ const settingsWardrobePageRouter = require("./routes/SettingsWardrobePage");
 const weatherProxy = require('./routes/WeatherProxy');
 const generator = require('./routes/Generator')
 const ootdRouter = require('./routes/OotdPage')
+const favouritesRouter = require('./routes/Favourites');
 const session = require('express-session');
 const cors = require('cors');
+const path = require('path');
+
 
 const app = express();
 const port = process.env.PORT || 3006;
@@ -50,6 +52,10 @@ app.use("/profile", settingsProfilePageRouter);
 app.use("/api", generator);
 app.use("/wardrobe", settingsWardrobePageRouter);
 app.use("/ootd", ootdRouter);
+app.use("/favourites", favouritesRouter);
+
+// allow access to public folder
+app.use(express.static(path.join(__dirname, 'public')));
 
 //receive and direct request for authentication.
 app.get('/', (req, res) => {
