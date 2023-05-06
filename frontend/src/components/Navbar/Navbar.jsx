@@ -16,8 +16,6 @@ import checkSession from "../../helpers/checkSession";
 import handleLogout from "../../helpers/handleLogout";
 import { useNavigate } from "react-router-dom";
 
-
-
 const Navbar = () => {
   const navigate = useNavigate();
   const theme = useTheme();

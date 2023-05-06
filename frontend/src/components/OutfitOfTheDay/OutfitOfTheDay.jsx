@@ -12,6 +12,7 @@ import {
   Select,
   FormLabel,
   TextField,
+  
 } from "@mui/material";
 import SubHeading from "../SubHeading/SubHeading";
 import { Box } from "@mui/material";
@@ -24,7 +25,6 @@ const OutfitOfTheDay = () => {
   const [username, setUsername] = useState('UsernameFromCookies');
   const [weatherText, setWeatherText] = useState(false);
   const [weatherErr, setWeatherErr] = useState(false);
-  const [username, setUsername] = useState("UsernameFromCookies");
   const [weatherValues, setWeatherValues] = useState([]);
   const [outfitColor, setColor] = useState("undefined");
   
@@ -126,10 +126,6 @@ const OutfitOfTheDay = () => {
     );
   }
   
-  
-  
-  
-
   return (
     <>
       <Heading title="OUTFIT OF THE DAY" />
@@ -192,7 +188,7 @@ const OutfitOfTheDay = () => {
               >
                 <InputLabel>Select a color scheme<br></br> (<i>optional</i>)</InputLabel>
                 <CompactPicker color={outfitColor} onChange={setColor}/>
-
+            </Box>
             </Box>
           </form>
 
