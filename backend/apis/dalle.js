@@ -28,26 +28,11 @@ const imgGen = async (prompt) => {
     // user : "Lllamas",
   });
 
-  
   console.log(response.data.data[0].url);
 
   // Extract the URL from the response to save to the server
   const genUrl = response.data.data[0].url;
-
-// axios call to the URL provided by the DALL-E API
-// and save the image at the endpoint
-  // try {
-  // const imgRes = await axios.get(genUrl, {responseType: 'stream'});
-  // const id = uuidv4()
-  // const file = fs.createWriteStream(`public/${uuidv4()}.png`);
-  // imgRes.data.pipe(file);
-  // } catch (err) {
-  //   console.log("Image could not be saved to the server");
-  //   console.log(err);
-  // }
   return genUrl;
 }
-
-// imgGen();
 
 module.exports = { imgGen };

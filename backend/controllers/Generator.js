@@ -27,8 +27,10 @@ async function generateOutfits(user_email, weatherValues, colorScheme) {
         condition: weatherValues.condition,
     };
 
+    console.log('awaiting promptGenerator');
     const prompt = await promptGenerator(user_email, weatherVals, colorScheme);
 
+    console.log("awaiting response from davinci");
     try {
         const response = await openAi.createCompletion({
             model: "text-davinci-003",
@@ -42,9 +44,6 @@ async function generateOutfits(user_email, weatherValues, colorScheme) {
 
         let responseText = response.data.choices[0].text;
         responseText = responseText.trim();
-        // console.log(responseText);
-
-        const tokensUsed = response.data.usage.total_tokens;
 
         try {
             console.log("Generating DalE Images")
@@ -58,17 +57,13 @@ async function generateOutfits(user_email, weatherValues, colorScheme) {
             const dallePrompt3 =
                 toJson.recommendation3.dalle + " Hyper Realistic Style";
 
-            // console.log(dallePrompt1);
-            // console.log(dallePrompt2);
-            // console.log(dallePrompt3);
-
-            var imgUrl1 = await imgGen(dallePrompt1);
-            var imgUrl2 = await imgGen(dallePrompt2);
-            var imgUrl3 = await imgGen(dallePrompt3);
+        console.log("waiting for dalle");
+            const images = await Promise.all([imgGen(dallePrompt1), imgGen(dallePrompt2), imgGen(dallePrompt3)]);
 
             return {
                 responseText: responseText,
-                imageUrls: [imgUrl1, imgUrl2, imgUrl3],
+                // imageUrls: [imgUrl1, imgUrl2, imgUrl3],
+                imageUrls: [images[0], images[1], images[2]],
             };
         } catch (dalleErr) {
             console.log(dalleErr);
