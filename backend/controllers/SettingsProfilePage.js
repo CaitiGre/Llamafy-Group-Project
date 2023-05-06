@@ -21,7 +21,7 @@ async function updateProfile(user) {
         await conn.query(`
         UPDATE Users
         SET firstName='${user.firstName}', lastName='${user.lastName}', location='${user.location}',
-        gender='${user.gender}', skinTone='${user.skinTone}', clothingSize='${user.size}'
+        gender='${user.gender}', skinTone='${user.skinTone}'
         WHERE email='${user.email}'`
         );
 

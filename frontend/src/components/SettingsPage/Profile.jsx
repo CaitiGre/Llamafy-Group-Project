@@ -1,8 +1,13 @@
-import { InputLabel, Grid } from "@mui/material";
+import { InputLabel, Box, Select, MenuItem } from "@mui/material";
 import { useState, useEffect } from "react";
 import styles from './SettingsPage.module.css';
 import useGet from '../../helpers/useGet';
 import axios from 'axios';
+import getUserEmail from "../../helpers/getUserEmail";
+import { locations } from "./data";
+import { genders } from "./data";
+import { skinTones } from "./data";
+import Selection from "./Selection";
 
 function Profile() {
 
@@ -13,56 +18,52 @@ function Profile() {
         gender: '',
         skinTone: '',
         location: '',
-        size: '',
         newPassword: '',
         reNewPassword: '',
         password: ''
     });
 
-    const [profileData, setProfileData] = useState({});
+    // Get user's email
+    const [userEmail, setUserEmail] = useState(null);
+    useEffect(() => {
+        async function fetchUserEmail() {
+            const email = await getUserEmail();
+            console.log("User email:", email);
+            setUserEmail(email);
+        }
 
-    // Get user's email from cookie once cookie's set up
-    const userEmail = "cass@sth.com";
+        fetchUserEmail();
+    }, []);
 
     // Get user's current profile data from database
     const { data: dataObj, isLoading } = useGet(`http://localhost:3006/profile/getProfile/${userEmail}`);
 
     useEffect(() => {
-        if (!isLoading && dataObj) {
-
-            // Assign the object containing properties needed to profileData.
-            setProfileData(dataObj.userData);
+        if (!isLoading && dataObj.userData) {
+            console.log("isLoading: ", isLoading, "dataObj: ", dataObj);
 
             setData(
                 {
-                    fname: profileData.firstName,
-                    lname: profileData.lastName,
-                    email: profileData.email,
-                    gender: profileData.gender,
-                    skinTone: profileData.skinTone,
-                    location: profileData.location,
-                    size: profileData.clothingSize,
+                    fname: dataObj.userData.firstName,
+                    lname: dataObj.userData.lastName,
+                    email: dataObj.userData.email,
+                    gender: dataObj.userData.gender,
+                    skinTone: dataObj.userData.skinTone,
+                    location: dataObj.userData.location,
                     newPassword: '',
-                    password: profileData.password
+                    password: dataObj.userData.password
                 }
             )
+
+            console.log("data", data);
         }
 
-    }, [isLoading, dataObj]); // Once isLoading and profileData and dataObj changed (meaning the fetch is completed), useEffect() will run and setData to fetched data
-    // Remember that initially when the data was still being fetched, the values of isLoading and dataObj would be different
+    }, [isLoading, dataObj]);
 
-
-    const locations = [
-        "Auckland",
-        "Wellington",
-        "Christchurch",
-        "Dunedin",
-        "Invercargill"
-    ];
 
     const inputData = [
         {
-            displayName: "Email",
+            displayName: "EMAIL",
             type: "email",
             name: "email",
             id: "profileEmail",
@@ -70,70 +71,65 @@ function Profile() {
             readOnly: true
         },
         {
-            displayName: "First Name",
+            displayName: "FIRST NAME",
             type: "text",
             name: "fname",
             id: "fname",
             value: data.fname,
         },
         {
-            displayName: "Last Name",
+            displayName: "LAST NAME",
             type: "text",
             name: "lname",
             id: "lname",
             value: data.lname,
         },
         {
-            displayName: "Gender",
-            type: "text",
+            displayName: "STYLE PREFERENCE",
+            type: "select",
             name: "gender",
             id: "gender",
             value: data.gender,
         },
         {
-            displayName: "Skin Tone",
-            type: "text",
+            displayName: "SKIN TONE",
+            type: "select",
             name: "skinTone",
             id: "skinTone",
             value: data.skinTone,
         },
         {
-            displayName: "Location",
+            displayName: "LOCATION",
             type: "select",
             name: "location",
             id: "location",
             value: data.location,
         },
         {
-            displayName: "Clothing size",
-            type: "text",
-            name: "size",
-            id: "size",
-            value: data.size,
-        },
-        {
-            displayName: "New Password",
+            displayName: "NEW PASSWORD",
             type: "password",
             name: "newPassword",
             id: "newPassword",
             value: '',
         },
         {
-            displayName: "Re-enter New Password",
+            displayName: "RE-ENTER NEW PASSWORD",
             type: "password",
             name: "reNewPassword",
             id: "reNewPassword",
             value: '',
         },
         {
-            displayName: "Enter Password to confirm changes",
+            displayName: "CURRENT PASSWORD*",
             type: "password",
             name: "password",
             id: "password",
             value: '',
+            required: true
         }
     ]
 
+    // When there are changes in a field, set data to updat the property [event.target.name] to hold the value of what was inserted to the field
     async function handleChange(event) {
         const inputData = await event.target.value;
         setData({
@@ -147,8 +143,11 @@ function Profile() {
         event.preventDefault();
 
         if ((data.newPassword || data.reNewPassword) && (data.newPassword !== data.reNewPassword)) {
+            // If there is something in New Password or Re-enter New Passworf field and the values they don't match:
             alert("Your new passwords must match.");
+
         } else {
+            // Otherwise, try posting profile data to below URL
 
             try {
                 const response = await axios.post(`http://localhost:3006/profile/updateProfile/${userEmail}`, {
@@ -158,7 +157,6 @@ function Profile() {
                     gender: data.gender,
                     skinTone: data.skinTone,
                     location: data.location,
-                    size: data.size,
                     password: data.newPassword,
                     inputPassword: data.password,
                 });
@@ -187,42 +185,66 @@ function Profile() {
                 <div className={styles.formContainer}>
                     <form onSubmit={handleSubmit}>
                         {inputData.map((item) => (
-                            <Grid container key={item.id} spacing={2}
-                                sx={{ margin: 0 }}>
+                            <Box display="flex" flexDirection="column" alignItems="center" key={item.id}>
+                                {item.type !== "select" ?
+                                    <>
+                                        <InputLabel
+                                            sx={{
+                                                paddingTop: "25px",
+                                                marginBottom: "2px",
+                                                textAlign: "right",
+                                                color: "#eee",
+                                                fontWeight: "bold",
+                                                fontFamily: "'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif"
+                                            }}>
 
-                                <Grid item xs={4}>
-                                    <InputLabel
-                                        sx={{
-                                            marginBottom: "2px",
-                                            textAlign: "center",
-                                            color: "#eee"
-                                        }}>
+                                            {item.displayName}
 
-                                        {item.displayName}
+                                        </InputLabel>
 
-                                    </InputLabel>
-                                </Grid>
 
-                                <Grid item xs={8}
-                                    display={'flex'}
-                                    justifyContent="flex-start">
+                                        <input className={styles.field}
+                                            type={item.type}
+                                            name={item.name}
+                                            id={item.id}
+                                            defaultValue={item.value}
+                                            onChange={handleChange}
+                                            placeholder={item.value}
+                                            readOnly={item.readOnly}
+                                            required={item.required}
+                                            style={item.readOnly && { backgroundColor: "#e4e0e0" }}
+                                        />
+                                    </>
+                                    :
+                                    <>
+                                        <InputLabel
+                                            sx={{
+                                                paddingTop: "25px",
+                                                marginBottom: "2px",
+                                                textAlign: "right",
+                                                color: "#eee",
+                                                fontWeight: "bold",
+                                                fontFamily: "'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif"
+                                            }}>
 
-                                    <input className={styles.field}
-                                        type={item.type}
-                                        name={item.name}
-                                        id={item.id}
-                                        defaultValue={item.value}
-                                        onChange={handleChange}
-                                        placeholder={item.value}
-                                        readOnly={item.readOnly}
-                                        style={item.readOnly && { backgroundColor: "#e4e0e0" }}
-                                    />
+                                            {item.displayName}
 
-                                </Grid>
+                                        </InputLabel>
 
-                            </Grid>
+                                        {item.id == "location" ?
+                                            <Selection item={item} options={locations} selectionValue={data.location} handleChange={handleChange}></Selection>
+                                            :
+                                            item.id == "gender" ?
+                                                <Selection item={item} options={genders} selectionValue={data.gender} handleChange={handleChange}></Selection>
+                                                :
+                                                <Selection item={item} options={skinTones} selectionValue={data.skinTone} handleChange={handleChange}></Selection>
+                                        }
+
+                                    </>
+                                }
+                            </Box>
                         ))}
-                        <button id="submit-button" type="submit" className={styles.submitButton}>Submit</button>
+                        <button id="submit-button" type="submit" className={styles.submitButton}>SUBMIT</button>
                     </form >
                 </div>
             )
