@@ -85,7 +85,7 @@ function Profile() {
         },
         {
             displayName: "GENDER",
-            type: "text",
+            type: "select",
             name: "gender",
             id: "gender",
             value: data.gender,
@@ -133,6 +133,12 @@ function Profile() {
             value: '',
             required: true
         }
+    ]
+
+    const genders = [
+        "female",
+        "male",
+        "all"
     ]
 
     async function handleChange(event) {
@@ -234,32 +240,72 @@ function Profile() {
 
                                         </InputLabel>
 
-                                        <Select
-                                            name="location"
-                                            id={styles["location"]}
-                                            className={styles["register-input"]}
-                                            value={data.location}
-                                            onChange={handleChange}
-                                            style={{
-                                                backgroundColor: "white",
-                                                borderRadius: "25px",
-                                                width: "32.5vw",
-                                                padding: "2vh",
-                                                height: "5vh",
-                                                fontSize: "small",
-                                                textAlign: "center",
-                                                justifyContent: "center"
-                                            }}
+                                        {item.name == "location" ?
 
-                                            disableUnderline={true}
-                                        >
-                                            <MenuItem value="" style={{ color: "black" }} disabled>Which city should LLAMAFY base recommendations on?</MenuItem>
-                                            {locations.map((location) => (
-                                                <MenuItem key={location} value={location}>
-                                                    {location}
-                                                </MenuItem>
-                                            ))}
-                                        </Select>
+                                            <Select
+                                                name={item.name}
+                                                id={item.id}
+                                                className={styles["register-input"]}
+                                                value={data.location}
+                                                onChange={handleChange}
+                                                style={{
+                                                    backgroundColor: "white",
+                                                    borderRadius: "25px",
+                                                    width: "32.5vw",
+                                                    padding: "2vh",
+                                                    height: "5vh",
+                                                    fontSize: "small",
+                                                    textAlign: "center",
+                                                    justifyContent: "center"
+                                                }}
+
+                                                disableUnderline={true}
+                                            >
+
+                                                <MenuItem value="" style={{ color: "black" }} disabled>Which city should LLAMAFY base recommendations on?</MenuItem>
+                                                {locations.map((location) => (
+                                                    <MenuItem key={location} value={location}>
+                                                        {location}
+                                                    </MenuItem>
+                                                ))}
+
+                                            </Select>
+
+
+                                            :
+
+
+                                            <Select
+                                                name={item.name}
+                                                id={item.id}
+                                                className={styles["register-input"]}
+                                                value={data.gender}
+                                                onChange={handleChange}
+                                                style={{
+                                                    backgroundColor: "white",
+                                                    borderRadius: "25px",
+                                                    width: "32.5vw",
+                                                    padding: "2vh",
+                                                    height: "5vh",
+                                                    fontSize: "small",
+                                                    textAlign: "center",
+                                                    justifyContent: "center"
+                                                }}
+
+                                                disableUnderline={true}
+                                            >
+
+                                                <MenuItem value="" style={{ color: "black" }} disabled>Which city should LLAMAFY base recommendations on?</MenuItem>
+                                                {genders.map((location) => (
+                                                    <MenuItem key={location} value={location}>
+                                                        {location}
+                                                    </MenuItem>
+                                                ))}
+
+                                            </Select>
+                                        }
+
+
                                     </>
 
                                 }
