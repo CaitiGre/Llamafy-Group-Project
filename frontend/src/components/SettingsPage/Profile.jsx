@@ -83,7 +83,7 @@ function Profile() {
             value: data.lname,
         },
         {
-            displayName: "GENDER",
+            displayName: "STYLE PREFERENCE",
             type: "select",
             name: "gender",
             id: "gender",
@@ -254,7 +254,7 @@ function Profile() {
                                 }
                             </Box>
                         ))}
-                        <button id="submit-button" type="submit" className={styles.submitButton}>Submit</button>
+                        <button id="submit-button" type="submit" className={styles.submitButton}>SUBMIT</button>
                     </form >
                 </div>
             )
