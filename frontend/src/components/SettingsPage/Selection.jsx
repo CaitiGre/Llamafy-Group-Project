@@ -13,10 +13,10 @@ function Selection({ item, options, selectionValue, handleChange }) {
             style={{
                 backgroundColor: "white",
                 borderRadius: "25px",
-                width: "30.5vw",
+                width: "40vw",
                 padding: "2vh",
                 height: "40px",
-                fontSize: "small",
+                fontSize: "medium",
                 textAlign: "center",
                 justifyContent: "center"
             }}
