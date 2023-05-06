@@ -28,6 +28,7 @@ const OotdTile = ({ imgLink, description }) => {
   const [modalIsOpen, setIsOpen] = useState(false);
   const [email, setEmail] = useState();
 
+  // grab the curr user's email and sync to state for post body
   useEffect(() => {
     const getEmail = async () => {
       const email = await getUserEmail();
@@ -35,8 +36,6 @@ const OotdTile = ({ imgLink, description }) => {
     }
     getEmail();
   })
-
-  console.log(email)
 
   function openModal() {
     setIsOpen(true);
@@ -48,9 +47,9 @@ const OotdTile = ({ imgLink, description }) => {
     setIsOpen(false);
   }
 
+  // allow the user to choose an outfit/outfits they like and save to static files
   function onClickHandler() {
-    console.log(`User attempting to save: ${imgLink}`);
-    console.log(imgLink.substring(0,16));
+    // don't allow the user to try and save the loading pictures
     if(imgLink.substring(0,16) != 'https://oaidalle') {
       alert("That's not an outfit, dude");
       closeModal();
@@ -94,7 +93,7 @@ const OotdTile = ({ imgLink, description }) => {
           <button onClick={onClickHandler}>
             Yeah!
           </button>
-          <button onClick={closeModal}>Are you joking</button>
+          <button onClick={closeModal}>You're joking</button>
         </div>
       </Modal>
     </div>
