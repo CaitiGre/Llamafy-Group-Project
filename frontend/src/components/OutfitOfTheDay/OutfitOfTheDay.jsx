@@ -17,8 +17,28 @@ import SubHeading from "../SubHeading/SubHeading";
 import { Box } from "@mui/material";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import llamaLoad from '../../assets/llamaLoad.gif'
 
 const OutfitOfTheDay = () => {
+
+  const tempTiles = [
+    {
+      id: 1,
+      img: llamaLoad,
+      desc: "Loading...",
+    },
+    {
+      id: 2,
+      img: llamaLoad,
+      desc: "Loading...",
+    },
+    {
+      id: 3,
+      img: llamaLoad,
+      desc: "Loading...",
+    },
+  ]
+
 
   // def states
   const [username, setUsername] = useState('llama');
@@ -26,7 +46,17 @@ const OutfitOfTheDay = () => {
   const [weatherErr, setWeatherErr] = useState(false);
   const [weatherValues, setWeatherValues] = useState([]);
   const [outfitColor, setColor] = useState("undefined");
-  const [recommendations, setRecommendations] = useState();
+  const [recommendations, setRecommendations] = useState(tempTiles
+    .map((rec) => ({
+      id: rec.id,
+      img: rec.img,
+      desc: rec.desc,
+    }))
+    .map((rec) => (
+      <div key={rec.id} className={styles.Ootd}>
+        <OotdTile description={rec.desc} imgLink={rec.img} />
+      </div>
+    )));
   const [showRecommendations, setShowRecommendations] = useState(false);
 
     // get weather data from weatherAPI proxy
@@ -58,6 +88,8 @@ const OutfitOfTheDay = () => {
         console.log("Fetching User Email");
         const email = await getUserEmail();
         console.log("Generating 3 Outfits for " + email + ", with color scheme: " + outfitColor.hex);
+
+        setShowRecommendations(true);
   
         fetch("http://localhost:3006/api/generateOutfits", {
           method: "POST",
@@ -80,7 +112,7 @@ const OutfitOfTheDay = () => {
             let responseText = JSON.parse(data.responseText);
             console.log(responseText.recommendation1.outfitDescription);
   
-            const temp2 = [
+            const items = [
               {
                 id: 1,
                 img: data.imageUrls[0],
@@ -97,8 +129,8 @@ const OutfitOfTheDay = () => {
                 desc: responseText.recommendation3.outfitDescription,
               },
             ];
-  
-            const tiles = temp2
+
+            const tiles = items
               .map((rec) => ({
                 id: rec.id,
                 img: rec.img,
@@ -109,9 +141,8 @@ const OutfitOfTheDay = () => {
                   <OotdTile description={rec.desc} imgLink={rec.img} />
                 </div>
               ));
-  
-            setRecommendations(tiles);
-            setShowRecommendations(true);
+
+              setRecommendations(tiles);
   
             resolve({
               message: "Outfits generated successfully",
@@ -135,10 +166,6 @@ const OutfitOfTheDay = () => {
       }
     );
   }
-  
-  
-  
-  
 
   return (
     <>
