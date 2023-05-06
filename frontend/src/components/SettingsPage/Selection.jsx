@@ -13,9 +13,9 @@ function Selection({ item, options, selectionValue, handleChange }) {
             style={{
                 backgroundColor: "white",
                 borderRadius: "25px",
-                width: "32.5vw",
+                width: "30.5vw",
                 padding: "2vh",
-                height: "5vh",
+                height: "40px",
                 fontSize: "small",
                 textAlign: "center",
                 justifyContent: "center"

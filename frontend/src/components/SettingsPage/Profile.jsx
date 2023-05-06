@@ -181,7 +181,7 @@ function Profile() {
 
     return (
         <>
-            {(!isLoading && dataObj.userData) ? (
+            {(!isLoading && dataObj) ? (
                 <div className={styles.formContainer}>
                     <form onSubmit={handleSubmit}>
                         {inputData.map((item) => (
