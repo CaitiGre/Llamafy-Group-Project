@@ -98,6 +98,9 @@ function LoginPage() {
                 type="email"
                 onChange={handleChange}
                 disableUnderline={true}
+                name="email"
+                id="email"
+                value={data.email}
                 placeholder={"llama@lavenderllama.co.nz"}
               />
               <InputLabel
@@ -128,8 +131,11 @@ function LoginPage() {
                 }}
                 type={showPassword ? "text" : "password"}
                 onChange={handleChange}
+                value={data.password}
                 disableUnderline={true}
                 placeholder={""}
+                name="password"
+                id="password"
               />
               
                 <img
