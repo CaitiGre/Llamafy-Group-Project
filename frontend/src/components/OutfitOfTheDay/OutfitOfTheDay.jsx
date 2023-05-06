@@ -25,6 +25,7 @@ const OutfitOfTheDay = () => {
   const [weatherText, setWeatherText] = useState(false);
   const [weatherErr, setWeatherErr] = useState(false);
   const [weatherValues, setWeatherValues] = useState([]);
+  const [outfitColor, setColor] = useState("undefined");
   
   // get weather data from weatherAPI proxy
   useEffect(() => {axios.get('http://localhost:3006/weather/data')
@@ -45,7 +46,7 @@ const OutfitOfTheDay = () => {
       new Promise(async (resolve, reject) => {
         console.log("Fetching User Email");
         const email = await getUserEmail();
-        console.log("Generating 3 Outfits for " + email);
+        console.log("Generating 3 Outfits for " + email + ", with color scheme: " + outfitColor.hex);
   
         fetch("http://localhost:3006/api/generateOutfits", {
           method: "POST",
@@ -55,6 +56,7 @@ const OutfitOfTheDay = () => {
           body: JSON.stringify({
             email: email,
             weatherValues : weatherValues,
+            colorScheme: outfitColor.hex,
           }),
         })
           .then((response) => {
@@ -163,7 +165,7 @@ const OutfitOfTheDay = () => {
                 sx={{ display: "flex", rowGap: "2vh", flexDirection: "column" }}
               >
                 <InputLabel>Select a color scheme<br></br> (<i>optional</i>)</InputLabel>
-                <CompactPicker />
+                <CompactPicker color={outfitColor} onChange={setColor}/>
             </Box>
           </Box>
         </form>

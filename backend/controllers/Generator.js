@@ -1,7 +1,7 @@
 const pool = require("../database/pool");
 const { imgGen } = require("../apis/dalle");
 
-// API CONFIG 
+// API CONFIG
 
 const { Configuration, OpenAIApi } = require("openai");
 const key = "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";
@@ -14,15 +14,20 @@ const openAi = new OpenAIApi(configuration);
 
 // FUNCTIONS
 
-async function generateOutfits(user_email, weatherValues) {
-    console.log("Called Generating outfits function for " + user_email)
+async function generateOutfits(user_email, weatherValues, colorScheme) {
+    console.log(
+        "Called Generating outfits function for " +
+            user_email +
+            ", with color scheme: " +
+            colorScheme
+    );
 
     const weatherVals = {
-      temp : weatherValues.tempC,
-      condition : weatherValues.condition,
-    }
+        temp: weatherValues.tempC,
+        condition: weatherValues.condition,
+    };
 
-    const prompt = await promptGenerator(user_email, weatherVals);
+    const prompt = await promptGenerator(user_email, weatherVals, colorScheme);
 
     try {
         const response = await openAi.createCompletion({
@@ -37,21 +42,25 @@ async function generateOutfits(user_email, weatherValues) {
 
         let responseText = response.data.choices[0].text;
         responseText = responseText.trim();
-        console.log(responseText);
+        // console.log(responseText);
 
         const tokensUsed = response.data.usage.total_tokens;
 
         try {
+            console.log("Generating DalE Images")
             let toJson = JSON.stringify(responseText);
             toJson = JSON.parse(responseText);
 
-            const dallePrompt1 = toJson.recommendation1.dalle + " Hyper Realistic Style";
-            const dallePrompt2 = toJson.recommendation2.dalle + " Hyper Realistic Style";
-            const dallePrompt3 = toJson.recommendation3.dalle + " Hyper Realistic Style";
+            const dallePrompt1 =
+                toJson.recommendation1.dalle + " Hyper Realistic Style";
+            const dallePrompt2 =
+                toJson.recommendation2.dalle + " Hyper Realistic Style";
+            const dallePrompt3 =
+                toJson.recommendation3.dalle + " Hyper Realistic Style";
 
-            console.log(dallePrompt1);
-            console.log(dallePrompt2);
-            console.log(dallePrompt3);
+            // console.log(dallePrompt1);
+            // console.log(dallePrompt2);
+            // console.log(dallePrompt3);
 
             var imgUrl1 = await imgGen(dallePrompt1);
             var imgUrl2 = await imgGen(dallePrompt2);
@@ -59,13 +68,11 @@ async function generateOutfits(user_email, weatherValues) {
 
             return {
                 responseText: responseText,
-                imageUrls: [imgUrl1, imgUrl2, imgUrl3]
+                imageUrls: [imgUrl1, imgUrl2, imgUrl3],
             };
-            
         } catch (dalleErr) {
             console.log(dalleErr);
         }
-
     } catch (error) {
         console.log(error);
     }
@@ -136,22 +143,29 @@ async function getUserData(user_email) {
     }
 }
 
-async function promptGenerator(user_email, weatherValsObj) {
-
+async function promptGenerator(user_email, weatherValsObj, colorScheme) {
     // if the weather API endpoint cannot be reached upstream, assume good weather
-    if (weatherValsObj.temp == undefined || weatherValsObj.condition == undefined) {
-      weatherValsObj.temp = 20;
-      weatherValsObj.condition = 'fine'
+    if (
+        weatherValsObj.temp == undefined ||
+        weatherValsObj.condition == undefined
+    ) {
+        weatherValsObj.temp = 20;
+        weatherValsObj.condition = "fine";
     }
 
-    console.log(weatherValsObj);
+    // console.log(weatherValsObj);
 
     const [userData, userWardrobe] = await Promise.all([
         getUserData(user_email),
         getUserWardrobe(user_email),
     ]);
 
-    var prompt = `Given the following JSON of clothes, suggest three outfits to wear today for a ${userData}, given that the temperature outside is ${weatherValsObj.temp} degrees celsius and ${weatherValsObj.condition}.
+    var colorAddString = "";
+    if (colorScheme != undefined) {
+        colorAddString = `If possible and if the user's wardrobe permits, try following this color scheme: ${colorScheme}`;
+    }
+
+    var prompt = `Given the following JSON of clothes, suggest three outfits to wear today for a ${userData}, given that the temperature outside is ${weatherValsObj.temp} degrees celsius and ${weatherValsObj.condition}. ${colorAddString}
 
   ${JSON.stringify(userWardrobe)}
   Respond in the below valid JSON format only, substituting % with the values (do not actually include the % sign if there are no values). Do not provide a value for a category if it is covered by another. In the "dalle" property, provide a comprehensive prompt to give to the DALL-E model. Focus on providing detail on colour. For the outfitDescription, give a small sentence of what the is included in the outfit
@@ -197,15 +211,8 @@ async function promptGenerator(user_email, weatherValsObj) {
     }
   }`;
 
+    // console.log(prompt);
     return prompt;
 }
-
-// generateOutfits("ysoo501@aucklanduni.ac.nz").then(prompt => {
-//     // Output the generated prompt to the console
-//     console.log(prompt);
-//   })
-//   .catch(error => {
-//     console.error(error);
-//   });
 
 module.exports = { generateOutfits };
