@@ -84,6 +84,9 @@ function ClothingSelectionModal({ selectedItem, showModal, onCloseModal }) {
         >
           <Card
             sx={{
+              background: "rgb(99,93,191)",
+              background:
+                "linear-gradient(321deg, rgba(99,93,191,1) 3%, rgba(217,139,223,1) 61%)",
               borderRadius: "16px",
               height: "max-content",
               outline: "none",
@@ -102,7 +105,10 @@ function ClothingSelectionModal({ selectedItem, showModal, onCloseModal }) {
               >
                 <img src={close} alt="close button" width="20px" />
               </Button>
-              <Typography variant="h4" sx={{ textTransform: "uppercase" }}>
+              <Typography
+                variant="h4"
+                sx={{ textTransform: "uppercase", color: "white" }}
+              >
                 {selectedItem.name}
               </Typography>
               <Grid>
@@ -192,14 +198,10 @@ function ClothingSelectionModal({ selectedItem, showModal, onCloseModal }) {
                     right: "0",
                   }}
                 >
-                  <Button variant="outlined" onClick={onCloseModal}>
+                  <Button sx={{ color: "white" }} onClick={onCloseModal}>
                     Cancel
                   </Button>
-                  <Button
-                    variant="outlined"
-                    color="primary"
-                    onClick={handleAddClick}
-                  >
+                  <Button sx={{ color: "white" }} onClick={handleAddClick}>
                     Add
                   </Button>
                 </Box>
