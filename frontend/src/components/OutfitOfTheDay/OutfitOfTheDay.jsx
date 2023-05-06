@@ -1,23 +1,27 @@
 import React, { useState, useEffect } from "react";
-import axios from 'axios';
+import axios from "axios";
 import OotdTile from "./OotdTile";
 import styles from "./OutfitOfTheDay.module.css";
-import { InputLabel, MenuItem, form } from "@mui/material";
+import { InputLabel, MenuItem, Typography, form } from "@mui/material";
 import { CompactPicker } from "react-color";
 import Heading from "../Heading/Heading";
-import getUserEmail from "../../helpers/getUserEmail"
+import getUserEmail from "../../helpers/getUserEmail";
+import { Card } from "react-bootstrap";
 import {
-  Button,
-  FormControl,
-  Select,
-  FormLabel,
-  TextField,
+    Button,
+    FormControl,
+    Select,
+    FormLabel,
+    TextField,
 } from "@mui/material";
 import SubHeading from "../SubHeading/SubHeading";
 import { Box } from "@mui/material";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import llamaLoad from '../../assets/llamaLoad.gif'
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 
 const OutfitOfTheDay = () => {
 
@@ -167,85 +171,117 @@ const OutfitOfTheDay = () => {
     );
   }
 
-  return (
-    <>
-      <Heading title="OUTFIT OF THE DAY" />
+    return (
+        <>
+            <Container>
+                <Row>
+                    <Heading title="OUTFIT OF THE DAY" />
+                </Row>
 
-      {!weatherText && !weatherErr && <div>Fetching weather...</div>}
+                <Row>
+                    <Col>
+                        <Card style={{ width: "80%", height: "200px", minWidth:"200px"}}>
+                            <Card.Body>
+                            <InputLabel>
+                                Today's Weather
+                            </InputLabel>
+                                {/* If there is an error getting weather values, greeet the user and inform them that the api is not working*/}
+                                {weatherValues && weatherText && (
+                                    <Box className={styles.title}>
+                                        <img
+                                            src={weatherValues.iconUrl}
+                                            alt="Weather icon based on the weather today"
+                                        />{" "}
+                                        <br />
+                                        <Typography
+                                            style={{
+                                                fontFamily:
+                                                    "'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif",
+                                            }}
+                                        >
+                                            <h4>{weatherValues.tempC}</h4> with{" "}
+                                            {weatherValues.humidity} humidity.
+                                            Windspeed at {weatherValues.windKph}
+                                            .{" "}
+                                        </Typography>
+                                    </Box>
+                                )}
 
-      {/* If there is an error getting weather values, greeet the user and inform them that the api is not working*/}
-      {weatherValues && weatherText &&
-      
-      <div className={styles.title}> 
-        <img src={weatherValues.iconUrl} style={{}} alt="Weather icon based on the weather today"/> <br />
-        Hey {username}. {weatherValues.condition} in {weatherValues.location}.
-        <p>{weatherValues.tempC} right now with {weatherValues.humidity} humidity. Windspeed at {weatherValues.windKph}. {/*<small>Powered by <a href="https://www.weatherapi.com/" title="Weather API">WeatherAPI.com</a></small>*/}</p>
-      </div>
-      }
-      
-      {weatherErr && 
-          <div className={styles.title}> 
-            <p>Unable to fetch weather details at the moment. Try again soon.</p>
-          </div>}
-      <br />
+                                {weatherErr && (
+                                    <div className={styles.title}>
+                                        <p>
+                                            Unable to fetch weather details at
+                                            the moment. Try again soon.
+                                        </p>
+                                    </div>
+                                )}
+                            </Card.Body>
+                        </Card>
+                    </Col>
+                    <Col>
+                        <Card style={{ width: "80%", height: "200px", minWidth:"300px"}}>
+                            <InputLabel>
+                                Select a color scheme<br></br> (<i>optional</i>)
+                            </InputLabel>
+                            <CompactPicker
+                                color={outfitColor}
+                                onChange={setColor}
+                            />
+                        </Card>
+                    </Col>
+                    <Col>
+                    <Card style={{ width: "80%", height: "200px"}}>
+                            <InputLabel>
+                                Your Wardrobe <span style={{color:"#8cc423"}}>[Imported]</span>
+                            </InputLabel>
+                            
+                        </Card>
+                    </Col>
+                </Row>
+                <Row style={{marginTop:"5%"}}>
+                    <Button
+                        sx={{
+                            borderRadius: "25px",
+                            backgroundColor: "white",
+                            border: "0.1vh solid #ccc",
+                            color: "#333",
+                            boxShadow: "2vh 2vh 5vh rgba(255, 255, 255, 0.8)",
+                            padding: "1vh 4vh",
+                            marginTop: "4vh",
+                            width: "40vh",
+                            display: "flex",
+                            justifyContent: "center",
+                            margin: "auto",
+                        }}
+                        className={styles.generateButton}
+                        onClick={handleRecommendationTiles}
+                    >
+                        GENERATE OUTFIT
+                    </Button>
+                </Row>
+            </Container>
 
-      <Box className={styles.formBox} sx={{ gap: "2vh" }}>
-        <form className={styles.formBox}>
-          <SubHeading subtitle="Generate a few options below" />
-            <Box
-              className={styles.secondDropdown}
-              sx={{
-                display: "flex",
-                justifyContent: "space-evenly",
-              }}
-            >
-              <Box
-                sx={{ display: "flex", rowGap: "2vh", flexDirection: "column" }}
-              >
-                <InputLabel>Select a color scheme<br></br> (<i>optional</i>)</InputLabel>
-                <CompactPicker color={outfitColor} onChange={setColor}/>
-            </Box>
-          </Box>
-        </form>
+            <br />
 
-        <Button
-          sx={{
-            borderRadius: "25px",
-            backgroundColor: "white",
-            border: "0.1vh solid #ccc",
-            color: "#333",
-            boxShadow: "2vh 2vh 5vh rgba(255, 255, 255, 0.8)",
-            padding: "1vh 4vh",
-            marginTop: "4vh",
-            width: "40vh",
-            display: "flex",
-            justifyContent: "center",
-            margin: "auto",
-          }}
-          className={styles.generateButton}
-          onClick={handleRecommendationTiles}
-        >
-          GENERATE OUTFITS
-        </Button>
-      </Box>
-
-      {showRecommendations && (
-        <div className={styles.recommendationTiles}>{recommendations}</div>
-      )}
-      <ToastContainer
-        position="bottom-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="colored"
-        />
-    </>
-  );
+            {showRecommendations && (
+                <div className={styles.recommendationTiles} style={{marginBottom: "5%"}}>
+                    {recommendations}
+                </div>
+            )}
+            <ToastContainer
+                position="bottom-right"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="colored"
+            />
+        </>
+    );
 };
 
 export default OutfitOfTheDay;

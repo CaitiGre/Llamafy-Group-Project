@@ -62,6 +62,7 @@ const OotdTile = ({ imgLink, description }) => {
     console.log(postBody);
     try {
       axios.post('http://localhost:3006/ootd/saveFavourite', postBody);
+      alert("Saved to favourites!");
     } catch (err) {
       console.log(err);
       alert("Something went wrong trying to save. Try again later");

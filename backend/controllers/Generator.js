@@ -75,6 +75,8 @@ async function generateOutfits(user_email, weatherValues, colorScheme) {
         }
     } catch (error) {
         console.log(error);
+    } finally {
+        console.log("end generator");
     }
 }
 
