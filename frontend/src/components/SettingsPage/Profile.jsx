@@ -4,7 +4,9 @@ import styles from './SettingsPage.module.css';
 import useGet from '../../helpers/useGet';
 import axios from 'axios';
 import getUserEmail from "../../helpers/getUserEmail";
-import { locations } from "./locations";
+import { locations } from "./data";
+import { genders } from "./data";
+import { skinTones } from "./data";
 import Selection from "./Selection";
 
 function Profile() {
@@ -127,19 +129,6 @@ function Profile() {
         }
     ]
 
-    const genders = [
-        "female",
-        "male",
-        "all"
-    ];
-
-    const skinTones = [
-        "warm",
-        "cool",
-        "neutral",
-        "neutral warm",
-        "neutral cool",
-    ]
 
     async function handleChange(event) {
         const inputData = await event.target.value;
