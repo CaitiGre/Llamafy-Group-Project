@@ -7,6 +7,8 @@ import AuthContext from "../../AuthContext";
 import { useNavigate } from "react-router-dom";
 import eyeIcon from "../../assets/show.png";
 import lashIcon from "../../assets/hide.png";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function LoginPage() {
   const { setUserAuthenticated } = useContext(AuthContext);
@@ -49,15 +51,16 @@ function LoginPage() {
       if (response.ok) {
         await setUserAuthenticated(true);
         const result = await response.json();
+        toast.success("Log in successful");
         navigate("/ootd");
       } else {
         const error = await response.json();
         console.error(error);
-        alert("Invalid username or password. Please try again.");
+        toast.error("Invalid username or password. Please try again.");
       }
     } catch (err) {
       console.error(err);
-      alert("An error occurred while logging in. Please try again.");
+      toast.error("An error occurred while logging in. Please try again.");
     }
   };
 
