@@ -177,81 +177,83 @@ function Profile() {
             }
         }
     }
-};
 
-return (
-    <>
-        {!isLoading && dataObj.userData && (
-            <div className={styles.formContainer}>
-                <form onSubmit={handleSubmit}>
-                    {inputData.map((item) => (
-                        <Box display="flex" flexDirection="column" alignItems="center" key={item.id}>
-                            {item.type !== "select" ?
-                                <>
-                                    <InputLabel
-                                        sx={{
-                                            paddingTop: "25px",
-                                            marginBottom: "2px",
-                                            textAlign: "right",
-                                            color: "#eee",
-                                            fontWeight: "bold",
-                                            fontFamily: "'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif"
-                                        }}>
 
-                                        {item.displayName}
+    return (
+        <>
+            {!isLoading && dataObj.userData && (
+                <div className={styles.formContainer}>
+                    <form onSubmit={handleSubmit}>
+                        {inputData.map((item) => (
+                            <Box display="flex" flexDirection="column" alignItems="center" key={item.id}>
+                                {item.type !== "select" ?
+                                    <>
+                                        <InputLabel
+                                            sx={{
+                                                paddingTop: "25px",
+                                                marginBottom: "2px",
+                                                textAlign: "right",
+                                                color: "#eee",
+                                                fontWeight: "bold",
+                                                fontFamily: "'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif"
+                                            }}>
 
-                                    </InputLabel>
+                                            {item.displayName}
 
-                                    <input
-                                        className={styles.field}
-                                        type={item.type}
-                                        name={item.name}
-                                        id={item.id}
-                                        defaultValue={item.value}
-                                        onChange={handleChange}
-                                        placeholder={item.value}
-                                        readOnly={item.readOnly}
-                                        required={item.required}
-                                        style={item.readOnly && { backgroundColor: "#e4e0e0" }}
-                                    />
-                                </>
-                ) : (
-                            <>
-                                <InputLabel
-                                    sx={{
-                                        paddingTop: "25px",
-                                        marginBottom: "2px",
-                                        textAlign: "right",
-                                        color: "#eee",
-                                        fontWeight: "bold",
-                                        fontFamily:
-                                            "'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif",
-                                    }}
-                                >
-                                    {item.displayName}
-                                </InputLabel>
+                                        </InputLabel>
 
-                                {item.id == "location" ?
-                                    <Selection item={item} options={locations} selectionValue={data.location} handleChange={handleChange}></Selection>
+
+                                        <input className={styles.field}
+                                            type={item.type}
+                                            name={item.name}
+                                            id={item.id}
+                                            defaultValue={item.value}
+                                            onChange={handleChange}
+                                            placeholder={item.value}
+                                            readOnly={item.readOnly}
+                                            required={item.required}
+                                            style={item.readOnly && { backgroundColor: "#e4e0e0" }}
+                                        />
+                                    </>
                                     :
-                                    item.id == "gender" ?
-                                        <Selection item={item} options={genders} selectionValue={data.gender} handleChange={handleChange}></Selection>
-                                        :
-                                        <Selection item={item} options={skinTones} selectionValue={data.skinTone} handleChange={handleChange}></Selection>
-                                }
+                                    <>
+                                        <InputLabel
+                                            sx={{
+                                                paddingTop: "25px",
+                                                marginBottom: "2px",
+                                                textAlign: "right",
+                                                color: "#eee",
+                                                fontWeight: "bold",
+                                                fontFamily: "'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif"
+                                            }}>
 
-                            </>
-                                }
-                        </Box>
-                    ))}
-                    <button id="submit-button" type="submit" className={styles.submitButton}>SUBMIT</button>
-                </form >
-            </div>
-        )
-        }
-    </>
+                                            {item.displayName}
 
-);
+                                        </InputLabel>
+
+                                        {item.id == "location" ?
+                                            <Selection item={item} options={locations} selectionValue={data.location} handleChange={handleChange}></Selection>
+                                            :
+                                            item.id == "gender" ?
+                                                <Selection item={item} options={genders} selectionValue={data.gender} handleChange={handleChange}></Selection>
+                                                :
+                                                <Selection item={item} options={skinTones} selectionValue={data.skinTone} handleChange={handleChange}></Selection>
+                                        }
+
+                                    </>
+                                }
+                            </Box>
+                        ))}
+                        <button id="submit-button" type="submit" className={styles.submitButton}>SUBMIT</button>
+                    </form >
+                </div>
+            )
+            }
+        </>
+
+
+    );
 }
+
 
 export default Profile;
