@@ -14,7 +14,7 @@ import { subSelectionItemsByClothesItem } from "../ClothesSelection/data";
 import SubSelectionModal from "../SubSelectionModal/SubSelectionModal";
 
 // Card for each clothes item in the list
-function WardrobeItems({ items, itom }) {
+function WardrobeItems({ clothes, setClothes, category }) {
   const [selectedItem, setSelectedItem] = useState(null);
   const [subSelectionItemsToShow, setSubSelectionItemsToShow] = useState([]);
   const [isItemsVisible, setIsItemsVisible] = useState(true); // add state variable to control item visibility
@@ -24,33 +24,21 @@ function WardrobeItems({ items, itom }) {
     setSelectedItem(item);
     setSubSelectionItemsToShow(subSelectionItemsByClothesItem[item.name]);
     setIsItemsVisible(false); // hide items when modal is open
-    console.log(selectedItem);
-    console.log(subSelectionItemsToShow);
   };
-  // items param: items in a particular category
-  const [clothes, setClothes] = useState([]);
-  const [categoryItemsToShow, setCategoryItemsToShow] = useState([]);
+
   // Handling the delete item event in CategoryItem
   // Get the category items to show when the component mounts or when the category changes
-  useEffect(() => {
-    setCategoryItemsToShow(items);
-  }, [items]);
 
   useEffect(() => {
-    setClothes(items);
-  }, [items]);
+    console.log("clothes", clothes);
+  }, [clothes]);
 
   async function handleDeleteItem(item) {
-    const remainingItemsToShow = categoryItemsToShow.filter(
+    const remainingItemsToShow = clothes.filter(
       (catItem) => catItem.clothing_id !== item.clothing_id
     );
     console.log("remaining items to show:", remainingItemsToShow);
-    setCategoryItemsToShow(remainingItemsToShow);
-    const remainingClothes = clothes.filter(
-      (clothe) => clothe.clothing_id !== item.clothing_id
-    );
-    setClothes(remainingClothes);
-    console.log("clothes remaining", remainingClothes);
+    setClothes(remainingItemsToShow);
 
     // Send Post request to delete item from the database
     try {
@@ -122,7 +110,7 @@ function WardrobeItems({ items, itom }) {
         ))}
       {isItemsVisible && (
         <Box className={styles.navLinkContainer}>
-          <Button sx={{ color: "white" }} onClick={() => handleOpenModal(itom)}>
+          <Button sx={{ color: "white" }} onClick={() => handleOpenModal(category)}>
             Add items
           </Button>
         </Box>
