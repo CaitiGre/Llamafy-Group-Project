@@ -154,6 +154,7 @@ const OutfitOfTheDay = () => {
               message: "Failed to generate outfits!",
               type: toast.TYPE.ERROR,
             });
+            setShowRecommendations(false);
           });
       }),
       {
