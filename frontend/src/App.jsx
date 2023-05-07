@@ -12,8 +12,8 @@ import OutfitOfTheDay from './components/OutfitOfTheDay/OutfitOfTheDay';
 import Disclaimers from "./components/Disclaimers/Disclaimer";
 import AuthContext from './AuthContext';
 import { useState } from 'react';
-import Protected from './Protected';
-import Prevented from './Prevented';
+// import Protected from './Protected';
+// import Prevented from './Prevented';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -38,42 +38,53 @@ function App() {
           </header>
 
           <Routes>
-            <Route path="/" element={
-              <Prevented isAuthenticated={userAuthenticated}>
-                <LandingPage />
-              </Prevented>
-            } />
-            <Route path="pastOutfits" element={
-              <Protected isAuthenticated={userAuthenticated}>
-                <Favourites />
-              </Protected>
-            } />
-            <Route path="register" element={
-              <Prevented isAuthenticated={userAuthenticated}>
-                <RegistrationPage />
-              </Prevented>
-            } />
-            <Route path="login" element={
-              <Prevented isAuthenticated={userAuthenticated}>
-                <LoginPage />
-              </Prevented>
-            } />
+            {!userAuthenticated && (
+              <>
+                <Route path="/" element={
+
+                  <LandingPage />
+
+                } />
+                <Route path="login" element={
+
+                  <LoginPage />
+
+                } />
+                <Route path="register" element={
+
+                  <RegistrationPage />
+                } />
+              </>
+            )}
+            {userAuthenticated && (
+              <>
+                <Route path="pastOutfits" element={
+                  
+                    <Favourites />
+                  
+                } />
+                <Route path="wardrobe" element={
+                  
+                    <WardrobeSelection />
+                  
+                } />
+                <Route path="settings" element={
+                 
+                    <SettingsPage />
+                
+                } />
+                <Route path="ootd" element={
+                  
+                    < OutfitOfTheDay />
+                
+                } />
+              </>
+            )}
+
+
+
             <Route path="disclaimer" element={<Disclaimers />} />
-            <Route path="wardrobe" element={
-              <Protected isAuthenticated={userAuthenticated}>
-                <WardrobeSelection />
-              </Protected>
-            } />
-            <Route path="settings" element={
-              <Protected isAuthenticated={userAuthenticated}>
-                <SettingsPage />
-              </Protected>
-            } />
-            <Route path="ootd" element={
-              <Protected isAuthenticated={userAuthenticated}>
-                < OutfitOfTheDay />
-              </Protected>
-            } />
+
 
           </Routes>
         </React.Fragment>
