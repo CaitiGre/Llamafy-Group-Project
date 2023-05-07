@@ -10,7 +10,7 @@ import PasswordBox from "./PasswordBox";
 import axios from "axios";
 import Heading from "../Heading/Heading";
 import { useNavigate } from "react-router";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const salt = bcrypt.genSaltSync(10);
