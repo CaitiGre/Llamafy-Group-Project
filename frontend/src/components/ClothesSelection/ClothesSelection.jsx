@@ -13,7 +13,7 @@ function ClothesSelection() {
   const [openModal, setOpenModal] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
   const [categoryItemsToShow, setCategoryItemsToShow] = useState([]);
-  const [clothes, setClothes] = useState([]);
+  const [wardorbe, setwardrobe] = useState([]);
 
   // Get user's email from cookie once cookie's set up
   const [userEmail, setUserEmail] = useState(null);
@@ -25,29 +25,43 @@ function ClothesSelection() {
     }
 
     fetchUserEmail();
-  }, []);
+  });
 
   // Get user's current profile data from database
   const { data: dataObj, isLoading } = useGet(
-    `http://localhost:3006/wardrobe/getWardrobeItems/${userEmail}`
+    `http://localhost:3006/wardrobe/getWardrobeItems/${userEmail}`,
+    {
+      key: categoryItemsToShow.toString(),
+    }
   );
 
   useEffect(() => {
-    if (!isLoading && dataObj) {
-      setClothes(dataObj.wardrobeItems);
+    console.log("parent category Items to show", categoryItemsToShow);
+  }, [categoryItemsToShow]);
+  useEffect(() => {
+    console.log("Parent clothes", wardorbe);
+  }, [wardorbe, categoryItemsToShow]);
+
+  useEffect(() => {
+    if (!isLoading && dataObj.wardrobeItems) {
+      setwardrobe(dataObj.wardrobeItems);
+      console.log("I am fetching your wardrobe from the database");
     }
-    if (selectedItem && clothes.length > 0) {
-      const itemsToShow = clothes.filter(
+  }, [isLoading, dataObj.wardrobeItems, categoryItemsToShow]);
+
+  useEffect(() => {
+    if (selectedItem && wardorbe.length > 0) {
+      const itemsToShow = wardorbe.filter(
         (clothe) => clothe.main_category === selectedItem.name
       );
       setCategoryItemsToShow(itemsToShow);
       setOpenModal(true);
     }
-  }, [isLoading, dataObj, selectedItem, clothes]);
+  }, [wardorbe, selectedItem]);
   // Handling the open modal event and setting the selected item to show
   const openWardrobeModal = (item) => {
     setSelectedItem(item);
-    const itemsToShow = clothes.filter(
+    const itemsToShow = wardorbe.filter(
       (clothe) => clothe.main_category === item.name
     );
     setCategoryItemsToShow(itemsToShow);
@@ -56,6 +70,7 @@ function ClothesSelection() {
   // Handling the close modal event
   const handleCloseModal = () => {
     setOpenModal(false);
+    window.location.reload();
   };
 
   return (
@@ -89,7 +104,6 @@ function ClothesSelection() {
       >
         <Box
           sx={{
-            background: "rgb(99,93,191)",
             background:
               "linear-gradient(321deg, rgba(99,93,191,1) 3%, rgba(217,139,223,1) 61%)",
             borderRadius: "16px",
@@ -121,10 +135,9 @@ function ClothesSelection() {
           )}
           {selectedItem && (
             <WardrobeItems
-              items={categoryItemsToShow}
-              itom={selectedItem}
-              clothes={clothes}
-              setClothes={setClothes}
+              category={selectedItem}
+              clothes={categoryItemsToShow}
+              setClothes={setCategoryItemsToShow}
             ></WardrobeItems>
           )}
         </Box>

@@ -1,8 +1,8 @@
 import { InputLabel, Box } from "@mui/material";
 import { useState, useEffect } from "react";
-import styles from './SettingsPage.module.css';
-import useGet from '../../helpers/useGet';
-import axios from 'axios';
+import styles from "./SettingsPage.module.css";
+import useGet from "../../helpers/useGet";
+import axios from "axios";
 import getUserEmail from "../../helpers/getUserEmail";
 import { locations } from "./data";
 import { genders } from "./data";
@@ -11,17 +11,16 @@ import Selection from "./Selection";
 import { toast } from "react-toastify";
 
 function Profile() {
-
     const [data, setData] = useState({
-        fname: '',
-        lname: '',
-        email: '',
-        gender: '',
-        skinTone: '',
-        location: '',
-        newPassword: '',
-        reNewPassword: '',
-        password: ''
+        fname: "",
+        lname: "",
+        email: "",
+        gender: "",
+        skinTone: "",
+        location: "",
+        newPassword: "",
+        reNewPassword: "",
+        password: "",
     });
 
     // Get user's email
@@ -37,7 +36,9 @@ function Profile() {
     }, []);
 
     // Get user's current profile data from database
-    const { data: dataObj, isLoading } = useGet(`http://localhost:3006/profile/getProfile/${userEmail}`);
+    const { data: dataObj, isLoading } = useGet(
+        `http://localhost:3006/profile/getProfile/${userEmail}`
+    );
 
     useEffect(() => {
         if (!isLoading && dataObj.userData) {
@@ -58,7 +59,6 @@ function Profile() {
 
     }, [isLoading, dataObj]);
 
-
     const inputData = [
         {
             displayName: "EMAIL",
@@ -66,7 +66,7 @@ function Profile() {
             name: "email",
             id: "profileEmail",
             value: data.email,
-            readOnly: true
+            readOnly: true,
         },
         {
             displayName: "FIRST NAME",
@@ -108,57 +108,60 @@ function Profile() {
             type: "password",
             name: "newPassword",
             id: "newPassword",
-            value: '',
+            value: "",
         },
         {
             displayName: "RE-ENTER NEW PASSWORD",
             type: "password",
             name: "reNewPassword",
             id: "reNewPassword",
-            value: '',
+            value: "",
         },
         {
             displayName: "CURRENT PASSWORD*",
             type: "password",
             name: "password",
             id: "password",
-            value: '',
-            required: true
-        }
-    ]
+            value: "",
+            required: true,
+        },
+    ];
 
     // When there are changes in a field, set data to updat the property [event.target.name] to hold the value of what was inserted to the field
     async function handleChange(event) {
         const inputData = await event.target.value;
         setData({
             ...data,
-            [event.target.name]: inputData
-        })
+            [event.target.name]: inputData,
+        });
     }
-
 
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        if ((data.newPassword || data.reNewPassword) && (data.newPassword !== data.reNewPassword)) {
+        if (
+            (data.newPassword || data.reNewPassword) &&
+            data.newPassword !== data.reNewPassword
+        ) {
             // If there is something in New Password or Re-enter New Passworf field and the values they don't match:
-            // alert("Your new passwords must match.");
             toast.error("Your new passwords must match.");
-
         } else {
             // Otherwise, try posting profile data to below URL
 
             try {
-                const response = await axios.post(`http://localhost:3006/profile/updateProfile/${userEmail}`, {
-                    firstName: data.fname,
-                    lastName: data.lname,
-                    email: data.email,
-                    gender: data.gender,
-                    skinTone: data.skinTone,
-                    location: data.location,
-                    password: data.newPassword,
-                    inputPassword: data.password,
-                });
+                const response = await axios.post(
+                    `http://localhost:3006/profile/updateProfile/${userEmail}`,
+                    {
+                        firstName: data.fname,
+                        lastName: data.lname,
+                        email: data.email,
+                        gender: data.gender,
+                        skinTone: data.skinTone,
+                        location: data.location,
+                        password: data.newPassword,
+                        inputPassword: data.password,
+                    }
+                );
 
                 console.log("new password to post:", data.newPassword);
 
@@ -174,80 +177,81 @@ function Profile() {
             }
         }
     }
+};
 
-    return (
-        <>
-            {!isLoading && dataObj.userData && (
-                <div className={styles.formContainer}>
-                    <form onSubmit={handleSubmit}>
-                        {inputData.map((item) => (
-                            <Box display="flex" flexDirection="column" alignItems="center" key={item.id}>
-                                {item.type !== "select" ?
-                                    <>
-                                        <InputLabel
-                                            sx={{
-                                                paddingTop: "25px",
-                                                marginBottom: "2px",
-                                                textAlign: "right",
-                                                color: "#eee",
-                                                fontWeight: "bold",
-                                                fontFamily: "'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif"
-                                            }}>
+return (
+    <>
+        {!isLoading && dataObj.userData && (
+            <div className={styles.formContainer}>
+                <form onSubmit={handleSubmit}>
+                    {inputData.map((item) => (
+                        <Box display="flex" flexDirection="column" alignItems="center" key={item.id}>
+                            {item.type !== "select" ?
+                                <>
+                                    <InputLabel
+                                        sx={{
+                                            paddingTop: "25px",
+                                            marginBottom: "2px",
+                                            textAlign: "right",
+                                            color: "#eee",
+                                            fontWeight: "bold",
+                                            fontFamily: "'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif"
+                                        }}>
 
-                                            {item.displayName}
+                                        {item.displayName}
 
-                                        </InputLabel>
+                                    </InputLabel>
 
+                                    <input
+                                        className={styles.field}
+                                        type={item.type}
+                                        name={item.name}
+                                        id={item.id}
+                                        defaultValue={item.value}
+                                        onChange={handleChange}
+                                        placeholder={item.value}
+                                        readOnly={item.readOnly}
+                                        required={item.required}
+                                        style={item.readOnly && { backgroundColor: "#e4e0e0" }}
+                                    />
+                                </>
+                ) : (
+                            <>
+                                <InputLabel
+                                    sx={{
+                                        paddingTop: "25px",
+                                        marginBottom: "2px",
+                                        textAlign: "right",
+                                        color: "#eee",
+                                        fontWeight: "bold",
+                                        fontFamily:
+                                            "'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif",
+                                    }}
+                                >
+                                    {item.displayName}
+                                </InputLabel>
 
-                                        <input className={styles.field}
-                                            type={item.type}
-                                            name={item.name}
-                                            id={item.id}
-                                            defaultValue={item.value}
-                                            onChange={handleChange}
-                                            placeholder={item.value}
-                                            readOnly={item.readOnly}
-                                            required={item.required}
-                                            style={item.readOnly && { backgroundColor: "#e4e0e0" }}
-                                        />
-                                    </>
+                                {item.id == "location" ?
+                                    <Selection item={item} options={locations} selectionValue={data.location} handleChange={handleChange}></Selection>
                                     :
-                                    <>
-                                        <InputLabel
-                                            sx={{
-                                                paddingTop: "25px",
-                                                marginBottom: "2px",
-                                                textAlign: "right",
-                                                color: "#eee",
-                                                fontWeight: "bold",
-                                                fontFamily: "'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif"
-                                            }}>
-
-                                            {item.displayName}
-
-                                        </InputLabel>
-
-                                        {item.id == "location" ?
-                                            <Selection item={item} options={locations} selectionValue={data.location} handleChange={handleChange}></Selection>
-                                            :
-                                            item.id == "gender" ?
-                                                <Selection item={item} options={genders} selectionValue={data.gender} handleChange={handleChange}></Selection>
-                                                :
-                                                <Selection item={item} options={skinTones} selectionValue={data.skinTone} handleChange={handleChange}></Selection>
-                                        }
-
-                                    </>
+                                    item.id == "gender" ?
+                                        <Selection item={item} options={genders} selectionValue={data.gender} handleChange={handleChange}></Selection>
+                                        :
+                                        <Selection item={item} options={skinTones} selectionValue={data.skinTone} handleChange={handleChange}></Selection>
                                 }
-                            </Box>
-                        ))}
-                        <button id="submit-button" type="submit" className={styles.submitButton}>SUBMIT</button>
-                    </form >
-                </div>
-            )
-            }
-        </>
 
-    );
+                            </>
+                                }
+                        </Box>
+                    ))}
+                    <button id="submit-button" type="submit" className={styles.submitButton}>SUBMIT</button>
+                </form >
+            </div>
+        )
+        }
+    </>
+
+);
 }
 
 export default Profile;

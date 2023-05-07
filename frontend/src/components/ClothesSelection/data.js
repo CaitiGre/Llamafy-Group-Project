@@ -104,7 +104,7 @@ export const subSelectionItemsByClothesItem = {
     {
       src: skirt,
       name: "skirt",
-      category_id: 6,
+      category_id: 7,
       style: ["mini", "maxi", "pencil", "pleated", "wrap"],
       pattern: ["striped", "checkered", "animal print", "floral"],
     },
