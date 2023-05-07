@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import OotdTile from "./OotdTile";
 import styles from "./OutfitOfTheDay.module.css";
-import { InputLabel, Typography} from "@mui/material";
+import { InputLabel, Typography, Box} from "@mui/material";
 import { CompactPicker } from "react-color";
 import Heading from "../Heading/Heading";
 import getUserEmail from "../../helpers/getUserEmail";
@@ -11,9 +11,7 @@ import {
   Button,
   
 } from "@mui/material";
-import SubHeading from "../SubHeading/SubHeading";
-import { Box } from "@mui/material";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import llamaLoad from '../../assets/llamaLoad.gif'
 import Container from "react-bootstrap/Container";
@@ -197,7 +195,7 @@ const OutfitOfTheDay = () => {
                                                     "'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif",
                                             }}
                                         >
-                                            <h4>{weatherValues.tempC}</h4> with{" "}
+                                            {weatherValues.tempC} with{" "}
                                             {weatherValues.humidity} humidity.
                                             Windspeed at {weatherValues.windKph}
                                             .{" "}
@@ -206,12 +204,12 @@ const OutfitOfTheDay = () => {
                                 )}
 
                                 {weatherErr && (
-                                    <div className={styles.title}>
-                                        <p>
+                                    <Box className={styles.title}>
+                                        <Typography>
                                             Unable to fetch weather details at
                                             the moment. Try again soon.
-                                        </p>
-                                    </div>
+                                        </Typography>
+                                    </Box>
                                 )}
                             </Card.Body>
                         </Card>
