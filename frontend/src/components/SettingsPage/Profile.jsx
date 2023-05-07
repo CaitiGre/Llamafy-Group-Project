@@ -31,7 +31,6 @@ function Profile() {
             console.log("User email:", email);
             setUserEmail(email);
         }
-
         fetchUserEmail();
     }, []);
 
