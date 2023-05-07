@@ -6,6 +6,8 @@ import ClotheCustomisation from "../ClotheCustomisation/ClotheCustomisation";
 import axios from "axios";
 import getUserEmail from "../../helpers/getUserEmail";
 import { GetColorName } from "hex-color-to-color-name";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function ClothingSelectionModal({ selectedItem, showModal, onCloseModal }) {
   // All the states to be recorded in the new wardrobe item JSON
@@ -53,10 +55,10 @@ function ClothingSelectionModal({ selectedItem, showModal, onCloseModal }) {
         }
       );
       console.log("New Item added to your wardbrobe:", response.data);
-      alert("New Wardrobe item added successfully!");
+      toast.success("New Wardrobe item added successfully!");
     } catch (error) {
       console.error(error);
-      alert(
+      toast.error(
         "An error occurred while trying to add an item to your wardrobe. Please try again later."
       );
     }

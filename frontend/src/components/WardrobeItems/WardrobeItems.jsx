@@ -12,7 +12,8 @@ import styles from "./WardrobeItems.module.css";
 import axios from "axios";
 import { subSelectionItemsByClothesItem } from "../ClothesSelection/data";
 import SubSelectionModal from "../SubSelectionModal/SubSelectionModal";
-
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 // Card for each clothes item in the list
 function WardrobeItems({ clothes, setClothes, category }) {
   const [selectedItem, setSelectedItem] = useState(null);
@@ -49,11 +50,11 @@ function WardrobeItems({ clothes, setClothes, category }) {
 
       if (response.data.isItemDeleted) {
         console.log("item has been deleted ", response.data.isItemDeleted);
-        alert(`Item id#${item.clothing_id} deleted.`);
+        toast.success(`Item id#${item.clothing_id} deleted.`);
       }
     } catch (error) {
       console.error(error);
-      alert(
+      toast.error(
         "An error occurred while trying to delete the item. Please try again later."
       );
     }
@@ -110,7 +111,10 @@ function WardrobeItems({ clothes, setClothes, category }) {
         ))}
       {isItemsVisible && (
         <Box className={styles.navLinkContainer}>
-          <Button sx={{ color: "white" }} onClick={() => handleOpenModal(category)}>
+          <Button
+            sx={{ color: "white" }}
+            onClick={() => handleOpenModal(category)}
+          >
             Add items
           </Button>
         </Box>
