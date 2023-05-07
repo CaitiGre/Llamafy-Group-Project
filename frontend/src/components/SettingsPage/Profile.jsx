@@ -1,4 +1,4 @@
-import { InputLabel, Box, Select, MenuItem } from "@mui/material";
+import { InputLabel, Box } from "@mui/material";
 import { useState, useEffect } from "react";
 import styles from './SettingsPage.module.css';
 import useGet from '../../helpers/useGet';
@@ -41,7 +41,6 @@ function Profile() {
 
     useEffect(() => {
         if (!isLoading && dataObj.userData) {
-            console.log("isLoading: ", isLoading, "dataObj: ", dataObj);
 
             setData(
                 {
@@ -55,8 +54,6 @@ function Profile() {
                     password: dataObj.userData.password
                 }
             )
-
-            console.log("data", data);
         }
 
     }, [isLoading, dataObj]);
@@ -166,20 +163,13 @@ function Profile() {
                 console.log("new password to post:", data.newPassword);
 
                 if (response.data.validPass) {
-                    console.log("true - response.data.validPass: ", response.data.validPass);
-                    // alert('Update successful!');
                     toast.success('Update successful!');
                 } else {
-                    console.log("false - response.data.validPass: ", response.data.validPass);
-                    // alert('Incorrect password. Please try again!');
                     toast.error('Incorrect password. Please try again!');
                 }
 
-
-
             } catch (error) {
                 console.error(error);
-                // alert('An error occurred while registering. Please try again later.');
                 toast.error('An error occurred while registering. Please try again later.');
             }
         }
@@ -254,8 +244,6 @@ function Profile() {
                     </form >
                 </div>
             )
-
-                // <div><p>Loading...</p></div>
             }
         </>
 
