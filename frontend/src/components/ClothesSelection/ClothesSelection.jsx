@@ -28,12 +28,12 @@ function ClothesSelection() {
   });
 
   // Get user's current profile data from database
-  const {
-    data: dataObj,
-    isLoading,
-  } = useGet(`http://localhost:3006/wardrobe/getWardrobeItems/${userEmail}`, {
-    key: categoryItemsToShow.toString(),
-  });
+  const { data: dataObj, isLoading } = useGet(
+    `http://localhost:3006/wardrobe/getWardrobeItems/${userEmail}`,
+    {
+      key: categoryItemsToShow.toString(),
+    }
+  );
 
   useEffect(() => {
     console.log("parent category Items to show", categoryItemsToShow);
@@ -70,6 +70,7 @@ function ClothesSelection() {
   // Handling the close modal event
   const handleCloseModal = () => {
     setOpenModal(false);
+    window.location.reload();
   };
 
   return (
