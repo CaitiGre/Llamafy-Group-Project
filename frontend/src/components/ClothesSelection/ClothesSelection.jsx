@@ -57,7 +57,7 @@ function ClothesSelection() {
       setCategoryItemsToShow(itemsToShow);
       setOpenModal(true);
     }
-  }, [wardorbe]);
+  }, [wardorbe, selectedItem]);
   // Handling the open modal event and setting the selected item to show
   const openWardrobeModal = (item) => {
     setSelectedItem(item);
@@ -104,7 +104,6 @@ function ClothesSelection() {
       >
         <Box
           sx={{
-            background: "rgb(99,93,191)",
             background:
               "linear-gradient(321deg, rgba(99,93,191,1) 3%, rgba(217,139,223,1) 61%)",
             borderRadius: "16px",

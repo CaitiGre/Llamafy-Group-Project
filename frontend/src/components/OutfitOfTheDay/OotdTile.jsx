@@ -52,7 +52,7 @@ const OotdTile = ({ imgLink, description }) => {
   // allow the user to choose an outfit/outfits they like and save to static files
   function onClickHandler() {
     // don't allow the user to try and save the loading pictures
-    if (imgLink.substring(0, 16) != "https://oaidalle") {
+    if (imgLink.substring(0, 16) !== "https://oaidalle") {
       toast.error("That's not an outfit, dude");
       closeModal();
       return;
@@ -79,6 +79,7 @@ const OotdTile = ({ imgLink, description }) => {
         src={imgLink}
         className={styles.OotdTile}
         onClick={() => openModal()}
+        alt="ootd"
       />
       <div className={styles.tileDesc}>{description}</div>
 
@@ -99,6 +100,7 @@ const OotdTile = ({ imgLink, description }) => {
             paddingTop: "1.5vh",
             paddingBottom: "1.5vh",
           }}
+          alt="ootd"
         ></img>
         <div className={styles.modalButton}>
           <button onClick={onClickHandler}>Yeah!</button>

@@ -86,7 +86,6 @@ function ClothingSelectionModal({ selectedItem, showModal, onCloseModal }) {
         >
           <Card
             sx={{
-              background: "rgb(99,93,191)",
               background:
                 "linear-gradient(321deg, rgba(99,93,191,1) 3%, rgba(217,139,223,1) 61%)",
               borderRadius: "16px",

@@ -1,4 +1,4 @@
-import { InputLabel, Box, Select, MenuItem } from "@mui/material";
+import { InputLabel, Box } from "@mui/material";
 import { useState, useEffect } from "react";
 import styles from "./SettingsPage.module.css";
 import useGet from "../../helpers/useGet";
@@ -55,8 +55,6 @@ function Profile() {
         newPassword: "",
         password: dataObj.userData.password,
       });
-
-      console.log("data", data);
     }
   }, [isLoading, dataObj]);
 
@@ -245,14 +243,14 @@ function Profile() {
                       {item.displayName}
                     </InputLabel>
 
-                    {item.id == "location" ? (
+                    {item.id === "location" ? (
                       <Selection
                         item={item}
                         options={locations}
                         selectionValue={data.location}
                         handleChange={handleChange}
                       ></Selection>
-                    ) : item.id == "gender" ? (
+                    ) : item.id === "gender" ? (
                       <Selection
                         item={item}
                         options={genders}

@@ -49,8 +49,7 @@ function LoginPage() {
       });
 
       if (response.ok) {
-        await setUserAuthenticated(true);
-        const result = await response.json();
+        setUserAuthenticated(true);
         toast.success("Log in successful");
         navigate("/ootd");
       } else {
@@ -116,38 +115,48 @@ function LoginPage() {
               >
                 PASSWORD
               </InputLabel>
-              <Box style={{display: "flex", width: "70vh", alignContent: "center", alignItems: "center", justifyContent: "flex-end", paddingTop: "2vh", margin:"auto" }}>
-              <Input
-                required
-                sx={{
+              <Box
+                style={{
                   display: "flex",
-                  justifyContent: "center",
-                  borderRadius: "20px",
-                  boxShadow: "2px 2px 5px rgba(255, 255, 255, 0.8)",
-                  height: "40px",
                   width: "70vh",
-                  margin: "auto",
-                  backgroundColor: "white",
-                  textAlign: "center",
                   alignContent: "center",
-                  caretColor: "black",
+                  alignItems: "center",
+                  justifyContent: "flex-end",
+                  paddingTop: "2vh",
+                  margin: "auto",
                 }}
-                type={showPassword ? "text" : "password"}
-                onChange={handleChange}
-                value={data.password}
-                disableUnderline={true}
-                placeholder={""}
-                name="password"
-                id="password"
-              />
-              
+              >
+                <Input
+                  required
+                  sx={{
+                    display: "flex",
+                    justifyContent: "center",
+                    borderRadius: "20px",
+                    boxShadow: "2px 2px 5px rgba(255, 255, 255, 0.8)",
+                    height: "40px",
+                    width: "70vh",
+                    margin: "auto",
+                    backgroundColor: "white",
+                    textAlign: "center",
+                    alignContent: "center",
+                    caretColor: "black",
+                  }}
+                  type={showPassword ? "text" : "password"}
+                  onChange={handleChange}
+                  value={data.password}
+                  disableUnderline={true}
+                  placeholder={""}
+                  name="password"
+                  id="password"
+                />
+
                 <img
-                src={showPassword ? lashIcon : eyeIcon}
-                className={styles.passwordIcon}
-                style={{}}
-                onClick={toggleShowPassword}
-                alt="Eye icon to display or hide password"
-              />
+                  src={showPassword ? lashIcon : eyeIcon}
+                  className={styles.passwordIcon}
+                  style={{}}
+                  onClick={toggleShowPassword}
+                  alt="Eye icon to display or hide password"
+                />
               </Box>
             </Box>
           </Grid>
