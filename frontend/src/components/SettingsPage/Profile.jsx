@@ -140,9 +140,7 @@ function Profile() {
         event.preventDefault();
 
         if (
-            (data.newPassword || data.reNewPassword) &&
-            data.newPassword !== data.reNewPassword
-        ) {
+            (data.newPassword || data.reNewPassword) && data.newPassword !== data.reNewPassword) {
             // If there is something in New Password or Re-enter New Passworf field and the values they don't match:
             toast.error("Your new passwords must match.");
         } else {
@@ -178,7 +176,6 @@ function Profile() {
         }
     }
 
-
     return (
         <>
             {!isLoading && dataObj.userData && (
@@ -201,7 +198,6 @@ function Profile() {
                                             {item.displayName}
 
                                         </InputLabel>
-
 
                                         <input className={styles.field}
                                             type={item.type}
@@ -250,8 +246,6 @@ function Profile() {
             )
             }
         </>
-
-
     );
 }
 
