@@ -8,6 +8,7 @@ import { locations } from "./data";
 import { genders } from "./data";
 import { skinTones } from "./data";
 import Selection from "./Selection";
+import { toast } from "react-toastify";
 
 function Profile() {
 
@@ -144,7 +145,8 @@ function Profile() {
 
         if ((data.newPassword || data.reNewPassword) && (data.newPassword !== data.reNewPassword)) {
             // If there is something in New Password or Re-enter New Passworf field and the values they don't match:
-            alert("Your new passwords must match.");
+            // alert("Your new passwords must match.");
+            toast.error("Your new passwords must match.");
 
         } else {
             // Otherwise, try posting profile data to below URL
@@ -165,23 +167,27 @@ function Profile() {
 
                 if (response.data.validPass) {
                     console.log("true - response.data.validPass: ", response.data.validPass);
-                    alert('Update successful!');
+                    // alert('Update successful!');
+                    toast.success('Update successful!');
                 } else {
                     console.log("false - response.data.validPass: ", response.data.validPass);
-                    alert('Incorrect password. Please try again!');
+                    // alert('Incorrect password. Please try again!');
+                    toast.error('Incorrect password. Please try again!');
                 }
+
 
 
             } catch (error) {
                 console.error(error);
-                alert('An error occurred while registering. Please try again later.');
+                // alert('An error occurred while registering. Please try again later.');
+                toast.error('An error occurred while registering. Please try again later.');
             }
         }
     }
 
     return (
         <>
-            {(!isLoading && dataObj) ? (
+            {!isLoading && dataObj.userData && (
                 <div className={styles.formContainer}>
                     <form onSubmit={handleSubmit}>
                         {inputData.map((item) => (
@@ -248,8 +254,8 @@ function Profile() {
                     </form >
                 </div>
             )
-                :
-                <div><p>Loading...</p></div>
+
+                // <div><p>Loading...</p></div>
             }
         </>
 
