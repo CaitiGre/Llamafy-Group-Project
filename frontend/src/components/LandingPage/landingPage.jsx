@@ -46,7 +46,8 @@ function LandingPage() {
                       textAlign: "center",
                       padding: "5% 5%",
                       width: "30vh",
-                      fontFamily: "Franklin Gothic Medium, Arial Narrow, Arial, sans-serif",
+                      fontFamily:
+                        "Franklin Gothic Medium, Arial Narrow, Arial, sans-serif",
                       fontSize: "3vh",
                       backgroundColor: "#f0f0f0",
                       border: "1px solid #ccc",
@@ -70,7 +71,8 @@ function LandingPage() {
                       padding: "5% 5%",
                       width: "30vh",
                       fontSize: "3vh",
-                      fontFamily: "Franklin Gothic Medium, Arial Narrow, Arial, sans-serif",
+                      fontFamily:
+                        "Franklin Gothic Medium, Arial Narrow, Arial, sans-serif",
                       backgroundColor: "#f0f0f0",
                       border: "1px solid #ccc",
                       color: "#333",
@@ -91,7 +93,7 @@ function LandingPage() {
         <h2 className={styles.llamaSubheading}>
           NO TIME FOR DRAMA? TRUST IN LLAMA!
         </h2>
-
+        {/*  */}
         <Grid container spacing={10} sx={{ padding: "2vh", height: "auto" }}>
           <Grid item xs={12} md={9}>
             <Box
@@ -104,7 +106,7 @@ function LandingPage() {
                 height: "auto",
                 alignItems: "center",
                 boxShadow: "2px 2px 8px 2px rgba(0, 0, 0, 0.2)",
-                alignContent: "center"
+                alignContent: "center",
               }}
               p={2}
             >
@@ -113,7 +115,7 @@ function LandingPage() {
                   alignItems: "center",
                   textAlign: "justify",
                   margin: "auto",
-                  padding: "2.5vh"
+                  padding: "2.5vh",
                 }}
               >
                 Have you ever wanted to feel like Cher from clueless minus the
@@ -151,7 +153,6 @@ function LandingPage() {
           <Grid item xs={6} md={3}>
             <Card
               sx={{
-                
                 borderRadius: "25px",
                 height: "100%",
                 width: "100%",
@@ -162,10 +163,11 @@ function LandingPage() {
               <img
                 src={ClothingRail}
                 alt="clothing rail GIF"
-                style={{ height: "110%", width: "110%",  borderRadius: "25px" }}
+                style={{ height: "110%", width: "110%", borderRadius: "25px" }}
               />
             </Card>
           </Grid>
+          {/*  */}
           <Grid item xs={12} md={9}>
             <Box
               bgcolor="white"
@@ -180,9 +182,14 @@ function LandingPage() {
                 boxShadow: "2px 2px 8px 2px rgba(0, 0, 0, 0.2)",
               }}
             >
+              {/* Second section that introduces our website and what it does within a responsive Box */}
               <Typography
                 variant="subtitle1"
-                sx={{ alignItems: "center", textAlign: "justify", padding: "2.5vh"}}
+                sx={{
+                  alignItems: "center",
+                  textAlign: "justify",
+                  padding: "2.5vh",
+                }}
               >
                 Simply register with us, answer some basic questions about your
                 current wardrobe and you're done! Worry not, these answers can

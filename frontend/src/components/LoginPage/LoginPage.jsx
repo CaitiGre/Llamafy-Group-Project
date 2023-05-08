@@ -153,7 +153,16 @@ function LoginPage() {
                 <img
                   src={showPassword ? lashIcon : eyeIcon}
                   className={styles.passwordIcon}
-                  style={{}}
+                  style={{
+                    display: "flex",
+                    position: "fixed",
+                    cursor: "pointer",
+                    justifyContent: "center",
+                    paddingRight: "2vh",
+                    width: "4vh",
+                    marginRight: "1vh",
+                    zIndex: "5",
+                    height: "2vh"}}
                   onClick={toggleShowPassword}
                   alt="Eye icon to display or hide password"
                 />
