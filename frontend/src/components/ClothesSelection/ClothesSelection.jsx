@@ -13,7 +13,7 @@ function ClothesSelection() {
   const [openModal, setOpenModal] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
   const [categoryItemsToShow, setCategoryItemsToShow] = useState([]);
-  const [wardorbe, setwardrobe] = useState([]);
+  const [wardrobe, setwardrobe] = useState([]);
 
   // Get user's email from cookie once cookie's set up
   const [userEmail, setUserEmail] = useState(null);
@@ -25,7 +25,7 @@ function ClothesSelection() {
     }
 
     fetchUserEmail();
-  });
+  }, [setUserEmail]);
 
   // Get user's current profile data from database
   const { data: dataObj, isLoading } = useGet(
@@ -39,29 +39,29 @@ function ClothesSelection() {
     console.log("parent category Items to show", categoryItemsToShow);
   }, [categoryItemsToShow]);
   useEffect(() => {
-    console.log("Parent clothes", wardorbe);
-  }, [wardorbe, categoryItemsToShow]);
+    console.log("Parent clothes", wardrobe);
+  }, [wardrobe, categoryItemsToShow]);
 
   useEffect(() => {
     if (!isLoading && dataObj.wardrobeItems) {
       setwardrobe(dataObj.wardrobeItems);
       console.log("I am fetching your wardrobe from the database");
     }
-  }, [isLoading, dataObj.wardrobeItems, categoryItemsToShow]);
+  }, [isLoading, dataObj?.wardrobeItems, categoryItemsToShow]);
 
   useEffect(() => {
-    if (selectedItem && wardorbe.length > 0) {
-      const itemsToShow = wardorbe.filter(
+    if (selectedItem && wardrobe.length > 0) {
+      const itemsToShow = wardrobe.filter(
         (clothe) => clothe.main_category === selectedItem.name
       );
       setCategoryItemsToShow(itemsToShow);
       setOpenModal(true);
     }
-  }, [wardorbe, selectedItem]);
+  }, [wardrobe, selectedItem]);
   // Handling the open modal event and setting the selected item to show
   const openWardrobeModal = (item) => {
     setSelectedItem(item);
-    const itemsToShow = wardorbe.filter(
+    const itemsToShow = wardrobe.filter(
       (clothe) => clothe.main_category === item.name
     );
     setCategoryItemsToShow(itemsToShow);

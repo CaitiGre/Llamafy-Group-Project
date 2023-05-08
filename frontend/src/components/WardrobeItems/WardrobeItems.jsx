@@ -8,6 +8,7 @@ import {
   Button,
   Box,
 } from "@mui/material";
+import { GetColorName } from "hex-color-to-color-name";
 import styles from "./WardrobeItems.module.css";
 import axios from "axios";
 import { subSelectionItemsByClothesItem } from "../ClothesSelection/data";
@@ -40,8 +41,6 @@ function WardrobeItems({ clothes, setClothes, category }) {
     const remainingItemsToShow = clothes.filter(
       (catItem) => catItem.clothing_id !== item.clothing_id
     );
-    console.log("remaining items to show:", remainingItemsToShow);
-    setClothes(remainingItemsToShow);
 
     // Send Post request to delete item from the database
     try {
@@ -53,6 +52,8 @@ function WardrobeItems({ clothes, setClothes, category }) {
       if (response.data.isItemDeleted) {
         console.log("item has been deleted ", response.data.isItemDeleted);
         toast.success(`Item id#${item.clothing_id} deleted.`);
+        console.log("remaining items to show:", remainingItemsToShow);
+        setClothes(remainingItemsToShow);
       }
     } catch (error) {
       console.error(error);
