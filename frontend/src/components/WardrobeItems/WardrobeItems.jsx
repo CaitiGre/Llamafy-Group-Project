@@ -15,7 +15,6 @@ import { subSelectionItemsByClothesItem } from "../ClothesSelection/data";
 import SubSelectionModal from "../SubSelectionModal/SubSelectionModal";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { GetColorName } from "hex-color-to-color-name";
 
 // Card for each clothes item in the list
 function WardrobeItems({ clothes, setClothes, category }) {
