@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, Navigate } from 'react-router-dom';
 import './App.css';
 import LandingPage from './components/LandingPage/landingPage';
 import Favourites from './components/Favourites/Favourites';
@@ -16,7 +16,6 @@ import Prevented from './Prevented';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
 
 function App() {
   const [userAuthenticated, setUserAuthenticatedState] = useState(false);

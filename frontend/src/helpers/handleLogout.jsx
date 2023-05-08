@@ -6,7 +6,7 @@ export default async function handleLogout(setUserAuthenticated) {
           withCredentials: true,
         });
         setUserAuthenticated(false);
-    
+        
       } catch (err) {
         console.error("Error logging out:", err);
       }
