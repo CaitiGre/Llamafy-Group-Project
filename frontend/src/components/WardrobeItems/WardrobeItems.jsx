@@ -83,16 +83,18 @@ function WardrobeItems({ clothes, setClothes, category }) {
                     boxShadow: "0px 3px 10px rgba(0, 0, 0, 0.3)",
                     bgcolor: "background.paper",
                     borderRadius: 4,
+                    display: "flex",
+                    alignContent: "center",
+                    alignItems: "center",
                   }}
                 >
                   <ListItemText
                     secondary={
                       <>
                         <Typography
-                          sx={{ display: "inline" }}
                           component="span"
-                          variant="body2"
-                          color="text.primary"
+                          sx={{ paddingRight: 4 }}
+                          color="#58315CD8"
                         >
                           {GetColorName(item.color)} {item.sleeves}{" "}
                           {item.pattern} {item.style} {item.sub_category}{" "}
@@ -100,12 +102,14 @@ function WardrobeItems({ clothes, setClothes, category }) {
                             onClick={() => handleDeleteItem(item)}
                             sx={{
                               position: "absolute",
-                              top: 8,
-                              right: 2,
-                              padding: "5px",
+                              right: 0,
+                              top: "50%",
+                              transform: "translateY(-50%)",
+                              paddingRight: 0,
+                              padding: 1,
                             }}
                           >
-                            <img src={bin} alt="bin button" width="15px" />
+                            <img src={bin} alt="delete button" width={16} />
                           </Button>
                         </Typography>
                       </>
@@ -130,6 +134,16 @@ function WardrobeItems({ clothes, setClothes, category }) {
         <>
           {" "}
           <SubSelectionModal itemsToShow={subSelectionItemsToShow} />
+          <Box className={styles.navLinkContainer}>
+            <Button
+              sx={{ color: "white" }}
+              onClick={() => {
+                setIsItemsVisible(true);
+              }}
+            >
+              Back
+            </Button>
+          </Box>
         </>
       )}
     </>
