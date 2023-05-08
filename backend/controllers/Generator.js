@@ -79,7 +79,7 @@ async function getUserWardrobe(user_email) {
     try {
         const conn = await pool.getConnection();
         const rows = await conn.query(
-            `SELECT ClothingItem.clothing_id, Category.main_category, Category.sub_category, ClothingItem.color, ClothingItem.sleeves, ClothingItem.pattern
+            `SELECT ClothingItem.clothing_id, Category.main_category, Category.sub_category, ClothingItem.color, ClothingItem.sleeves, ClothingItem.pattern, ClothingItem.style
        FROM ClothingItem
        INNER JOIN Users ON ClothingItem.user_email = Users.email
        INNER JOIN Category ON ClothingItem.category_id = Category.category_id
@@ -98,6 +98,7 @@ async function getUserWardrobe(user_email) {
                 color,
                 sleeves,
                 pattern,
+                style,
             } = row;
 
             if (!clothingItemsByCategory[main_category]) {
@@ -110,6 +111,7 @@ async function getUserWardrobe(user_email) {
                 color,
                 sleeves,
                 pattern,
+                style,
             });
         });
 
