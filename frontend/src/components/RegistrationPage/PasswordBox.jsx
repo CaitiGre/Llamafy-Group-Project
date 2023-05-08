@@ -1,4 +1,4 @@
-import { Box, Input, InputLabel } from "@mui/material";
+import { Box, Input, InputLabel, useMediaQuery, useTheme } from "@mui/material";
 import style from "../RegistrationPage/Registration.module.css";
 import { useState } from "react";
 import eyeIcon from "../../assets/show.png";
@@ -10,6 +10,8 @@ export default function PasswordBox({ data, handleChange }) {
   function toggleShowPassword() {
     setShowPassword(!showPassword);
   }
+  const theme = useTheme();
+  const isLargeScreen = useMediaQuery(theme.breakpoints.up("lg"));
 
   return (
     <>
@@ -38,6 +40,8 @@ export default function PasswordBox({ data, handleChange }) {
             placeholder=""
             style={{
               backgroundColor: "white",
+              width: isLargeScreen ? "50vw" : "72vw",
+              height: "4.5vh",
             }}
             disableUnderline={true}
           />
@@ -72,7 +76,11 @@ export default function PasswordBox({ data, handleChange }) {
             value={data.repassword}
             onChange={handleChange}
             placeholder=""
-            style={{ backgroundColor: "white", border: "0.5px solid white" }}
+            style={{ 
+              backgroundColor: "white",   
+              width: isLargeScreen ? "50vw" : "72vw", 
+              height: "4.5vh", 
+            }}
             disableUnderline={true}
           />
           <img
