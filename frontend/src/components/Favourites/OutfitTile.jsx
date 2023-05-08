@@ -5,14 +5,14 @@ import { Typography, Card, Box } from "@mui/material";
 const OutfitTile = ({ outfit }) => {
   return (
     <React.Fragment>
-      <Box justifyContent={"center"} sx={{width:"fit-content"}}>
+      <Box justifyContent={"center"} sx={{ width: "fit-content" }}>
         <Card
           sx={{
             width: "fit-content",
             borderRadius: "4%",
             backgroundColor: "rgba(255, 255, 255, 0.92)",
             margin: "20px",
-            padding: 1,
+            padding: 0,
             justifyContent: "center",
             alignItems: "center",
             display: "flex",

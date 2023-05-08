@@ -29,10 +29,8 @@ function ClothesSelection() {
 
   // Get user's current profile data from database
   const { data: dataObj, isLoading } = useGet(
-    `http://localhost:3006/wardrobe/getWardrobeItems/${userEmail}`,
-    {
-      key: categoryItemsToShow.toString(),
-    }
+    `http://localhost:3006/wardrobe/getWardrobeItems/${userEmail}`, openModal
+  
   );
 
   useEffect(() => {
@@ -57,8 +55,8 @@ function ClothesSelection() {
       setCategoryItemsToShow(itemsToShow);
       setOpenModal(true);
     }
-  }, [wardrobe, selectedItem]);
-  // Handling the open modal event and setting the selected item to show
+  }, [selectedItem]);
+  // Handle the open modal event and setting the selected item to show
   const openWardrobeModal = (item) => {
     setSelectedItem(item);
     const itemsToShow = wardrobe.filter(
@@ -67,10 +65,9 @@ function ClothesSelection() {
     setCategoryItemsToShow(itemsToShow);
     setOpenModal(true);
   };
-  // Handling the close modal event
+  // Handle the close modal event
   const handleCloseModal = () => {
     setOpenModal(false);
-    window.location.reload();
   };
 
   return (
