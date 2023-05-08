@@ -12,7 +12,7 @@ const OutfitTile = ({ outfit }) => {
             borderRadius: "4%",
             backgroundColor: "rgba(255, 255, 255, 0.92)",
             margin: "20px",
-            padding: 0,
+            padding: 1,
             justifyContent: "center",
             alignItems: "center",
             display: "flex",
