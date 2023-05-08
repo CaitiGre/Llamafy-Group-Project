@@ -5,11 +5,14 @@ export default async function checkSession(setUserAuthenticated) {
         const response = await axios.post('http://localhost:3006/auth/checkSession', null, {
           withCredentials: true,
         });
-    
+        console.log(response.data.isAuthenticated);
         if (response.data.isAuthenticated) {
           setUserAuthenticated(true);
         } else {
           setUserAuthenticated(false);
+          if ((window.location.pathname !== "/login") && (!["/", "/login", "/register", "/disclaimer"].includes(window.location.pathname))) {
+            window.location.replace("/login");
+          }
         }
         
       } catch (err) {

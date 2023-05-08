@@ -52,13 +52,14 @@ function App() {
                 <RegistrationPage />
               </Prevented>
             } />
-            {userAuthenticated && (
+            {userAuthenticated ? (
               <>
                 <Route path="pastOutfits" element={< Favourites />} />
                 <Route path="wardrobe" element={< WardrobeSelection />} />
                 <Route path="settings" element={< SettingsPage />} />
                 <Route path="ootd" element={< OutfitOfTheDay />} />
               </>
+            ) : (<Route path="login" element={<LoginPage/>}/>
             )}
 
             <Route path="disclaimer" element={<Disclaimers />} />
