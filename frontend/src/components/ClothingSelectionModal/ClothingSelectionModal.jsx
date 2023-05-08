@@ -5,7 +5,8 @@ import close from "./../../assets/close.png";
 import ClotheCustomisation from "../ClotheCustomisation/ClotheCustomisation";
 import axios from "axios";
 import getUserEmail from "../../helpers/getUserEmail";
-import { GetColorName } from "hex-color-to-color-name";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function ClothingSelectionModal({ selectedItem, showModal, onCloseModal }) {
   // All the states to be recorded in the new wardrobe item JSON
@@ -34,7 +35,7 @@ function ClothingSelectionModal({ selectedItem, showModal, onCloseModal }) {
       category_id: selectedItem.category_id,
       style: selectedStyle,
       pattern: selectedPattern,
-      color: GetColorName(color.hex),
+      color: color.hex,
       sleeves: selectedSleeves,
     };
 
@@ -48,15 +49,15 @@ function ClothingSelectionModal({ selectedItem, showModal, onCloseModal }) {
           category_id: selectedItem.category_id,
           style: selectedStyle,
           pattern: selectedPattern,
-          color: GetColorName(color.hex),
+          color: color.hex,
           sleeves: selectedSleeves,
         }
       );
       console.log("New Item added to your wardbrobe:", response.data);
-      alert("New Wardrobe item added successfully!");
+      toast.success("New Wardrobe item added successfully!");
     } catch (error) {
       console.error(error);
-      alert(
+      toast.error(
         "An error occurred while trying to add an item to your wardrobe. Please try again later."
       );
     }
@@ -84,6 +85,8 @@ function ClothingSelectionModal({ selectedItem, showModal, onCloseModal }) {
         >
           <Card
             sx={{
+              background:
+                "linear-gradient(321deg, rgba(99,93,191,1) 3%, rgba(217,139,223,1) 61%)",
               borderRadius: "16px",
               height: "max-content",
               outline: "none",
@@ -102,7 +105,10 @@ function ClothingSelectionModal({ selectedItem, showModal, onCloseModal }) {
               >
                 <img src={close} alt="close button" width="20px" />
               </Button>
-              <Typography variant="h4" sx={{ textTransform: "uppercase" }}>
+              <Typography
+                variant="h4"
+                sx={{ textTransform: "uppercase", color: "white" }}
+              >
                 {selectedItem.name}
               </Typography>
               <Grid>
@@ -192,14 +198,10 @@ function ClothingSelectionModal({ selectedItem, showModal, onCloseModal }) {
                     right: "0",
                   }}
                 >
-                  <Button variant="outlined" onClick={onCloseModal}>
+                  <Button sx={{ color: "white" }} onClick={onCloseModal}>
                     Cancel
                   </Button>
-                  <Button
-                    variant="outlined"
-                    color="primary"
-                    onClick={handleAddClick}
-                  >
+                  <Button sx={{ color: "white" }} onClick={handleAddClick}>
                     Add
                   </Button>
                 </Box>

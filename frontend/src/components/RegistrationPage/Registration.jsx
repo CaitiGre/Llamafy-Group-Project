@@ -10,7 +10,7 @@ import PasswordBox from "./PasswordBox";
 import axios from "axios";
 import Heading from "../Heading/Heading";
 import { useNavigate } from "react-router";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const salt = bcrypt.genSaltSync(10);
@@ -42,24 +42,21 @@ function RegistrationPage() {
     if (data.password !== data.repassword) {
       toast.error("Your passwords must match.");
     } else if (Object.values(data).includes("")) {
-      toast.error("All details on this form are required.")
+      toast.error("All details on this form are required.");
     } else {
       const hashedPassword = bcrypt.hashSync(data.password, salt);
       try {
-        const response = await axios.post(
-          "http://localhost:3006/registration/registerNewUser",
-          {
-            firstName: data.firstName,
-            lastName: data.lastName,
-            email: data.email,
-            password: hashedPassword,
-            location: data.location,
-            gender: data.gender,
-          }
-        );
+        await axios.post("http://localhost:3006/registration/registerNewUser", {
+          firstName: data.firstName,
+          lastName: data.lastName,
+          email: data.email,
+          password: hashedPassword,
+          location: data.location,
+          gender: data.gender,
+        });
         // Only display success message and navigate if axios is successful
         toast.success("Registration successful!");
-        navigate('/login');
+        navigate("/login");
       } catch (error) {
         console.log(error);
         toast.error(

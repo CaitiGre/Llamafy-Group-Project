@@ -1,14 +1,14 @@
-import React from 'react';
-import { Route, Routes, Navigate } from 'react-router-dom';
-import './App.css';
-import LandingPage from './components/LandingPage/landingPage';
-import Favourites from './components/Favourites/Favourites';
-import RegistrationPage from './components/RegistrationPage/Registration';
-import LoginPage from './components/LoginPage/LoginPage';
-import WardrobeSelection from './components/WardrobeSelection/WardrobeSelection';
-import Navbar from './components/Navbar/Navbar';
-import SettingsPage from './components/SettingsPage/SettingsPage';
-import OutfitOfTheDay from './components/OutfitOfTheDay/OutfitOfTheDay';
+import React from "react";
+import { Route, Routes } from "react-router-dom";
+import "./App.css";
+import LandingPage from "./components/LandingPage/landingPage";
+import Favourites from "./components/Favourites/Favourites";
+import RegistrationPage from "./components/RegistrationPage/Registration";
+import LoginPage from "./components/LoginPage/LoginPage";
+import WardrobeSelection from "./components/WardrobeSelection/WardrobeSelection";
+import Navbar from "./components/Navbar/Navbar";
+import SettingsPage from "./components/SettingsPage/SettingsPage";
+import OutfitOfTheDay from "./components/OutfitOfTheDay/OutfitOfTheDay";
 import Disclaimers from "./components/Disclaimers/Disclaimer";
 import AuthContext from './AuthContext';
 import { useState } from 'react';
@@ -61,11 +61,7 @@ function App() {
               </>
             )}
 
-
-
             <Route path="disclaimer" element={<Disclaimers />} />
-
-
           </Routes>
         </React.Fragment>
       </div>
