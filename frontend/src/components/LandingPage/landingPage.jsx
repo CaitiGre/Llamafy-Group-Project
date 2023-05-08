@@ -7,11 +7,6 @@ import { Box, Button, Grid, Typography, Card } from "@mui/material";
 
 function LandingPage() {
   return (
-    /** A div that contains the main components for the landing page. Contains three separate divs.
-     * The first is for the top section of the landing page that controls the buttons and the title
-     * The aboutContainer contains the first section of the about page that explains about what Llamafy does
-     * The third div explains why customers should use our product.
-     **/
     <React.Fragment>
       <Box className={styles.landingPage}>
         <Box style={{ width: "cover", height: "80vh", margin: "auto" }}>
@@ -37,6 +32,7 @@ function LandingPage() {
               justifyContent="center"
               spacing={5}
             >
+              {/* Grid section to contain the buttons that direct users to the alternative pages */}
               <Grid item className={styles.buttonStyle}>
                 <NavLink to="/login">
                   <Button
@@ -93,7 +89,7 @@ function LandingPage() {
         <h2 className={styles.llamaSubheading}>
           NO TIME FOR DRAMA? TRUST IN LLAMA!
         </h2>
-        {/*  */}
+        {/* Grid containing the about information related to the project e.g. what it does in a responsive grid */}
         <Grid container spacing={10} sx={{ padding: "2vh", height: "auto" }}>
           <Grid item xs={12} md={9}>
             <Box
@@ -133,6 +129,7 @@ function LandingPage() {
             </Box>
           </Grid>
           <Grid item xs={6} md={3}>
+            {/* Gif container within the grid. Responsive to screen size */}
             <Card
               sx={{
                 borderRadius: "25px",
@@ -151,6 +148,7 @@ function LandingPage() {
             </Card>
           </Grid>
           <Grid item xs={6} md={3}>
+            {/* Gif container within the grid. Responsive to screen size */}
             <Card
               sx={{
                 borderRadius: "25px",

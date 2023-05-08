@@ -41,7 +41,7 @@ const Navbar = () => {
 
   /**Handles the scrolling event to trigger the navbar transition */
   useEffect(() => {
-    //authenticated status check
+    // authenticated status check
     // Call the checkSession function when the component mounts.
     //checks authenticated status to toggle between login and logout buttons.
     checkSession(setUserAuthenticated);
@@ -50,6 +50,7 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [initalScrollPosition, visible, handleScroll]);
 
+  // Upon logout redirects the user to the login page
   async function handleLogOut() {
     await handleLogout(setUserAuthenticated);
     navigate('/login');
@@ -57,6 +58,7 @@ const Navbar = () => {
 
   return (
     <React.Fragment>
+      {/* Sets a Mui appbar that serves as a navigation bar with a transparent background */}
       <AppBar
         sx={{ background: "transparent", boxShadow: "none" , justifyContent: "space-between", display: "flex", margin: "auto"}}
         style={{ top: visible ? "0" : "-20vh", transition: "top 0.2s" }}
@@ -71,6 +73,7 @@ const Navbar = () => {
             width: "100%"
           }}
         >
+          {/* Changes the displayed links based on the screen size */}
           <Box sx={{ display: "flex", justifyContent: "flex-start",  float: "left", }}>
             <NavLink to="/">
               <img src={Llama} alt="llama homepage icon" width="40px" />
@@ -104,6 +107,7 @@ const Navbar = () => {
                   float: "right"
                 }}
               >
+                {/* Sets the navLinks available if the users are logged in to allow them access to their pages */}
                 {userAuthenticated && (
                   <>
                   <Box sx={{display: "flex", justifyContent: "flex-end", margin:"auto"}}>
@@ -167,6 +171,7 @@ const Navbar = () => {
                   fontSize: 20,
                 }}
               >
+                {/* If users are not authenticated it sets the navbar to only display the login and register buttons */}
                 {userAuthenticated ? (
                   <>
                   <Box>
