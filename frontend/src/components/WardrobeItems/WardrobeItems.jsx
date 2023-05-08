@@ -130,16 +130,6 @@ function WardrobeItems({ clothes, setClothes, category }) {
         <>
           {" "}
           <SubSelectionModal itemsToShow={subSelectionItemsToShow} />
-          <Box className={styles.navLinkContainer}>
-            <Button
-              sx={{ color: "white" }}
-              onClick={() => {
-                setIsItemsVisible(true);
-              }}
-            >
-              Back
-            </Button>
-          </Box>
         </>
       )}
     </>
