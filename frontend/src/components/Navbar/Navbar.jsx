@@ -46,22 +46,14 @@ const Navbar = () => {
     //checks authenticated status to toggle between login and logout buttons.
     checkSession(setUserAuthenticated);
 
-    // Get the current pathname
-    const { pathname } = window.location;
-
-    // Redirect to /login if the user is not authenticated and not on one of the allowed pages
-    if (!userAuthenticated && !['/', '/login', '/register', '/disclaimer'].includes(pathname)) {
-      navigate('/login');
-    }
     window.addEventListener("scroll", handleScroll);
 
     return () => window.removeEventListener("scroll", handleScroll);
   }, [initalScrollPosition, visible, handleScroll]);
 
   async function handleLogOut(setUserAuthenticated) {
-
-    await handleLogout(setUserAuthenticated)
-  }
+    await handleLogout(setUserAuthenticated);
+  };
 
   return (
     <React.Fragment>

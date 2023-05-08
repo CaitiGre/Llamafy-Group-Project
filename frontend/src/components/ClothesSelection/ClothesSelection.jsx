@@ -8,6 +8,7 @@ import { clothesItems } from "./data";
 import WardrobeItems from "../WardrobeItems/WardrobeItems";
 import getUserEmail from "../../helpers/getUserEmail";
 
+
 function ClothesSelection() {
   // Defining state variables for the modal
   const [openModal, setOpenModal] = useState(false);
