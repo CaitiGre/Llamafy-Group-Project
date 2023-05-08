@@ -1,6 +1,6 @@
 import { useState } from "react";
 import style from "../RegistrationPage/Registration.module.css";
-import { Box, Button } from "@mui/material";
+import { Box, Button, Grid, useMediaQuery, useTheme } from "@mui/material";
 import bcrypt from "bcryptjs";
 import NamesBox from "./NameBox";
 import EmailBox from "./EmailBox";
@@ -17,7 +17,8 @@ const salt = bcrypt.genSaltSync(10);
 
 function RegistrationPage() {
   const navigate = useNavigate();
-
+  const theme = useTheme();
+  const isLargeScreen = useMediaQuery(theme.breakpoints.up("lg"));
   const [data, setData] = useState({
     firstName: "",
     lastName: "",
@@ -60,48 +61,50 @@ function RegistrationPage() {
         console.log(error);
         toast.error(
           "An error occurred while registering. Please try again later." +
-            String(error)
+          String(error)
         );
       }
     }
   };
 
+
   return (
     <>
       <Heading title="Register" />
-      <div className={style["form-container"]}>
-        <form
-          onSubmit={handleSubmit}
-          style={{ width: "90vh", margin: "auto", maxHeight: "80vh" }}
-        >
-          <Box
-            display="flex"
-            justifyContent="center"
-            alignItems="center"
-            flexDirection="column"
-            rowGap="0.6vh"
-            style={{ paddingBottom: "3vh" }}
-          >
-            <NamesBox data={data} handleChange={handleChange} />
-            {/*Need to add alert function if email entered is already in use.*/}
-            <EmailBox data={data} handleChange={handleChange} />
-            <PasswordBox data={data} handleChange={handleChange} />
-            <LocationBox data={data} handleChange={handleChange} />
-            <GenderButtons data={data} handleButtonClick={handleButtonClick} />
-            <Button
-              className={style.submitButton}
-              style={{
-                backgroundColor: "white",
-                color: "black",
-                borderRadius: "25px",
-              }}
-              type="submit"
+      <Grid
+        container
+        direction="column"
+        justifyContent="center"
+        alignItems="center"
+        spacing={3}
+      >
+        <Grid item xs={12} md={8} lg={6}>
+          <form onSubmit={handleSubmit}>
+            <Box
+              display="flex"
+              justifyContent="center"
+              alignItems="center"
+              flexDirection="column"
+              rowGap="0.6vh"
+              style={{ paddingBottom: "3vh", maxWidth: "70vw" }}
             >
-              SUBMIT
-            </Button>
-          </Box>
-        </form>
-      </div>
+              <NamesBox data={data} handleChange={handleChange} />
+              {/*Need to add alert function if email entered is already in use.*/}
+              <EmailBox data={data} handleChange={handleChange} />
+              <PasswordBox data={data} handleChange={handleChange} />
+              <LocationBox data={data} handleChange={handleChange} />
+              <GenderButtons data={data} handleButtonClick={handleButtonClick} />
+              <Button
+                id={style.submitButton}
+                type="submit"
+                style={{ width: isLargeScreen ? "50vw" : "70vw" }}
+              >
+                SUBMIT
+              </Button>
+            </Box>
+          </form>
+        </Grid>
+      </Grid>
     </>
   );
 }

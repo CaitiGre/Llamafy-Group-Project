@@ -2,24 +2,7 @@
   border-radius: 20px;
   box-shadow: 2px 2px 5px rgb(255, 255, 255);
   border: none;
-  height: auto;
   text-transform: uppercase;
-  text-align: center;
-}
-
-.NameBoxContainer {
-  display: flex;
-  justify-content: space-between;
-}
-
-#password,
-#repassword {
-  width: 70vh;
-  position: relative;
-}
-
-#email {
-  width: 70vh;
 }
 
 .form-container {
@@ -36,11 +19,11 @@
   column-gap: 2.2vh;
   padding: 0px;
   margin: 0px;
-  width: 100%;
+  width: 70vw;
 }
 
 .gender-button button {
-  width: 26vh;
+  width: 26vw;
   background-color: #ffffff;
   border: 1px solid #e2e2e2;
   border-radius: 20px;
@@ -81,8 +64,7 @@
   box-shadow: 2px 2px 5px rgba(255, 255, 255, 0.8);
 }
 
-.submitButton {
-  width: 70vh;
+#submitButton {
   background-color: #ffffff;
   border: 1px solid #ccc;
   border-radius: 20px;
@@ -90,14 +72,14 @@
   padding: 2vh;
   cursor: pointer;
   font-size: 14px;
-  margin: 0px 5px;
+  margin: 20px 5px;
   outline: none;
   height: 5vh;
   transition: background-color 0.3s, border-color 0.3s;
   box-shadow: 2px 2px 5px rgba(255, 255, 255, 0.8);
 }
 
-.submitButton:hover {
+#submitButton:hover {
   background-color: #ee69ec8b;
 }
 

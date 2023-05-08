@@ -1,7 +1,9 @@
-import { Box, Input, InputLabel } from "@mui/material";
+import { Box, Input, InputLabel, useMediaQuery, useTheme  } from "@mui/material";
 import style from "../RegistrationPage/Registration.module.css";
 
 export default function EmailBox({ data, handleChange }) {
+  const theme = useTheme();
+  const isLargeScreen = useMediaQuery(theme.breakpoints.up("lg"));
   return (
     <Box display="flex" flexDirection="column" alignItems="center">
       <InputLabel
@@ -25,7 +27,13 @@ export default function EmailBox({ data, handleChange }) {
         value={data.email}
         onChange={handleChange}
         placeholder="llama@lavenderllama.co.nz"
-        style={{ backgroundColor: "white" }}
+        style={{ 
+          backgroundColor: "white",
+          height: "4.5vh",
+          borderRadius: "25px",
+          width: isLargeScreen ? "50vw" : "72vw",
+          
+         }}
         disableUnderline={true}
       />
     </Box>
