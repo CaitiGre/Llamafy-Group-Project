@@ -1,4 +1,4 @@
-import { Box, InputLabel, MenuItem, Select } from "@mui/material";
+import { Box, InputLabel, MenuItem, Select, useMediaQuery, useTheme } from "@mui/material";
 import style from "../RegistrationPage/Registration.module.css";
 
 export default function LocationBox({ data, handleChange }) {
@@ -9,6 +9,20 @@ export default function LocationBox({ data, handleChange }) {
     "Dunedin",
     "Invercargill",
   ];
+  const theme = useTheme();
+  const isLargeScreen = useMediaQuery(theme.breakpoints.up("lg"));
+  const selectStyle = {
+    backgroundColor: "white",
+    borderRadius: "25px",
+    height: "4.5vh",
+    color: "black",
+    fontFamily: "Franklin Gothic Medium, 'Arial Narrow', Arial, sans-serif",
+    textAlign: "center",
+    fontWeight: "1px",
+    justifyContent: "center",
+    disableUnderline: true,
+    width: isLargeScreen ? "50vw" : "72vw",
+  };
 
   return (
     <Box display="flex" flexDirection="column" alignItems="center">
@@ -19,7 +33,7 @@ export default function LocationBox({ data, handleChange }) {
           paddingBottom: "5px",
           textTransform: "uppercase",
           fontFamily:
-          "'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif",
+            "'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif",
           color: "#fefefe",
         }}
       >
@@ -31,18 +45,7 @@ export default function LocationBox({ data, handleChange }) {
         className={style["register-input"]}
         value={data.location}
         onChange={handleChange}
-        style={{
-          backgroundColor: "white",
-          borderRadius: "25px",
-          width: "71vh",
-          height: "4.5vh",
-          color: "black",
-          fontFamily:
-          "Franklin Gothic Medium, 'Arial Narrow', Arial, sans-serif",
-          textAlign: "center",
-          fontWeight: "1px",
-          justifyContent: "center",
-        }}
+        style={selectStyle}
         disableUnderline={true}
       >
         <MenuItem value="" style={{ color: "black" }} disabled>
