@@ -12,8 +12,7 @@ import OutfitOfTheDay from './components/OutfitOfTheDay/OutfitOfTheDay';
 import Disclaimers from "./components/Disclaimers/Disclaimer";
 import AuthContext from './AuthContext';
 import { useState } from 'react';
-// import Protected from './Protected';
-// import Prevented from './Prevented';
+import Prevented from './Prevented';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -38,46 +37,28 @@ function App() {
           </header>
 
           <Routes>
-            {!userAuthenticated && (
-              <>
-                <Route path="/" element={
+            <Route path="/" element={
+              <Prevented isAuthenticated={userAuthenticated}>
+                <LandingPage />
+              </Prevented>
+            } />
+            <Route path="login" element={
+              <Prevented isAuthenticated={userAuthenticated}>
+                <LoginPage />
+              </Prevented>
+            } />
+            <Route path="register" element={
 
-                  <LandingPage />
-
-                } />
-                <Route path="login" element={
-
-                  <LoginPage />
-
-                } />
-                <Route path="register" element={
-
-                  <RegistrationPage />
-                } />
-              </>
-            )}
+              <Prevented isAuthenticated={userAuthenticated}>
+                <RegistrationPage />
+              </Prevented>
+            } />
             {userAuthenticated && (
               <>
-                <Route path="pastOutfits" element={
-                  
-                    <Favourites />
-                  
-                } />
-                <Route path="wardrobe" element={
-                  
-                    <WardrobeSelection />
-                  
-                } />
-                <Route path="settings" element={
-                 
-                    <SettingsPage />
-                
-                } />
-                <Route path="ootd" element={
-                  
-                    < OutfitOfTheDay />
-                
-                } />
+                <Route path="pastOutfits" element={< Favourites />} />
+                <Route path="wardrobe" element={< WardrobeSelection />} />
+                <Route path="settings" element={< SettingsPage />} />
+                <Route path="ootd" element={< OutfitOfTheDay />} />
               </>
             )}
 
@@ -90,17 +71,17 @@ function App() {
         </React.Fragment>
       </div>
       <ToastContainer
-                position="bottom-right"
-                autoClose={5000}
-                hideProgressBar={false}
-                newestOnTop={false}
-                closeOnClick
-                rtl={false}
-                pauseOnFocusLoss
-                draggable
-                pauseOnHover
-                theme="colored"
-            />
+        position="bottom-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+      />
     </AuthContext.Provider>
   );
 }
