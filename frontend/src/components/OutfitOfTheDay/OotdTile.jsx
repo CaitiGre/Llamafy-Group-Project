@@ -8,7 +8,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 const customStyles = {
   content: {
-    border: "2px solid black",
+    border: "1px solid black",
     top: "50%",
     left: "50%",
     right: "auto",
@@ -92,16 +92,19 @@ const OotdTile = ({ imgLink, description }) => {
       >
         <h2>OUTFIT</h2>
         <div>You like what you see?</div>
-        <img
-          src={imgLink}
-          style={{
+        <div style={{
             width: "min(90vw,512px)",
-            borderRadius: "25px",
+            borderRadius: "2vh",
             paddingTop: "1.5vh",
             paddingBottom: "1.5vh",
-          }}
+          }}>
+          <img
+          src={imgLink}
+          
           alt="ootd"
-        ></img>
+        />
+        </div>
+        
         <div className={styles.modalButton}>
           <button onClick={onClickHandler}>Yeah!</button>
           <button onClick={closeModal}>You're joking</button>

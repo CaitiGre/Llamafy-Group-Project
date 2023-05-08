@@ -1,9 +1,10 @@
 .recommendationTiles {
+    padding-top: 1vh;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: auto;
     align-items:flex-start;
-    justify-content: space-between;
+    justify-content: space-around;
     width: auto;
 }
 
@@ -35,9 +36,8 @@
     justify-content: center;
     width: min(33vw,512px);
     height: min(33vw,512px);
-    box-shadow:  3px 5px #58315c;
-    border-radius: 25px;
-    padding-top: 2vh; 
+    border-radius: 2vh;
+    box-shadow: 2px 2px 8px 2px rgba(0, 0, 0, 0.2);
 }
 
 .OotdTile:hover {
@@ -61,7 +61,8 @@
     border-radius: 15px;
     text-transform: uppercase;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    
+    width: min(39vw, 512px);
+    justify-content: center;
 }
 
 .modalButton {
@@ -77,9 +78,16 @@
     justify-content: center;
     padding: 0.5vh;
     align-content: space-between;
-    border-radius: 20px;
+    align-items: center;
+    border-radius: 2vh;
     text-transform: uppercase;
     width: 10vh;
+}
+
+.generateButton:hover{
+    background-color: #ee6aecaf;
+    border-color: #aaa;
+    color: #fefefe;
 }
 
 .ootdSubtitle{
