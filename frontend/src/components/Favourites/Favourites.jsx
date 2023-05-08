@@ -5,7 +5,7 @@ import Heading from "../Heading/Heading";
 import SubHeading from "../SubHeading/SubHeading";
 import styles from "./Favourites.module.css";
 import getUserEmail from "../../helpers/getUserEmail";
-import { Box } from "@mui/material";
+import { Box, Grid } from "@mui/material";
 
 const Favourites = () => {
   // init states
@@ -50,16 +50,35 @@ const Favourites = () => {
 
       {/* Loop over all the user's past outfits for history*/}
 
-      <Box>
+<Box sx={{marginTop:8}}>
+      <Grid
+        container
+        spacing={{ xs: 2, md: 6 }}
+        columns={{ xs: 1, sm: 6, md: 12, lg: 12 }}
+        sx={{
+          justifyContent: "center",
+          backgroundColor: "transparent",
+        }}
+      >
         {pastOutfits ? (
           pastOutfits.map((outfitObj) => (
-            <Box className={styles.card} key={outfitObj.id}>
+            <Grid
+              item
+              key={outfitObj.id}
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                width: "fit-content",
+              }}
+            >
               <OutfitTile outfit={outfitObj} />
-            </Box>
+            </Grid>
           ))
         ) : (
           <SubHeading subtitle="Go select some of your favourite outfits to display here" />
         )}
+      </Grid>
       </Box>
     </>
   );
