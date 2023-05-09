@@ -52,7 +52,7 @@ export default function Favourites() {
         <Grid
           container
           spacing={{ xs: 2, md: 6 }}
-          columns={{ xs: 1, sm: 6, md: 12, lg: 12 }}
+          columns={{ xs: 1, sm: 6, md: 8, lg: 12 }}
           sx={{
             justifyContent: "center",
             backgroundColor: "transparent",
