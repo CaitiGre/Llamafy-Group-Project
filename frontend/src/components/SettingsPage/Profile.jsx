@@ -9,6 +9,7 @@ import { genders } from "./data";
 import { skinTones } from "./data";
 import Selection from "./Selection";
 import { toast } from "react-toastify";
+import llamaLoad from "../../assets/llamaLoad.gif";
 
 function Profile() {
     const [data, setData] = useState({
@@ -40,6 +41,8 @@ function Profile() {
         `http://localhost:3006/profile/getProfile/${userEmail}`
     );
 
+    const [dataFetched, setDataFetched] = useState(false);
+
     useEffect(() => {
         if (!isLoading && dataObj.userData) {
 
@@ -55,6 +58,8 @@ function Profile() {
                     password: dataObj.userData.password
                 }
             )
+
+            setDataFetched(true);
         }
 
     }, [isLoading, dataObj]);
@@ -178,72 +183,78 @@ function Profile() {
 
     return (
         <>
-            {!isLoading && dataObj.userData && (
-                <div className={styles.formContainer}>
-                    <form onSubmit={handleSubmit}>
-                        {inputData.map((item) => (
-                            <Box display="flex" flexDirection="column" alignItems="center" key={item.id}>
-                                {item.type !== "select" ?
-                                    <>
-                                        <InputLabel
-                                            sx={{
-                                                paddingTop: "25px",
-                                                marginBottom: "2px",
-                                                textAlign: "right",
-                                                color: "#eee",
-                                                fontWeight: "bold",
-                                                fontFamily: "'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif"
-                                            }}>
+            {dataFetched ?
+                (
+                    <div className={styles.formContainer}>
+                        <form onSubmit={handleSubmit}>
+                            {inputData.map((item) => (
+                                <Box display="flex" flexDirection="column" alignItems="center" key={item.id}>
+                                    {item.type !== "select" ?
+                                        <>
+                                            <InputLabel
+                                                sx={{
+                                                    paddingTop: "25px",
+                                                    marginBottom: "2px",
+                                                    textAlign: "right",
+                                                    color: "#eee",
+                                                    fontWeight: "bold",
+                                                    fontFamily: "'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif"
+                                                }}>
 
-                                            {item.displayName}
+                                                {item.displayName}
 
-                                        </InputLabel>
+                                            </InputLabel>
 
-                                        <input className={styles.field}
-                                            type={item.type}
-                                            name={item.name}
-                                            id={item.id}
-                                            defaultValue={item.value}
-                                            onChange={handleChange}
-                                            placeholder={item.value}
-                                            readOnly={item.readOnly}
-                                            required={item.required}
-                                            style={item.readOnly && { backgroundColor: "#e4e0e0" }}
-                                        />
-                                    </>
-                                    :
-                                    <>
-                                        <InputLabel
-                                            sx={{
-                                                paddingTop: "25px",
-                                                marginBottom: "2px",
-                                                textAlign: "right",
-                                                color: "#eee",
-                                                fontWeight: "bold",
-                                                fontFamily: "'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif"
-                                            }}>
+                                            <input className={styles.field}
+                                                type={item.type}
+                                                name={item.name}
+                                                id={item.id}
+                                                defaultValue={item.value}
+                                                onChange={handleChange}
+                                                placeholder={item.value}
+                                                readOnly={item.readOnly}
+                                                required={item.required}
+                                                style={item.readOnly && { backgroundColor: "#e4e0e0" }}
+                                            />
+                                        </>
+                                        :
+                                        <>
+                                            <InputLabel
+                                                sx={{
+                                                    paddingTop: "25px",
+                                                    marginBottom: "2px",
+                                                    textAlign: "right",
+                                                    color: "#eee",
+                                                    fontWeight: "bold",
+                                                    fontFamily: "'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif"
+                                                }}>
 
-                                            {item.displayName}
+                                                {item.displayName}
 
-                                        </InputLabel>
+                                            </InputLabel>
 
-                                        {item.id == "location" ?
-                                            <Selection item={item} options={locations} selectionValue={data.location} handleChange={handleChange}></Selection>
-                                            :
-                                            item.id == "gender" ?
-                                                <Selection item={item} options={genders} selectionValue={data.gender} handleChange={handleChange}></Selection>
+                                            {item.id == "location" ?
+                                                <Selection item={item} options={locations} selectionValue={data.location} handleChange={handleChange}></Selection>
                                                 :
-                                                <Selection item={item} options={skinTones} selectionValue={data.skinTone} handleChange={handleChange}></Selection>
-                                        }
+                                                item.id == "gender" ?
+                                                    <Selection item={item} options={genders} selectionValue={data.gender} handleChange={handleChange}></Selection>
+                                                    :
+                                                    <Selection item={item} options={skinTones} selectionValue={data.skinTone} handleChange={handleChange}></Selection>
+                                            }
 
-                                    </>
-                                }
-                            </Box>
-                        ))}
-                        <button id="submit-button" type="submit" className={styles.submitButton}>SUBMIT</button>
-                    </form >
+                                        </>
+                                    }
+                                </Box>
+                            ))}
+                            <button id="submit-button" type="submit" className={styles.submitButton}>SUBMIT</button>
+                        </form >
+                    </div>
+                )
+                :
+                <div>
+                    <p>Loading... Refresh when you're done looking at llama</p>
+                    <img src={llamaLoad}></img>
                 </div>
-            )
             }
         </>
     );

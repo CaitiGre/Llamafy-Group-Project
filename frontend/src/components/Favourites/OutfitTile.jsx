@@ -100,7 +100,6 @@ export default function OutfitTile({ outfit, images }) {
               src={images[currentIndex].render}
               alt="An image of a generated outfit"
               width={600}
-              onClick={handleOpen}
               style={{ borderRadius: "4%" }}
             />
           </Card>
