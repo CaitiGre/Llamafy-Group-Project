@@ -1,7 +1,5 @@
 import { render, screen } from '@testing-library/react';
 import Favourites from '../components/Favourites/Favourites';
-// import axios from 'axios';
-// import MockAdapter from 'axios-mock-adapter';
 
 test('Favourites page informs of no favourites', async () => {
     render(<Favourites />);
