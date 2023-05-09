@@ -3,25 +3,24 @@ import next from "./../../assets/right-arrow.png";
 import previous from "./../../assets/left-arrow.png";
 import { Typography, Card, Box, Button, Modal } from "@mui/material";
 
-const OutfitTile = ({ outfit, images }) => {
+/* Function to display each outfit tile image and make them open a larger image modal on click */
+export default function OutfitTile({ outfit, images }) {
+  // Set the state of the modal to closed and the current index to 0
   const [open, setOpen] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
-
+  // Function to open the modal and set the current index to the index of the outfit that was clicked
   const handleOpen = (index) => {
-    console.log(index);
-    console.log(images[currentIndex]);
     setCurrentIndex(index);
     setOpen(true);
   };
-
+  // Function to close the modal
   const handleClose = () => {
     setOpen(false);
   };
-
+  // Functions to change the current index to the next or previous outfit
+  // If the current index is 0, set the current index to the last outfit in the array
   const handleNext = () => {
     setCurrentIndex((currentIndex + 1) % images.length);
-    console.log("length", images.length);
-    console.log("current", currentIndex);
   };
 
   const handlePrev = () => {
@@ -112,6 +111,4 @@ const OutfitTile = ({ outfit, images }) => {
       </Modal>
     </React.Fragment>
   );
-};
-
-export default OutfitTile;
+}
