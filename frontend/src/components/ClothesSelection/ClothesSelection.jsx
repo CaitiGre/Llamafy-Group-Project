@@ -29,7 +29,7 @@ function ClothesSelection() {
   }, [setUserEmail]);
 
   // Get user's current profile data from database
-  const { data: dataObj, isLoading } = useGet(
+  const { data: databaseWardobe, isLoading } = useGet(
     `http://localhost:3006/wardrobe/getWardrobeItems/${userEmail}`, openModal
   
   );
@@ -42,11 +42,11 @@ function ClothesSelection() {
   }, [wardrobe, categoryItemsToShow]);
 
   useEffect(() => {
-    if (!isLoading && dataObj.wardrobeItems) {
-      setwardrobe(dataObj.wardrobeItems);
+    if (!isLoading && databaseWardobe.wardrobeItems) {
+      setwardrobe(databaseWardobe.wardrobeItems);
       console.log("I am fetching your wardrobe from the database");
     }
-  }, [isLoading, dataObj?.wardrobeItems, categoryItemsToShow]);
+  }, [isLoading, databaseWardobe?.wardrobeItems, categoryItemsToShow]);
 
   useEffect(() => {
     if (selectedItem && wardrobe.length > 0) {
