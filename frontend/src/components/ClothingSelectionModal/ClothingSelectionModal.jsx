@@ -5,7 +5,6 @@ import close from "./../../assets/close.png";
 import ClotheCustomisation from "../ClotheCustomisation/ClotheCustomisation";
 import axios from "axios";
 import getUserEmail from "../../helpers/getUserEmail";
-import { GetColorName } from "hex-color-to-color-name";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -36,7 +35,7 @@ function ClothingSelectionModal({ selectedItem, showModal, onCloseModal }) {
       category_id: selectedItem.category_id,
       style: selectedStyle,
       pattern: selectedPattern,
-      color: GetColorName(color.hex),
+      color: color.hex,
       sleeves: selectedSleeves,
     };
 
@@ -50,7 +49,7 @@ function ClothingSelectionModal({ selectedItem, showModal, onCloseModal }) {
           category_id: selectedItem.category_id,
           style: selectedStyle,
           pattern: selectedPattern,
-          color: GetColorName(color.hex),
+          color: color.hex,
           sleeves: selectedSleeves,
         }
       );

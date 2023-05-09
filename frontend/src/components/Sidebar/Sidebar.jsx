@@ -16,13 +16,14 @@ const Sidebar = () => {
   async function handleLogOut() {
     await handleLogout(setUserAuthenticated);
     navigate('/login');
-
   }
 
   useEffect(() => {
     checkSession(setUserAuthenticated);
   }, []);
 
+  {/* Sets the links available in the sidebar if the user is logged in.
+  Visible if viewing the project on a smaller screen  */}
   const loggedInSidebar = (
 
     <List style={{ fontSize: "30px", paddingLeft: "20px" }}>
@@ -42,6 +43,8 @@ const Sidebar = () => {
     </List>
   );
 
+  /* Sets the visible links on the sidebar when the user is not logged in.
+  Visible when viewing the project on a smaller screen */
   const loggedOutSidebar = (
 
     <List style={{ fontSize: "30px", paddingLeft: "20px" }}>

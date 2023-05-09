@@ -8,12 +8,13 @@ import { clothesItems } from "./data";
 import WardrobeItems from "../WardrobeItems/WardrobeItems";
 import getUserEmail from "../../helpers/getUserEmail";
 
+
 function ClothesSelection() {
   // Defining state variables for the modal
   const [openModal, setOpenModal] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
   const [categoryItemsToShow, setCategoryItemsToShow] = useState([]);
-  const [wardorbe, setwardrobe] = useState([]);
+  const [wardrobe, setwardrobe] = useState([]);
 
   // Get user's email from cookie once cookie's set up
   const [userEmail, setUserEmail] = useState(null);
@@ -25,52 +26,49 @@ function ClothesSelection() {
     }
 
     fetchUserEmail();
-  });
+  }, [setUserEmail]);
 
   // Get user's current profile data from database
   const { data: dataObj, isLoading } = useGet(
-    `http://localhost:3006/wardrobe/getWardrobeItems/${userEmail}`,
-    {
-      key: categoryItemsToShow.toString(),
-    }
+    `http://localhost:3006/wardrobe/getWardrobeItems/${userEmail}`, openModal
+  
   );
 
   useEffect(() => {
     console.log("parent category Items to show", categoryItemsToShow);
   }, [categoryItemsToShow]);
   useEffect(() => {
-    console.log("Parent clothes", wardorbe);
-  }, [wardorbe, categoryItemsToShow]);
+    console.log("Parent clothes", wardrobe);
+  }, [wardrobe, categoryItemsToShow]);
 
   useEffect(() => {
     if (!isLoading && dataObj.wardrobeItems) {
       setwardrobe(dataObj.wardrobeItems);
       console.log("I am fetching your wardrobe from the database");
     }
-  }, [isLoading, dataObj.wardrobeItems, categoryItemsToShow]);
+  }, [isLoading, dataObj?.wardrobeItems, categoryItemsToShow]);
 
   useEffect(() => {
-    if (selectedItem && wardorbe.length > 0) {
-      const itemsToShow = wardorbe.filter(
+    if (selectedItem && wardrobe.length > 0) {
+      const itemsToShow = wardrobe.filter(
         (clothe) => clothe.main_category === selectedItem.name
       );
       setCategoryItemsToShow(itemsToShow);
       setOpenModal(true);
     }
-  }, [wardorbe, selectedItem]);
-  // Handling the open modal event and setting the selected item to show
+  }, [selectedItem]);
+  // Handle the open modal event and setting the selected item to show
   const openWardrobeModal = (item) => {
     setSelectedItem(item);
-    const itemsToShow = wardorbe.filter(
+    const itemsToShow = wardrobe.filter(
       (clothe) => clothe.main_category === item.name
     );
     setCategoryItemsToShow(itemsToShow);
     setOpenModal(true);
   };
-  // Handling the close modal event
+  // Handle the close modal event
   const handleCloseModal = () => {
     setOpenModal(false);
-    window.location.reload();
   };
 
   return (

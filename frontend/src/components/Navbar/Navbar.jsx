@@ -31,7 +31,7 @@ const Navbar = () => {
     setVisible(
       (initalScrollPosition > currentPageScroll &&
         initalScrollPosition - currentPageScroll > 60) ||
-        currentPageScroll < 10
+      currentPageScroll < 10
     );
 
     setScrollPosition(currentPageScroll);
@@ -41,24 +41,25 @@ const Navbar = () => {
 
   /**Handles the scrolling event to trigger the navbar transition */
   useEffect(() => {
-    //authenticated status check
+    // authenticated status check
     // Call the checkSession function when the component mounts.
     //checks authenticated status to toggle between login and logout buttons.
     checkSession(setUserAuthenticated);
+
     window.addEventListener("scroll", handleScroll);
 
     return () => window.removeEventListener("scroll", handleScroll);
   }, [initalScrollPosition, visible, handleScroll]);
 
-  async function handleLogOut() {
+  async function handleLogOut(setUserAuthenticated) {
     await handleLogout(setUserAuthenticated);
-    navigate('/login');
-  }
+  };
 
   return (
     <React.Fragment>
+      {/* Sets a Mui appbar that serves as a navigation bar with a transparent background */}
       <AppBar
-        sx={{ background: "transparent", boxShadow: "none" , justifyContent: "space-between", display: "flex", margin: "auto"}}
+        sx={{ background: "transparent", boxShadow: "none", justifyContent: "space-between", display: "flex", margin: "auto" }}
         style={{ top: visible ? "0" : "-20vh", transition: "top 0.2s" }}
       >
         <Toolbar
@@ -71,6 +72,7 @@ const Navbar = () => {
             width: "100%"
           }}
         >
+          {/* Changes the displayed links based on the screen size */}
           <Box sx={{ display: "flex", justifyContent: "flex-start",  float: "left", }}>
             <NavLink to="/">
               <img src={Llama} alt="llama homepage icon" width="40px" />
@@ -78,7 +80,7 @@ const Navbar = () => {
             {isMatch && (
               <NavLink to="/" style={{ textDecoration: "none" }}>
                 <Typography
-                  sx={{ fontSize: "2rem", paddingLeft: "10px", color: "white" ,}}
+                  sx={{ fontSize: "2rem", paddingLeft: "10px", color: "white", }}
                 >
                   LLAMAFY
                 </Typography>
@@ -104,57 +106,58 @@ const Navbar = () => {
                   float: "right"
                 }}
               >
+                {/* Sets the navLinks available if the users are logged in to allow them access to their pages */}
                 {userAuthenticated && (
                   <>
-                  <Box sx={{display: "flex", justifyContent: "flex-end", margin:"auto"}}>
-                    <NavLink
-                      to="/ootd"
-                      style={{
-                        textDecoration: "none",
-                        marginLeft: "2vw",
-                        marginRight: "2vw",
-                        color: "white",
-                        fontSize: 20,
-                      }}
-                    >
-                      OUTFIT
-                    </NavLink>
-                    <NavLink
-                      to="/wardrobe"
-                      style={{
-                        textDecoration: "none",
-                        marginLeft: "2vw",
-                        marginRight: "2vw",
-                        color: "white",
-                        fontSize: 20,
-                      }}
-                    >
-                      WARDROBE
-                    </NavLink>
-                    <NavLink
-                      to="/pastOutfits"
-                      style={{
-                        textDecoration: "none",
-                        marginLeft: "2vw",
-                        marginRight: "2vw",
-                        color: "white",
-                        fontSize: 20,
-                      }}
-                    >
-                      FAVOURITES
-                    </NavLink>
-                    <NavLink
-                      to="/settings"
-                      style={{
-                        textDecoration: "none",
-                        marginLeft: "2vw",
-                        marginRight: "2vw",
-                        color: "white",
-                        fontSize: 20,
-                      }}
-                    >
-                      SETTINGS
-                    </NavLink>
+                    <Box sx={{ display: "flex", justifyContent: "flex-end", margin: "auto" }}>
+                      <NavLink
+                        to="/ootd"
+                        style={{
+                          textDecoration: "none",
+                          marginLeft: "2vw",
+                          marginRight: "2vw",
+                          color: "white",
+                          fontSize: 20,
+                        }}
+                      >
+                        OUTFIT
+                      </NavLink>
+                      <NavLink
+                        to="/wardrobe"
+                        style={{
+                          textDecoration: "none",
+                          marginLeft: "2vw",
+                          marginRight: "2vw",
+                          color: "white",
+                          fontSize: 20,
+                        }}
+                      >
+                        WARDROBE
+                      </NavLink>
+                      <NavLink
+                        to="/pastOutfits"
+                        style={{
+                          textDecoration: "none",
+                          marginLeft: "2vw",
+                          marginRight: "2vw",
+                          color: "white",
+                          fontSize: 20,
+                        }}
+                      >
+                        FAVOURITES
+                      </NavLink>
+                      <NavLink
+                        to="/settings"
+                        style={{
+                          textDecoration: "none",
+                          marginLeft: "2vw",
+                          marginRight: "2vw",
+                          color: "white",
+                          fontSize: 20,
+                        }}
+                      >
+                        SETTINGS
+                      </NavLink>
                     </Box>
                   </>
                 )}
@@ -167,32 +170,33 @@ const Navbar = () => {
                   fontSize: 20,
                 }}
               >
+                {/* If users are not authenticated it sets the navbar to only display the login and register buttons */}
                 {userAuthenticated ? (
                   <>
-                  <Box>
-                    <NavLink to="/" style={{ textDecoration: "none" }}>
-                      <Button
-                        onClick={handleLogOut}
-                        sx={{ marginRight: "10px", color: "white" }}
-                      >
-                        LOGOUT
-                      </Button>
-                    </NavLink>
+                    <Box>
+                      <NavLink to="/" style={{ textDecoration: "none" }}>
+                        <Button
+                          onClick={handleLogOut}
+                          sx={{ marginRight: "10px", color: "white" }}
+                        >
+                          LOGOUT
+                        </Button>
+                      </NavLink>
                     </Box>
                   </>
                 ) : (
                   <>
-                  <Box sx={{display: "flex", justifyContent: "flex-end", textAlign: "right"}}>
-                    <NavLink to="/login" style={{ textDecoration: "none" }}>
-                      <Button sx={{ marginRight: "10px", color: "white" }}>
-                        LOGIN
-                      </Button>
-                    </NavLink>
-                    <NavLink to="/register" style={{ textDecoration: "none" }}>
-                      <Button sx={{ color: "white" }}>REGISTER</Button>
-                    </NavLink>
+                    <Box sx={{ display: "flex", justifyContent: "flex-end", textAlign: "right" }}>
+                      <NavLink to="/login" style={{ textDecoration: "none" }}>
+                        <Button sx={{ marginRight: "10px", color: "white" }}>
+                          LOGIN
+                        </Button>
+                      </NavLink>
+                      <NavLink to="/register" style={{ textDecoration: "none" }}>
+                        <Button sx={{ color: "white" }}>REGISTER</Button>
+                      </NavLink>
                     </Box>
-                    
+
                   </>
                 )}
               </Box>

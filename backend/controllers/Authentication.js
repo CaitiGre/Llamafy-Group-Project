@@ -90,23 +90,16 @@ function login(req, res, next) {
 async function logout(req, res) {
     // Set the session ID to NULL in the table
 
-    const conn = await pool.getConnection();
+    
 
     try {
-        await conn.query('UPDATE UserSession SET session_id = NULL WHERE session_id = ?', [req.sessionID], (error, results) => {
-            if (error) {
-                console.error('Error setting session ID to NULL:', error);
-            } else {
-                console.log('Affected rows:', results.affectedRows);
-            }
-        });
-
+        const conn = await pool.getConnection();
+        await conn.query('UPDATE UserSession SET session_id = NULL WHERE session_id = ?', [req.sessionID]);
+        console.log('logged out');
+        conn.release();
     } catch (err) {
         console.error('Error setting session ID to NULL:', err);
     }
-
-    conn.release();
-
 }
 
 
