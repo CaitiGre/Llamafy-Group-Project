@@ -72,7 +72,7 @@ const Favourites = () => {
                 width: "fit-content",
               }}
             >
-              <OutfitTile outfit={outfitObj} />
+              <OutfitTile outfit={outfitObj} images={pastOutfits} />
             </Grid>
           ))
         ) : (

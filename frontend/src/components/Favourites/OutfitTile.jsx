@@ -1,17 +1,33 @@
 import React, { useState } from "react";
-
+import next from "./../../assets/right-arrow.png";
+import previous from "./../../assets/left-arrow.png";
 import { Typography, Card, Box, Button, Modal } from "@mui/material";
 
-const OutfitTile = ({ outfit }) => {
+const OutfitTile = ({ outfit, images }) => {
   const [open, setOpen] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
-  const handleOpen = () => {
+  const handleOpen = (index) => {
+    console.log(index);
+    console.log(images[currentIndex]);
+    setCurrentIndex(index);
     setOpen(true);
   };
 
   const handleClose = () => {
     setOpen(false);
   };
+
+  const handleNext = () => {
+    setCurrentIndex((currentIndex + 1) % images.length);
+    console.log("length", images.length);
+    console.log("current", currentIndex);
+  };
+
+  const handlePrev = () => {
+    setCurrentIndex((currentIndex + images.length - 1) % images.length);
+  };
+
   return (
     <React.Fragment>
       <Box justifyContent={"center"} sx={{ width: "fit-content" }}>
@@ -32,7 +48,7 @@ const OutfitTile = ({ outfit }) => {
             src={outfit.render}
             alt="An image of a generated outfit"
             width={200}
-            onClick={handleOpen}
+            onClick={() => handleOpen(outfit.id)}
           />
         </Card>
       </Box>
@@ -64,13 +80,16 @@ const OutfitTile = ({ outfit }) => {
             maxHeight: "80vh",
           }}
         >
+          <Button onClick={handlePrev}>
+            <img src={previous} alt="previous button" width={40} />
+          </Button>
           <Card
             sx={{
               width: "fit-content",
               borderRadius: "4%",
               backgroundColor: "rgba(255, 255, 255, 0.92)",
-              margin: "20px",
-          
+              margin: 8,
+
               justifyContent: "center",
               alignItems: "center",
               display: "flex",
@@ -78,13 +97,17 @@ const OutfitTile = ({ outfit }) => {
             }}
           >
             <img
-              src={outfit.render}
+              src={images[currentIndex].render}
               alt="An image of a generated outfit"
               width={600}
               onClick={handleOpen}
               style={{ borderRadius: "4%" }}
             />
           </Card>
+
+          <Button onClick={handleNext}>
+            <img src={next} alt="next button" width={40} />
+          </Button>
         </Box>
       </Modal>
     </React.Fragment>
