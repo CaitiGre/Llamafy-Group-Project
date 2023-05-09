@@ -42,6 +42,7 @@ export default function PasswordBox({ data, handleChange }) {
               backgroundColor: "white",
               width: isLargeScreen ? "50vw" : "72vw",
               height: "4.5vh",
+              paddingLeft: "20px",
             }}
             disableUnderline={true}
           />
@@ -76,10 +77,10 @@ export default function PasswordBox({ data, handleChange }) {
             value={data.repassword}
             onChange={handleChange}
             placeholder=""
-            style={{ 
-              backgroundColor: "white",   
-              width: isLargeScreen ? "50vw" : "72vw", 
-              height: "4.5vh", 
+            style={{
+              backgroundColor: "white",
+              width: isLargeScreen ? "50vw" : "72vw",
+              height: "4.5vh",
             }}
             disableUnderline={true}
           />

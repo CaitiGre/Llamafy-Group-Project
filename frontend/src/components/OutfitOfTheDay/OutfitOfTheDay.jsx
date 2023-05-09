@@ -225,11 +225,12 @@ const OutfitOfTheDay = () => {
                     />{" "}
                     <br />
                     <Typography
-                      style={{
+                      sx={{
                         fontFamily:
                           "'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif",
                         paddingTop: "2vh",
                         fontSize: "2.5vh",
+                        color:"#58315CD8"
                       }}
                     >
                       {weatherValues.tempC} with {weatherValues.humidity}{" "}

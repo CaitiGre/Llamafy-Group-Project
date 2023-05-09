@@ -5,7 +5,7 @@ export default function EmailBox({ data, handleChange }) {
   const theme = useTheme();
   const isLargeScreen = useMediaQuery(theme.breakpoints.up("lg"));
   return (
-    <Box display="flex" flexDirection="column" alignItems="center">
+    <Box display="flex" flexDirection="column" alignItems="center" >
       <InputLabel
         htmlFor="email"
         className={style.registerLabel}
@@ -27,12 +27,12 @@ export default function EmailBox({ data, handleChange }) {
         value={data.email}
         onChange={handleChange}
         placeholder="llama@lavenderllama.co.nz"
-        style={{ 
+        sx={{ 
           backgroundColor: "white",
           height: "4.5vh",
           borderRadius: "25px",
           width: isLargeScreen ? "50vw" : "72vw",
-          
+          paddingLeft: "20px",
          }}
         disableUnderline={true}
       />
