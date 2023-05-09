@@ -3,18 +3,18 @@ import axios from "axios";
 import OutfitTile from "./OutfitTile";
 import Heading from "../Heading/Heading";
 import SubHeading from "../SubHeading/SubHeading";
-import styles from "./Favourites.module.css";
 import getUserEmail from "../../helpers/getUserEmail";
 import { Box, Grid } from "@mui/material";
 
-const Favourites = () => {
-  // init states
+/* Function to display the Favourite past outfits Page*/
+export default function Favourites() {
+  // Set the state of the file names to an empty array
   let tempArr = [];
   const [fileNames, setFileNames] = useState([]);
   const [pastOutfits, setPastOutfits] = useState();
 
-  // grab email and request all user images in their public folder
-  // we then create a little tile for each
+  // Grab email and request all user images in their public folder
+  // Create a little tile for each
   useEffect(() => {
     const getFavourites = async () => {
       const email = await getUserEmail();
@@ -48,40 +48,37 @@ const Favourites = () => {
       <Heading title="Favourites" />
       <SubHeading subtitle="PAST OUTFITS" />
 
-      {/* Loop over all the user's past outfits for history*/}
-
-<Box sx={{marginTop:8}}>
-      <Grid
-        container
-        spacing={{ xs: 2, md: 6 }}
-        columns={{ xs: 1, sm: 6, md: 12, lg: 12 }}
-        sx={{
-          justifyContent: "center",
-          backgroundColor: "transparent",
-        }}
-      >
-        {pastOutfits ? (
-          pastOutfits.map((outfitObj) => (
-            <Grid
-              item
-              key={outfitObj.id}
-              sx={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                width: "fit-content",
-              }}
-            >
-              <OutfitTile outfit={outfitObj} images={pastOutfits} />
-            </Grid>
-          ))
-        ) : (
-          <SubHeading subtitle="Go select some of your favourite outfits to display here" />
-        )}
-      </Grid>
+      <Box sx={{ marginTop: 8 }}>
+        <Grid
+          container
+          spacing={{ xs: 2, md: 6 }}
+          columns={{ xs: 1, sm: 6, md: 12, lg: 12 }}
+          sx={{
+            justifyContent: "center",
+            backgroundColor: "transparent",
+          }}
+        >
+          {/* Loop over all the user's past outfits*/}
+          {pastOutfits ? (
+            pastOutfits.map((outfitObj) => (
+              <Grid
+                item
+                key={outfitObj.id}
+                sx={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  width: "fit-content",
+                }}
+              >
+                <OutfitTile outfit={outfitObj} images={pastOutfits} />
+              </Grid>
+            ))
+          ) : (
+            <SubHeading subtitle="Go select some of your favourite outfits to display here" />
+          )}
+        </Grid>
       </Box>
     </>
   );
-};
-
-export default Favourites;
+}

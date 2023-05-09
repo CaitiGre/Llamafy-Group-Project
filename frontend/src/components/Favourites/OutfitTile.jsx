@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import next from "./../../assets/right-arrow.png";
 import previous from "./../../assets/left-arrow.png";
 import { Typography, Card, Box, Button, Modal } from "@mui/material";
-
+import styles from "./OutfitTile.module.css";
 /* Function to display each outfit tile image and make them open a larger image modal on click */
 export default function OutfitTile({ outfit, images }) {
   // Set the state of the modal to closed and the current index to 0
@@ -31,6 +31,7 @@ export default function OutfitTile({ outfit, images }) {
     <React.Fragment>
       <Box justifyContent={"center"} sx={{ width: "fit-content" }}>
         <Card
+          className={styles.outfitcard}
           sx={{
             width: "fit-content",
             borderRadius: "4%",
@@ -47,7 +48,7 @@ export default function OutfitTile({ outfit, images }) {
             src={outfit.render}
             alt="An image of a generated outfit"
             width={200}
-            onClick={() => handleOpen(outfit.id)}
+            onClick={() => handleOpen(outfit.id - 1)}
           />
         </Card>
       </Box>
