@@ -1,10 +1,10 @@
 import { render, screen } from "@testing-library/react";
-import WardrobeSelection from "../components/WardrobeSelection/WardrobeSelection";
+import WardrobeSelection from "./WardrobeSelection";
 
 test("Favourites title exists", async () => {
   render(<WardrobeSelection />);
 
-  const heading = screen.getByText("Wardrobe Selection");
+  const heading = screen.getByText("Wardrobe");
   expect(heading).toBeInTheDocument();
 });
 

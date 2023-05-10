@@ -23,7 +23,6 @@ function ClothesSelection() {
       const email = await getUserEmail();
       setUserEmail(email);
     }
-
     fetchUserEmail();
   }, [setUserEmail]);
 
@@ -41,6 +40,7 @@ function ClothesSelection() {
       setDataFetched(true);
     }
   }, [isLoading, databaseWardobe?.wardrobeItems, categoryItemsToShow]);
+
   // Set the wardrobe state to the wardrobe items from the database
   useEffect(() => {
     if (selectedItem && wardrobe.length > 0) {
@@ -51,6 +51,7 @@ function ClothesSelection() {
       setOpenModal(true);
     }
   }, [selectedItem]);
+
   // Handle the open modal event and setting the selected item to show
   const openWardrobeModal = (item) => {
     setSelectedItem(item);
@@ -60,6 +61,7 @@ function ClothesSelection() {
     setCategoryItemsToShow(itemsToShow);
     setOpenModal(true);
   };
+
   // Handle the close modal event
   const handleCloseModal = () => {
     setOpenModal(false);
@@ -88,10 +90,10 @@ function ClothesSelection() {
           </Grid>
         </Box>
       ) : (
-        <div>
-          <p>Loading... Refresh when you're done looking at llama</p>
+        <Box>
+          <Typography>Loading... </Typography>
           <img src={loading}></img>
-        </div>
+        </Box>
       )}
       <Modal
         open={openModal}
