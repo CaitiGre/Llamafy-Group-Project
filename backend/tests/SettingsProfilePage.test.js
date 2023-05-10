@@ -5,19 +5,21 @@ const router = require("../routes/SettingsProfilePage");
 const SettingsProflePageController = require("../controllers/SettingsProfilePage");
 
 
+const testUserData = {
+    email: 'johndoe@email.com',
+    firstName: 'John',
+    lastName: 'Doe',
+    password: '$2a$10$rNQOFp904tvE2XOhVd2vmeAN2Ybw.X5S/O9eBnh9qeEw0bKlLVDE2',
+    location: 'Wellington',
+    gender: 'male',
+    skinTone: 'neutral'
+};
+
 // Mock the updateProfile and getProfile functions
 jest.mock("../controllers/SettingsProfilePage", () => ({
     updateProfile: jest.fn(),
 
-    getProfile: jest.fn().mockResolvedValue({
-        email: 'johndoe@email.com',
-        firstName: 'John',
-        lastName: 'Doe',
-        password: '$2a$10$rNQOFp904tvE2XOhVd2vmeAN2Ybw.X5S/O9eBnh9qeEw0bKlLVDE2',
-        location: 'Wellington',
-        gender: 'male',
-        skinTone: 'neutral'
-    }),
+    getProfile: jest.fn().mockResolvedValue(testUserData),
 }));
 
 // Create an Express app and use the router
@@ -104,15 +106,7 @@ describe('Profile routes', () => {
                 if (err) return done(err);
 
                 const userData = res.body;
-                expect(userData.userData).toStrictEqual({
-                    email: "johndoe@email.com",
-                    firstName: "John",
-                    gender: "male",
-                    lastName: "Doe",
-                    location: "Wellington",
-                    password: "$2a$10$rNQOFp904tvE2XOhVd2vmeAN2Ybw.X5S/O9eBnh9qeEw0bKlLVDE2",
-                    skinTone: "neutral"
-                });
+                expect(userData.userData).toStrictEqual(testUserData);
 
                 return done();
             })
