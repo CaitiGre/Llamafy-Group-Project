@@ -31,14 +31,12 @@ app.use(cors({
 }));
 app.use('/auth', authenticationRoutes);
 
-// afterAll(async () => {
-//     await new Promise(resolve => setTimeout(() => resolve(), 500)); // Wait for ongoing requests to finish
-//     await app.close();
-//     await pool.end(); // Close the database connection pool
-//   });
-
 describe('Authentication routes', () => {
-
+  
+    afterAll(async () => {
+        await pool.end();
+    });
+    
     test('POST /auth/login - valid credentials', async () => {
         const response = await request(app)
             .post('/auth/login')
