@@ -7,6 +7,7 @@ import useGet from "../../helpers/useGet";
 import { clothesItems } from "./data";
 import WardrobeItems from "../WardrobeItems/WardrobeItems";
 import getUserEmail from "../../helpers/getUserEmail";
+import loading from "../../assets/loading.gif";
 
 function ClothesSelection() {
   // Defining state variables for the modal
@@ -31,13 +32,16 @@ function ClothesSelection() {
     `http://localhost:3006/wardrobe/getWardrobeItems/${userEmail}`,
     openModal
   );
+  // check that the wardrobe data has been fetched from the database
+  const [dataFetched, setDataFetched] = useState(false);
   // Set the wardrobe state to the wardrobe items from the database
   useEffect(() => {
     if (!isLoading && databaseWardobe.wardrobeItems) {
       setwardrobe(databaseWardobe.wardrobeItems);
+      setDataFetched(true);
     }
   }, [isLoading, databaseWardobe?.wardrobeItems, categoryItemsToShow]);
-
+  // Set the wardrobe state to the wardrobe items from the database
   useEffect(() => {
     if (selectedItem && wardrobe.length > 0) {
       const itemsToShow = wardrobe.filter(
@@ -63,26 +67,32 @@ function ClothesSelection() {
 
   return (
     <>
-      {/* The clothes panel */}
-      <Box sx={{ flexGrow: 1, maxWidth: "90vw", alignItems: "center" }}>
-        <Grid
-          className={styles.clothespanel}
-          container
-          spacing={{ xs: 2, md: 3 }}
-          columns={{ xs: 2, sm: 6, md: 9, lg: 12 }}
-          sx={{
-            justifyContent: "center",
-            backgroundColor: "transparent",
-          }}
-        >
-          {/* Map over the clothes items and create a ClothesItem for each one */}
-          {clothesItems.map((item, index) => (
-            <Grid key={index} item xs={3}>
-              <ClothesItem item={item} onClick={openWardrobeModal} />
-            </Grid>
-          ))}
-        </Grid>
-      </Box>
+      {dataFetched ? (
+        <Box sx={{ flexGrow: 1, maxWidth: "90vw", alignItems: "center" }}>
+          <Grid
+            className={styles.clothespanel}
+            container
+            spacing={{ xs: 2, md: 3 }}
+            columns={{ xs: 2, sm: 6, md: 9, lg: 12 }}
+            sx={{
+              justifyContent: "center",
+              backgroundColor: "transparent",
+            }}
+          >
+            {/* Map over the clothes items and create a ClothesItem for each one */}
+            {clothesItems.map((item, index) => (
+              <Grid key={index} item xs={3}>
+                <ClothesItem item={item} onClick={openWardrobeModal} />
+              </Grid>
+            ))}
+          </Grid>
+        </Box>
+      ) : (
+        <div>
+          <p>Loading... Refresh when you're done looking at llama</p>
+          <img src={loading}></img>
+        </div>
+      )}
       <Modal
         open={openModal}
         onClose={handleCloseModal}
