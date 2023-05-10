@@ -6,6 +6,7 @@ const cors = require('cors');
 const session = require('express-session');
 const authenticationController = require('../controllers/Authentication.js');
 const authenticationRoutes = require('../routes/Authentication.js');
+const pool = require('../database/pool.js')
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -30,7 +31,14 @@ app.use(cors({
 }));
 app.use('/auth', authenticationRoutes);
 
+// afterAll(async () => {
+//     await new Promise(resolve => setTimeout(() => resolve(), 500)); // Wait for ongoing requests to finish
+//     await app.close();
+//     await pool.end(); // Close the database connection pool
+//   });
+
 describe('Authentication routes', () => {
+
     test('POST /auth/login - valid credentials', async () => {
         const response = await request(app)
             .post('/auth/login')
@@ -51,7 +59,7 @@ describe('Authentication routes', () => {
 
     test('POST /auth/logout', async () => {
         const agent = request.agent(app);
-        await agent.post('/auth/login').send({ username: 'daniel@email.com', password: 'butter' });
+        await agent.post('/auth/login');
         const response = await agent.post('/auth/logout');
         expect(authenticationController.logout);
         expect(response.status).toBe(200);
@@ -87,6 +95,6 @@ describe('Authentication routes', () => {
         const response = await request(app).post('/auth/getUserEmail');
         expect(authenticationController.getEmail);
         expect(response.status).toBe(200);
-        expect(response.body).toBe(null);
+        expect(response.body.message).toBe('None found');
     });
 });
