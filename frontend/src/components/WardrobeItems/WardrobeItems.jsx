@@ -45,9 +45,7 @@ function WardrobeItems({ clothes, setClothes, category }) {
       );
 
       if (response.data.isItemDeleted) {
-        console.log("item has been deleted ", response.data.isItemDeleted);
         toast.success(`Item id#${item.clothing_id} deleted.`);
-        console.log("remaining items to show:", remainingItemsToShow);
         setClothes(remainingItemsToShow);
       }
     } catch (error) {
@@ -62,7 +60,6 @@ function WardrobeItems({ clothes, setClothes, category }) {
       {isItemsVisible &&
         clothes.map(
           (item) => (
-            console.log("item", item),
             (
               <List
                 key={item.clothing_id}

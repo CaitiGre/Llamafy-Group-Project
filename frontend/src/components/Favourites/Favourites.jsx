@@ -5,6 +5,7 @@ import Heading from "../Heading/Heading";
 import SubHeading from "../SubHeading/SubHeading";
 import getUserEmail from "../../helpers/getUserEmail";
 import { Box, Grid } from "@mui/material";
+import { toast } from "react-toastify";
 
 /* Function to display the Favourite past outfits Page*/
 export default function Favourites() {
@@ -36,8 +37,11 @@ export default function Favourites() {
             });
           }
         })
-        .catch((err) => {
-          console.log("No favourites to display");
+        .catch((error) => {
+          console.log(error);
+          toast.error(
+            "An error occurred while trying to get your favourites. Please try again later."
+          );
         });
     };
     getFavourites();

@@ -29,7 +29,6 @@ function Profile() {
     useEffect(() => {
         async function fetchUserEmail() {
             const email = await getUserEmail();
-            console.log("User email:", email);
             setUserEmail(email);
         }
 
@@ -165,8 +164,6 @@ function Profile() {
                         inputPassword: data.password,
                     }
                 );
-
-                console.log("new password to post:", data.newPassword);
 
                 if (response.data.validPass) {
                     toast.success('Update successful!');

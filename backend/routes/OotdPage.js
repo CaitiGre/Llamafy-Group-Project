@@ -35,8 +35,8 @@ router.post('/saveFavourite', async (req, res) => {
       // pipe the data stream to the file
       imgRes.data.pipe(file);
       res.status(201).json({message : "Success! Image saved to server"});
-    } catch (err) {
-      console.log(err);
+    } catch (error) {
+      console.log(error);
       res.status(500).json({message: "Catastrophic failure"});
     }
   })

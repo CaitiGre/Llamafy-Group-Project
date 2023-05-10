@@ -8,7 +8,6 @@ import { clothesItems } from "./data";
 import WardrobeItems from "../WardrobeItems/WardrobeItems";
 import getUserEmail from "../../helpers/getUserEmail";
 
-
 function ClothesSelection() {
   // Defining state variables for the modal
   const [openModal, setOpenModal] = useState(false);
@@ -21,7 +20,6 @@ function ClothesSelection() {
   useEffect(() => {
     async function fetchUserEmail() {
       const email = await getUserEmail();
-      console.log("User email:", email);
       setUserEmail(email);
     }
 
@@ -30,21 +28,13 @@ function ClothesSelection() {
 
   // Get user's current profile data from database
   const { data: databaseWardobe, isLoading } = useGet(
-    `http://localhost:3006/wardrobe/getWardrobeItems/${userEmail}`, openModal
-  
+    `http://localhost:3006/wardrobe/getWardrobeItems/${userEmail}`,
+    openModal
   );
-
-  useEffect(() => {
-    console.log("parent category Items to show", categoryItemsToShow);
-  }, [categoryItemsToShow]);
-  useEffect(() => {
-    console.log("Parent clothes", wardrobe);
-  }, [wardrobe, categoryItemsToShow]);
-
+  // Set the wardrobe state to the wardrobe items from the database
   useEffect(() => {
     if (!isLoading && databaseWardobe.wardrobeItems) {
       setwardrobe(databaseWardobe.wardrobeItems);
-      console.log("I am fetching your wardrobe from the database");
     }
   }, [isLoading, databaseWardobe?.wardrobeItems, categoryItemsToShow]);
 
@@ -72,7 +62,7 @@ function ClothesSelection() {
   };
 
   return (
-    <React.Fragment>
+    <>
       {/* The clothes panel */}
       <Box sx={{ flexGrow: 1, maxWidth: "90vw", alignItems: "center" }}>
         <Grid
@@ -140,7 +130,7 @@ function ClothesSelection() {
           )}
         </Box>
       </Modal>
-    </React.Fragment>
+    </>
   );
 }
 

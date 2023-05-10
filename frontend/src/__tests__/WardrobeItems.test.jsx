@@ -1,7 +1,7 @@
 import React from "react";
 import { render, fireEvent } from "@testing-library/react";
 import axios from "axios";
-import WardrobeItems from "./WardrobeItems";
+import WardrobeItems from "../components/WardrobeItems/WardrobeItems";
 
 jest.mock("axios");
 
