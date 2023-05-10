@@ -24,8 +24,10 @@ router.post('/updateProfile/:userEmail', async (req, res) => {
     try {
 
         const userData = await getProfile(userEmail);
+        console.log("userData", userData); //TESTING
 
         const validPassword = await bcrypt.compare(userInput.inputPassword, userData.password);
+        console.log("validPassword", validPassword); //TESTING
 
         if (validPassword) {
 

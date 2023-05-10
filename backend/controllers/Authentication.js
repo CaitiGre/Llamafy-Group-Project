@@ -80,13 +80,13 @@ function login(req, res, next) {
                     );
                     return res.status(200).json({ message: 'Logged in' });
                 }
-                
+
             } catch (err) {
                 console.error('Error storing session ID:', err);
             } finally {
                 conn.release();
             }
-            
+
         });
     })(req, res, next);
 }
@@ -97,7 +97,7 @@ async function logout(req, res) {
     const conn = await pool.getConnection();
     try {
         await conn.query('UPDATE UserSession SET session_id = NULL WHERE session_id = ?', [req.sessionID]);
-        res.status(200).json({message: 'Logged out'});
+        res.status(200).json({ message: 'Logged out' });
     } catch (err) {
         console.error('Error setting session ID to NULL:', err);
     } finally {
@@ -132,7 +132,7 @@ async function getEmail(req, res) {
             return res.json(rows[0].user_email);
         } else {
             console.error('No user found with session ID:', req.sessionID);
-            return res.status(200).json({message: 'None found'});
+            return res.status(200).json({ message: 'None found' });
         }
     } catch (err) {
         console.error('Error getting user email:', err);

@@ -1,26 +1,22 @@
 const request = require("supertest");
 const express = require("express");
-const mockAxios = require('axios');
 const bodyParser = require("body-parser");
 const router = require("../routes/SettingsProfilePage");
 const SettingsProflePageController = require("../controllers/SettingsProfilePage");
 
-// Mock the updateProfile function
-jest.mock("../controllers/SettingsProfilePage", () => ({
-    updateProfile: jest.fn().mockResolvedValue(),
-}));
 
-// Mock the getProfile function
+// Mock the updateProfile and getProfile functions
 jest.mock("../controllers/SettingsProfilePage", () => ({
+    updateProfile: jest.fn(),
+
     getProfile: jest.fn().mockResolvedValue({
-        firstName: 'Cass',
-        lastName: 'P',
-        email: 'cass@sth.com',
-        gender: 'female',
-        skinTone: 'warm',
-        location: 'Auckland',
-        password: 'hi',
-        inputPassword: 'hi',
+        email: 'johndoe@email.com',
+        firstName: 'John',
+        lastName: 'Doe',
+        password: '$2a$10$rNQOFp904tvE2XOhVd2vmeAN2Ybw.X5S/O9eBnh9qeEw0bKlLVDE2',
+        location: 'Wellington',
+        gender: 'male',
+        skinTone: 'neutral'
     }),
 }));
 
@@ -29,45 +25,91 @@ const app = express();
 app.use(bodyParser.json());
 app.use("/", router);
 
-it("should return a 201 status code", async () => {
-    const sampleData = {
-        firstName: 'Cass',
-        lastName: 'P',
-        email: 'cass@sth.com',
-        gender: 'female',
-        skinTone: 'warm',
-        location: 'Auckland',
-        password: 'hi',
-        inputPassword: 'hi',
-    };
-    const response = await request(app)
-        .post("/updateProfile/test@example.com")
-        .send(sampleData)
-        .expect(201);
-    // expect(response.body).toBe({ validPass: true });
-    expect(SettingsProflePageController.updateProfile).toHaveBeenCalledWith(sampleData);
+
+describe('Profile routes', () => {
+
+    /* Test if post("/updateProfile/:userEmail) returns a status code of 201 and true as the value of validPass
+     and call updateProfile function, if the input password is correct */
+    it("POST - /updateProfile/:userEmail - correct password", async () => {
+        const sampleData = {
+            firstName: 'John',
+            lastName: 'Doe',
+            email: 'johndoe@email.com',
+            gender: 'male',
+            skinTone: 'neutral',
+            location: 'Wellington',
+            password: '',
+            inputPassword: 'correctpassword',
+        };
+        const response = await request(app)
+            .post("/updateProfile/johndoe@email.com")
+            .send(sampleData)
+        expect(response.status).toBe(201);
+        expect(response.body.validPass).toBe(true);
+        expect(SettingsProflePageController.updateProfile).toHaveBeenCalledWith(sampleData);
+    });
+
+
+    /* Test if post("/updateProfile/:userEmail) returns a status code of 201 and false as the value of validPass, 
+    if the input password is correct */
+    it("POST - /updateProfile/:userEmail - incorrect password", async () => {
+        const sampleData = {
+            firstName: 'John',
+            lastName: 'Doe',
+            email: 'johndoe@email.com',
+            gender: 'male',
+            skinTone: 'neutral',
+            location: 'Wellington',
+            password: '',
+            inputPassword: 'incorrectpassword',
+        };
+        const response = await request(app)
+            .post("/updateProfile/johndoe@email.com")
+            .send(sampleData)
+        expect(response.status).toBe(201);
+        expect(response.body.validPass).toBe(false);
+    });
+
+
+    /* Test if post("/updateProfile/:userEmail) returns a status code of 500 if there is an error */
+    it("POST - /updateProfile/:userEmail - error", async () => {
+        const sampleData = {
+            firstName: 'John',
+            lastName: 'Doe',
+            email: 'johndoe@email.com',
+            gender: 'male',
+            skinTone: 'neutral',
+            location: 'Wellington',
+            password: '',
+            inputPassword: 'correctpassword',
+        };
+
+        // Mock the updateProfile function to throw an error
+        SettingsProflePageController.updateProfile.mockRejectedValue(new Error("Database error"));
+        const response = await request(app)
+            .post("/updateProfile/johndoe@email.com")
+            .send(sampleData)
+        expect(response.status).toBe(500);
+    });
+
+
+    // it("GET - /getProfile/:userEmail", (done) => {
+    //     const res = request(app)
+    //         .get("/getProfile/johndoe@email.com")
+    //         .send()
+    //         .expect(201)
+    //         .end((err, res) => {
+
+    //             if (err) return done(err);
+
+    //             const userData = res.body;
+    //             expect(userData).toBe({ email: "johndoe@email.com", firstName: "John", gender: "male", lastName: "Doe", location: "Wellington", password: "$2a$10$rNQOFp904tvE2XOhVd2vmeAN2Ybw.X5S/O9eBnh9qeEw0bKlLVDE2", skinTone: "neutral" });
+
+    //             return done();
+    //         })
+    // });
+
 });
 
-
-// it("should return a 500 status code if an error occurs", async () => {
-//     const sampleData = {
-//         firstName: 'Test',
-//         lastName: 'User',
-//         email: 'test@example.com',
-//         gender: 'female',
-//         skinTone: 'warm',
-//         location: 'Auckland',
-//         password: 'password',
-//         inputPassword: 'password',
-//     };
-//     // Mock the addWardrobeItem function to throw an error
-//     SettingsProflePageController.updateProfile.mockRejectedValue(new Error("Database error"));
-//     const response = await request(app)
-//         .post("/profile/updateProfile/test@example.com")
-//         .send(sampleData)
-//         .expect(500);
-//     expect(response.body).toEqual({ error: "Internal server error" });
-//     expect(SettingsProflePageController.updateProfile).toHaveBeenCalledWith(sampleData);
-// });
 
 
