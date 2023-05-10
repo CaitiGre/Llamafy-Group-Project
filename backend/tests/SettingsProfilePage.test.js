@@ -93,22 +93,42 @@ describe('Profile routes', () => {
     });
 
 
-    // it("GET - /getProfile/:userEmail", (done) => {
-    //     const res = request(app)
-    //         .get("/getProfile/johndoe@email.com")
-    //         .send()
-    //         .expect(201)
-    //         .end((err, res) => {
+    /* Test if get("/getProfile/:userEmail) returns a status code of 201 and correct user data */
+    it("GET - /getProfile/:userEmail", (done) => {
+        const res = request(app)
+            .get("/getProfile/johndoe@email.com")
+            .send()
+            .expect(201)
+            .end((err, res) => {
 
-    //             if (err) return done(err);
+                if (err) return done(err);
 
-    //             const userData = res.body;
-    //             expect(userData).toBe({ email: "johndoe@email.com", firstName: "John", gender: "male", lastName: "Doe", location: "Wellington", password: "$2a$10$rNQOFp904tvE2XOhVd2vmeAN2Ybw.X5S/O9eBnh9qeEw0bKlLVDE2", skinTone: "neutral" });
+                const userData = res.body;
+                expect(userData.userData).toStrictEqual({
+                    email: "johndoe@email.com",
+                    firstName: "John",
+                    gender: "male",
+                    lastName: "Doe",
+                    location: "Wellington",
+                    password: "$2a$10$rNQOFp904tvE2XOhVd2vmeAN2Ybw.X5S/O9eBnh9qeEw0bKlLVDE2",
+                    skinTone: "neutral"
+                });
 
-    //             return done();
-    //         })
-    // });
+                return done();
+            })
+    });
 
+
+    /* Test if get("/getProfile/:userEmail) returns a status code of 500 if there is an error */
+    it("GET - /getProfile/:userEmail - error ", async () => {
+
+        SettingsProflePageController.getProfile.mockRejectedValue(new Error("Database error"));
+
+        const res = await request(app)
+            .get("/getProfile/johndoe@email.com")
+            .send()
+        expect(res.status).toBe(500);
+    });
 });
 
 
