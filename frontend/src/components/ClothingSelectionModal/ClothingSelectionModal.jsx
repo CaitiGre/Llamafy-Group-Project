@@ -29,6 +29,9 @@ function ClothingSelectionModal({ selectedItem, showModal, onCloseModal }) {
   const handleAddClick = async () => {
     const userEmail = await getUserEmail();
     console.log("Heyyyy user email:", userEmail);
+    console.log("color", color);
+   
+
     const selectedWardrobeItem = {
       name: selectedItem.name,
       user_email: userEmail,
@@ -38,8 +41,13 @@ function ClothingSelectionModal({ selectedItem, showModal, onCloseModal }) {
       color: color.hex,
       sleeves: selectedSleeves,
     };
+    console.log("new item added", selectedWardrobeItem);
 
     try {
+      if (color == "#000000") {
+        toast.error("Please select a color for your clothing item!");
+        return;
+      }
       // Make a POST request to the server with the new wardrobe item data
       const response = await axios.post(
         "http://localhost:3006/wardrobeSelection/addWardrobeItem",

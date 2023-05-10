@@ -2,9 +2,11 @@ import { Box, Input, InputLabel, useMediaQuery, useTheme  } from "@mui/material"
 import style from "../RegistrationPage/Registration.module.css";
 
 export default function EmailBox({ data, handleChange }) {
+  /* Creates a theme from the default MUI settings to set the size of the components based on screen size */
   const theme = useTheme();
   const isLargeScreen = useMediaQuery(theme.breakpoints.up("lg"));
   return (
+    /* Creates a box that contains the email label and input section */
     <Box display="flex" flexDirection="column" alignItems="center">
       <InputLabel
         htmlFor="email"
@@ -19,6 +21,7 @@ export default function EmailBox({ data, handleChange }) {
       >
         Email
       </InputLabel>
+      {/*Styling the input section and changing the size based on screen size */}
       <Input
         type="email"
         name="email"
