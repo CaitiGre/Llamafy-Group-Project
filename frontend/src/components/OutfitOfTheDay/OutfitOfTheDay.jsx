@@ -176,6 +176,7 @@ const OutfitOfTheDay = () => {
         <Box>
           <Heading title="OUTFIT OF THE DAY" />
         </Box>
+        {/* A box containing the grid and grid items */}
         <Box
           sx={{
             display: "flex",

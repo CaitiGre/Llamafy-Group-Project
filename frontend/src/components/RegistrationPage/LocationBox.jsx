@@ -9,6 +9,7 @@ export default function LocationBox({ data, handleChange }) {
     "Dunedin",
     "Invercargill",
   ];
+  /* Creates a theme from the default MUI settings to set the size of the components based on screen size */
   const theme = useTheme();
   const isLargeScreen = useMediaQuery(theme.breakpoints.up("lg"));
   const selectStyle = {

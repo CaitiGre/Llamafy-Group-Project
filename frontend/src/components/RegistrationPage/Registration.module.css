@@ -27,12 +27,12 @@
   background-color: #ffffff;
   border: 1px solid #e2e2e2;
   border-radius: 20px;
-  color: #333;
+  color: #58315cd8;
   cursor: pointer;
   font-size: 14px;
   margin: 0px 5px;
   outline: none;
-  padding: 12px 22px;
+  padding: 8px 20px;
   transition: background-color 0.3s, border-color 0.3s;
   box-shadow: 2px 2px 5px rgba(255, 255, 255, 0.8);
 }
@@ -54,7 +54,7 @@
   width: 20vh;
   background-color: #ffffff;
   border: 1px solid #e2e2e2;
-  color: #333;
+  color: #58315cd8;
   cursor: pointer;
   font-size: 14px;
   margin: 0px 5px;
@@ -68,8 +68,8 @@
   background-color: #ffffff;
   border: 1px solid #ccc;
   border-radius: 20px;
-  color: #333;
-  padding: 2vh;
+  color: #58315cd8;
+  padding: 8px 20px;
   cursor: pointer;
   font-size: 14px;
   margin: 20px 5px;
@@ -81,6 +81,7 @@
 
 #submitButton:hover {
   background-color: #ee69ec8b;
+  color: #fefefe;
 }
 
 .password-icon {
