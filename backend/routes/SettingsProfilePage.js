@@ -7,7 +7,6 @@ router.get('/getProfile/:userEmail', async (req, res) => {
     try {
         const { userEmail } = req.params;
         const userData = await getProfile(userEmail);
-        console.log("{userData}", { userData }); //TESTING
         res.status(201).json({ userData });
     } catch (error) {
         console.error(error);
@@ -25,10 +24,8 @@ router.post('/updateProfile/:userEmail', async (req, res) => {
     try {
 
         const userData = await getProfile(userEmail);
-        console.log("userData", userData); //TESTING
 
         const validPassword = await bcrypt.compare(userInput.inputPassword, userData.password);
-        console.log("validPassword", validPassword); //TESTING
 
         if (validPassword) {
 
