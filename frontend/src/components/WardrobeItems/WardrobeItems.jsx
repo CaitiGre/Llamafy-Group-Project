@@ -31,7 +31,6 @@ function WardrobeItems({ clothes, setClothes, category }) {
 
   // Handling the delete item event in CategoryItem
   // Get the category items to show when the component mounts or when the category changes
-
   async function handleDeleteItem(item) {
     const remainingItemsToShow = clothes.filter(
       (catItem) => catItem.clothing_id !== item.clothing_id
