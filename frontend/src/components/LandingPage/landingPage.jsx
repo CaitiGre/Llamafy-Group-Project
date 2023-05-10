@@ -47,7 +47,7 @@ function LandingPage() {
                       fontSize: "3vh",
                       backgroundColor: "#f0f0f0",
                       border: "1px solid #ccc",
-                      color: "#333",
+                      color: "#58315cd8",
                       cursor: "pointer",
                       margin: "0px 5px",
                       outline: "none",
@@ -61,7 +61,7 @@ function LandingPage() {
                 <NavLink to="/register">
                   <Button
                     sx={{
-                      borderRadius: "40px",
+                      borderRadius: "4vh",
                       boxShadow: "2px 2px 5px rgba(255, 255, 255, 0.8)",
                       textAlign: "center",
                       padding: "5% 5%",
@@ -71,7 +71,7 @@ function LandingPage() {
                         "Franklin Gothic Medium, Arial Narrow, Arial, sans-serif",
                       backgroundColor: "#f0f0f0",
                       border: "1px solid #ccc",
-                      color: "#333",
+                      color: "#58315cd8",
                       cursor: "pointer",
                       margin: "0px 5px",
                       outline: "none",
@@ -98,7 +98,7 @@ function LandingPage() {
               sx={{
                 borderRadius: "25px",
                 padding: "3vh",
-                fontFamily: "Verdana, Geneva, Tahoma, sans-serif",
+                fontFamily: "Verdana",
                 height: "auto",
                 alignItems: "center",
                 boxShadow: "2px 2px 8px 2px rgba(0, 0, 0, 0.2)",
@@ -111,6 +111,9 @@ function LandingPage() {
                   alignItems: "center",
                   textAlign: "justify",
                   margin: "auto",
+                  color: "#58315cd8",
+                  fontWeight: "100",
+                  fontFamily: "Verdana, Geneva, Tahoma, sans-serif",
                   padding: "2.5vh",
                 }}
               >
@@ -173,7 +176,6 @@ function LandingPage() {
               sx={{
                 borderRadius: "25px",
                 padding: "3vh",
-                fontFamily: "Verdana, Geneva, Tahoma, sans-serif",
                 height: "30vh",
                 alignItems: "center",
                 height: "auto",
@@ -186,7 +188,9 @@ function LandingPage() {
                 sx={{
                   alignItems: "center",
                   textAlign: "justify",
+                  color: "#58315cd8",
                   padding: "2.5vh",
+                  fontFamily: "Verdana, Geneva, Tahoma, sans-serif"
                 }}
               >
                 Simply register with us, answer some basic questions about your

@@ -1,5 +1,5 @@
 import "./LoginPage.module.css";
-import { Box, Input, InputLabel, Grid } from "@mui/material";
+import { Box, Input, InputLabel, Grid, InputAdornment } from "@mui/material";
 import { useContext, useState } from "react";
 import styles from "./LoginPage.module.css";
 import Heading from "../Heading/Heading";
@@ -50,7 +50,9 @@ function LoginPage() {
         credentials: "include",
       });
 
-      /* Generates a toastify message in place of an alert to let the user know if the login was successful */
+      {
+        /* Generates a toastify message in place of an alert to let the user know if the login was successful */
+      }
       if (response.ok) {
         setUserAuthenticated(true);
         toast.success("Log in successful");
@@ -69,14 +71,30 @@ function LoginPage() {
   return (
     <div>
       <Heading title="Login" />
-
-      <div className={styles.formContainer}>
+      <Box
+        className={styles.formContainer}
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          width: "100%",
+          margin: "0",
+          flexDirection: "column",
+        }}
+      >
         <form onSubmit={handleSubmit}>
-          <Grid>
-            <Box>
+          <Grid
+            container
+            alignItems="center"
+            justifyContent="center"
+            justifyItems="center"
+            flexDirection="column"
+            spacing={3}
+          >
+            <Grid item xs={12} md={10}>
               <InputLabel
                 sx={{
-                  paddingTop: "5vh",
+                  paddingTop: "3vh",
                   paddingBottom: "2vh",
                   color: "#fefefe",
                   fontFamily:
@@ -93,7 +111,7 @@ function LoginPage() {
                   borderRadius: "20px",
                   boxShadow: "2px 2px 5px rgba(255, 255, 255, 0.8)",
                   height: "40px",
-                  width: "70vh",
+                  width: { xs: "80vw", md: "60vh" },
                   margin: "auto",
                   backgroundColor: "white",
                   textAlign: "center",
@@ -108,79 +126,94 @@ function LoginPage() {
                 value={data.email}
                 placeholder={"llama@lavenderllama.co.nz"}
               />
-              <InputLabel
-                sx={{
-                  paddingTop: "5vh",
-                  color: "#fefefe",
-                  fontFamily:
-                    "'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif",
-                }}
-              >
-                PASSWORD
-              </InputLabel>
+            </Grid>
+            <Grid item xs={12} md={12}>
               <Box
                 style={{
                   display: "flex",
                   width: "70vh",
                   alignContent: "center",
                   alignItems: "center",
+                  flexDirection: "column",
                   justifyContent: "flex-end",
                   paddingTop: "2vh",
                   margin: "auto",
                 }}
               >
-                <Input
-                  required
+                <InputLabel
                   sx={{
-                    display: "flex",
-                    justifyContent: "center",
-                    borderRadius: "20px",
-                    boxShadow: "2px 2px 5px rgba(255, 255, 255, 0.8)",
-                    height: "40px",
-                    width: "70vh",
-                    margin: "auto",
-                    backgroundColor: "white",
-                    textAlign: "center",
-                    alignContent: "center",
-                    caretColor: "black",
+                    paddingTop: "3vh",
+                    paddingBottom: "2vh",
+                    color: "#fefefe",
+                    fontFamily:
+                      "'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif",
                   }}
-                  type={showPassword ? "text" : "password"}
-                  onChange={handleChange}
-                  value={data.password}
-                  disableUnderline={true}
-                  placeholder={""}
-                  name="password"
-                  id="password"
-                />
-                {/* Toggles the password to be shown or hidden when the eye is clicked */}
-                <img
-                  src={showPassword ? lashIcon : eyeIcon}
-                  className={styles.passwordIcon}
-                  style={{
-                    display: "flex",
-                    position: "fixed",
-                    cursor: "pointer",
-                    justifyContent: "center",
-                    paddingRight: "2vh",
-                    width: "4vh",
-                    marginRight: "1vh",
-                    zIndex: "5",
-                    height: "2vh"}}
-                  onClick={toggleShowPassword}
-                  alt="Eye icon to display or hide password"
-                />
+                >
+                  PASSWORD
+                </InputLabel>
+                <Box sx={{ display: "flex" }}>
+                  <Input
+                    required
+                    sx={{
+                      display: "flex",
+                      justifyContent: "center",
+                      borderRadius: "20px",
+                      boxShadow: "2px 2px 5px rgba(255, 255, 255, 0.8)",
+                      height: "40px",
+                      margin: "auto",
+                      width: { xs: "80vw", md: "60vh" },
+                      backgroundColor: "white",
+                      textAlign: "center",
+                      alignContent: "center",
+                      caretColor: "black",
+                    }}
+                    type={showPassword ? "text" : "password"}
+                    onChange={handleChange}
+                    value={data.password}
+                    disableUnderline={true}
+                    placeholder={""}
+                    name="password"
+                    id="password"
+                    endAdornment={
+                      <InputAdornment position="end">
+                        <div style={{ position: "relative" }}>
+                          <img
+                            src={showPassword ? eyeIcon : lashIcon}
+                            alt="Eye icon to display or hide password"
+                            className={styles.passwordIcon}
+                            style={{
+                              display: "flex",
+                              position: "absolute",
+                              cursor: "pointer",
+                              justifyContent: "center",
+                              right: "10px",
+                              top: "50%",
+                              transform: "translateY(-50%)",
+                              width: "20px",
+                              height: "20px",
+                            }}
+                            onClick={toggleShowPassword}
+                          />
+                        </div>
+                      </InputAdornment>
+                    }
+                  />
+                  {/* Toggles the password to be shown or hidden when the eye is clicked */}
+                </Box>
               </Box>
-            </Box>
+            </Grid>
+            <Grid item xs={8}>
+              <button
+                id="submit-button"
+                type="submit"
+                className={styles.submitButton}
+              >
+                SUBMIT
+              </button>
+            </Grid>
           </Grid>
-          <button
-            id="submit-button"
-            type="submit"
-            className={styles.submitButton}
-          >
-            SUBMIT
-          </button>
         </form>
-      </div>
+      </Box>
     </div>
   );
 }
