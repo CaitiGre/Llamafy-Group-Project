@@ -28,6 +28,7 @@ export default function LocationBox({ data, handleChange }) {
   return (
     <Box display="flex" flexDirection="column" alignItems="center">
       <InputLabel
+        id="location-label"
         htmlFor="location"
         className={style.registerLabel}
         style={{
@@ -41,13 +42,21 @@ export default function LocationBox({ data, handleChange }) {
         Primary Location
       </InputLabel>
       <Select
+        aria-labelledby="location-label"
         name="location"
-        id={style["location"]}
+        id="location"
         className={style["register-input"]}
         value={data.location}
         onChange={handleChange}
         style={selectStyle}
-        disableUnderline={true}
+        sx={{
+          '&:before': {
+            borderBottom: 'none',
+          },
+          '&:hover:not(.Mui-disabled):before': {
+            borderBottom: 'none',
+          },
+        }}
       >
         <MenuItem value="" style={{ color: "black" }} disabled>
           Which city should LLAMAFY base recommendations on?
