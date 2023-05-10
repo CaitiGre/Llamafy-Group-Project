@@ -3,11 +3,10 @@
 }
 
 .submitButton {
-  width: 30vh;
   background-color: white;
   border: 1px solid #ccc;
-  border-radius: 20px;
-  color: #333;
+  border-radius: 4vh;
+  color: #58315cd8;
   cursor: pointer;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   font-size: 14px;
@@ -25,16 +24,12 @@
   color: #fefefe;
 }
 
-.formContainer {
-  padding: 3vh 12vh 5vh 12vh;
-  border-radius: 20px;
-  caret-color: "black";
+.formContainer Input {
   text-align: center;
 }
 
-.formContainer Input {
-  padding: 3vh;
-  text-align: center;
+Input:-webkit-autofill { 
+  -webkit-background-clip: text;
 }
 
 .wrapper {

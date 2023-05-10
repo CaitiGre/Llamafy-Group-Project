@@ -53,7 +53,7 @@ const OotdTile = ({ imgLink, description }) => {
   function onClickHandler() {
     // don't allow the user to try and save the loading pictures
     if (imgLink.substring(0, 16) !== "https://oaidalle") {
-      toast.error("That's not an outfit, dude");
+      toast.error("That's not an outfit dude. That's a llama");
       closeModal();
       return;
     }
@@ -91,7 +91,6 @@ const OotdTile = ({ imgLink, description }) => {
         contentLabel="OOTD"
       >
         <h2>OUTFIT</h2>
-        <div>You like what you see?</div>
         <div style={{
             width: "min(90vw,512px)",
             borderRadius: "2vh",
