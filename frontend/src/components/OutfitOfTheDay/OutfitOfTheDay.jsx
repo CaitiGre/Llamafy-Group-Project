@@ -54,8 +54,11 @@ const OutfitOfTheDay = () => {
 
   // get weather data from weatherAPI proxy
   useEffect(() => {
-    axios
-      .get("http://localhost:3006/weather/data")
+    const fetchWeather = async () => {
+      const email = await getUserEmail();
+      axios
+      // Email sent as query string to extract @ server side
+      .get(`http://localhost:3006/weather/data?email=${email}`)
       .then((res) => {
         setWeatherValues(res.data);
         setWeatherText(true);
@@ -65,6 +68,8 @@ const OutfitOfTheDay = () => {
         toast.error("An error occurred while trying to get your weather data.");
         setWeatherErr(true);
       });
+  };
+    fetchWeather()
   }, []);
 
   useEffect(() => {

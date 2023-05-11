@@ -45,13 +45,15 @@ We also used a variety of packages to help ease the implementation of the front 
 To get the site up and running you simply need to type this in the terminal within the front end folder to get the application up and running.
 
 ```
+npm install
 npm run start
 ```
 Easy as that!
 
 ## Back end
 
-To run the backend you need to open up a terminal in the backend folder and run node.js
+<!-- To run the backend you need to open up a terminal in the backend folder and run node.js -->
+The backend is hosted on an AWS EC2 instance 
 
 ## Functional login credentials
 
