@@ -115,16 +115,16 @@ const OotdTile = ({ imgLink, description, shoes, bottom, top }) => {
         contentLabel="OOTD"
       >
         <h2 style={{fontSize: "22px"}}>IS THIS YOUR NEW FAVOURITE OUTFIT?</h2>
-        <div style={{
-            width: "min(20vw,512px)",
+        <div className={styles.imgDivContainer}
+         style={{
+            width: "auto",
             borderRadius: "2vh",
-            paddingTop: "1.5vh",
-            paddingBottom: "1.5vh",
+            padding: "1.5vh"
           }}>
           <img
           src={imgLink}
           alt="ootd"
-          style={{width: "min(90vw)", display: "flex", justifyContent: "center", justifySelf: "center"}}
+          className={styles.imgDiv}
         />
         </div>
         

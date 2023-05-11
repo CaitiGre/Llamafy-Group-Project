@@ -31,6 +31,13 @@
     display: flex;
     justify-content: center;
 }
+.imgDiv{
+    width: auto; 
+    height: auto;
+    display: flex; 
+    justify-content: center; 
+    justify-self: center;
+}
 
 .OotdTile {
     display: flex;
@@ -117,6 +124,12 @@ button:hover{
     border: 1px solid #ccc;
 }
 
+.imgDivContainer{
+    width: auto;
+    border-radius: 2vh;
+    padding: 1.5vh;
+}
+
 @media screen and (max-width: 1500px) {
     
     .ootdSubtitle{
@@ -142,6 +155,21 @@ button:hover{
     .tileDesc {
         width: min(65vw,512px);
         margin-bottom: 3vh;
+    }
+
+    .imgDiv{
+        width: 100%; 
+        height: 100%;
+        display: flex; 
+        justify-content: center; 
+        justify-self: center;
+    }
+
+    .imgDivContainer{
+        width: 45vw;
+        height: auto;
+        border-radius: 2vh;
+        padding: 1vh;
     }
 
 }
