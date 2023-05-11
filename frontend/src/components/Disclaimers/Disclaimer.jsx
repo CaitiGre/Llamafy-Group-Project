@@ -13,13 +13,15 @@ import { useState } from "react";
 function Disclaimers() {
   const [expandedAccordion, setExpandedAccordion] = useState();
 
+  /* Initiates a MUI accordion that acts as a dropdown menu. Leaves previous accordion open */
   return (
     <Box>
       <Box>
         <Heading title="DISCLAIMERS AND FAQs" />
       </Box>
-      <Box className={style.Accordion} >
+      <Box className={style.Accordion} style={{paddingBottom: "3vh"}}>
         <Accordion >
+          {/* Each accordion component has its own summary (title) and description */}
           <AccordionSummary expandIcon={<ExpandMoreIcon />}>
             <Typography className={style.SummaryText}>
               We noticed that you only show weather for NZ towns. What's up with

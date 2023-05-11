@@ -127,7 +127,10 @@ function LandingPage() {
                 already have in your wardrobe, and the temperature of your home
                 location. This way you can rest easy knowing you will not be
                 suggested speedos when it is 10 degrees celcius outside!
-                Amazing!
+                Amazing! 
+                <br />
+                <br />
+                Still need convincing? Check out our <NavLink to="/dislaimer" className={styles.disclaimerLink}>disclaimers and FAQs.</NavLink>
               </Typography>
             </Box>
           </Grid>
@@ -202,8 +205,8 @@ function LandingPage() {
                 wear? No longer do you have to take the Steve Jobs approach of
                 wearing the same outfit day in and day out simply to have one
                 less decision to make per day. Try LLAMAFY today!
-                <br></br>
-                <br></br>
+                <br />
+                <br />
                 *Don't quote us on this. We're just enthusiastic! Bordering on
                 unhinged! Just look at all the exclamation marks!
               </Typography>
