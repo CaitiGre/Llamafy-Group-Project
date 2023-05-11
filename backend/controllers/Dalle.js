@@ -18,7 +18,7 @@ const imgGen = async (prompt) => {
     // user : "Lllamas",
   });
 
-  console.log(response.data.data[0].url);
+  console.log("Outfit Image Generated");
 
   // Extract the URL from the response to save to the server
   const genUrl = response.data.data[0].url;

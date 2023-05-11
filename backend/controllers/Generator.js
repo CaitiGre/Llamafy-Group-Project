@@ -28,7 +28,7 @@ async function generateOutfits(user_email, weatherValues, colorScheme) {
         condition: weatherValues.condition,
     };
 
-    console.log('awaiting promptGenerator');
+    console.log("awaiting promptGenerator");
     const prompt = await promptGenerator(user_email, weatherVals, colorScheme);
 
     console.log("awaiting response from davinci");
@@ -47,7 +47,7 @@ async function generateOutfits(user_email, weatherValues, colorScheme) {
         responseText = responseText.trim();
 
         try {
-            console.log("Generating DalE Images")
+            console.log("Generating DalE Images");
             let toJson = JSON.stringify(responseText);
             toJson = JSON.parse(responseText);
 
@@ -58,8 +58,12 @@ async function generateOutfits(user_email, weatherValues, colorScheme) {
             const dallePrompt3 =
                 toJson.recommendation3.dalle + " Hyper Realistic Style";
 
-        console.log("waiting for dalle");
-            const images = await Promise.all([imgGen(dallePrompt1), imgGen(dallePrompt2), imgGen(dallePrompt3)]);
+            console.log("waiting for dalle");
+            const images = await Promise.all([
+                imgGen(dallePrompt1),
+                imgGen(dallePrompt2),
+                imgGen(dallePrompt3),
+            ]);
 
             return {
                 responseText: responseText,
@@ -80,11 +84,7 @@ async function getUserWardrobe(user_email) {
     try {
         const conn = await pool.getConnection();
         const rows = await conn.query(
-            `SELECT ClothingItem.clothing_id, Category.main_category, Category.sub_category, ClothingItem.color, ClothingItem.sleeves, ClothingItem.pattern, ClothingItem.style
-       FROM ClothingItem
-       INNER JOIN Users ON ClothingItem.user_email = Users.email
-       INNER JOIN Category ON ClothingItem.category_id = Category.category_id
-       WHERE Users.email = ?`,
+            `SELECT ClothingItem.clothing_id, Category.main_category, Category.sub_category, ClothingItem.color, ClothingItem.sleeves, ClothingItem.pattern, ClothingItem.style, ClothingItem.lastWorn FROM ClothingItem INNER JOIN Users ON ClothingItem.user_email = Users.email INNER JOIN Category ON ClothingItem.category_id = Category.category_id WHERE Users.email = ? AND (ClothingItem.lastWorn IS NULL OR DATEDIFF(NOW(), ClothingItem.lastWorn) > 2)`,
             [user_email]
         );
         conn.release();
@@ -165,7 +165,9 @@ async function promptGenerator(user_email, weatherValsObj, colorScheme) {
         colorAddString = `If possible and if the user's wardrobe permits, try following this color scheme: ${colorScheme}`;
     }
 
-    var prompt = `Given the following JSON of clothes, suggest three outfits to wear today for a ${userData}, given that the temperature outside is ${weatherValsObj.temp} degrees celsius and ${weatherValsObj.condition}. ${colorAddString}
+    var prompt = `Given the following JSON of clothes, suggest three outfits to wear today for a ${userData}, given that the temperature outside is ${
+        weatherValsObj.temp
+    } degrees celsius and ${weatherValsObj.condition}. ${colorAddString}
 
   ${JSON.stringify(userWardrobe)}
   Respond in the below valid JSON format only, substituting % with the values (do not actually include the % sign if there are no values). Do not provide a value for a category if it is covered by another. In the "dalle" property, provide a comprehensive prompt to give to the DALL-E model. Focus on providing detail on colour. For the outfitDescription, give a small sentence of what the is included in the outfit
@@ -215,4 +217,22 @@ async function promptGenerator(user_email, weatherValsObj, colorScheme) {
     return prompt;
 }
 
-module.exports = { generateOutfits };
+async function changeClotheWornDate(clothesIDs) {
+    try {
+      const conn = await pool.getConnection();
+      const now = new Date();
+      const updateQuery = `UPDATE ClothingItem SET lastWorn = ? WHERE clothing_id = ?`;
+      
+      // Loop through the clothesIDs list and execute the update query for each clothing_id
+      for (const clothing_id of clothesIDs) {
+        const updateResult = await conn.query(updateQuery, [now, clothing_id]);
+        console.log(`Updated lastWorn for clothing_id ${clothing_id}`);
+      }
+      
+      conn.release();
+    } catch (err) {
+      throw err;
+    }
+  }
+
+module.exports = { generateOutfits, changeClotheWornDate };

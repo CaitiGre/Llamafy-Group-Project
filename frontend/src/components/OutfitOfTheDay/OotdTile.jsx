@@ -26,7 +26,7 @@ const customStyles = {
 // Make sure to bind modal to your appElement (https://reactcommunity.org/react-modal/accessibility/)
 // Modal.setAppElement('#modal');
 
-const OotdTile = ({ imgLink, description }) => {
+const OotdTile = ({ imgLink, description, shoes, bottom, top }) => {
   const [modalIsOpen, setIsOpen] = useState(false);
   const [email, setEmail] = useState();
 
@@ -51,16 +51,40 @@ const OotdTile = ({ imgLink, description }) => {
 
   // allow the user to choose an outfit/outfits they like and save to static files
   function onClickHandler() {
-    // don't allow the user to try and save the loading pictures
+    const outfitItems = shoes.concat(top, bottom);
+  
     if (imgLink.substring(0, 16) !== "https://oaidalle") {
-      toast.error("That's not an outfit dude. That's a llama");
+      toast.error("That's not an outfit, dude");
       closeModal();
       return;
     }
+  
     const postBody = {
       imgUrl: imgLink,
       email: email,
     };
+  
+    // Get a list of clothing IDs from the outfit items
+    const clothesIDs = outfitItems.map(item => item.id).filter(id => !isNaN(id));
+  
+    // Call the changeClotheWornDate function to update the lastWorn field
+    fetch("http://localhost:3006/api/changeClotheWornDate", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ listOfIds: clothesIDs }),
+    }).then((response) => {
+      if (response.ok) {
+        console.log("Last worn date updated successfully");
+      } else {
+        console.error("Error updating last worn date");
+      }
+    }).catch((error) => {
+      console.error(error);
+    });
+  
+    // Save the outfit to favorites
     try {
       axios.post("http://localhost:3006/ootd/saveFavourite", postBody);
       toast.success("Saved to favourites!");
