@@ -5,6 +5,8 @@ const axios = require('axios');
 const { v4: uuidv4 } = require('uuid');
 const fs = require('fs');
 
+// We want the user's first name to greet them on the OOTD page
+// Currently deprecated
 router.post('/getName', async (req, res) => {
   try {
     const name = await fetchUserFirstName(req.body.email);
@@ -16,6 +18,8 @@ router.post('/getName', async (req, res) => {
   }
 });
 
+// Called on selecting an outfit from the modal selection in OOTD
+// We want to save the DALL-E generated outfit to the public folder to display in favourites later
 router.post('/saveFavourite', async (req, res) => {
   const imgUrl = req.body.imgUrl;
   const email = req.body.email;
