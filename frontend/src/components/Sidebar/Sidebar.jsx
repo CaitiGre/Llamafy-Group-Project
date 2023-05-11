@@ -9,6 +9,7 @@ import handleLogout from "../../helpers/handleLogout";
 import { useNavigate } from "react-router-dom";
 
 const Sidebar = () => {
+   /* Gets the authentication of the users and initiates the sidebar (drawer) component that has a default of closed */
   const navigate = useNavigate();
   const { userAuthenticated, setUserAuthenticated } = useContext(AuthContext);
   const [openDrawer, setOpenDrawer] = useState(false);
@@ -32,6 +33,9 @@ const Sidebar = () => {
       </NavLink>
       <NavLink to={"/wardrobe"}>
         <ListItemText>WARDROBE</ListItemText>
+      </NavLink>
+      <NavLink to={"/pastOutfits"}>
+        <ListItemText>FAVOURITES</ListItemText>
       </NavLink>
       <NavLink to={"/Settings"}>
         <ListItemText>SETTINGS</ListItemText>
@@ -57,6 +61,7 @@ const Sidebar = () => {
     </List>
   );
 
+  /* Sets the styling of the sidebar and populates the links based on a user's logged in status */
   return (
     <React.Fragment>
       <Drawer
