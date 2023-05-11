@@ -271,7 +271,7 @@ function Profile() {
         </div>
       ) : (
         <div>
-          <p>Loading... Refresh when you're done looking at llama</p>
+          <p>Loading... Refresh if the page takes a while to load</p>
           <img src={loading}></img>
         </div>
       )}

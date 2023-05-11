@@ -87,10 +87,18 @@ The wardrobe page is where users specify the items that they want to be included
 
 We decided on the following categories to allow users to pick from:
 
-- Tops: this includes the ability for users to select the sleeve style, the type of top etc all displayed in modals.
-- Bottoms: Pants, skirts etc
-- Shoes:
-- Dresses:
+- Tops
+- Bottoms
+- Jumpers
+- Jackets
+- Onepiece
+- Swimwear
+- Shoes
+- Accessories
+
+When the user clicks on a modal, they will see an 'ADD ITEMS' button which allows them to add their outfit to the wardrobe. Once this button is clicked, it opens up another sub modal which includes subcategories, e.g. Tops has T-shirt, Shirt, Blouse and Crop-top subcategories. Once the user clicks on a subcategory, they will be able to specify details like Colour, Sleeves, Style and Pattern of their outfit item. Once these are specified, they can click ADD to add the item to their wardrobe, or CANCEL to cancel the selections.
+
+If the user have previously added their outfits to the wardrobe, they will see the descriptions of their outfits listed on the modal when they click on each category. They can also delete their outfits by clicking on the bin symbol next to each item.
 
 ## Outfit Generation 
 
@@ -103,11 +111,18 @@ That's about it. The whole reason that people are using this site is so they don
 
 ## Settings 
 
-Settings consists of two sub-pages: wardrobe editing and profile editing, the functionality of which is explained below.
+This page contains a form with the following fields, most of them can be edited to update user information:
+- Email: Please note this field cannot be edited.
+- First Name
+- Last Name
+- Style Preference
+- Skin Tone
+- Location
+- New Password
+- Re-enter New Password
+- Current Password: required to update any changes
 
-### Wardrobe Edit
-
-### Profile Edit
+Once the user is happy with the information they have updated and inserted their current password, they can click on the SUBMIT button for the new information to be saved.
 
 ## Disclaimers/FAQ
 
