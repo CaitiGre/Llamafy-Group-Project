@@ -45,9 +45,9 @@ const OutfitOfTheDay = () => {
         desc: rec.desc,
       }))
       .map((rec) => (
-        <div key={rec.id} className={styles.Ootd}>
+        <Box key={rec.id} className={styles.Ootd}>
           <OotdTile description={rec.desc} imgLink={rec.img} />
-        </div>
+        </Box>
       ))
   );
   const [showRecommendations, setShowRecommendations] = useState(false);
@@ -60,8 +60,9 @@ const OutfitOfTheDay = () => {
         setWeatherValues(res.data);
         setWeatherText(true);
       })
-      .catch((err) => {
-        console.log(err);
+      .catch((error) => {
+        console.log(error);
+        toast.error("An error occurred while trying to get your weather data.");
         setWeatherErr(true);
       });
   }, []);
@@ -74,7 +75,10 @@ const OutfitOfTheDay = () => {
       axios
         .post("http://localhost:3006/ootd/getName", postBody)
         .then((res) => setUsername(res.data.name))
-        .catch((err) => console.log("big problem"));
+        .catch((error) => {
+          console.log(error);
+          toast.error("An error occurred while trying to retrieve your name.");
+        });
     };
     getName();
   }, []);
@@ -82,14 +86,7 @@ const OutfitOfTheDay = () => {
   async function handleRecommendationTiles() {
     toast.promise(
       new Promise(async (resolve, reject) => {
-        console.log("Fetching User Email");
         const email = await getUserEmail();
-        console.log(
-          "Generating 3 Outfits for " +
-            email +
-            ", with color scheme: " +
-            outfitColor.hex
-        );
 
         setShowRecommendations(true);
 
@@ -112,8 +109,6 @@ const OutfitOfTheDay = () => {
           })
           .then((data) => {
             let responseText = JSON.parse(data.responseText);
-            console.log(responseText.recommendation1.outfitDescription);
-
             const items = [
               {
                 id: 1,
@@ -139,9 +134,9 @@ const OutfitOfTheDay = () => {
                 desc: rec.desc,
               }))
               .map((rec) => (
-                <div key={rec.id} className={styles.Ootd}>
+                <Box key={rec.id} className={styles.Ootd}>
                   <OotdTile description={rec.desc} imgLink={rec.img} />
-                </div>
+                </Box>
               ));
 
             setRecommendations(tiles);
@@ -176,7 +171,6 @@ const OutfitOfTheDay = () => {
         <Box>
           <Heading title="OUTFIT OF THE DAY" />
         </Box>
-        {/* A box containing the grid and grid items */}
         <Box
           sx={{
             display: "flex",
@@ -226,11 +220,12 @@ const OutfitOfTheDay = () => {
                     />{" "}
                     <br />
                     <Typography
-                      style={{
+                      sx={{
                         fontFamily:
                           "'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif",
                         paddingTop: "2vh",
                         fontSize: "2.5vh",
+                        color: "#58315CD8",
                       }}
                     >
                       {weatherValues.tempC} with {weatherValues.humidity}{" "}

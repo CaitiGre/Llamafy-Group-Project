@@ -1,5 +1,6 @@
 const pool = require('../database/pool');
 
+// Used in the weatherProxy route to get the user's location for accurate weather conditions
 async function fetchUserLocation(email) {
   try {
     const conn = await pool.getConnection();

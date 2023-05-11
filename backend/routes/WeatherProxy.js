@@ -12,8 +12,6 @@ Weather API proxy route so we can isolate the API key to the backend.
 We will call this route from the frontend to make a call to the weather API
 */
 router.get('/data', async (req, res) => {
-    console.log('accessed /weather/data');
-
     // Grab email from /data?email=foo query string
     // const currUserEmail = req.query.email;
     const currUserEmail = 'kkap897@aucklanduni.ac.nz';
@@ -46,8 +44,8 @@ router.get('/data', async (req, res) => {
         weatherVals.iconUrl = response.data.current.condition.icon
     })
     .then(() => res.json(weatherVals))
-    .catch(err => {
-        console.log(err);
+    .catch(error => {
+        console.log(error);
         res.status(418);
         res.send("Unexpected teapot error");
     });
