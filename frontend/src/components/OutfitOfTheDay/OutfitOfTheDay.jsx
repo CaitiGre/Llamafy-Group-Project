@@ -67,22 +67,6 @@ const OutfitOfTheDay = () => {
       });
   }, []);
 
-  useEffect(() => {
-    const getName = async () => {
-      const postBody = {
-        email: await getUserEmail(),
-      };
-      axios
-        .post("http://3.27.75.210:3006/ootd/getName", postBody)
-        .then((res) => setUsername(res.data.name))
-        .catch((error) => {
-          console.log(error);
-          toast.error("An error occurred while trying to retrieve your name.");
-        });
-    };
-    getName();
-  }, []);
-
   async function handleRecommendationTiles() {
     toast.promise(
       new Promise(async (resolve, reject) => {

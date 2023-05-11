@@ -28,7 +28,7 @@ passport.use(new LocalStrategy(
 
 // Serialize user ID into the session
 passport.serializeUser((user, done) => {
-    done(null, user.id);
+    done(null, user.email);
 });
 
 // Deserialize user by email
