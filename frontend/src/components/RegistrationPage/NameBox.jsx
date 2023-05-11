@@ -40,7 +40,14 @@ export default function NamesBox({ data, handleChange }) {
             width: isLargeScreen ? "20vw" : "32vw",
             paddingLeft: "20px",
           }}
-          disableUnderline={true}
+          sx={{
+            '&:before': {
+              borderBottom: 'none',
+            },
+            '&:hover:not(.Mui-disabled):before': {
+              borderBottom: 'none',
+            },
+          }}
         />
       </Box>
       <Box display="flex" flexDirection="column" alignItems="center">
@@ -70,7 +77,14 @@ export default function NamesBox({ data, handleChange }) {
             width: isLargeScreen ? "20vw" : "32vw",
             paddingLeft: "20px",
           }}
-          disableUnderline={true}
+          sx={{
+            '&:before': {
+              borderBottom: 'none',
+            },
+            '&:hover:not(.Mui-disabled):before': {
+              borderBottom: 'none',
+            },
+          }}
         />
       </Box>
     </Box>
