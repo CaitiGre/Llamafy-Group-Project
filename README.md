@@ -59,8 +59,10 @@ The backend is hosted on an AWS EC2 instance
 
 If for whatever reason you do not wish to register but still want to have a look around the website, we have set up an account populated with dummy data that you are free to use.
 
-Email:
-Password:
+- Email: test@test.test
+- Password: test
+
+(Secure, we know)
 
 # Pages you can visit:
 
