@@ -3,9 +3,10 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: auto;
-    align-items:flex-start;
+    align-items: center;
     justify-content: space-around;
     width: auto;
+    margin: auto;
 }
 
 .subSubHeading {
@@ -34,8 +35,8 @@
 .OotdTile {
     display: flex;
     justify-content: center;
-    width: min(33vw,512px);
-    height: min(33vw,512px);
+    width: min(25vw);
+    height: min(25vw);
     border-radius: 2vh;
     box-shadow: 2px 2px 8px 2px rgba(0, 0, 0, 0.2);
 }
@@ -47,6 +48,7 @@
 
 .OotdTile img {
     object-fit:contain;
+    width: min(45vw,512px);
 }
 
 .tileDesc {
@@ -69,7 +71,7 @@
     display: flex;
     justify-content: center;
     padding: 1vh;
-    gap: 1vh;
+    gap: 2vh;
 }
 
 .modalButton button {
@@ -79,9 +81,20 @@
     padding: 0.5vh;
     align-content: space-between;
     align-items: center;
-    border-radius: 2vh;
+    border-radius: 5vh;
     text-transform: uppercase;
-    width: 10vh;
+    width: 20vh;
+    background-color: white;
+    border: 1px solid #ccc;
+    color: #58315cd8;
+    cursor: pointer;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+button:hover{
+    background-color: #ee6aecaf;
+    border-color: #aaa;
+    color: #fefefe;
 }
 
 .generateButton:hover{
@@ -97,7 +110,14 @@
     padding: 25px;
 }
 
-@media screen and (max-width: 1600px) {
+.generateButton{
+    margin-top: -150px;
+    margin-bottom: 100px;
+    background-color: white;
+    border: 1px solid #ccc;
+}
+
+@media screen and (max-width: 1500px) {
     
     .ootdSubtitle{
         font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
@@ -109,20 +129,20 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+        justify-content: center;
+        text-align: center;
+        margin: auto;
+        width: auto;
     }
     .OotdTile {
-        width: min(50vw,512px);
-        height: min(50vw,512px);
+        width: min(65vw,512px);
+        height: min(65vw,512px);
     }
 
     .tileDesc {
-        width: min(50vw,512px);
+        width: min(65vw,512px);
         margin-bottom: 3vh;
     }
 
 }
 
-.generateButton{
-    margin-top: -150px;
-    margin-bottom: 100px;
-}

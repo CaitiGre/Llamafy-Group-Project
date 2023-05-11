@@ -14,7 +14,7 @@ import AuthContext from './AuthContext';
 import { useState } from 'react';
 import Prevented from './Prevented';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer} from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 function App() {
@@ -41,6 +41,11 @@ function App() {
                 <LandingPage />
               </Prevented>
             } />
+            <Route path="disclaimer" element={
+            <Prevented isAuthenticated={userAuthenticated}>
+              <Disclaimers />
+            </Prevented>
+            } />
             <Route path="login" element={
               <Prevented isAuthenticated={userAuthenticated}>
                 <LoginPage />
@@ -62,7 +67,7 @@ function App() {
             ) : (<Route path="login" element={<LoginPage/>}/>
             )}
 
-            <Route path="disclaimer" element={<Disclaimers />} />
+            
           </Routes>
         </React.Fragment>
       </div>

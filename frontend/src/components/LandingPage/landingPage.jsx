@@ -1,6 +1,6 @@
 import styles from "./landingPage.module.css";
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import ClothingRail from "../../assets/cothingRail.gif";
 import WardrobeChange from "../../assets/Wardorbe-Change.gif";
 import { Box, Button, Grid, Typography, Card } from "@mui/material";
@@ -130,7 +130,7 @@ function LandingPage() {
                 Amazing! 
                 <br />
                 <br />
-                Still need convincing? Check out our <NavLink to="/dislaimer" className={styles.disclaimerLink}>disclaimers and FAQs.</NavLink>
+                Still need convincing? Check out our <Link to="/disclaimer" className={styles.disclaimerLink}>disclaimers and FAQs.</Link>
               </Typography>
             </Box>
           </Grid>
