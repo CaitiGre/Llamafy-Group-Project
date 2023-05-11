@@ -30,8 +30,13 @@ function WardrobeItems({ clothes, setClothes, category }) {
   };
 
   // Handling the delete item event in CategoryItem
-  // Get the category items to show when the component mounts or when the category changes
   async function handleDeleteItem(item) {
+    // Double check with the user before deleting the item
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this item?"
+    );
+    if (!confirmDelete) return;
+    // Filter out the item that was deleted from the list
     const remainingItemsToShow = clothes.filter(
       (catItem) => catItem.clothing_id !== item.clothing_id
     );
@@ -42,7 +47,7 @@ function WardrobeItems({ clothes, setClothes, category }) {
         `http://localhost:3006/wardrobe/deleteWardrobeItem`,
         { itemId: item.clothing_id }
       );
-
+      // Check if the item was deleted successfully
       if (response.data.isItemDeleted) {
         toast.success(`Item id#${item.clothing_id} deleted.`);
         setClothes(remainingItemsToShow);
@@ -56,14 +61,16 @@ function WardrobeItems({ clothes, setClothes, category }) {
   }
   return (
     <Box alignItems="center">
+      {/* Display default message if no items to display in wardrobe */}
       {clothes.length === 0 ? (
-        <Typography variant="h6"
+        <Typography
+          variant="h6"
           sx={{
             color: "white",
             textTransform: "lowercase",
             textAlign: "center",
             paddingTop: 2,
-            fontStyle: 'italic',
+            fontStyle: "italic",
           }}
         >
           you don't have any {category.name} in your wardrobe
@@ -140,16 +147,6 @@ function WardrobeItems({ clothes, setClothes, category }) {
         <>
           {" "}
           <SubSelectionModal itemsToShow={subSelectionItemsToShow} />
-          <Box className={styles.navLinkContainer}>
-            <Button
-              sx={{ color: "white" }}
-              onClick={() => {
-                setIsItemsVisible(true);
-              }}
-            >
-              Back
-            </Button>
-          </Box>
         </>
       )}
     </Box>
