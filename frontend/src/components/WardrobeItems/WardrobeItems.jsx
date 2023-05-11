@@ -44,7 +44,7 @@ function WardrobeItems({ clothes, setClothes, category }) {
     // Send Post request to delete item from the database
     try {
       const response = await axios.post(
-        `http://localhost:3006/wardrobe/deleteWardrobeItem`,
+        `http://3.27.75.210:3006/wardrobe/deleteWardrobeItem`,
         { itemId: item.clothing_id }
       );
       // Check if the item was deleted successfully
@@ -61,8 +61,68 @@ function WardrobeItems({ clothes, setClothes, category }) {
   }
   return (
     <Box alignItems="center">
+      <>
+        {isItemsVisible &&
+          clothes.map((item) => (
+            <List
+              key={item.clothing_id}
+              sx={{
+                width: "100%",
+
+                textAlign: "center",
+                margin: "0 auto",
+              }}
+            >
+              <ListItem
+                alignItems="center"
+                sx={{
+                  boxShadow: "0px 3px 10px rgba(0, 0, 0, 0.3)",
+                  bgcolor: "background.paper",
+                  borderRadius: 4,
+                  display: "flex",
+                  alignContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                <ListItemText
+                  secondary={
+                    <>
+                      <Typography
+                        component="span"
+                        sx={{ paddingRight: 4 }}
+                        color="#58315CD8"
+                      >
+                        {GetColorName(item.color)} {item.sleeves} {item.pattern}{" "}
+                        {item.style} {item.sub_category}{" "}
+                        <Button
+                          data-testid="deleteButton"
+                          onClick={() => handleDeleteItem(item)}
+                          sx={{
+                            position: "absolute",
+                            right: 0,
+                            top: "50%",
+                            transform: "translateY(-50%)",
+                            paddingRight: 0,
+                            padding: 1,
+                          }}
+                        >
+                          <img src={bin} alt="delete button" width={16} />
+                        </Button>
+                      </Typography>
+                    </>
+                  }
+                />
+              </ListItem>
+            </List>
+          ))}
+      </>
+
+      {isItemsVisible && (
+        
+        <Box className={styles.navLinkContainer}>
+          
       {/* Display default message if no items to display in wardrobe */}
-      {clothes.length === 0 ? (
+      {clothes.length === 0 && (
         <Typography
           variant="h6"
           sx={{
@@ -75,66 +135,7 @@ function WardrobeItems({ clothes, setClothes, category }) {
         >
           you don't have any {category.name} in your wardrobe
         </Typography>
-      ) : (
-        <>
-          {isItemsVisible &&
-            clothes.map((item) => (
-              <List
-                key={item.clothing_id}
-                sx={{
-                  width: "100%",
-
-                  textAlign: "center",
-                  margin: "0 auto",
-                }}
-              >
-                <ListItem
-                  alignItems="center"
-                  sx={{
-                    boxShadow: "0px 3px 10px rgba(0, 0, 0, 0.3)",
-                    bgcolor: "background.paper",
-                    borderRadius: 4,
-                    display: "flex",
-                    alignContent: "center",
-                    alignItems: "center",
-                  }}
-                >
-                  <ListItemText
-                    secondary={
-                      <>
-                        <Typography
-                          component="span"
-                          sx={{ paddingRight: 4 }}
-                          color="#58315CD8"
-                        >
-                          {GetColorName(item.color)} {item.sleeves}{" "}
-                          {item.pattern} {item.style} {item.sub_category}{" "}
-                          <Button
-                            data-testid="deleteButton"
-                            onClick={() => handleDeleteItem(item)}
-                            sx={{
-                              position: "absolute",
-                              right: 0,
-                              top: "50%",
-                              transform: "translateY(-50%)",
-                              paddingRight: 0,
-                              padding: 1,
-                            }}
-                          >
-                            <img src={bin} alt="delete button" width={16} />
-                          </Button>
-                        </Typography>
-                      </>
-                    }
-                  />
-                </ListItem>
-              </List>
-            ))}
-        </>
       )}
-
-      {isItemsVisible && (
-        <Box className={styles.navLinkContainer}>
           <Button
             sx={{ color: "white" }}
             onClick={() => handleOpenModal(category)}
@@ -154,3 +155,5 @@ function WardrobeItems({ clothes, setClothes, category }) {
 }
 
 export default WardrobeItems;
+
+
