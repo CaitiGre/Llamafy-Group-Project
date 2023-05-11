@@ -46,7 +46,7 @@ const OutfitOfTheDay = () => {
       }))
       .map((rec) => (
         <div key={rec.id} className={styles.Ootd}>
-          <OotdTile description={rec.desc} imgLink={rec.img} />
+          <OotdTile description={rec.desc} imgLink={rec.img} outfits={[rec.shoes, rec.top, rec.bottom]}/>
         </div>
       ))
   );
@@ -112,23 +112,31 @@ const OutfitOfTheDay = () => {
           })
           .then((data) => {
             let responseText = JSON.parse(data.responseText);
-            console.log(responseText.recommendation1.outfitDescription);
-
+           
             const items = [
               {
                 id: 1,
                 img: data.imageUrls[0],
                 desc: responseText.recommendation1.outfitDescription,
+                shoes: responseText.recommendation1.shoes,
+                top: responseText.recommendation1.top,
+                bottom: responseText.recommendation1.bottom,
               },
               {
                 id: 2,
                 img: data.imageUrls[1],
                 desc: responseText.recommendation2.outfitDescription,
+                shoes: responseText.recommendation2.shoes,
+                top: responseText.recommendation2.top,
+                bottom: responseText.recommendation2.bottom,
               },
               {
                 id: 3,
                 img: data.imageUrls[2],
                 desc: responseText.recommendation3.outfitDescription,
+                shoes: responseText.recommendation3.shoes,
+                top: responseText.recommendation3.top,
+                bottom: responseText.recommendation3.bottom,
               },
             ];
 
@@ -137,10 +145,13 @@ const OutfitOfTheDay = () => {
                 id: rec.id,
                 img: rec.img,
                 desc: rec.desc,
+                shoes: rec.shoes,
+                top: rec.top,
+                bottom: rec.bottom
               }))
               .map((rec) => (
                 <div key={rec.id} className={styles.Ootd}>
-                  <OotdTile description={rec.desc} imgLink={rec.img} />
+                  <OotdTile description={rec.desc} imgLink={rec.img} shoes={rec.shoes} bottom={rec.bottom} top={rec.top}/>
                 </div>
               ));
 
