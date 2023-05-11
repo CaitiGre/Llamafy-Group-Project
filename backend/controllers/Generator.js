@@ -83,7 +83,7 @@ async function getUserWardrobe(user_email) {
     try {
         const conn = await pool.getConnection();
         const rows = await conn.query(
-            `SELECT ClothingItem.clothing_id, Category.main_category, Category.sub_category, ClothingItem.color, ClothingItem.sleeves, ClothingItem.pattern, ClothingItem.style, ClothingItem.lastWorn FROM ClothingItem INNER JOIN Users ON ClothingItem.user_email = Users.email INNER JOIN Category ON ClothingItem.category_id = Category.category_id WHERE Users.email = ? AND DATEDIFF(NOW(), ClothingItem.lastWorn) > 7`,
+            `SELECT ClothingItem.clothing_id, Category.main_category, Category.sub_category, ClothingItem.color, ClothingItem.sleeves, ClothingItem.pattern, ClothingItem.style, ClothingItem.lastWorn FROM ClothingItem INNER JOIN Users ON ClothingItem.user_email = Users.email INNER JOIN Category ON ClothingItem.category_id = Category.category_id WHERE Users.email = ? AND (ClothingItem.lastWorn IS NULL OR DATEDIFF(NOW(), ClothingItem.lastWorn) > 2)`,
             [user_email]
         );
         conn.release();
@@ -216,4 +216,22 @@ async function promptGenerator(user_email, weatherValsObj, colorScheme) {
     return prompt;
 }
 
-module.exports = { generateOutfits };
+async function changeClotheWornDate(clothesIDs) {
+    try {
+      const conn = await pool.getConnection();
+      const now = new Date();
+      const updateQuery = `UPDATE ClothingItem SET lastWorn = ? WHERE clothing_id = ?`;
+      
+      // Loop through the clothesIDs list and execute the update query for each clothing_id
+      for (const clothing_id of clothesIDs) {
+        const updateResult = await conn.query(updateQuery, [now, clothing_id]);
+        console.log(`Updated lastWorn for clothing_id ${clothing_id}`);
+      }
+      
+      conn.release();
+    } catch (err) {
+      throw err;
+    }
+  }
+
+module.exports = { generateOutfits, changeClotheWornDate };
