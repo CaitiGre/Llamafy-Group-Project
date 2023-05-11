@@ -124,21 +124,11 @@ async function checkAuthenticated(req, res) {
 }
 
 async function getEmail(req, res) {
-    const conn = await pool.getConnection();
-    try {
-        console.log("GETTING EMAIL FROM SESSION ID: " + req.sessionID)
-        const [rows] = await conn.query('SELECT user_email FROM UserSession WHERE session_id = ?', [req.sessionID]);
-        if (rows.length > 0) {
-            return res.json(rows[0].user_email);
-        } else {
-            console.error('No user found with session ID:', req.sessionID);
-            return res.status(200).json({ message: 'None found' });
-        }
-    } catch (err) {
-        console.error('Error getting user email:', err);
-        return null;
-    } finally {
-        conn.release();
+    if (req.user) {
+        return res.json(req.user.user_email);
+    } else {
+        console.error('No user found with session ID:', req.sessionID);
+        return res.status(200).json({ message: 'None found' });
     }
 }
 
