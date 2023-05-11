@@ -83,14 +83,22 @@ The login page allows the users to log in with their provided email address and 
 
 ## Wardrobe
 
-The wardrobe page is where users specify the items that they want to be included in their closet, that is the items that will be fed into the prompt so the algorithm can generate an outfit based on the clothing that they own.
+The wardrobe page is where users specify the items that they want to be included in their wardrobe, that is the clothing items that will be fed into the prompt so the algorithm can generate an outfit based on the clothes that they own.
 
 We decided on the following categories to allow users to pick from:
 
-- Tops: this includes the ability for users to select the sleeve style, the type of top etc all displayed in modals.
-- Bottoms: Pants, skirts etc
-- Shoes:
-- Dresses:
+- Tops
+- Bottoms
+- Jumpers
+- Jackets
+- Onepiece
+- Swimwear
+- Shoes
+- Accessories
+
+When the user clicks on a modal, they will see an 'ADD ITEMS' button which allows them to add a piece of clothing to their wardrobe. Once this button is clicked, it opens up another sub modal which includes subcategories, e.g. Tops has T-shirt, Shirt, Blouse and Crop-top subcategories. Once the user clicks on a subcategory, they will be able to specify details like Colour, Sleeves, Style and Pattern of their clothing item. Once these are specified, they can click ADD to add the item to their wardrobe, or CANCEL to cancel the selections.
+
+If the user had previously added a piece of clothing to their wardrobe, they will be able to view the details of their outfits displayed on the modal window when they click on a given category. Additionally, they have the option to remove any clothing item from their wardrobe by clicking on the bin symbol located next to each item.
 
 ## Outfit Generation 
 
@@ -103,11 +111,18 @@ That's about it. The whole reason that people are using this site is so they don
 
 ## Settings 
 
-Settings consists of two sub-pages: wardrobe editing and profile editing, the functionality of which is explained below.
+This page contains a form with the following fields, most of them can be edited to update user information:
+- Email: Please note this field cannot be edited.
+- First Name
+- Last Name
+- Style Preference
+- Skin Tone
+- Location
+- New Password
+- Re-enter New Password
+- Current Password: required to update any changes
 
-### Wardrobe Edit
-
-### Profile Edit
+Once the user is happy with the information they have updated and inserted their current password, they can click on the SUBMIT button for the new information to be saved.
 
 ## Disclaimers/FAQ
 

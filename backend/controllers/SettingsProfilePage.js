@@ -1,5 +1,6 @@
 const pool = require('../database/pool');
 
+// Get user data from database
 async function getProfile(userEmail) {
     try {
         const conn = await pool.getConnection();
@@ -33,6 +34,7 @@ async function updateProfile(user) {
 }
 
 
+// Update user's password only
 async function updatePassword(user, hashedPassword) {
     try {
         const conn = await pool.getConnection();

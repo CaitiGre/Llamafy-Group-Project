@@ -38,6 +38,7 @@ export default function NamesBox({ data, handleChange }) {
           style={{
             backgroundColor: "white",
             width: isLargeScreen ? "20vw" : "32vw",
+            paddingLeft: "20px",
           }}
           sx={{
             '&:before': {
@@ -58,6 +59,7 @@ export default function NamesBox({ data, handleChange }) {
             textTransform: "uppercase",
             fontFamily: "'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif",
             color: "#fefefe",
+            
           }}
         >
           Last Name
@@ -73,6 +75,7 @@ export default function NamesBox({ data, handleChange }) {
           style={{
             backgroundColor: "white",
             width: isLargeScreen ? "20vw" : "32vw",
+            paddingLeft: "20px",
           }}
           sx={{
             '&:before': {
