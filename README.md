@@ -45,13 +45,15 @@ We also used a variety of packages to help ease the implementation of the front 
 To get the site up and running you simply need to type this in the terminal within the front end folder to get the application up and running.
 
 ```
+npm install
 npm run start
 ```
 Easy as that!
 
 ## Back end
 
-To run the backend you need to open up a terminal in the backend folder and run node.js
+<!-- To run the backend you need to open up a terminal in the backend folder and run node.js -->
+The backend is hosted on an AWS EC2 instance 
 
 ## Functional login credentials
 
@@ -67,6 +69,8 @@ Here you can find a brief overview of the pages that we have available to peruse
 ## Landing Page
 
 The landing page is the first of the pages that you will see when you open our application. From here you are able to navigate to different pages depending on whether you are logged in or not, and are introduced to a bit about the purpose of the application.
+
+In this section you are also able to navigate to the disclaimer page or you can do so at anytime from the sidebar
 
 ## Registration Page
 
@@ -108,6 +112,8 @@ They are able to specify:
 - Colour (the primary colour that they would like the outfit to be)
 
 That's about it. The whole reason that people are using this site is so they don't have to make decisions so we figured we'd keep it simple.
+
+Once a user clicks generate they will be presented with three outfits that they are able to click on and open the modals for. In the modals the user is able to select 'yes!' to indicate that they like the generated outfit which will then add that item to favourites. Alternatively, the user can select the button that indicates that the outfit is not for them which will close the modal.
 
 ## Settings 
 

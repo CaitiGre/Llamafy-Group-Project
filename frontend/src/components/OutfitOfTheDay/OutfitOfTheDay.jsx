@@ -31,7 +31,7 @@ const OutfitOfTheDay = () => {
     },
   ];
 
-  // def states
+  // eDfine states
   const [username, setUsername] = useState("llama");
   const [weatherText, setWeatherText] = useState(false);
   const [weatherErr, setWeatherErr] = useState(false);
@@ -52,10 +52,13 @@ const OutfitOfTheDay = () => {
   );
   const [showRecommendations, setShowRecommendations] = useState(false);
 
-  // get weather data from weatherAPI proxy
+  // Get weather data from weatherAPI proxy
   useEffect(() => {
-    axios
-      .get("http://3.27.75.210:3006/weather/data")
+    const fetchWeather = async () => {
+      const email = await getUserEmail();
+      axios
+      // Email sent as query string to extract @ server side
+      .get(`http://3.27.75.210:3006/weather/data?email=${email}`)
       .then((res) => {
         setWeatherValues(res.data);
         setWeatherText(true);
@@ -65,6 +68,8 @@ const OutfitOfTheDay = () => {
         toast.error("An error occurred while trying to get your weather data.");
         setWeatherErr(true);
       });
+  };
+    fetchWeather()
   }, []);
 
   async function handleRecommendationTiles() {

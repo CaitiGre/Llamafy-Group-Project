@@ -30,7 +30,7 @@ const OotdTile = ({ imgLink, description, shoes, bottom, top }) => {
   const [modalIsOpen, setIsOpen] = useState(false);
   const [email, setEmail] = useState();
 
-  // grab the curr user's email and sync to state for post body
+  // grab the current user's email and sync to state for post body
   useEffect(() => {
     const getEmail = async () => {
       const email = await getUserEmail();
