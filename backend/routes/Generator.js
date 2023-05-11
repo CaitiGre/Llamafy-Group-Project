@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 // const { registerUser } = require('../controllers/RegistrationPage');
-const { generateOutfits } = require('../controllers/Generator')
+const { generateOutfits, changeClotheWornDate } = require('../controllers/Generator')
 
 router.post('/generateOutfits', async (req, res) => {
   try {
@@ -13,6 +13,17 @@ router.post('/generateOutfits', async (req, res) => {
     res.status(500).json({ error: 'Internal server error' });
   }
 });
+
+router.post('/changeClotheWornDate', async (req, res) => {
+  try {
+    console.log("Changing lastword for id's " + req.body.listOfIds);
+    const response = await changeClotheWornDate(req.body.listOfIds);
+    res.status(201).json(response);
+  } catch (error){
+    console.error(error);
+    res.status(500).json({error: 'Internal server error'});
+  }
+})
 
 
 module.exports = router;
