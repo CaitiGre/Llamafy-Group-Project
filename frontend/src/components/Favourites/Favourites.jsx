@@ -55,7 +55,7 @@ export default function Favourites() {
       <Heading title="Favourites" />
       <SubHeading subtitle="PAST OUTFITS" />
 
-      {dataFetched ? (
+      {pastOutfits ? (
         <Box sx={{ marginTop: 8 }}>
           <Grid
             container
@@ -67,7 +67,7 @@ export default function Favourites() {
             }}
           >
             {/* Loop over all the user's past outfits*/}
-            {pastOutfits ? (
+            {dataFetched ? (
               pastOutfits.map((outfitObj) => (
                 <Grid
                   item
@@ -83,15 +83,16 @@ export default function Favourites() {
                 </Grid>
               ))
             ) : (
-              <SubHeading subtitle="Go select some of your favourite outfits to display here" />
+              <Box>
+          <Typography>Loading...</Typography>
+          <img src={loading}></img>
+        </Box>
             )}
           </Grid>
         </Box>
       ) : (
-        <Box>
-          <Typography>Loading...</Typography>
-          <img src={loading}></img>
-        </Box>
+        <SubHeading subtitle="Go select some of your favourite outfits to display here" />
+       
       )}
     </>
   );
