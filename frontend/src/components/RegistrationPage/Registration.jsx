@@ -59,7 +59,7 @@ function RegistrationPage() {
 
       {/* Once hashed the submit button will attempt to post the users data to the server and display a success toast if successful navigating the user to the login page */}
       try {
-        await axios.post("http://localhost:3006/registration/registerNewUser", {
+        await axios.post("http://3.27.75.210:3006/registration/registerNewUser", {
           firstName: data.firstName,
           lastName: data.lastName,
           email: data.email,

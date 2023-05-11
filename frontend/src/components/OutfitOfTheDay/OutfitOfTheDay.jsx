@@ -55,7 +55,7 @@ const OutfitOfTheDay = () => {
   // get weather data from weatherAPI proxy
   useEffect(() => {
     axios
-      .get("http://localhost:3006/weather/data")
+      .get("http://3.27.75.210:3006/weather/data")
       .then((res) => {
         setWeatherValues(res.data);
         setWeatherText(true);
@@ -73,7 +73,7 @@ const OutfitOfTheDay = () => {
         email: await getUserEmail(),
       };
       axios
-        .post("http://localhost:3006/ootd/getName", postBody)
+        .post("http://3.27.75.210:3006/ootd/getName", postBody)
         .then((res) => setUsername(res.data.name))
         .catch((error) => {
           console.log(error);
@@ -90,7 +90,7 @@ const OutfitOfTheDay = () => {
 
         setShowRecommendations(true);
 
-        fetch("http://localhost:3006/api/generateOutfits", {
+        fetch("http://3.27.75.210:3006/api/generateOutfits", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
