@@ -44,7 +44,7 @@ const Navbar = () => {
     //checks authenticated status to toggle between login and logout buttons.
     checkSession(setUserAuthenticated);
 
-  }, [])
+  }, [handleLogOut])
   /**Handles the scrolling event to trigger the navbar transition */
   useEffect(() => {
 
