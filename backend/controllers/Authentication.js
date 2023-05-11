@@ -126,7 +126,7 @@ async function checkAuthenticated(req, res) {
 async function getEmail(req, res) {
     const conn = await pool.getConnection();
     try {
-        console.log(req.sessionID)
+        console.log("GETTING EMAIL FROM SESSION ID: " + req.sessionID)
         const [rows] = await conn.query('SELECT user_email FROM UserSession WHERE session_id = ?', [req.sessionID]);
         if (rows.length > 0) {
             return res.json(rows[0].user_email);
