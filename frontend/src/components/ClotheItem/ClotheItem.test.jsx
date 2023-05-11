@@ -16,4 +16,4 @@ describe("ClothesItem", () => {
 
     expect(mockOnClick).toHaveBeenCalledWith(mockItem);
   });
-});
+}); 

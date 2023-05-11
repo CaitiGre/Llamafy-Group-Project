@@ -23,7 +23,7 @@ function ClothingSelectionModal({ selectedItem, showModal, onCloseModal }) {
 
   // Function to create new wardobe item JSON upon clicking the add button on the modal
   const handleAddClick = async () => {
-    const userEmail = await getUserEmail();   
+    const userEmail = await getUserEmail();
 
     const selectedWardrobeItem = {
       name: selectedItem.name,
@@ -41,7 +41,7 @@ function ClothingSelectionModal({ selectedItem, showModal, onCloseModal }) {
         return;
       }
       // Make a POST request to the server with the new wardrobe item data
-      const response = await axios.post(
+      await axios.post(
         "http://localhost:3006/wardrobeSelection/addWardrobeItem",
         {
           name: selectedItem.name,
@@ -200,7 +200,11 @@ function ClothingSelectionModal({ selectedItem, showModal, onCloseModal }) {
                   <Button sx={{ color: "white" }} onClick={onCloseModal}>
                     Cancel
                   </Button>
-                  <Button sx={{ color: "white" }} onClick={handleAddClick}>
+                  <Button
+                    data-testid="add-button"
+                    sx={{ color: "white" }}
+                    onClick={handleAddClick}
+                  >
                     Add
                   </Button>
                 </Box>
