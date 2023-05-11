@@ -28,7 +28,7 @@ passport.use(new LocalStrategy(
 
 // Serialize user ID into the session
 passport.serializeUser((user, done) => {
-    done(null, user.id);
+    done(null, user.email);
 });
 
 // Deserialize user by email
@@ -123,22 +123,12 @@ async function checkAuthenticated(req, res) {
     res.json({ isAuthenticated: false });
 }
 
-async function getEmail(req, res) {
-    const conn = await pool.getConnection();
-    try {
-
-        const [rows] = await conn.query('SELECT user_email FROM UserSession WHERE session_id = ?', [req.sessionID]);
-        if (rows.length > 0) {
-            return res.json(rows[0].user_email);
-        } else {
-            console.error('No user found with session ID:', req.sessionID);
-            return res.status(200).json({ message: 'None found' });
-        }
-    } catch (err) {
-        console.error('Error getting user email:', err);
-        return null;
-    } finally {
-        conn.release();
+function getEmail(req, res) {
+    if (req.user) {
+        return res.json(req.user.user_email);
+    } else {
+        console.error('No user found with session ID:', req.sessionID);
+        return res.status(200).json({ message: 'None found' });
     }
 }
 

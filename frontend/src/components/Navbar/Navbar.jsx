@@ -38,13 +38,15 @@ const Navbar = () => {
   };
 
   const { userAuthenticated, setUserAuthenticated } = useContext(AuthContext);
-
-  /**Handles the scrolling event to trigger the navbar transition */
   useEffect(() => {
     // authenticated status check
     // Call the checkSession function when the component mounts.
     //checks authenticated status to toggle between login and logout buttons.
     checkSession(setUserAuthenticated);
+
+  }, [])
+  /**Handles the scrolling event to trigger the navbar transition */
+  useEffect(() => {
 
     window.addEventListener("scroll", handleScroll);
 
@@ -73,7 +75,7 @@ const Navbar = () => {
           }}
         >
           {/* Changes the displayed links based on the screen size */}
-          <Box sx={{ display: "flex", justifyContent: "flex-start",  float: "left", }}>
+          <Box sx={{ display: "flex", justifyContent: "flex-start", float: "left", }}>
             <NavLink to="/">
               <img src={Llama} alt="llama homepage icon" width="40px" />
             </NavLink>
