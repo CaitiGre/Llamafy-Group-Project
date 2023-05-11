@@ -92,7 +92,6 @@ function login(req, res, next) {
 }
 
 async function logout(req, res) {
-    console.log(req.sessionID)
     // Set the session ID to NULL in the table
     const conn = await pool.getConnection();
     try {
