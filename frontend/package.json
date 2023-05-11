@@ -20,6 +20,7 @@
     "hex-color-to-color-name": "^1.0.2",
     "i": "^0.3.7",
     "install": "^0.13.0",
+    "jest": "^27.5.1",
     "material-ui-colors": "^1.0.0",
     "npm": "^9.6.2",
     "openai": "^3.2.1",

@@ -7,9 +7,6 @@ function SettingsPage() {
     <div>
       <Heading title="SETTINGS" />
       <SubHeading subtitle=" No need for drama llama, alpaca the bags" />
-      
-
-     
       <Profile />
     </div>
   );

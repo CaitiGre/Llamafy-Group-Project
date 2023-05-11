@@ -62,8 +62,8 @@ function login(req, res, next) {
             if (err) {
                 return next(err);
             }
+            const conn = await pool.getConnection();
             try {
-                const conn = await pool.getConnection();
                 const [rows] = await conn.query('SELECT * FROM UserSession WHERE user_email = ?', [user.email]);
                 if (rows.length === 0) {
                     // If no row exists for the user_email, insert a new row
@@ -71,34 +71,37 @@ function login(req, res, next) {
                         'INSERT INTO UserSession (user_email, session_id) VALUES (?, ?)',
                         [user.email, req.sessionID]
                     );
+                    return res.status(200).json({ message: 'Logged in' });
                 } else {
                     // If a row exists for the user_email, update the session_id
                     await conn.query(
                         'UPDATE UserSession SET session_id = ? WHERE user_email = ?',
                         [req.sessionID, user.email]
                     );
+                    return res.status(200).json({ message: 'Logged in' });
                 }
-                conn.release();
+
             } catch (err) {
                 console.error('Error storing session ID:', err);
+            } finally {
+                conn.release();
             }
-            return res.json({ message: 'Logged in' });
+
         });
     })(req, res, next);
 }
 
 async function logout(req, res) {
+    console.log(req.sessionID)
     // Set the session ID to NULL in the table
-
-    
-
+    const conn = await pool.getConnection();
     try {
-        const conn = await pool.getConnection();
         await conn.query('UPDATE UserSession SET session_id = NULL WHERE session_id = ?', [req.sessionID]);
-        console.log('logged out');
-        conn.release();
+        res.status(200).json({ message: 'Logged out' });
     } catch (err) {
         console.error('Error setting session ID to NULL:', err);
+    } finally {
+        conn.release();
     }
 }
 
@@ -129,7 +132,7 @@ async function getEmail(req, res) {
             return res.json(rows[0].user_email);
         } else {
             console.error('No user found with session ID:', req.sessionID);
-            return null;
+            return res.status(200).json({ message: 'None found' });
         }
     } catch (err) {
         console.error('Error getting user email:', err);

@@ -61,7 +61,7 @@
     border-radius: 15px;
     text-transform: uppercase;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    width: min(39vw, 512px);
+    width: min(42vw, 512px);
     justify-content: center;
 }
 
@@ -116,6 +116,7 @@
     }
 
     .tileDesc {
+        width: min(50vw,512px);
         margin-bottom: 3vh;
     }
 

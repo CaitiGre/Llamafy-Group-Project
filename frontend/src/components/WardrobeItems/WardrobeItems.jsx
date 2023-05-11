@@ -31,11 +31,6 @@ function WardrobeItems({ clothes, setClothes, category }) {
 
   // Handling the delete item event in CategoryItem
   // Get the category items to show when the component mounts or when the category changes
-
-  useEffect(() => {
-    console.log("clothes", clothes);
-  }, [clothes]);
-
   async function handleDeleteItem(item) {
     const remainingItemsToShow = clothes.filter(
       (catItem) => catItem.clothing_id !== item.clothing_id
@@ -49,9 +44,7 @@ function WardrobeItems({ clothes, setClothes, category }) {
       );
 
       if (response.data.isItemDeleted) {
-        console.log("item has been deleted ", response.data.isItemDeleted);
         toast.success(`Item id#${item.clothing_id} deleted.`);
-        console.log("remaining items to show:", remainingItemsToShow);
         setClothes(remainingItemsToShow);
       }
     } catch (error) {
@@ -66,7 +59,6 @@ function WardrobeItems({ clothes, setClothes, category }) {
       {isItemsVisible &&
         clothes.map(
           (item) => (
-            console.log("item", item),
             (
               <List
                 key={item.clothing_id}
@@ -99,6 +91,7 @@ function WardrobeItems({ clothes, setClothes, category }) {
                           {GetColorName(item.color)} {item.sleeves}{" "}
                           {item.pattern} {item.style} {item.sub_category}{" "}
                           <Button
+                          data-testid="deleteButton"
                             onClick={() => handleDeleteItem(item)}
                             sx={{
                               position: "absolute",

@@ -17,7 +17,6 @@ async function addWardrobeItem(data) {
     connection.release();
     return result[0].insertId;
   } catch (error) {
-    console.error(error);
     throw error;
   }
 }

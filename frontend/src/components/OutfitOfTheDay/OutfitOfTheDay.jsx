@@ -46,7 +46,7 @@ const OutfitOfTheDay = () => {
       }))
       .map((rec) => (
         <div key={rec.id} className={styles.Ootd}>
-          <OotdTile description={rec.desc} imgLink={rec.img} />
+          <OotdTile description={rec.desc} imgLink={rec.img} outfits={[rec.shoes, rec.top, rec.bottom]}/>
         </div>
       ))
   );
@@ -60,8 +60,9 @@ const OutfitOfTheDay = () => {
         setWeatherValues(res.data);
         setWeatherText(true);
       })
-      .catch((err) => {
-        console.log(err);
+      .catch((error) => {
+        console.log(error);
+        toast.error("An error occurred while trying to get your weather data.");
         setWeatherErr(true);
       });
   }, []);
@@ -74,7 +75,10 @@ const OutfitOfTheDay = () => {
       axios
         .post("http://localhost:3006/ootd/getName", postBody)
         .then((res) => setUsername(res.data.name))
-        .catch((err) => console.log("big problem"));
+        .catch((error) => {
+          console.log(error);
+          toast.error("An error occurred while trying to retrieve your name.");
+        });
     };
     getName();
   }, []);
@@ -82,14 +86,7 @@ const OutfitOfTheDay = () => {
   async function handleRecommendationTiles() {
     toast.promise(
       new Promise(async (resolve, reject) => {
-        console.log("Fetching User Email");
         const email = await getUserEmail();
-        console.log(
-          "Generating 3 Outfits for " +
-            email +
-            ", with color scheme: " +
-            outfitColor.hex
-        );
 
         setShowRecommendations(true);
 
@@ -112,23 +109,31 @@ const OutfitOfTheDay = () => {
           })
           .then((data) => {
             let responseText = JSON.parse(data.responseText);
-            console.log(responseText.recommendation1.outfitDescription);
-
+           
             const items = [
               {
                 id: 1,
                 img: data.imageUrls[0],
                 desc: responseText.recommendation1.outfitDescription,
+                shoes: responseText.recommendation1.shoes,
+                top: responseText.recommendation1.top,
+                bottom: responseText.recommendation1.bottom,
               },
               {
                 id: 2,
                 img: data.imageUrls[1],
                 desc: responseText.recommendation2.outfitDescription,
+                shoes: responseText.recommendation2.shoes,
+                top: responseText.recommendation2.top,
+                bottom: responseText.recommendation2.bottom,
               },
               {
                 id: 3,
                 img: data.imageUrls[2],
                 desc: responseText.recommendation3.outfitDescription,
+                shoes: responseText.recommendation3.shoes,
+                top: responseText.recommendation3.top,
+                bottom: responseText.recommendation3.bottom,
               },
             ];
 
@@ -137,10 +142,13 @@ const OutfitOfTheDay = () => {
                 id: rec.id,
                 img: rec.img,
                 desc: rec.desc,
+                shoes: rec.shoes,
+                top: rec.top,
+                bottom: rec.bottom
               }))
               .map((rec) => (
                 <div key={rec.id} className={styles.Ootd}>
-                  <OotdTile description={rec.desc} imgLink={rec.img} />
+                  <OotdTile description={rec.desc} imgLink={rec.img} shoes={rec.shoes} bottom={rec.bottom} top={rec.top}/>
                 </div>
               ));
 
@@ -225,11 +233,12 @@ const OutfitOfTheDay = () => {
                     />{" "}
                     <br />
                     <Typography
-                      style={{
+                      sx={{
                         fontFamily:
                           "'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif",
                         paddingTop: "2vh",
                         fontSize: "2.5vh",
+                        color: "#58315CD8",
                       }}
                     >
                       {weatherValues.tempC} with {weatherValues.humidity}{" "}

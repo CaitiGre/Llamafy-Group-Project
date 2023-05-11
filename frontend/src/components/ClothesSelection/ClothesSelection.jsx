@@ -7,7 +7,7 @@ import useGet from "../../helpers/useGet";
 import { clothesItems } from "./data";
 import WardrobeItems from "../WardrobeItems/WardrobeItems";
 import getUserEmail from "../../helpers/getUserEmail";
-
+import loading from "../../assets/loading.gif";
 
 function ClothesSelection() {
   // Defining state variables for the modal
@@ -21,33 +21,27 @@ function ClothesSelection() {
   useEffect(() => {
     async function fetchUserEmail() {
       const email = await getUserEmail();
-      console.log("User email:", email);
       setUserEmail(email);
     }
-
     fetchUserEmail();
   }, [setUserEmail]);
 
   // Get user's current profile data from database
   const { data: databaseWardobe, isLoading } = useGet(
-    `http://localhost:3006/wardrobe/getWardrobeItems/${userEmail}`, openModal
-  
+    `http://localhost:3006/wardrobe/getWardrobeItems/${userEmail}`,
+    openModal
   );
-
-  useEffect(() => {
-    console.log("parent category Items to show", categoryItemsToShow);
-  }, [categoryItemsToShow]);
-  useEffect(() => {
-    console.log("Parent clothes", wardrobe);
-  }, [wardrobe, categoryItemsToShow]);
-
+  // check that the wardrobe data has been fetched from the database
+  const [dataFetched, setDataFetched] = useState(false);
+  // Set the wardrobe state to the wardrobe items from the database
   useEffect(() => {
     if (!isLoading && databaseWardobe.wardrobeItems) {
       setwardrobe(databaseWardobe.wardrobeItems);
-      console.log("I am fetching your wardrobe from the database");
+      setDataFetched(true);
     }
   }, [isLoading, databaseWardobe?.wardrobeItems, categoryItemsToShow]);
 
+  // Set the wardrobe state to the wardrobe items from the database
   useEffect(() => {
     if (selectedItem && wardrobe.length > 0) {
       const itemsToShow = wardrobe.filter(
@@ -57,6 +51,7 @@ function ClothesSelection() {
       setOpenModal(true);
     }
   }, [selectedItem]);
+
   // Handle the open modal event and setting the selected item to show
   const openWardrobeModal = (item) => {
     setSelectedItem(item);
@@ -66,33 +61,40 @@ function ClothesSelection() {
     setCategoryItemsToShow(itemsToShow);
     setOpenModal(true);
   };
+
   // Handle the close modal event
   const handleCloseModal = () => {
     setOpenModal(false);
   };
 
   return (
-    <React.Fragment>
-      {/* The clothes panel */}
-      <Box sx={{ flexGrow: 1, maxWidth: "90vw", alignItems: "center" }}>
-        <Grid
-          className={styles.clothespanel}
-          container
-          spacing={{ xs: 2, md: 3 }}
-          columns={{ xs: 2, sm: 6, md: 9, lg: 12 }}
-          sx={{
-            justifyContent: "center",
-            backgroundColor: "transparent",
-          }}
-        >
-          {/* Map over the clothes items and create a ClothesItem for each one */}
-          {clothesItems.map((item, index) => (
-            <Grid key={index} item xs={3}>
-              <ClothesItem item={item} onClick={openWardrobeModal} />
-            </Grid>
-          ))}
-        </Grid>
-      </Box>
+    <>
+      {dataFetched ? (
+        <Box sx={{ flexGrow: 1, maxWidth: "90vw", alignItems: "center" }}>
+          <Grid
+            className={styles.clothespanel}
+            container
+            spacing={{ xs: 2, md: 3 }}
+            columns={{ xs: 2, sm: 6, md: 9, lg: 12 }}
+            sx={{
+              justifyContent: "center",
+              backgroundColor: "transparent",
+            }}
+          >
+            {/* Map over the clothes items and create a ClothesItem for each one */}
+            {clothesItems.map((item, index) => (
+              <Grid key={index} item xs={3}>
+                <ClothesItem item={item} onClick={openWardrobeModal} />
+              </Grid>
+            ))}
+          </Grid>
+        </Box>
+      ) : (
+        <Box>
+          <Typography>Loading... </Typography>
+          <img src={loading}></img>
+        </Box>
+      )}
       <Modal
         open={openModal}
         onClose={handleCloseModal}
@@ -140,7 +142,7 @@ function ClothesSelection() {
           )}
         </Box>
       </Modal>
-    </React.Fragment>
+    </>
   );
 }
 
