@@ -83,16 +83,15 @@ export default function Favourites() {
                 </Grid>
               ))
             ) : (
-              <Box>
-          <Typography>Loading...</Typography>
-          <img src={loading}></img>
-        </Box>
+              <SubHeading subtitle="Go select some of your favourite outfits to display here" />
             )}
           </Grid>
         </Box>
       ) : (
-        <SubHeading subtitle="Go select some of your favourite outfits to display here" />
-       
+        <Box>
+          <Typography>Loading...</Typography>
+          <img src={loading}></img>
+        </Box>
       )}
     </>
   );

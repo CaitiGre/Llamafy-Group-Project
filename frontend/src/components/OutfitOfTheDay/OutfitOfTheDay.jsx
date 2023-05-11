@@ -11,6 +11,7 @@ import "react-toastify/dist/ReactToastify.css";
 import llamaLoad from "../../assets/llamaLoad.gif";
 import handingTowel from "../../assets/towelHang.png";
 import { NavLink } from "react-router-dom";
+import loading from "../../assets/loading.gif";
 
 const OutfitOfTheDay = () => {
   const tempTiles = [
@@ -46,7 +47,11 @@ const OutfitOfTheDay = () => {
       }))
       .map((rec) => (
         <div key={rec.id} className={styles.Ootd}>
-          <OotdTile description={rec.desc} imgLink={rec.img} outfits={[rec.shoes, rec.top, rec.bottom]}/>
+          <OotdTile
+            description={rec.desc}
+            imgLink={rec.img}
+            outfits={[rec.shoes, rec.top, rec.bottom]}
+          />
         </div>
       ))
   );
@@ -57,22 +62,24 @@ const OutfitOfTheDay = () => {
     const fetchWeather = async () => {
       const email = await getUserEmail();
       axios
-      // Email sent as query string to extract @ server side
-      .get(`http://localhost:3006/weather/data?email=${email}`)
-      .then((res) => {
-        setWeatherValues(res.data);
-        setWeatherText(true);
-      })
-      .catch((error) => {
-        console.log(error);
-        toast.error("An error occurred while trying to get your weather data.");
-        setWeatherErr(true);
-      });
-  };
-    fetchWeather()
+        // Email sent as query string to extract @ server side
+        .get(`http://localhost:3006/weather/data?email=${email}`)
+        .then((res) => {
+          setWeatherValues(res.data);
+          setWeatherText(true);
+        })
+        .catch((error) => {
+          console.log(error);
+          toast.error(
+            "An error occurred while trying to get your weather data."
+          );
+          setWeatherErr(true);
+        });
+    };
+    fetchWeather();
   }, []);
 
-    /* Gets the name of the user based on their login credentials */
+  /* Gets the name of the user based on their login credentials */
   useEffect(() => {
     const getName = async () => {
       const postBody = {
@@ -116,7 +123,7 @@ const OutfitOfTheDay = () => {
           })
           .then((data) => {
             let responseText = JSON.parse(data.responseText);
-           
+
             const items = [
               {
                 id: 1,
@@ -151,11 +158,17 @@ const OutfitOfTheDay = () => {
                 desc: rec.desc,
                 shoes: rec.shoes,
                 top: rec.top,
-                bottom: rec.bottom
+                bottom: rec.bottom,
               }))
               .map((rec) => (
                 <div key={rec.id} className={styles.Ootd}>
-                  <OotdTile description={rec.desc} imgLink={rec.img} shoes={rec.shoes} bottom={rec.bottom} top={rec.top}/>
+                  <OotdTile
+                    description={rec.desc}
+                    imgLink={rec.img}
+                    shoes={rec.shoes}
+                    bottom={rec.bottom}
+                    top={rec.top}
+                  />
                 </div>
               ));
 
@@ -191,6 +204,7 @@ const OutfitOfTheDay = () => {
         <Box>
           <Heading title="OUTFIT OF THE DAY" />
         </Box>
+
         <Box
           sx={{
             display: "flex",
@@ -198,166 +212,183 @@ const OutfitOfTheDay = () => {
             alignItems: "center",
             justifyContent: "space-evenly",
             alignContent: "center",
-            width: "100%",
+
             margin: "auto",
           }}
         >
-          <Grid
-            container
-            alignItems="center"
-            justifyContent="center"
-            spacing={8}
-          >
-            <Grid item xs={10} md={3} sx={{ columnGap: "2vh" }}>
-              <Box
-                sx={{
-                  backgroundColor: "#fefefe",
-                  padding: "1vh",
-                  borderRadius: "2vh",
-                  height: "30vh",
-                  padding: "2vh",
-                  width: "100%",
-                  margin: "auto",
-                  minWidth: "35vh",
-                }}
+          {weatherText ? (
+            <>
+              <Grid
+                container
+                alignItems="center"
+                justifyContent="center"
+                spacing={8}
+                direction="column"
               >
-                <InputLabel
-                  sx={{
-                    paddingBottom: "2vh",
-                    fontFamily:
-                      "'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif",
-                    fontSize: "3vh",
-                  }}
-                >
-                  Today's Weather
-                </InputLabel>
-                {/* If there is an error getting weather values, greeet the user and inform them that the api is not working*/}
-                {weatherValues && weatherText && (
-                  <Box className={styles.title}>
-                    <img
-                      src={weatherValues.iconUrl}
-                      alt="Weather icon based on the weather today"
-                    />{" "}
-                    <br />
-                    <Typography
-                      sx={{
-                        fontFamily:
-                          "'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif",
-                        paddingTop: "2vh",
-                        fontSize: "2.5vh",
-                        color: "#58315CD8",
-                      }}
-                    >
-                      {weatherValues.tempC} with {weatherValues.humidity}{" "}
-                      humidity. Windspeed at {weatherValues.windKph}.{" "}
-                    </Typography>
-                  </Box>
-                )}
+                <Grid item xs={1} md={1}>
+                  <Grid
+                    container
+                    alignItems="center"
+                    justifyContent="center"
+                    spacing={10}
+                    sx={{ marginTop: "2vh" }}
+                  >
+                    <Grid item xs={10} md={3}>
+                      <Box
+                        sx={{
+                          backgroundColor: "#fefefe",
+                          padding: "1vh",
+                          borderRadius: "2vh",
+                          height: "30vh",
+                          padding: "2vh",
+                          width: "100%",
+                          margin: "auto",
+                          minWidth: "35vh",
+                        }}
+                      >
+                        <InputLabel
+                          sx={{
+                            paddingBottom: "2vh",
+                            fontFamily:
+                              "'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif",
+                            fontSize: "3vh",
+                          }}
+                        >
+                          Today's Weather
+                        </InputLabel>
+                        {/* If there is an error getting weather values, greeet the user and inform them that the api is not working*/}
+                        {weatherValues && weatherText && (
+                          <Box className={styles.title}>
+                            <img
+                              src={weatherValues.iconUrl}
+                              alt="Weather icon based on the weather today"
+                            />{" "}
+                            <br />
+                            <Typography
+                              sx={{
+                                fontFamily:
+                                  "'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif",
+                                paddingTop: "2vh",
+                                fontSize: "2.5vh",
+                                color: "#58315CD8",
+                              }}
+                            >
+                              {weatherValues.tempC} with{" "}
+                              {weatherValues.humidity} humidity. Windspeed at{" "}
+                              {weatherValues.windKph}.{" "}
+                            </Typography>
+                          </Box>
+                        )}
 
-                {weatherErr && (
-                  <Box className={styles.title}>
-                    <Typography>
-                      Unable to fetch weather details at the moment. Try again
-                      soon.
-                    </Typography>
-                  </Box>
-                )}
-              </Box>
-            </Grid>
-            <Grid item xs={10} md={3}>
-              <Box
-                sx={{
-                  backgroundColor: "#fefefe",
-                  padding: "2vh",
-                  borderRadius: "2vh",
-                  height: "30vh",
-                  width: "100%",
-                  margin: "auto",
-                  minWidth: "35vh",
-                }}
-              >
-                <InputLabel
-                  sx={{
-                    paddingBottom: "2vh",
-                    fontFamily:
-                      "'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif",
-                    fontSize: "3vh",
-                  }}
-                >
-                  Select a Color Scheme<br></br> (<i>Optional</i>)
-                </InputLabel>
-                <div style={{ flex: "1", overflow: "auto" }}>
-                  <CompactPicker color={outfitColor} onChange={setColor} />
-                </div>
-              </Box>
-            </Grid>{" "}
-            <Grid item xs={10} md={3}>
-              <Box
-                sx={{
-                  backgroundColor: "#fefefe",
-                  padding: "1vh",
-                  borderRadius: "2vh",
-                  height: "30vh",
-                  width: "100%",
-                  margin: "auto",
-                  minWidth: "35vh",
-                }}
-              >
-                <InputLabel
-                  sx={{
-                    fontFamily:
-                      "'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif",
-                    fontSize: "3vh",
-                    paddingBottom: "2vh",
-                  }}
-                >
-                  Your Wardrobe{" "}
-                  <span style={{ color: "#8cc423", fontSize: "2vh" }}>
-                    <br></br>
-                  </span>
-                </InputLabel>
-                <NavLink to={"/wardrobe"}>
-                  <img
-                    src={handingTowel}
-                    style={{
-                      display: "flex",
-                      height: "18vh",
-                      justifyContent: "center",
-                      margin: "auto",
-                      alignItems: "center",
+                        {weatherErr && (
+                          <Box className={styles.title}>
+                            <Typography>
+                              Unable to fetch weather details at the moment. Try
+                              again soon.
+                            </Typography>
+                          </Box>
+                        )}
+                      </Box>
+                    </Grid>
+                    <Grid item xs={10} md={3}>
+                      <Box
+                        sx={{
+                          backgroundColor: "#fefefe",
+                          padding: "2vh",
+                          borderRadius: "2vh",
+                          height: "30vh",
+                          width: "100%",
+                          margin: "auto",
+                          minWidth: "35vh",
+                        }}
+                      >
+                        <InputLabel
+                          sx={{
+                            paddingBottom: "2vh",
+                            fontFamily:
+                              "'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif",
+                            fontSize: "3vh",
+                          }}
+                        >
+                          Select a Color Scheme<br></br> (<i>Optional</i>)
+                        </InputLabel>
+                        <div style={{ flex: "1", overflow: "auto" }}>
+                          <CompactPicker
+                            color={outfitColor}
+                            onChange={setColor}
+                          />
+                        </div>
+                      </Box>
+                    </Grid>{" "}
+                    <Grid item xs={10} md={3}>
+                      <Box
+                        sx={{
+                          backgroundColor: "#fefefe",
+                          padding: "1vh",
+                          borderRadius: "2vh",
+                          height: "30vh",
+                          width: "100%",
+                          margin: "auto",
+                          minWidth: "35vh",
+                        }}
+                      >
+                        <InputLabel
+                          sx={{
+                            fontFamily:
+                              "'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif",
+                            fontSize: "3vh",
+                            paddingBottom: "2vh",
+                          }}
+                        >
+                          Your Wardrobe{" "}
+                          <span style={{ color: "#8cc423", fontSize: "2vh" }}>
+                            <br></br>
+                          </span>
+                        </InputLabel>
+                        <NavLink to={"/wardrobe"}>
+                          <img
+                            src={handingTowel}
+                            style={{
+                              display: "flex",
+                              height: "18vh",
+                              justifyContent: "center",
+                              margin: "auto",
+                              alignItems: "center",
+                            }}
+                          />
+                        </NavLink>
+                      </Box>
+                    </Grid>
+                  </Grid>
+                </Grid>
+                <Grid item xs={1} md={1}>
+                  <Button
+                    sx={{
+                      borderRadius: "25vh",
+                      backgroundColor: "white",
+                      border: "0.1vh solid #ccc",
+                      color: "#333",
+                      boxShadow: "1vh 1vh 4vh rgba(255, 255, 255, 0.8)",
+                      padding: "1vh 4vh",
+                      marginTop: "2vh",
+                      width: "40vh",
                     }}
-                  />
-                </NavLink>
-              </Box>
-            </Grid>
-            <Grid item xs={11} md={8}>
-              <Box sx={{ paddingTop: "1vh" }}>
-                <Button
-                  sx={{
-                    borderRadius: "25vh",
-                    backgroundColor: "white",
-                    border: "0.1vh solid #ccc",
-                    color: "#333",
-                    boxShadow: "1vh 1vh 4vh rgba(255, 255, 255, 0.8)",
-                    padding: "1vh 4vh",
-                    marginTop: "2vh",
-                    width: "40vh",
-                    display: "flex",
-                    justifyContent: "center",
-                    margin: "auto",
-                    flexDirection: "column",
-                  }}
-                  className={styles.generateButton}
-                  onClick={handleRecommendationTiles}
-                >
-                  GENERATE OUTFIT
-                </Button>
-              </Box>
-            </Grid>
-          </Grid>
+                    className={styles.generateButton}
+                    onClick={handleRecommendationTiles}
+                  >
+                    GENERATE OUTFIT
+                  </Button>
+                </Grid>
+              </Grid>
+            </>
+          ) : (
+            <Box>
+              <Typography>Loading...</Typography>
+              <img src={loading}></img>
+            </Box>
+          )}
         </Box>
       </Box>
-
       <br />
 
       {showRecommendations && (
