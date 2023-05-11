@@ -83,7 +83,7 @@ The login page allows the users to log in with their provided email address and 
 
 ## Wardrobe
 
-The wardrobe page is where users specify the items that they want to be included in their closet, that is the items that will be fed into the prompt so the algorithm can generate an outfit based on the clothing that they own.
+The wardrobe page is where users specify the items that they want to be included in their wardrobe, that is the clothing items that will be fed into the prompt so the algorithm can generate an outfit based on the clothes that they own.
 
 We decided on the following categories to allow users to pick from:
 
@@ -96,9 +96,9 @@ We decided on the following categories to allow users to pick from:
 - Shoes
 - Accessories
 
-When the user clicks on a modal, they will see an 'ADD ITEMS' button which allows them to add their outfit to the wardrobe. Once this button is clicked, it opens up another sub modal which includes subcategories, e.g. Tops has T-shirt, Shirt, Blouse and Crop-top subcategories. Once the user clicks on a subcategory, they will be able to specify details like Colour, Sleeves, Style and Pattern of their outfit item. Once these are specified, they can click ADD to add the item to their wardrobe, or CANCEL to cancel the selections.
+When the user clicks on a modal, they will see an 'ADD ITEMS' button which allows them to add a piece of clothing to their wardrobe. Once this button is clicked, it opens up another sub modal which includes subcategories, e.g. Tops has T-shirt, Shirt, Blouse and Crop-top subcategories. Once the user clicks on a subcategory, they will be able to specify details like Colour, Sleeves, Style and Pattern of their clothing item. Once these are specified, they can click ADD to add the item to their wardrobe, or CANCEL to cancel the selections.
 
-If the user have previously added their outfits to the wardrobe, they will see the descriptions of their outfits listed on the modal when they click on each category. They can also delete their outfits by clicking on the bin symbol next to each item.
+If the user had previously added a piece of clothing to their wardrobe, they will be able to view the details of their outfits displayed on the modal window when they click on a given category. Additionally, they have the option to remove any clothing item from their wardrobe by clicking on the bin symbol located next to each item.
 
 ## Outfit Generation 
 
