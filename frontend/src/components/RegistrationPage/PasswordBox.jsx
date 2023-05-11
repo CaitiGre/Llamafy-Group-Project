@@ -5,16 +5,21 @@ import eyeIcon from "../../assets/show.png";
 import lashIcon from "../../assets/hide.png";
 
 export default function PasswordBox({ data, handleChange }) {
+
+  /* Creates a hook that allows the user to toggle the password being visible */
   const [showPassword, setShowPassword] = useState(false);
 
   function toggleShowPassword() {
     setShowPassword(!showPassword);
   }
+
+  /* Creates a theme from the default MUI settings to set the size of the components based on screen size */
   const theme = useTheme();
   const isLargeScreen = useMediaQuery(theme.breakpoints.up("lg"));
 
   return (
     <>
+    {/* A box that contains the input labels and input fields for the password section of the registration page. */}
       <Box display="flex" flexDirection="column" alignItems="center">
         <InputLabel
           htmlFor="password"
@@ -42,9 +47,11 @@ export default function PasswordBox({ data, handleChange }) {
               backgroundColor: "white",
               width: isLargeScreen ? "50vw" : "72vw",
               height: "4.5vh",
+              paddingLeft: "20px",
             }}
             disableUnderline={true}
           />
+          {/* Sets an eye icon that when clicked toggles the input field between being a password display and plain text */}
           <img
             src={showPassword ? lashIcon : eyeIcon}
             className={style["password-icon"]}
@@ -54,6 +61,7 @@ export default function PasswordBox({ data, handleChange }) {
         </div>
       </Box>
       <Box display="flex" flexDirection="column" alignItems="center">
+        {/* Replicates the previous password field and checks it against the previously entered password */}
         <InputLabel
           htmlFor="reenter-password"
           className={style.registerLabel}
@@ -76,10 +84,10 @@ export default function PasswordBox({ data, handleChange }) {
             value={data.repassword}
             onChange={handleChange}
             placeholder=""
-            style={{ 
-              backgroundColor: "white",   
-              width: isLargeScreen ? "50vw" : "72vw", 
-              height: "4.5vh", 
+            style={{
+              backgroundColor: "white",
+              width: isLargeScreen ? "50vw" : "72vw",
+              height: "4.5vh",
             }}
             disableUnderline={true}
           />

@@ -16,10 +16,6 @@ function ClothingSelectionModal({ selectedItem, showModal, onCloseModal }) {
   const [selectedPattern, setSelectedPattern] = useState(null);
   const [wardrobe, setWardrobe] = useState(null);
 
-  // To be removed: Just checking that a JSON object was correctly created upon clicking the add button
-  useEffect(() => {
-    console.log(wardrobe);
-  }, [wardrobe]);
   // Updates the color state with the color selected
   const handleColorChange = (value) => {
     setColor(value);
@@ -28,7 +24,7 @@ function ClothingSelectionModal({ selectedItem, showModal, onCloseModal }) {
   // Function to create new wardobe item JSON upon clicking the add button on the modal
   const handleAddClick = async () => {
     const userEmail = await getUserEmail();
-    console.log("Heyyyy user email:", userEmail);
+
     const selectedWardrobeItem = {
       name: selectedItem.name,
       user_email: userEmail,
@@ -40,8 +36,12 @@ function ClothingSelectionModal({ selectedItem, showModal, onCloseModal }) {
     };
 
     try {
+      if (color == "#000000") {
+        toast.error("Please select a color for your clothing item!");
+        return;
+      }
       // Make a POST request to the server with the new wardrobe item data
-      const response = await axios.post(
+      await axios.post(
         "http://localhost:3006/wardrobeSelection/addWardrobeItem",
         {
           name: selectedItem.name,
@@ -53,7 +53,6 @@ function ClothingSelectionModal({ selectedItem, showModal, onCloseModal }) {
           sleeves: selectedSleeves,
         }
       );
-      console.log("New Item added to your wardbrobe:", response.data);
       toast.success("New Wardrobe item added successfully!");
     } catch (error) {
       console.error(error);
@@ -201,7 +200,11 @@ function ClothingSelectionModal({ selectedItem, showModal, onCloseModal }) {
                   <Button sx={{ color: "white" }} onClick={onCloseModal}>
                     Cancel
                   </Button>
-                  <Button sx={{ color: "white" }} onClick={handleAddClick}>
+                  <Button
+                    data-testid="add-button"
+                    sx={{ color: "white" }}
+                    onClick={handleAddClick}
+                  >
                     Add
                   </Button>
                 </Box>

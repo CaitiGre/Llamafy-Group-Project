@@ -54,7 +54,7 @@ const OotdTile = ({ imgLink, description, shoes, bottom, top }) => {
     const outfitItems = shoes.concat(top, bottom);
   
     if (imgLink.substring(0, 16) !== "https://oaidalle") {
-      toast.error("That's not an outfit, dude");
+      toast.error("That's not an outfit dude. That's a llama");
       closeModal();
       return;
     }
@@ -63,6 +63,11 @@ const OotdTile = ({ imgLink, description, shoes, bottom, top }) => {
     const listOfIds = outfitItems.map(item => parseInt(item.id)).filter(id => !isNaN(id));
   
     // Call the API to change the lastWorn date for the specified IDs
+    const postBody = {
+      imgUrl: imgLink,
+      email: email,
+    };
+    
     try {
       const response = await fetch('http://localhost:3006/api/changeClotheWornDate', {
         method: 'POST',
@@ -99,7 +104,6 @@ const OotdTile = ({ imgLink, description, shoes, bottom, top }) => {
         contentLabel="OOTD"
       >
         <h2>OUTFIT</h2>
-        <div>You like what you see?</div>
         <div style={{
             width: "min(90vw,512px)",
             borderRadius: "2vh",

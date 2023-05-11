@@ -1,8 +1,7 @@
 const pool = require('../database/pool');
-const { v4: uuidv4 } = require('uuid');
 
+// DAO to greet the user on the OOTD page with their first name 
 async function fetchUserFirstName(email) {
-    console.log(email)
     const conn = await pool.getConnection();
   try {
     const result = await conn.query(

@@ -4,17 +4,18 @@
 }
 
 .landingPageTitle {
-  font-size: 20vw;
+  font-size: 22vw;
   font-family: "moonlite-outline";
   font-weight: 100;
   margin-bottom: 6vh;
   margin-top: 10vh;
+  letter-spacing: 0.05em;
   color: #fefefe;
 }
 
 .landingPageSubtitle {
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
-  font-size: 3vw;
+  font-size: 3.5vw;
   margin-bottom: 6vh;
   color: #fefefe;
 }
