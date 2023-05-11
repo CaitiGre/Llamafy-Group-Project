@@ -235,4 +235,4 @@ async function changeClotheWornDate(clothesIDs) {
     }
   }
 
-module.exports = { generateOutfits, changeClotheWornDate };
+module.exports = { generateOutfits, changeClotheWornDate, getUserWardrobe, getUserData, promptGenerator };
