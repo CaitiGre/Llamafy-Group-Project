@@ -10,7 +10,6 @@ const fs = require('fs');
 router.post('/getName', async (req, res) => {
   try {
     const name = await fetchUserFirstName(req.body.email);
-    console.log(name);
     res.status(201).json({ name });
   } catch (error) {
     console.error(error);

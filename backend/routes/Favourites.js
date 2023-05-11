@@ -16,7 +16,7 @@ router.post('/all', async (req, res) => {
     // return all favourite images
     fs.readdir(`public/${req.body.email}`, (err, files) => {
         if (err) {
-            console.log("bugger", err);
+            console.log("error", err);
             res.status(500).send("Unable to find public user folder")
             return;
         }
