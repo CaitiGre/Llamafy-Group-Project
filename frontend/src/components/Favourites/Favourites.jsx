@@ -4,14 +4,17 @@ import OutfitTile from "./OutfitTile";
 import Heading from "../Heading/Heading";
 import SubHeading from "../SubHeading/SubHeading";
 import getUserEmail from "../../helpers/getUserEmail";
-import { Box, Grid } from "@mui/material";
+import { Box, Grid, Typography } from "@mui/material";
+import { toast } from "react-toastify";
+import loading from "../../assets/loading.gif";
 
 /* Function to display the Favourite past outfits Page*/
 export default function Favourites() {
   // Set the state of the file names to an empty array
   let tempArr = [];
-  const [fileNames, setFileNames] = useState([]);
   const [pastOutfits, setPastOutfits] = useState();
+  // check that the wardrobe data has been fetched from the database
+  const [dataFetched, setDataFetched] = useState(false);
 
   // Grab email and request all user images in their public folder
   // Create a little tile for each
@@ -33,11 +36,15 @@ export default function Favourites() {
                 desc: undefined /*`${filename}`*/,
               });
               setPastOutfits(tempArr);
+              setDataFetched(true);
             });
           }
         })
-        .catch((err) => {
-          console.log("No favourites to display");
+        .catch((error) => {
+          console.log(error);
+          toast.error(
+            "An error occurred while trying to get your favourites. Please try again later."
+          );
         });
     };
     getFavourites();
@@ -48,37 +55,44 @@ export default function Favourites() {
       <Heading title="Favourites" />
       <SubHeading subtitle="PAST OUTFITS" />
 
-      <Box sx={{ marginTop: 8 }}>
-        <Grid
-          container
-          spacing={{ xs: 2, md: 6 }}
-          columns={{ xs: 1, sm: 6, md: 8, lg: 12 }}
-          sx={{
-            justifyContent: "center",
-            backgroundColor: "transparent",
-          }}
-        >
-          {/* Loop over all the user's past outfits*/}
-          {pastOutfits ? (
-            pastOutfits.map((outfitObj) => (
-              <Grid
-                item
-                key={outfitObj.id}
-                sx={{
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  width: "fit-content",
-                }}
-              >
-                <OutfitTile outfit={outfitObj} images={pastOutfits} />
-              </Grid>
-            ))
-          ) : (
-            <SubHeading subtitle="Go select some of your favourite outfits to display here" />
-          )}
-        </Grid>
-      </Box>
+      {dataFetched ? (
+        <Box sx={{ marginTop: 8 }}>
+          <Grid
+            container
+            spacing={{ xs: 2, md: 6 }}
+            columns={{ xs: 1, sm: 6, md: 8, lg: 12 }}
+            sx={{
+              justifyContent: "center",
+              backgroundColor: "transparent",
+            }}
+          >
+            {/* Loop over all the user's past outfits*/}
+            {pastOutfits ? (
+              pastOutfits.map((outfitObj) => (
+                <Grid
+                  item
+                  key={outfitObj.id}
+                  sx={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    width: "fit-content",
+                  }}
+                >
+                  <OutfitTile outfit={outfitObj} images={pastOutfits} />
+                </Grid>
+              ))
+            ) : (
+              <SubHeading subtitle="Go select some of your favourite outfits to display here" />
+            )}
+          </Grid>
+        </Box>
+      ) : (
+        <Box>
+          <Typography>Loading...</Typography>
+          <img src={loading}></img>
+        </Box>
+      )}
     </>
   );
 }

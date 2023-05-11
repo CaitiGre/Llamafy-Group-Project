@@ -44,8 +44,8 @@ router.get('/data', async (req, res) => {
         weatherVals.iconUrl = response.data.current.condition.icon
     })
     .then(() => res.json(weatherVals))
-    .catch(err => {
-        console.log(err);
+    .catch(error => {
+        console.log(error);
         res.status(418);
         res.send("Unexpected teapot error");
     });

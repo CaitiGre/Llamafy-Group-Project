@@ -30,12 +30,12 @@ export default function EmailBox({ data, handleChange }) {
         value={data.email}
         onChange={handleChange}
         placeholder="llama@lavenderllama.co.nz"
-        style={{ 
+        sx={{ 
           backgroundColor: "white",
           height: "4.5vh",
           borderRadius: "25px",
           width: isLargeScreen ? "50vw" : "72vw",
-          
+          paddingLeft: "20px",
          }}
         disableUnderline={true}
       />
