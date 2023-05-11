@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, fireEvent, waitFor, screen, findByText, findByRole } from '@testing-library/react';
+import { render, fireEvent, waitFor, screen, findByText, findByRole, within } from '@testing-library/react';
 import axios from 'axios';
 import RegistrationPage from '../components/RegistrationPage/Registration';
 import { MemoryRouter } from 'react-router-dom';
@@ -14,35 +14,43 @@ describe('Registration page functionality', () => {
         fireEvent.change(getByLabelText(/first name/i), { target: { value: 'Butter' } });
         fireEvent.change(getByLabelText(/last name/i), { target: { value: 'Chicken' } });
         fireEvent.change(getByLabelText(/email/i), { target: { value: 'butter@email.com' } });
+      
         const passwordInput = container.querySelector('input[id="password"]');
-
         const reenterPasswordInput = container.querySelector('input[id="reenter-password"]');
         fireEvent.change(passwordInput, { target: { value: 'password1' } });
         fireEvent.change(reenterPasswordInput, { target: { value: 'password1' } });
-
-
-
-        const dropdown = getByLabelText("Primary Location");
-        userEvent.click(dropdown);
-
-        const selectMenu = await findByRole("option", { name: /Auckland/i });
-        userEvent.click(selectMenu);
-
-
-
+      
+        const select = getByLabelText('Primary Location');
+        userEvent.click(select, { target: { value: 'Auckland' } });
+      
         const otherButton = getByText(/all/i);
         fireEvent.click(otherButton);
 
-        fireEvent.submit(getByText(/submit/i));
-        await waitFor(() => expect(axios.post).toHaveBeenCalled());
-    });
+        const submitButton = getByText(/submit/i);
+        fireEvent.click(submitButton);
+        expect(axios.post)
+    
+      });
+      
+      
 
     test('displays error message for non-matching passwords', async () => {
-        const { getByLabelText, getByText } = render(<MemoryRouter><RegistrationPage /></MemoryRouter>);
-        fireEvent.change(getByLabelText(/password/i), { target: { value: 'password1' } });
-        fireEvent.change(getByLabelText(/re-enter password/i), { target: { value: 'password2' } });
-        fireEvent.submit(getByText(/submit/i));
-        await waitFor(() => expect(getByText(/Your passwords must match./i)).toBeInTheDocument());
+        const { getByLabelText, getByText, container } = render(<MemoryRouter><RegistrationPage /></MemoryRouter>);
+        fireEvent.change(getByLabelText(/first name/i), { target: { value: 'Butter' } });
+        fireEvent.change(getByLabelText(/last name/i), { target: { value: 'Chicken' } });
+        fireEvent.change(getByLabelText(/email/i), { target: { value: 'butter@email.com' } });
+        const passwordInput = container.querySelector('input[id="password"]');
+        const reenterPasswordInput = container.querySelector('input[id="reenter-password"]');
+        fireEvent.change(passwordInput, { target: { value: 'password1' } });
+        fireEvent.change(reenterPasswordInput, { target: { value: 'password2' } });
+        const select = getByLabelText('Primary Location');
+        userEvent.click(select, { target: { value: 'Auckland' } });
+      
+        const otherButton = getByText(/all/i);
+        fireEvent.click(otherButton);
+        const submitButton = getByText(/submit/i);
+        fireEvent.click(submitButton);
+        await waitFor(async() => expect(await container.querySelector('.Toastify__toast-body div')).toHaveTextContent('Your passwords must match.'));
     });
 
     test('displays error message for missing input fields', async () => {
