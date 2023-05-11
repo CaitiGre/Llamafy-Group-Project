@@ -212,7 +212,6 @@ const OutfitOfTheDay = () => {
             alignItems: "center",
             justifyContent: "space-evenly",
             alignContent: "center",
-
             margin: "auto",
           }}
         >
@@ -233,7 +232,7 @@ const OutfitOfTheDay = () => {
                     spacing={10}
                     sx={{ marginTop: "2vh" }}
                   >
-                    <Grid item xs={10} md={3}>
+                    <Grid item xs={11} md={3}>
                       <Box
                         sx={{
                           backgroundColor: "#fefefe",
@@ -243,7 +242,7 @@ const OutfitOfTheDay = () => {
                           padding: "2vh",
                           width: "100%",
                           margin: "auto",
-                          minWidth: "35vh",
+                          minWidth: "40vh",
                         }}
                       >
                         <InputLabel
@@ -290,7 +289,7 @@ const OutfitOfTheDay = () => {
                         )}
                       </Box>
                     </Grid>
-                    <Grid item xs={10} md={3}>
+                    <Grid item xs={11} md={3}>
                       <Box
                         sx={{
                           backgroundColor: "#fefefe",
@@ -299,7 +298,7 @@ const OutfitOfTheDay = () => {
                           height: "30vh",
                           width: "100%",
                           margin: "auto",
-                          minWidth: "35vh",
+                          minWidth: "40vh",
                         }}
                       >
                         <InputLabel
@@ -320,7 +319,7 @@ const OutfitOfTheDay = () => {
                         </div>
                       </Box>
                     </Grid>{" "}
-                    <Grid item xs={10} md={3}>
+                    <Grid item xs={11} md={3}>
                       <Box
                         sx={{
                           backgroundColor: "#fefefe",
@@ -329,7 +328,7 @@ const OutfitOfTheDay = () => {
                           height: "30vh",
                           width: "100%",
                           margin: "auto",
-                          minWidth: "35vh",
+                          minWidth: "40vh",
                         }}
                       >
                         <InputLabel
