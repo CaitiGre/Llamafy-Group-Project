@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export default async function checkSession(setUserAuthenticated) {
     try {
-        const response = await axios.post('http://localhost:3006/auth/checkSession', null, {
+        const response = await axios.post('http://3.27.75.210:3006/auth/checkSession', null, {
           withCredentials: true,
         });
         
