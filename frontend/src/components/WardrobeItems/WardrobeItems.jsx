@@ -44,7 +44,7 @@ function WardrobeItems({ clothes, setClothes, category }) {
     // Send Post request to delete item from the database
     try {
       const response = await axios.post(
-        `http://localhost:3006/wardrobe/deleteWardrobeItem`,
+        `http://3.27.75.210:3006/wardrobe/deleteWardrobeItem`,
         { itemId: item.clothing_id }
       );
       // Check if the item was deleted successfully

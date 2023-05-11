@@ -68,7 +68,7 @@ const OotdTile = ({ imgLink, description, shoes, bottom, top }) => {
     const clothesIDs = outfitItems.map(item => item.id).filter(id => !isNaN(id));
   
     // Call the changeClotheWornDate function to update the lastWorn field
-    fetch("http://localhost:3006/api/changeClotheWornDate", {
+    fetch("http://3.27.75.210:3006/api/changeClotheWornDate", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -86,7 +86,7 @@ const OotdTile = ({ imgLink, description, shoes, bottom, top }) => {
   
     // Save the outfit to favorites
     try {
-      axios.post("http://localhost:3006/ootd/saveFavourite", postBody);
+      axios.post("http://3.27.75.210:3006/ootd/saveFavourite", postBody);
       toast.success("Saved to favourites!");
     } catch (err) {
       console.log(err);

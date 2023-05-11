@@ -28,7 +28,8 @@ function ClothesSelection() {
 
   // Get user's current profile data from database
   const { data: databaseWardobe, isLoading } = useGet(
-    `http://localhost:3006/wardrobe/getWardrobeItems/${userEmail}`,
+    `http://3.27.75.210:3006/
+    wardrobe/getWardrobeItems/${userEmail}`,
     openModal
   );
   // check that the wardrobe data has been fetched from the database

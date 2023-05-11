@@ -58,7 +58,7 @@ const OutfitOfTheDay = () => {
       const email = await getUserEmail();
       axios
       // Email sent as query string to extract @ server side
-      .get(`http://localhost:3006/weather/data?email=${email}`)
+      .get(`http://3.27.75.210:3006/weather/data?email=${email}`)
       .then((res) => {
         setWeatherValues(res.data);
         setWeatherText(true);
@@ -72,24 +72,6 @@ const OutfitOfTheDay = () => {
     fetchWeather()
   }, []);
 
-    /* Gets the name of the user based on their login credentials */
-  useEffect(() => {
-    const getName = async () => {
-      const postBody = {
-        email: await getUserEmail(),
-      };
-      axios
-        .post("http://localhost:3006/ootd/getName", postBody)
-        .then((res) => setUsername(res.data.name))
-        .catch((error) => {
-          console.log(error);
-          toast.error("An error occurred while trying to retrieve your name.");
-        });
-    };
-    getName();
-  }, []);
-
-  /* Gets the user's email to associate recommendations with the current accoutn */
   async function handleRecommendationTiles() {
     toast.promise(
       new Promise(async (resolve, reject) => {
@@ -97,7 +79,7 @@ const OutfitOfTheDay = () => {
 
         setShowRecommendations(true);
 
-        fetch("http://localhost:3006/api/generateOutfits", {
+        fetch("http://3.27.75.210:3006/api/generateOutfits", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

@@ -37,7 +37,7 @@ function Profile() {
 
   // Get user's current profile data from database
   const { data: dataObj, isLoading } = useGet(
-    `http://localhost:3006/profile/getProfile/${userEmail}`
+    `http://3.27.75.210:3006/profile/getProfile/${userEmail}`
   );
   // check that the wardrobe data has been fetched from the database
   const [dataFetched, setDataFetched] = useState(false);
@@ -150,7 +150,7 @@ function Profile() {
 
       try {
         const response = await axios.post(
-          `http://localhost:3006/profile/updateProfile/${userEmail}`,
+          `http://3.27.75.210:3006/profile/updateProfile/${userEmail}`,
           {
             firstName: data.fname,
             lastName: data.lname,

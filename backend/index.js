@@ -33,6 +33,7 @@ app.use(session({
   resave: false,
   saveUninitialized: false,
   cookie: {
+    httpOnly: false, // httpOnly to disallow the client to read/access the cookie
     maxAge: 24 * 60 * 60 * 1000
     //eq. 1 day
   }

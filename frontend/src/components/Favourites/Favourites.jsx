@@ -25,14 +25,14 @@ export default function Favourites() {
         email: email,
       };
       axios
-        .post(`http://localhost:3006/favourites/all`, postBody)
+        .post(`http://3.27.75.210:3006/favourites/all`, postBody)
         .then((res) => {
           if (res.status === 200) {
             tempArr = [];
             res.data.map((filename, index) => {
               tempArr.push({
                 id: index + 1,
-                render: `http://localhost:3006/${email}/${filename}`,
+                render: `http://3.27.75.210:3006/${email}/${filename}`,
                 desc: undefined /*`${filename}`*/,
               });
               setPastOutfits(tempArr);

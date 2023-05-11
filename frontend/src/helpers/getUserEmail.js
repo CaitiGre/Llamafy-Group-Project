@@ -2,7 +2,7 @@ import axios from "axios";
 
 export default async function getUserEmail() {
   try {
-    const response = await axios.post(`http://localhost:3006/auth/getUserEmail/`, null, {
+    const response = await axios.post(`http://3.27.75.210:3006/auth/getUserEmail/`, null, {
         withCredentials: true});
     return await response.data;
   } catch (error) {
