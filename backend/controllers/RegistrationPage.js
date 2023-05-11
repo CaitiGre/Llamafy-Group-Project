@@ -1,9 +1,8 @@
 const pool = require('../database/pool');
 
 async function registerUser(data) {
+  const conn = await pool.getConnection();
   try {
-    const conn = await pool.getConnection();
-
     // Check if the email already exists
     const emailCheck = await conn.query(
       'SELECT COUNT(*) AS count FROM Users WHERE email = ?',
@@ -19,11 +18,13 @@ async function registerUser(data) {
       'INSERT INTO Users (firstName, lastName, email, password, location, gender) VALUES (?, ?, ?, ?, ?, ?)',
       [data.firstName, data.lastName, data.email, data.password, data.location, data.gender]
     );
-    conn.release();
+    
     return result[0].insertId;
   } catch (error) {
     
     throw error;
+  } finally {
+    conn.release();
   }
   
 }
