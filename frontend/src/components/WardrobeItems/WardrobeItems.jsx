@@ -55,11 +55,23 @@ function WardrobeItems({ clothes, setClothes, category }) {
     }
   }
   return (
-    <>
-      {isItemsVisible &&
-        clothes.map(
-          (item) => (
-            (
+    <Box alignItems="center">
+      {clothes.length === 0 ? (
+        <Typography variant="h6"
+          sx={{
+            color: "white",
+            textTransform: "lowercase",
+            textAlign: "center",
+            paddingTop: 2,
+            fontStyle: 'italic',
+          }}
+        >
+          you don't have any {category.name} in your wardrobe
+        </Typography>
+      ) : (
+        <>
+          {isItemsVisible &&
+            clothes.map((item) => (
               <List
                 key={item.clothing_id}
                 sx={{
@@ -91,7 +103,7 @@ function WardrobeItems({ clothes, setClothes, category }) {
                           {GetColorName(item.color)} {item.sleeves}{" "}
                           {item.pattern} {item.style} {item.sub_category}{" "}
                           <Button
-                          data-testid="deleteButton"
+                            data-testid="deleteButton"
                             onClick={() => handleDeleteItem(item)}
                             sx={{
                               position: "absolute",
@@ -110,9 +122,10 @@ function WardrobeItems({ clothes, setClothes, category }) {
                   />
                 </ListItem>
               </List>
-            )
-          )
-        )}
+            ))}
+        </>
+      )}
+
       {isItemsVisible && (
         <Box className={styles.navLinkContainer}>
           <Button
@@ -139,7 +152,7 @@ function WardrobeItems({ clothes, setClothes, category }) {
           </Box>
         </>
       )}
-    </>
+    </Box>
   );
 }
 
