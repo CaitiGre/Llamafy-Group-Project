@@ -13,8 +13,7 @@ We will call this route from the frontend to make a call to the weather API
 */
 router.get('/data', async (req, res) => {
     // Grab email from /data?email=foo query string
-    // const currUserEmail = req.query.email;
-    const currUserEmail = 'kkap897@aucklanduni.ac.nz';
+    const currUserEmail = req.query.email;
 
     // Get current user's city via controller using username from query string
     const userLocation = await fetchUserLocation(currUserEmail);
