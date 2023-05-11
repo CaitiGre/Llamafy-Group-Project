@@ -61,7 +61,6 @@ const OotdTile = ({ imgLink, description }) => {
       imgUrl: imgLink,
       email: email,
     };
-    console.log(postBody);
     try {
       axios.post("http://localhost:3006/ootd/saveFavourite", postBody);
       toast.success("Saved to favourites!");

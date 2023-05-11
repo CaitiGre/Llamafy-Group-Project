@@ -1,10 +1,11 @@
 const pool = require("../database/pool");
-const { imgGen } = require("../apis/dalle");
+const { imgGen } = require('./Dalle')
+require('dotenv').config();
 
 // API CONFIG
 
 const { Configuration, OpenAIApi } = require("openai");
-const key = "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";
+const key = process.env.OPEN_AI_KEY;
 
 const configuration = new Configuration({
     apiKey: key,
