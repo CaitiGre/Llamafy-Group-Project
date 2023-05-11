@@ -16,7 +16,7 @@ const customStyles = {
     marginRight: "-50%",
     transform: "translate(-50%, -50%)",
     textAlign: "center",
-    backgroundColor: "lavender",
+    background: "linear-gradient(321deg, rgba(99,93,191,1) 3%, rgba(217,139,223,1) 61%)",
     color: "black",
     padding: "7px",
     borderRadius: "25px",
@@ -96,6 +96,7 @@ const OotdTile = ({ imgLink, description, shoes, bottom, top }) => {
     }
   }
 
+  //Opens a modal when the image is clicked on
   return (
     <div>
       <img
@@ -113,23 +114,23 @@ const OotdTile = ({ imgLink, description, shoes, bottom, top }) => {
         style={customStyles}
         contentLabel="OOTD"
       >
-        <h2>OUTFIT</h2>
-        <div style={{
-            width: "min(90vw,512px)",
+        <h2 style={{fontSize: "22px"}}>IS THIS YOUR NEW FAVOURITE OUTFIT?</h2>
+        <div className={styles.imgDivContainer}
+         style={{
+            width: "auto",
             borderRadius: "2vh",
-            paddingTop: "1.5vh",
-            paddingBottom: "1.5vh",
+            padding: "1.5vh"
           }}>
           <img
           src={imgLink}
-          
           alt="ootd"
+          className={styles.imgDiv}
         />
         </div>
         
         <div className={styles.modalButton}>
           <button onClick={onClickHandler}>Yeah!</button>
-          <button onClick={closeModal}>You're joking</button>
+          <button onClick={closeModal}>Not for me</button>
         </div>
       </Modal>
     </div>
