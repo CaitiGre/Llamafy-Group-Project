@@ -33,6 +33,9 @@ app.use(session({
   resave: false,
   saveUninitialized: false,
   cookie: {
+    secure: process.env.NODE_ENV === 'production', // set to true in production mode, false in development
+    sameSite: 'none', // 'none' for cross-site usage
+    httpOnly: true, // httpOnly to disallow the client to read/access the cookie
     maxAge: 24 * 60 * 60 * 1000
     //eq. 1 day
   }
