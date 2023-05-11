@@ -123,7 +123,7 @@ async function checkAuthenticated(req, res) {
     res.json({ isAuthenticated: false });
 }
 
-async function getEmail(req, res) {
+function getEmail(req, res) {
     if (req.user) {
         return res.json(req.user.user_email);
     } else {

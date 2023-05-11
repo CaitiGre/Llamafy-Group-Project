@@ -37,7 +37,14 @@ export default function EmailBox({ data, handleChange }) {
           width: isLargeScreen ? "50vw" : "72vw",
           paddingLeft: "20px",
          }}
-        disableUnderline={true}
+         sx={{
+          '&:before': {
+            borderBottom: 'none',
+          },
+          '&:hover:not(.Mui-disabled):before': {
+            borderBottom: 'none',
+          },
+        }}
       />
     </Box>
   );

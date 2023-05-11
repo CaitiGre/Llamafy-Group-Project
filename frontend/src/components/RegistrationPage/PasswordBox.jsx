@@ -38,7 +38,7 @@ export default function PasswordBox({ data, handleChange }) {
           <Input
             type={showPassword ? "text" : "password"}
             name="password"
-            id={style["password"]}
+            id="password"
             className={style["register-input"]}
             value={data.password}
             onChange={handleChange}
@@ -49,7 +49,14 @@ export default function PasswordBox({ data, handleChange }) {
               height: "4.5vh",
               paddingLeft: "20px",
             }}
-            disableUnderline={true}
+            sx={{
+              '&:before': {
+                borderBottom: 'none',
+              },
+              '&:hover:not(.Mui-disabled):before': {
+                borderBottom: 'none',
+              },
+            }}
           />
           {/* Sets an eye icon that when clicked toggles the input field between being a password display and plain text */}
           <img
@@ -79,7 +86,7 @@ export default function PasswordBox({ data, handleChange }) {
           <Input
             type={showPassword ? "text" : "password"}
             name="repassword"
-            id={style["repassword"]}
+            id="reenter-password"
             className={style["register-input"]}
             value={data.repassword}
             onChange={handleChange}
@@ -89,7 +96,14 @@ export default function PasswordBox({ data, handleChange }) {
               width: isLargeScreen ? "50vw" : "72vw",
               height: "4.5vh",
             }}
-            disableUnderline={true}
+            sx={{
+              '&:before': {
+                borderBottom: 'none',
+              },
+              '&:hover:not(.Mui-disabled):before': {
+                borderBottom: 'none',
+              },
+            }}
           />
           <img
             src={showPassword ? lashIcon : eyeIcon}

@@ -93,7 +93,7 @@ function RegistrationPage() {
         spacing={3}
       >
         <Grid item xs={12} md={8} lg={6}>
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} >
             {/* A form that directs to the handle submit function upon pressing the submit button
             *The box contains the input fields set within their individual files */}
             <Box
