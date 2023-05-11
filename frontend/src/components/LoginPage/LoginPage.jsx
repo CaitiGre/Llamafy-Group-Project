@@ -175,6 +175,7 @@ function LoginPage() {
                     name="password"
                     id="password"
                     endAdornment={
+                      /* Toggles the password to be shown or hidden when the eye is clicked */
                       <InputAdornment position="end">
                         <div style={{ position: "relative" }}>
                           <img
@@ -198,7 +199,7 @@ function LoginPage() {
                       </InputAdornment>
                     }
                   />
-                  {/* Toggles the password to be shown or hidden when the eye is clicked */}
+                  
                 </Box>
               </Box>
             </Grid>

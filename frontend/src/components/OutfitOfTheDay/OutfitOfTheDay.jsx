@@ -31,7 +31,7 @@ const OutfitOfTheDay = () => {
     },
   ];
 
-  // def states
+  // eDfine states
   const [username, setUsername] = useState("llama");
   const [weatherText, setWeatherText] = useState(false);
   const [weatherErr, setWeatherErr] = useState(false);
@@ -52,7 +52,7 @@ const OutfitOfTheDay = () => {
   );
   const [showRecommendations, setShowRecommendations] = useState(false);
 
-  // get weather data from weatherAPI proxy
+  // Get weather data from weatherAPI proxy
   useEffect(() => {
     const fetchWeather = async () => {
       const email = await getUserEmail();
@@ -72,6 +72,7 @@ const OutfitOfTheDay = () => {
     fetchWeather()
   }, []);
 
+    /* Gets the name of the user based on their login credentials */
   useEffect(() => {
     const getName = async () => {
       const postBody = {
@@ -88,6 +89,7 @@ const OutfitOfTheDay = () => {
     getName();
   }, []);
 
+  /* Gets the user's email to associate recommendations with the current accoutn */
   async function handleRecommendationTiles() {
     toast.promise(
       new Promise(async (resolve, reject) => {
