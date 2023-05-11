@@ -33,3 +33,14 @@
 .buttonStyle :hover{
   color: #fefefe;
 }
+
+.disclaimerLink {
+  color: #58315cd8;
+  text-decoration: none;
+}
+
+.disclaimerLink:hover{
+  border-radius: 1.5vh;
+  background-color: #ee69ecbe;
+  color: #fefefe;
+}
