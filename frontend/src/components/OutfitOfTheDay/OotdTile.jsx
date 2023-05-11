@@ -50,37 +50,47 @@ const OotdTile = ({ imgLink, description, shoes, bottom, top }) => {
   }
 
   // allow the user to choose an outfit/outfits they like and save to static files
-  async function onClickHandler() {
+  function onClickHandler() {
     const outfitItems = shoes.concat(top, bottom);
   
     if (imgLink.substring(0, 16) !== "https://oaidalle") {
-      toast.error("That's not an outfit dude. That's a llama");
+      toast.error("That's not an outfit, dude");
       closeModal();
       return;
     }
   
-    // Extract the IDs from outfitItems and make sure they are valid numbers
-    const listOfIds = outfitItems.map(item => parseInt(item.id)).filter(id => !isNaN(id));
-  
-    // Call the API to change the lastWorn date for the specified IDs
     const postBody = {
       imgUrl: imgLink,
       email: email,
     };
-    
+  
+    // Get a list of clothing IDs from the outfit items
+    const clothesIDs = outfitItems.map(item => item.id).filter(id => !isNaN(id));
+  
+    // Call the changeClotheWornDate function to update the lastWorn field
+    fetch("http://localhost:3006/api/changeClotheWornDate", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ listOfIds: clothesIDs }),
+    }).then((response) => {
+      if (response.ok) {
+        console.log("Last worn date updated successfully");
+      } else {
+        console.error("Error updating last worn date");
+      }
+    }).catch((error) => {
+      console.error(error);
+    });
+  
+    // Save the outfit to favorites
     try {
-      const response = await fetch('http://localhost:3006/api/changeClotheWornDate', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ listOfIds })
-      });
-      const data = await response.json();
-      console.log(data);
+      axios.post("http://localhost:3006/ootd/saveFavourite", postBody);
+      toast.success("Saved to favourites!");
     } catch (err) {
       console.log(err);
-      toast.error("Something went wrong trying to update the last worn date. Try again later");
+      toast.error("Something went wrong trying to save. Try again later");
     } finally {
       closeModal();
     }
