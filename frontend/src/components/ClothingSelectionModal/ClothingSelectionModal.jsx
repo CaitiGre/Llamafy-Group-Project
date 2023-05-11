@@ -42,7 +42,7 @@ function ClothingSelectionModal({ selectedItem, showModal, onCloseModal }) {
       }
       // Make a POST request to the server with the new wardrobe item data
       await axios.post(
-        "http://3.27.75.210:3006/wardrobeSelection/addWardrobeItem",
+        "http://localhost:3006/wardrobeSelection/addWardrobeItem",
         {
           name: selectedItem.name,
           user_email: userEmail,
