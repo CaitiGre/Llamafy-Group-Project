@@ -1,4 +1,4 @@
-import { Box, Input, InputLabel, useMediaQuery, useTheme  } from "@mui/material";
+import { Box, Input, InputLabel, useMediaQuery, useTheme } from "@mui/material";
 import style from "../RegistrationPage/Registration.module.css";
 
 export default function EmailBox({ data, handleChange }) {
@@ -30,21 +30,19 @@ export default function EmailBox({ data, handleChange }) {
         value={data.email}
         onChange={handleChange}
         placeholder="llama@lavenderllama.co.nz"
-        sx={{ 
+        sx={{
           backgroundColor: "white",
           height: "4.5vh",
           borderRadius: "25px",
           width: isLargeScreen ? "50vw" : "72vw",
-          paddingLeft: "20px",
-         }}
-         sx={{
-          '&:before': {
+          paddingLeft: "20px", '&:before': {
             borderBottom: 'none',
           },
           '&:hover:not(.Mui-disabled):before': {
             borderBottom: 'none',
           },
         }}
+
       />
     </Box>
   );
