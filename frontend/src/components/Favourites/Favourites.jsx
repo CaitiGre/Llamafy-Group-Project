@@ -16,9 +16,9 @@ export default function Favourites() {
   // check that the wardrobe data has been fetched from the database
   const [dataFetched, setDataFetched] = useState(false);
 
-  // Grab email and request all user images in their public folder
-  // Create a little tile for each
+  // Fetch the user's favourite outfits from the database
   useEffect(() => {
+    // Function to get the user's favourite outfits from the database
     const getFavourites = async () => {
       const email = await getUserEmail();
       const postBody = {
@@ -27,16 +27,22 @@ export default function Favourites() {
       await axios
         .post(`http://localhost:3006/favourites/all`, postBody)
         .then((res) => {
-          if (res.status === 200 || res.status === 202) {
+          // If the response is 200, set the state pastOutfits to the array of file names
+          if (res.status === 200) {
+            console.log(res.data);
             tempArr = [];
             res.data.map((filename, index) => {
               tempArr.push({
                 id: index + 1,
                 render: `http://localhost:3006/${email}/${filename}`,
-                desc: undefined /*`${filename}`*/,
+                desc: undefined,
               });
               setPastOutfits(tempArr);
             });
+            setDataFetched(true);
+          }
+          // If the response is 202, set the state dataFetched to true
+          if (res.status === 202) {
             setDataFetched(true);
           }
         })
@@ -47,6 +53,7 @@ export default function Favourites() {
           );
         });
     };
+    // Call the function to get the user's favourite outfits
     getFavourites();
   }, []);
 
