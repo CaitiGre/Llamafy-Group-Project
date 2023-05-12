@@ -7,7 +7,7 @@ import useGet from "../../helpers/useGet";
 import { clothesItems } from "./data";
 import WardrobeItems from "../WardrobeItems/WardrobeItems";
 import getUserEmail from "../../helpers/getUserEmail";
-import loading from "../../assets/loading.gif";
+import Loading from "../LoadingImage/Loading"
 
 function ClothesSelection() {
   // Defining state variables for the modal
@@ -91,8 +91,7 @@ function ClothesSelection() {
         </Box>
       ) : (
         <Box>
-          <Typography>Loading... </Typography>
-          <img src={loading}></img>
+          <Loading></Loading>
         </Box>
       )}
       <Modal
