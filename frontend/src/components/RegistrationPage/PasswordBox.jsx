@@ -95,6 +95,7 @@ export default function PasswordBox({ data, handleChange }) {
               backgroundColor: "white",
               width: isLargeScreen ? "50vw" : "72vw",
               height: "4.5vh",
+              paddingLeft: "20px",
             }}
             sx={{
               '&:before': {
