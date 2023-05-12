@@ -1,6 +1,4 @@
-![llama](https://github.com/UOA-CS732-SE750-Students-2023/project-group-lavender-llamas/assets/42294625/4785291d-b37f-40a0-ab1c-812bc070573f)
-
-# LLAMIFY
+# LLAMAFY
 
 Have you ever looked in your wardrobe and decided you have nothing to wear? Have you warn the same outfit two weeks in a row? Who are you? Steve Jobs*?
 
@@ -49,7 +47,17 @@ Easy as that!
 
 ### Back end
 
-To run the backend you need to open up a terminal in the backend folder and run `node index.js` or `npm start`.
+To run the backend you need to open up a terminal in the backend folder and run either:
+
+```
+node index.js
+```
+
+or 
+
+```
+npm start
+```
 
 ### Functional login credentials
 
@@ -241,3 +249,5 @@ Contributers:
 - Karl Kapoor
 - Cassandra Pham
 - Yash Rraj Sood
+
+![llama](https://github.com/UOA-CS732-SE750-Students-2023/project-group-lavender-llamas/assets/42294625/4785291d-b37f-40a0-ab1c-812bc070573f)
