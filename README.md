@@ -84,7 +84,7 @@ Here you can find a brief overview of the pages that we have available to peruse
 
 ### Landing Page
 
-![LandingPageImage](../project-group-lavender-llamas/frontend/src/assets/LandingPage.png)
+![LandingPageImage](https://github.com/UOA-CS732-SE750-Students-2023/project-group-lavender-llamas/blob/84a471040b3962dd309b8aea645f4aa5e88ad56e/frontend/src/assets/LandingPage.png)
 
 The landing page is the first of the pages that you will see when you open our application. From here you are able to navigate to different pages depending on whether you are logged in or not, and are introduced to a bit about the purpose of the application.
 
