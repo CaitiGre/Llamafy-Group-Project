@@ -52,8 +52,7 @@ Easy as that!
 
 ## Back end
 
-<!-- To run the backend you need to open up a terminal in the backend folder and run node.js -->
-The backend is hosted on an AWS EC2 instance 
+To run the backend you need to open up a terminal in the backend folder and run `node index.js` or `npm start`.
 
 ## Functional login credentials
 
@@ -140,9 +139,32 @@ Many of the elements mentioned here are those that were included in the could ha
 
 # Our Server
 
-## Chat GPT
+## Express
 
-## Dalle
+The project server runs on Express. An AWS EC2 instance was initially hosting our server, but we were unable to resolve issues with user authentication on web browsers which was not observed when running locally. We ultimately decided to forego the online hosting. 
+
+## OpenAI API
+
+This project utlizes two models from the OpenAI API. 
+
+We are using the text-davinci-003 model for text completion when receiving intelligent outfit suggestions. One JSON template string is populated and then sent to davinci, where it substitutes values at certain positions. The inputs to the template string are:
+* The user's wardrobe items
+* The chosen colour scheme
+* The user's gender
+* The current weather conditions from the weather API
+
+The davinci model responds likewise in JSON with three outfit recommendations with notable values each:
+* Top recommendation (id, description, colour etc)
+* Bottom recommendation
+* One piece recommendation (if applicable)
+* Shoes recommendation
+* A DALL-E prompt describing the above outfit to be passed to the DALL-E model
+* A high-level outfit description
+
+Each DALL-E prompt (three in total) received from the davinci prompt is fed into an async function which returns a generated image URL from the DALL-E model. This is then used in the image tags on the frontend.
+
+We chose to use the OpenAI API because of its current relevance and we were interesting to learn how it worked, and to what extent.
 
 ## Weather API
 
+For getting the current weather conditions we opted for an API provided by https://www.weatherapi.com. We have a separate proxy route that accesses this API with our key in a .env file in our backend. We chose this API because of its ease of use, requiring only a city name as an argument in its GET query string body. Before settling on this API, we tested an alternative that required latitude and longitude coordinates to be input as a query string for the GET request. The team managed to find a csv online of all major cities in the world and their coordinates. Using this data, we created a LOCATION mapping table that we could use to map the coordinate to the city name, circumventing the user having to input their coordinates. After moving to the current API, we left the LOCATION table as is, in case we needed future location data.
