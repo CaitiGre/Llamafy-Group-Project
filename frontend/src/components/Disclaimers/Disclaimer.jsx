@@ -19,8 +19,8 @@ function Disclaimers() {
       <Box>
         <Heading title="DISCLAIMERS AND FAQs" />
       </Box>
-      <Box className={style.Accordion} style={{paddingBottom: "3vh"}}>
-        <Accordion >
+      <Box className={style.Accordion} style={{ paddingBottom: "3vh" }}>
+        <Accordion>
           {/* Each accordion component has its own summary (title) and description */}
           <AccordionSummary expandIcon={<ExpandMoreIcon />}>
             <Typography className={style.SummaryText}>
@@ -38,6 +38,36 @@ function Disclaimers() {
               the frequency that we begin to appear on maps in future as the
               ability for the functionality to do so is there, but the will is
               not.
+            </Typography>
+          </AccordionDetails>
+        </Accordion>
+        <Accordion>
+          <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+            <Typography className={style.SummaryText}>
+              When generating my outfit images, I have noticed some
+              ...interesting features on the models. Care to explain?
+            </Typography>
+          </AccordionSummary>
+          <AccordionDetails>
+            <Typography className={style.DescriptionText}>
+              Great question! In order to generate our images we rely on an
+              artificial intelligence known as Dalle that generates artificial
+              images based on the prompt that we feed it. One thing that AIs are
+              not very good at doing so far is generating detailed human
+              features on a clothing model. Because of this you may notice some
+              features of our models look a little bit odd. Some common features
+              you may encounter include (but are not limited to):
+              <br />
+              <ul>
+                <li>Claw hands</li>
+                <li>Funky faces </li>
+                <li>Duck shoes</li>
+                <li>Wonky legs</li>
+                <li>Elongated Llama faces</li>
+              </ul>
+              <br />
+              Think of this a bit like NY fashion week. We don't understand some
+              of the design choices but we embrace them anyway.
             </Typography>
           </AccordionDetails>
         </Accordion>
