@@ -2,22 +2,22 @@
 
 # LLAMIFY
 
-Have you ever looked in your wardrobe and decided you have nothing to wear? Have you warn the same outfit two weeks in a row? Who are you? Steve Jobs*?
+Have you ever looked in your wardrobe and decided you have nothing to wear? Have you warn the same outfit two weeks in a row? Who are you? Steve Jobs\*?
 
-Well look in panic and worry no more! 
+Well look in panic and worry no more!
 
 Introducting LLAMAFY!
 
-*Even he did this whole wearing the same outfit everyday thing so that it would be one less decision for him to make. So realistically he should be the one making this not us just saying...
+\*Even he did this whole wearing the same outfit everyday thing so that it would be one less decision for him to make. So realistically he should be the one making this not us just saying...
 
 ### What we are
 
 Are we human? Dancer? No! We're LLAMAFY! Powered by AI and run by a team of indecisive lavender llamas (that moonlight as insomniacs), we decided to make our lives easier and your lives cooler by simplifying one of the hardest parts of the day; getting dressed!
 
-LLAMAFY aims to make your life at least 10x** easier and save you up to 16*** hours a week by allowing you to forgo making one more decision a day. Based on the items that you already have in your wardrobe, we will generate three potential outfits for you to choose from at a time and make your life that much simpler. 
+LLAMAFY aims to make your life at least 10x** easier and save you up to 16\*** hours a week by allowing you to forgo making one more decision a day. Based on the items that you already have in your wardrobe, we will generate three potential outfits for you to choose from at a time and make your life that much simpler.
 
-**Gross overestimation for dramatic effect.
-***Another guestimate. Some of the llamas are not great at maths but are full of enthusiasm.
+**Gross overestimation for dramatic effect. \***Another guestimate. Some of the llamas are not great at maths but are full of enthusiasm.
+
 ## Usage
 
 You can use LLAMAFY with these simple steps:
@@ -27,7 +27,6 @@ You can use LLAMAFY with these simple steps:
 3. Sit back and watch a llama pick your outfit!
 
 From here you can select the outfits that you like and the ones you don't. You can keep an eye on past outfits that you have warn and you can simplify your morning (or afternoon, we don't judge) decision making process by not having to choose what to wear.
-
 
 ### Software
 
@@ -45,6 +44,7 @@ To get the site up and running you simply need to type this in the terminal with
 npm install
 npm run start
 ```
+
 Easy as that!
 
 ### Back end
@@ -60,7 +60,6 @@ If for whatever reason you do not wish to register but still want to have a look
 
 (Secure, we know)
 
-
 ## Running Tests
 
 To run tests, navigate to the relevant folders (backed, frontend) and run the following command
@@ -68,7 +67,6 @@ To run tests, navigate to the relevant folders (backed, frontend) and run the fo
 ```bash
   npm run test .
 ```
-
 
 ## Pages
 
@@ -83,6 +81,7 @@ In this section you are also able to navigate to the disclaimer page or you can 
 ### Registration Page
 
 The registration page allows users to sign up and register some information about themselves. They are able to specify their:
+
 - Name
 - Email (used for login purposes)
 - Password (which also checks that the passwords match and allow users to view the entered password by clicking on the eye icon)
@@ -112,20 +111,22 @@ When the user clicks on a modal, they will see an 'ADD ITEMS' button which allow
 
 If the user had previously added a piece of clothing to their wardrobe, they will be able to view the details of their outfits displayed on the modal window when they click on a given category. Additionally, they have the option to remove any clothing item from their wardrobe by clicking on the bin symbol located next to each item.
 
-### Outfit Generation 
+### Outfit Generation
 
 The wardrobe generation page allows users to specify the type of outfit that they are looking to wear on the day and can be customised based on what they have registered as being in their closet. It then generates three possible outfit choices using Dalle to provide images based on the AI prompt created by the user.
 
 They are able to specify:
+
 - Colour (the primary colour that they would like the outfit to be)
 
 That's about it. The whole reason that people are using this site is so they don't have to make decisions so we figured we'd keep it simple.
 
 Once a user clicks generate they will be presented with three outfits that they are able to click on and open the modals for. In the modals the user is able to select 'yes!' to indicate that they like the generated outfit which will then add that item to favourites. Alternatively, the user can select the button that indicates that the outfit is not for them which will close the modal.
 
-### Settings 
+### Settings
 
 This page contains a form with the following fields, most of them can be edited to update user information:
+
 - Email: Please note this field cannot be edited.
 - First Name
 - Last Name
@@ -148,13 +149,13 @@ Many of the elements mentioned here are those that were included in the could ha
 
 We want to make sure that LLAMAFY is accessible to everyone. Our team has taken the following steps to make the application more accessible:
 
-    Keyboard Navigation: LLAMAFY can be navigated using only the keyboard. We have made sure that all interactive elements on the site, such as buttons and links, can be accessed and operated using the keyboard alone.
+- Keyboard Navigation: LLAMAFY can be navigated using only the keyboard. We have made sure that all interactive elements on the site, such as buttons and links, can be accessed and operated using the keyboard alone.
 
-    Color Contrast: We have designed the site with color contrast in mind to ensure that the content is readable for people with low vision or color blindness. We have used high contrast colors for the text and background, and we have made sure that the text is large enough to read.
+- Color Contrast: We have designed the site with color contrast in mind to ensure that the content is readable for people with low vision or color blindness. We have used high contrast colors for the text and background, and we have made sure that the text is large enough to read.
 
-    Screen Reader Compatibility: LLAMAFY is compatible with screen readers. We have added alternative text to all images, and we have made sure that the site is designed in a logical and easy-to-navigate way for screen reader users.
+- Screen Reader Compatibility: LLAMAFY is compatible with screen readers. We have added alternative text to all images, and we have made sure that the site is designed in a logical and easy-to-navigate way for screen reader users.
 
-    Forms and Labels: All forms on LLAMAFY have labels associated with them. This helps users understand what information is required in each field and is especially helpful for screen reader users.
+- Forms and Labels: All forms on LLAMAFY have labels associated with them. This helps users understand what information is required in each field and is especially helpful for screen reader users.
 
 If you have any suggestions for how we can improve the accessibility of LLAMAFY, please don't hesitate to reach out to us. We are always looking for ways to make our application more accessible for everyone.
 
@@ -168,25 +169,27 @@ If you have any suggestions for how we can improve the accessibility of LLAMAFY,
 
 ### Express
 
-The project server runs on Express. An AWS EC2 instance was initially hosting our server, but we were unable to resolve issues with user authentication on web browsers which was not observed when running locally. We ultimately decided to forego the online hosting. 
+The project server runs on Express. An AWS EC2 instance was initially hosting our server, but we were unable to resolve issues with user authentication on web browsers which was not observed when running locally. We ultimately decided to forego the online hosting.
 
 ### OpenAI API
 
-This project utlizes two models from the OpenAI API. 
+This project utlizes two models from the OpenAI API.
 
 We are using the text-davinci-003 model for text completion when receiving intelligent outfit suggestions. One JSON template string is populated and then sent to davinci, where it substitutes values at certain positions. The inputs to the template string are:
-* The user's wardrobe items
-* The chosen colour scheme
-* The user's gender
-* The current weather conditions from the weather API
+
+- The user's wardrobe items
+- The chosen colour scheme
+- The user's gender
+- The current weather conditions from the weather API
 
 The davinci model responds likewise in JSON with three outfit recommendations with notable values each:
-* Top recommendation (id, description, colour etc)
-* Bottom recommendation
-* One piece recommendation (if applicable)
-* Shoes recommendation
-* A DALL-E prompt describing the above outfit to be passed to the DALL-E model
-* A high-level outfit description
+
+- Top recommendation (id, description, colour etc)
+- Bottom recommendation
+- One piece recommendation (if applicable)
+- Shoes recommendation
+- A DALL-E prompt describing the above outfit to be passed to the DALL-E model
+- A high-level outfit description
 
 Each DALL-E prompt (three in total) received from the davinci prompt is fed into an async function which returns a generated image URL from the DALL-E model. This is then used in the image tags on the frontend.
 
@@ -204,7 +207,6 @@ The project uses MySQL as its relational database management system. The databas
 
 This table stores information about the category of clothes that can be added to a user's wardrobe
 
-
 #### Users Table
 
 This table stores information about registered users, including their email, encrypted password, and other user details.
@@ -213,7 +215,7 @@ This table stores information about registered users, including their email, enc
 
 This table stores information about each clothing item that a user adds to their wardrobe, including the clothing id, category, and other clothing details. Each clothing item is associated with a specific user through their email.
 
-#### User Session 
+#### User Session
 
 This table is used for authentication and stores the user's encrypted session id's to verify their login status
 
@@ -223,10 +225,10 @@ The following ERD consists of the tables described above, with relationships bet
 
 ![MySQL ERD](https://github.com/UOA-CS732-SE750-Students-2023/project-group-lavender-llamas/assets/42294625/ad50abe5-d502-4e80-a842-bd44b3967a96)
 
-
 #### Further details
 
 We chose MySQL because of its popularity, reliability, and ease of use. We utilized the mysql2 package to handle the database connection and queries in our Node.js server.
+
 ## License
 
 [MIT](https://choosealicense.com/licenses/mit/)
