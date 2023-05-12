@@ -37,9 +37,12 @@ Additionally, in order to make the project function, we we employed the use of C
 
 We also used a variety of packages to help ease the implementation of the front end of the project such as Material UI (MUI) to ensure responsiveness and with the additional HTML-like functionality of forms etc. We also tested a variety of packages that were designed for specific functions like react-colour which provides the functionality of a variety of colour pickers, along with many others, some of which were later removed from the project due to their lack of compatability with what we wanted the site to do. For example, we trialed useing react-pro-sidebar but due to the lack of understandability of the development notes and the developers seemingly giving up on the package themselves, we settled for using MUI Appbar.
 
+## Running the project
+To get the site up and running, please follow below steps:
+
 ### Front end
 
-To get the site up and running you simply need to type this in the terminal within the front end folder to get the application up and running.
+To run the frontend, open up a terminal in the frontend folder and run:
 
 ```
 npm install
@@ -49,7 +52,20 @@ Easy as that!
 
 ### Back end
 
-To run the backend you need to open up a terminal in the backend folder and run `node index.js` or `npm start`.
+To run the backend, open up a terminal in the backend folder and run:
+```
+npm install
+```
+then
+```node index.js
+```
+or
+```
+npm start
+```
+
+### Local host
+Once you have run both your frontend and backend, go to your local host to view the site.
 
 ### Functional login credentials
 
