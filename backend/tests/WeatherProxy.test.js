@@ -12,6 +12,7 @@ app.use(express.json());
 app.use('/', router);
 
 describe('GET /data', () => {
+    // mimic accessing the route to get the fake data
     it('should fetch weather data', async () => {
         const mockUserLocation = 'Auckland';
         const mockWeatherData = {
