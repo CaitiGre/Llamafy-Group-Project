@@ -24,10 +24,10 @@ export default function Favourites() {
       const postBody = {
         email: email,
       };
-      axios
+      await axios
         .post(`http://localhost:3006/favourites/all`, postBody)
         .then((res) => {
-          if (res.status === 200) {
+          if (res.status === 200 || res.status === 202) {
             tempArr = [];
             res.data.map((filename, index) => {
               tempArr.push({
@@ -36,8 +36,8 @@ export default function Favourites() {
                 desc: undefined /*`${filename}`*/,
               });
               setPastOutfits(tempArr);
-              setDataFetched(true);
             });
+            setDataFetched(true);
           }
         })
         .catch((error) => {
@@ -55,20 +55,20 @@ export default function Favourites() {
       <Heading title="Favourites" />
       <SubHeading subtitle="PAST OUTFITS" />
 
-      {pastOutfits ? (
+      {dataFetched ? (
         <Box sx={{ marginTop: 8 }}>
-          <Grid
-            container
-            spacing={{ xs: 2, md: 6 }}
-            columns={{ xs: 1, sm: 6, md: 8, lg: 12 }}
-            sx={{
-              justifyContent: "center",
-              backgroundColor: "transparent",
-            }}
-          >
-            {/* Loop over all the user's past outfits*/}
-            {dataFetched ? (
-              pastOutfits.map((outfitObj) => (
+          {pastOutfits ? (
+            <Grid
+              container
+              spacing={{ xs: 2, md: 6 }}
+              columns={{ xs: 1, sm: 6, md: 8, lg: 12 }}
+              sx={{
+                justifyContent: "center",
+                backgroundColor: "transparent",
+              }}
+            >
+              {/* Loop over all the user's past outfits*/}
+              {pastOutfits.map((outfitObj) => (
                 <Grid
                   item
                   key={outfitObj.id}
@@ -81,17 +81,24 @@ export default function Favourites() {
                 >
                   <OutfitTile outfit={outfitObj} images={pastOutfits} />
                 </Grid>
-              ))
-            ) : (
-              <SubHeading subtitle="Go select some of your favourite outfits to display here" />
-            )}
-          </Grid>
+              ))}
+            </Grid>
+          ) : (
+            <Typography
+              variant="h5"
+              sx={{ color: "white", fontStyle: "italic" }}
+            >
+              Nothing to display yet
+            </Typography>
+          )}
         </Box>
       ) : (
-        <Box>
-          <Typography>Loading...</Typography>
-          <img src={loading}></img>
-        </Box>
+        <>
+          <Box>
+            <Typography>Loading...</Typography>
+            <img src={loading}></img>
+          </Box>
+        </>
       )}
     </>
   );
