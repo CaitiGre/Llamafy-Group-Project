@@ -18,9 +18,10 @@ export default function Favourites() {
 
   // Fetch the user's favourite outfits from the database
   useEffect(() => {
-    // Function to get the user's favourite outfits from the database
+    // Function to get the user's favourite outfits saved as static files
     const getFavourites = async () => {
       const email = await getUserEmail();
+      // Post the user's email to the route which will respond with the image files if applicable
       const postBody = {
         email: email,
       };
@@ -28,6 +29,7 @@ export default function Favourites() {
         .post(`http://localhost:3006/favourites/all`, postBody)
         .then((res) => {
           // If the response is 200, set the state pastOutfits to the array of file names
+          // 200 indicates that the user's public folder has been found and the files will be received as JSON
           if (res.status === 200) {
             console.log(res.data);
             tempArr = [];
@@ -42,6 +44,8 @@ export default function Favourites() {
             setDataFetched(true);
           }
           // If the response is 202, set the state dataFetched to true
+          // 202 indicates that the POST was successful, but no user folder has been identified
+          // Therefore they have not saved any pictures.
           if (res.status === 202) {
             setDataFetched(true);
           }
@@ -53,7 +57,7 @@ export default function Favourites() {
           );
         });
     };
-    // Call the function to get the user's favourite outfits
+    // Call the async function immediately
     getFavourites();
   }, []);
 
