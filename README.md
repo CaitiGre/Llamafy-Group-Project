@@ -142,7 +142,10 @@ Many of the elements mentioned here are those that were included in the could ha
 
 ## Chat GPT
 
+This project utlizes two models of the OpenAI API.   
+
 ## Dalle
 
 ## Weather API
 
+For getting the current weather conditions we opted for an API provided by https://www.weatherapi.com. We have a separate proxy route that accesses this API with our key in a .env file in our backend. We chose this API because of its ease of use, requiring only a city name as an argument in its GET query string body. Before settling on this API, we tested an alternative that required latitude and longitude coordinates to be input as a query string for the GET request. The team managed to find a csv online of all major cities in the world and their coordinates. Using this data, we created a LOCATION mapping table that we could use to map the coordinate to the city name, circumventing the user having to input their coordinates. After moving to the current API, we left the LOCATION table as is, in case we needed future location data.
