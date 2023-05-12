@@ -234,7 +234,7 @@ const OutfitOfTheDay = () => {
                     spacing={10}
                     sx={{ marginTop: "2vh" }}
                   >
-                    <Grid item xs={11} md={3}>
+                    <Grid item xs={8} md={4}>
                       <Box
                         sx={{
                           backgroundColor: "#fefefe",
@@ -291,7 +291,7 @@ const OutfitOfTheDay = () => {
                         )}
                       </Box>
                     </Grid>
-                    <Grid item xs={11} md={3}>
+                    <Grid item xs={8} md={4}>
                       <Box
                         sx={{
                           backgroundColor: "#fefefe",
@@ -321,7 +321,7 @@ const OutfitOfTheDay = () => {
                         </div>
                       </Box>
                     </Grid>{" "}
-                    <Grid item xs={11} md={3}>
+                    <Grid item xs={8} md={4}>
                       <Box
                         sx={{
                           backgroundColor: "#fefefe",
@@ -373,6 +373,7 @@ const OutfitOfTheDay = () => {
                       padding: "1vh 4vh",
                       marginTop: "2vh",
                       width: "40vh",
+                      color: "#58315CD8",
                     }}
                     className={styles.generateButton}
                     onClick={handleRecommendationTiles}
@@ -393,12 +394,7 @@ const OutfitOfTheDay = () => {
       <br />
 
       {showRecommendations && (
-        <div
-          className={styles.recommendationTiles}
-          style={{ paddingBottom: "5%" }}
-        >
-          {recommendations}
-        </div>
+        <div className={styles.recommendationTiles}>{recommendations}</div>
       )}
     </>
   );
