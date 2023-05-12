@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import WardrobeItems from "./WardrobeItems";
+import WardrobeItems from "../components/WardrobeItems/WardrobeItems";
 
 describe("WardrobeItems component", () => {
   const mockClothes = [

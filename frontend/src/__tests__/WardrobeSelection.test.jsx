@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import WardrobeSelection from "./WardrobeSelection";
+import WardrobeSelection from "../components/WardrobeSelection/WardrobeSelection";
 
 test("Favourites title exists", async () => {
   render(<WardrobeSelection />);
