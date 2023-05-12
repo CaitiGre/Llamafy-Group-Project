@@ -91,7 +91,7 @@ function LoginPage() {
             flexDirection="column"
             spacing={3}
           >
-            <Grid item xs={12} md={10}>
+            <Grid item xs={12} md={12}>
               <InputLabel
                 htmlFor="email"
                 sx={{

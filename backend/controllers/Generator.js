@@ -210,7 +210,7 @@ async function promptGenerator(user_email, weatherValsObj, colorScheme) {
     } degrees celsius and ${weatherValsObj.condition}. ${colorAddString}
 
   ${JSON.stringify(userWardrobe)}
-  Respond in the below valid JSON format only, substituting % with the values (do not actually include the % sign if there are no values). Do not provide a value for a category if it is covered by another. In the "dalle" property, provide a comprehensive prompt to give to the DALL-E model. Focus on providing detail on colour. For the outfitDescription, give a small sentence of what the is included in the outfit
+  Respond in the below valid JSON format only, substituting % with the values (do not actually include the % sign if there are no values). Do not provide a value for a category if it is covered by another. In the "dalle" property, provide a comprehensive prompt to give to the DALL-E model, do not give it a hex color, but an actual color name. Focus on providing detail on colour. For the outfitDescription, give a small sentence of what the is included in the outfit, give me the actual color, not the hex
   {
     "recommendation1": {
       "top": [

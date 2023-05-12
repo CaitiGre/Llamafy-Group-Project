@@ -55,7 +55,9 @@ To run the backend, open up a terminal in the backend folder and run:
 npm install
 ```
 then
-```node index.js
+```
+node index.js
+
 ```
 or
 ```
