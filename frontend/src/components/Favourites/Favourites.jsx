@@ -6,7 +6,8 @@ import SubHeading from "../SubHeading/SubHeading";
 import getUserEmail from "../../helpers/getUserEmail";
 import { Box, Grid, Typography } from "@mui/material";
 import { toast } from "react-toastify";
-import loading from "../../assets/loading.gif";
+// import loading from "../../assets/loading.gif";
+import Loading from "../LoadingImage/Loading"
 
 /* Function to display the Favourite past outfits Page*/
 export default function Favourites() {
@@ -104,12 +105,20 @@ export default function Favourites() {
           )}
         </Box>
       ) : (
+<<<<<<< Updated upstream
         <>
           <Box>
             <Typography>Loading...</Typography>
             <img src={loading}></img>
           </Box>
         </>
+=======
+        <Box>
+          {/* <Typography>Loading...</Typography>
+          <img src={loading}></img> */}
+          <Loading></Loading>
+        </Box>
+>>>>>>> Stashed changes
       )}
     </>
   );
