@@ -7,7 +7,6 @@ import useGet from "../../helpers/useGet";
 import { clothesItems } from "./data";
 import WardrobeItems from "../WardrobeItems/WardrobeItems";
 import getUserEmail from "../../helpers/getUserEmail";
-// import loading from "../../assets/loading.gif";
 import Loading from "../LoadingImage/Loading"
 
 function ClothesSelection() {
@@ -92,8 +91,6 @@ function ClothesSelection() {
         </Box>
       ) : (
         <Box>
-          {/* <Typography>Loading... </Typography>
-          <img src={loading}></img> */}
           <Loading></Loading>
         </Box>
       )}
