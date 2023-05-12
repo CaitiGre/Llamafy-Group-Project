@@ -11,7 +11,9 @@ import "react-toastify/dist/ReactToastify.css";
 import llamaLoad from "../../assets/llamaLoad.gif";
 import handingTowel from "../../assets/towelHang.png";
 import { NavLink } from "react-router-dom";
-import loading from "../../assets/loading.gif";
+// import loading from "../../assets/loading.gif";
+import Loading from "../LoadingImage/Loading"
+
 
 const OutfitOfTheDay = () => {
   const tempTiles = [
@@ -387,8 +389,9 @@ const OutfitOfTheDay = () => {
             </>
           ) : (
             <Box>
-              <Typography>Loading...</Typography>
-              <img src={loading}></img>
+              {/* <Typography>Loading...</Typography>
+              <img src={loading}></img> */}
+              <Loading></Loading>
             </Box>
           )}
         </Box>

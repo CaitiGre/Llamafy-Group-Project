@@ -9,7 +9,8 @@ import { genders } from "./data";
 import { skinTones } from "./data";
 import Selection from "./Selection";
 import { toast } from "react-toastify";
-import loading from "../../assets/loading.gif";
+// import loading from "../../assets/loading.gif";
+import Loading from "../LoadingImage/Loading"
 
 function Profile() {
   const [data, setData] = useState({
@@ -273,8 +274,9 @@ function Profile() {
         </div>
       ) : (
         <div>
-          <p>Loading... Refresh if the page takes a while to load</p>
-          <img src={loading}></img>
+          {/* <p>Loading... Refresh if the page takes a while to load</p>
+          <img src={loading}></img> */}
+          <Loading></Loading>
         </div>
       )}
     </>
