@@ -121,7 +121,7 @@ const OotdTile = ({ imgLink, description, shoes, bottom, top }) => {
         style={customStyles}
         contentLabel="OOTD"
       >
-        <h2 style={{ fontSize: "22px" }}>IS THIS YOUR NEW FAVOURITE OUTFIT?</h2>
+        <h2 style={{ fontSize: "22px", color: "#fefefe", paddingTop: "1.5vh", fontFamily: "Franklin Gothic Medium, Arial Narrow, Arial, sans-serif" }}>IS THIS YOUR NEW FAVOURITE OUTFIT?</h2>
         <div
           className={styles.imgDivContainer}
           style={{
