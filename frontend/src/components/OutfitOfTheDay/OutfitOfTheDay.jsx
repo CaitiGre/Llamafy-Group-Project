@@ -32,7 +32,7 @@ const OutfitOfTheDay = () => {
     },
   ];
 
-  // eDfine states
+  // Define states
   const [username, setUsername] = useState("llama");
   const [weatherText, setWeatherText] = useState(false);
   const [weatherErr, setWeatherErr] = useState(false);
@@ -124,6 +124,8 @@ const OutfitOfTheDay = () => {
           .then((data) => {
             let responseText = JSON.parse(data.responseText);
 
+            // Loads the objects from the responses into an array - used by the outfit cards
+
             const items = [
               {
                 id: 1,
@@ -171,7 +173,7 @@ const OutfitOfTheDay = () => {
                   />
                 </div>
               ));
-
+            // Upon success, set and show the recommendation cards with generated outfits
             setRecommendations(tiles);
 
             resolve({
