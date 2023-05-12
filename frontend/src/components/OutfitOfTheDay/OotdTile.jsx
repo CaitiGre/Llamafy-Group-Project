@@ -16,10 +16,12 @@ const customStyles = {
     marginRight: "-50%",
     transform: "translate(-50%, -50%)",
     textAlign: "center",
-    background: "linear-gradient(321deg, rgba(99,93,191,1) 3%, rgba(217,139,223,1) 61%)",
+    background:
+      "linear-gradient(321deg, rgba(99,93,191,1) 3%, rgba(217,139,223,1) 61%)",
     color: "black",
     padding: "7px",
     borderRadius: "25px",
+    border: "none",
   },
 };
 
@@ -52,21 +54,23 @@ const OotdTile = ({ imgLink, description, shoes, bottom, top }) => {
   // allow the user to choose an outfit/outfits they like and save to static files
   function onClickHandler() {
     const outfitItems = shoes.concat(top, bottom);
-  
+
     if (imgLink.substring(0, 16) !== "https://oaidalle") {
       toast.error("That's not an outfit, dude");
       closeModal();
       return;
     }
-  
+
     const postBody = {
       imgUrl: imgLink,
       email: email,
     };
-  
+
     // Get a list of clothing IDs from the outfit items
-    const clothesIDs = outfitItems.map(item => item.id).filter(id => !isNaN(id));
-  
+    const clothesIDs = outfitItems
+      .map((item) => item.id)
+      .filter((id) => !isNaN(id));
+
     // Call the changeClotheWornDate function to update the lastWorn field
     fetch("http://localhost:3006/api/changeClotheWornDate", {
       method: "POST",
@@ -74,16 +78,18 @@ const OotdTile = ({ imgLink, description, shoes, bottom, top }) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ listOfIds: clothesIDs }),
-    }).then((response) => {
-      if (response.ok) {
-        console.log("Last worn date updated successfully");
-      } else {
-        console.error("Error updating last worn date");
-      }
-    }).catch((error) => {
-      console.error(error);
-    });
-  
+    })
+      .then((response) => {
+        if (response.ok) {
+          console.log("Last worn date updated successfully");
+        } else {
+          console.error("Error updating last worn date");
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+
     // Save the outfit to favorites
     try {
       axios.post("http://localhost:3006/ootd/saveFavourite", postBody);
@@ -103,7 +109,8 @@ const OotdTile = ({ imgLink, description, shoes, bottom, top }) => {
         src={imgLink}
         className={styles.OotdTile}
         onClick={() => openModal()}
-        alt="ootd"
+        alt="outfit recommendation"
+        width="20px"
       />
       <div className={styles.tileDesc}>{description}</div>
 
@@ -114,20 +121,18 @@ const OotdTile = ({ imgLink, description, shoes, bottom, top }) => {
         style={customStyles}
         contentLabel="OOTD"
       >
-        <h2 style={{fontSize: "22px"}}>IS THIS YOUR NEW FAVOURITE OUTFIT?</h2>
-        <div className={styles.imgDivContainer}
-         style={{
+        <h2 style={{ fontSize: "22px" }}>IS THIS YOUR NEW FAVOURITE OUTFIT?</h2>
+        <div
+          className={styles.imgDivContainer}
+          style={{
             width: "auto",
             borderRadius: "2vh",
-            padding: "1.5vh"
-          }}>
-          <img
-          src={imgLink}
-          alt="ootd"
-          className={styles.imgDiv}
-        />
+            padding: "1.5vh",
+          }}
+        >
+          <img src={imgLink} alt="ootd" className={styles.imgDiv} />
         </div>
-        
+
         <div className={styles.modalButton}>
           <button onClick={onClickHandler}>Yeah!</button>
           <button onClick={closeModal}>Not for me</button>
