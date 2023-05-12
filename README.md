@@ -168,3 +168,17 @@ We chose to use the OpenAI API because of its current relevance and we were inte
 ## Weather API
 
 For getting the current weather conditions we opted for an API provided by https://www.weatherapi.com. We have a separate proxy route that accesses this API with our key in a .env file in our backend. We chose this API because of its ease of use, requiring only a city name as an argument in its GET query string body. Before settling on this API, we tested an alternative that required latitude and longitude coordinates to be input as a query string for the GET request. The team managed to find a csv online of all major cities in the world and their coordinates. Using this data, we created a LOCATION mapping table that we could use to map the coordinate to the city name, circumventing the user having to input their coordinates. After moving to the current API, we left the LOCATION table as is, in case we needed future location data.
+
+## Accessibility
+
+We want to make sure that LLAMAFY is accessible to everyone. Our team has taken the following steps to make the application more accessible:
+
+    Keyboard Navigation: LLAMAFY can be navigated using only the keyboard. We have made sure that all interactive elements on the site, such as buttons and links, can be accessed and operated using the keyboard alone.
+
+    Color Contrast: We have designed the site with color contrast in mind to ensure that the content is readable for people with low vision or color blindness. We have used high contrast colors for the text and background, and we have made sure that the text is large enough to read.
+
+    Screen Reader Compatibility: LLAMAFY is compatible with screen readers. We have added alternative text to all images, and we have made sure that the site is designed in a logical and easy-to-navigate way for screen reader users.
+
+    Forms and Labels: All forms on LLAMAFY have labels associated with them. This helps users understand what information is required in each field and is especially helpful for screen reader users.
+
+If you have any suggestions for how we can improve the accessibility of LLAMAFY, please don't hesitate to reach out to us. We are always looking for ways to make our application more accessible for everyone.
