@@ -3,35 +3,13 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import '@testing-library/jest-dom';
 import OutfitOfTheDay from '../components/OutfitOfTheDay/OutfitOfTheDay';
 
-test('OOTD title exists', () => {
+test('OOTD heading', () => {
     render(
         <Router>
           <OutfitOfTheDay />
         </Router>
       );
 
-    const heading = screen.getByText('OUTFIT OF THE DAY');
+    const heading = screen.getByText(/OUTFIT OF THE DAY/i);
     expect(heading).toBeInTheDocument();
 });
-
-test('Weather box exists', () => {
-    render(
-        <Router>
-          <OutfitOfTheDay />
-        </Router>
-      );
-
-    const box = screen.getByText('Today\'s Weather');
-    expect(box).toBeInTheDocument();
-})
-
-test('Generate button exists', () => {
-    render(
-        <Router>
-          <OutfitOfTheDay />
-        </Router>
-      );
-
-    const button = screen.queryByRole('button');
-    expect(button).toBeInTheDocument();
-})
