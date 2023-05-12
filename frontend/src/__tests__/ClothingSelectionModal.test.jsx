@@ -1,6 +1,6 @@
 import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
-import ClothingSelectionModal from "./ClothingSelectionModal";
+import ClothingSelectionModal from "../components/ClothingSelectionModal/ClothingSelectionModal";
 import { Button } from "@mui/material";
 
 jest.mock("react-toastify", () => ({

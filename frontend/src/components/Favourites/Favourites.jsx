@@ -16,28 +16,34 @@ export default function Favourites() {
   // check that the wardrobe data has been fetched from the database
   const [dataFetched, setDataFetched] = useState(false);
 
-  // Grab email and request all user images in their public folder
-  // Create a little tile for each
+  // Fetch the user's favourite outfits from the database
   useEffect(() => {
+    // Function to get the user's favourite outfits from the database
     const getFavourites = async () => {
       const email = await getUserEmail();
       const postBody = {
         email: email,
       };
-      axios
+      await axios
         .post(`http://localhost:3006/favourites/all`, postBody)
         .then((res) => {
+          // If the response is 200, set the state pastOutfits to the array of file names
           if (res.status === 200) {
+            console.log(res.data);
             tempArr = [];
             res.data.map((filename, index) => {
               tempArr.push({
                 id: index + 1,
                 render: `http://localhost:3006/${email}/${filename}`,
-                desc: undefined /*`${filename}`*/,
+                desc: undefined,
               });
               setPastOutfits(tempArr);
-              setDataFetched(true);
             });
+            setDataFetched(true);
+          }
+          // If the response is 202, set the state dataFetched to true
+          if (res.status === 202) {
+            setDataFetched(true);
           }
         })
         .catch((error) => {
@@ -47,6 +53,7 @@ export default function Favourites() {
           );
         });
     };
+    // Call the function to get the user's favourite outfits
     getFavourites();
   }, []);
 
@@ -55,20 +62,20 @@ export default function Favourites() {
       <Heading title="Favourites" />
       <SubHeading subtitle="PAST OUTFITS" />
 
-      {pastOutfits ? (
+      {dataFetched ? (
         <Box sx={{ marginTop: 8 }}>
-          <Grid
-            container
-            spacing={{ xs: 2, md: 6 }}
-            columns={{ xs: 1, sm: 6, md: 8, lg: 12 }}
-            sx={{
-              justifyContent: "center",
-              backgroundColor: "transparent",
-            }}
-          >
-            {/* Loop over all the user's past outfits*/}
-            {dataFetched ? (
-              pastOutfits.map((outfitObj) => (
+          {pastOutfits ? (
+            <Grid
+              container
+              spacing={{ xs: 2, md: 6 }}
+              columns={{ xs: 1, sm: 6, md: 8, lg: 12 }}
+              sx={{
+                justifyContent: "center",
+                backgroundColor: "transparent",
+              }}
+            >
+              {/* Loop over all the user's past outfits*/}
+              {pastOutfits.map((outfitObj) => (
                 <Grid
                   item
                   key={outfitObj.id}
@@ -81,17 +88,24 @@ export default function Favourites() {
                 >
                   <OutfitTile outfit={outfitObj} images={pastOutfits} />
                 </Grid>
-              ))
-            ) : (
-              <SubHeading subtitle="Go select some of your favourite outfits to display here" />
-            )}
-          </Grid>
+              ))}
+            </Grid>
+          ) : (
+            <Typography
+              variant="h5"
+              sx={{ color: "white", fontStyle: "italic" }}
+            >
+              Nothing to display yet
+            </Typography>
+          )}
         </Box>
       ) : (
-        <Box>
-          <Typography>Loading...</Typography>
-          <img src={loading}></img>
-        </Box>
+        <>
+          <Box>
+            <Typography>Loading...</Typography>
+            <img src={loading}></img>
+          </Box>
+        </>
       )}
     </>
   );

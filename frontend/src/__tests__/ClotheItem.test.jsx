@@ -1,6 +1,6 @@
 import React from "react";
 import { render, fireEvent } from "@testing-library/react";
-import ClothesItem from "./ClotheItem";
+import ClothesItem from "../components/ClotheItem/ClotheItem";
 
 describe("ClothesItem", () => {
   const mockOnClick = jest.fn();

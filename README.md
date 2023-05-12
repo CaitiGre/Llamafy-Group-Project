@@ -66,7 +66,7 @@ If for whatever reason you do not wish to register but still want to have a look
 To run tests, navigate to the relevant folders (backed, frontend) and run the following command
 
 ```bash
-  npm run test
+  npm run test .
 ```
 
 
@@ -143,6 +143,21 @@ Once the user is happy with the information they have updated and inserted their
 This section doubles as a bit of a gag page but also an explanation into why we made some of the choices in designing the application the way that we did. We have also used this page as a way to explain the future developments that we had planned for this project, but were not feasible to impliment at this point in time due to a varity of factors.
 
 Many of the elements mentioned here are those that were included in the could have or nice to have section of our design proposal that unfortunately at this stage did not make it into the final product. However, we felt it was import to address them and consider them to be potential future developments that the 'company' may decide to impliment in future releases.
+
+## Accessibility
+
+We want to make sure that LLAMAFY is accessible to everyone. Our team has taken the following steps to make the application more accessible:
+
+    Keyboard Navigation: LLAMAFY can be navigated using only the keyboard. We have made sure that all interactive elements on the site, such as buttons and links, can be accessed and operated using the keyboard alone.
+
+    Color Contrast: We have designed the site with color contrast in mind to ensure that the content is readable for people with low vision or color blindness. We have used high contrast colors for the text and background, and we have made sure that the text is large enough to read.
+
+    Screen Reader Compatibility: LLAMAFY is compatible with screen readers. We have added alternative text to all images, and we have made sure that the site is designed in a logical and easy-to-navigate way for screen reader users.
+
+    Forms and Labels: All forms on LLAMAFY have labels associated with them. This helps users understand what information is required in each field and is especially helpful for screen reader users.
+
+If you have any suggestions for how we can improve the accessibility of LLAMAFY, please don't hesitate to reach out to us. We are always looking for ways to make our application more accessible for everyone.
+
 ## Tech Stack
 
 **Client:** React

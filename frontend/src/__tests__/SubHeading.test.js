@@ -1,6 +1,6 @@
 import React from "react";
 import { render } from "@testing-library/react";
-import SubHeading from "./SubHeading";
+import SubHeading from "../components/SubHeading/SubHeading";
 
 describe("SubHeading component", () => {
   it("renders the subtitle correctly", () => {

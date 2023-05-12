@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
-import ClotheCustomisation from './ClotheCustomisation';
+import ClotheCustomisation from '../components/ClotheCustomisation/ClotheCustomisation';
 
 describe('ClotheCustomisation', () => {
   it('should render the component with the correct name', () => {
