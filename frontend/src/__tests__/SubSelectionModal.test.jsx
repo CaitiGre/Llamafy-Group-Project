@@ -1,6 +1,6 @@
 import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
-import SubSelectionModal from "./SubSelectionModal";
+import SubSelectionModal from "../components/SubSelectionModal/SubSelectionModal";
 
 describe("SubSelectionModal", () => {
   const itemsToShow = [

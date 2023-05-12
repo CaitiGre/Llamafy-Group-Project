@@ -93,6 +93,7 @@ function LoginPage() {
           >
             <Grid item xs={12} md={10}>
               <InputLabel
+                htmlFor="email"
                 sx={{
                   paddingTop: "3vh",
                   paddingBottom: "2vh",
@@ -141,6 +142,7 @@ function LoginPage() {
                 }}
               >
                 <InputLabel
+                  htmlFor="password"
                   sx={{
                     paddingTop: "3vh",
                     paddingBottom: "2vh",
@@ -199,7 +201,6 @@ function LoginPage() {
                       </InputAdornment>
                     }
                   />
-                  
                 </Box>
               </Box>
             </Grid>

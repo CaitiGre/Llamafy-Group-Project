@@ -275,7 +275,9 @@ const OutfitOfTheDay = () => {
                               }}
                             >
                               {weatherValues.tempC} with{" "}
-                              {weatherValues.humidity} humidity. Windspeed at{" "}
+                              {weatherValues.humidity} humidity. 
+                              <br/> 
+                              Windspeed at{" "}
                               {weatherValues.windKph}.{" "}
                             </Typography>
                           </Box>
