@@ -20,8 +20,14 @@ function Selection({ item, options, selectionValue, handleChange }) {
                 textAlign: "center",
                 justifyContent: "center"
             }}
-
-            disableUnderline={true}
+            sx={{
+                '&:before': {
+                    borderBottom: 'none',
+                  },
+                  '&:hover:not(.Mui-disabled):before': {
+                    borderBottom: 'none',
+                  },
+            }}
         >
 
             <MenuItem value={item.value} style={{ color: "black" }} disabled></MenuItem>
