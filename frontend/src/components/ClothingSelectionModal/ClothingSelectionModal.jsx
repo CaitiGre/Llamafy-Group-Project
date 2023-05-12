@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Modal, Card, Box, Button, Typography, Grid } from "@mui/material";
 import { TwitterPicker } from "react-color";
 import close from "./../../assets/close.png";
@@ -36,7 +36,7 @@ function ClothingSelectionModal({ selectedItem, showModal, onCloseModal }) {
     };
 
     try {
-      if (color == "#000000") {
+      if (color === "#000000") {
         toast.error("Please select a color for your clothing item!");
         return;
       }
