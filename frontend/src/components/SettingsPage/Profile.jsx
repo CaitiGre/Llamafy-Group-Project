@@ -192,6 +192,7 @@ function Profile() {
                 {item.type !== "select" ? (
                   <>
                     <InputLabel
+                      htmlFor={item.id}
                       sx={{
                         paddingTop: "25px",
                         marginBottom: "2px",
@@ -221,6 +222,7 @@ function Profile() {
                 ) : (
                   <>
                     <InputLabel
+                      htmlFor={item.id}
                       sx={{
                         paddingTop: "25px",
                         marginBottom: "2px",
