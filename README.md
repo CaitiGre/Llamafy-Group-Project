@@ -84,9 +84,11 @@ Here you can find a brief overview of the pages that we have available to peruse
 
 ### Landing Page
 
+![LandingPageImage](../project-group-lavender-llamas/frontend/src/assets/LandingPage.png)
+
 The landing page is the first of the pages that you will see when you open our application. From here you are able to navigate to different pages depending on whether you are logged in or not, and are introduced to a bit about the purpose of the application.
 
-In this section you are also able to navigate to the disclaimer page or you can do so at anytime from the sidebar
+In this section you are also able to navigate to the disclaimer page or you can do so at anytime from the sidebar.
 
 ### Registration Page
 
@@ -156,13 +158,13 @@ Many of the elements mentioned here are those that were included in the could ha
 
 We want to make sure that LLAMAFY is accessible to everyone. Our team has taken the following steps to make the application more accessible:
 
-  - Keyboard Navigation: LLAMAFY can be navigated using only the keyboard. We have made sure that all interactive elements on the site, such as buttons and links, can be accessed and operated using the keyboard alone.
+- Keyboard Navigation: LLAMAFY can be navigated using only the keyboard. We have made sure that all interactive elements on the site, such as buttons and links, can be accessed and operated using the keyboard alone.
 
-  - Color Contrast: We have designed the site with color contrast in mind to ensure that the content is readable for people with low vision or color blindness. We have used high contrast colors for the text and background, and we have made sure that the text is large enough to read.
+- Color Contrast: We have designed the site with color contrast in mind to ensure that the content is readable for people with low vision or color blindness. We have used high contrast colors for the text and background, and we have made sure that the text is large enough to read.
 
-  - Screen Reader Compatibility: LLAMAFY is compatible with screen readers. We have added alternative text to all images, and we have made sure that the site is designed in a logical and easy-to-navigate way for screen reader users.
+- Screen Reader Compatibility: LLAMAFY is compatible with screen readers. We have added alternative text to all images, and we have made sure that the site is designed in a logical and easy-to-navigate way for screen reader users.
 
-  - Forms and Labels: All forms on LLAMAFY have labels associated with them. This helps users understand what information is required in each field and is especially helpful for screen reader users.
+- Forms and Labels: All forms on LLAMAFY have labels associated with them. This helps users understand what information is required in each field and is especially helpful for screen reader users.
 
 If you have any suggestions for how we can improve the accessibility of LLAMAFY, please don't hesitate to reach out to us. We are always looking for ways to make our application more accessible for everyone.
 
