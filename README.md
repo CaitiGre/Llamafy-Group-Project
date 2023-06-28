@@ -1,3 +1,11 @@
+# Please note this project was created in collaboration with five other group members
+
+This project is the brainchild of myself and fellow llamas for a University project.
+
+My contribution to the project revolved primarily in the frontend usability, design, layout, and incorporation of MUI components. 
+
+As this was a project, the env files and the keys to the APIs are no longer connected, and so the application may not function as it is supposed to i.e. generating outfits.
+
 # LLAMAFY
 
 Have you ever looked in your wardrobe and decided you have nothing to wear? Have you warn the same outfit two weeks in a row? Who are you? Steve Jobs*?
